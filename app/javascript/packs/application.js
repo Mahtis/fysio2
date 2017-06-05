@@ -7,4 +7,20 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+document.addEventListener('DOMContentLoaded', () => {
+    ReactDOM.render(
+        <App />,
+        document.body.appendChild(document.createElement('div')),
+    )
+})
+registerServiceWorker();
+
 console.log('Hello World from Webpacker')
