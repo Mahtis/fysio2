@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-//import NavBar from './Components/NavBar/NavBar';
-//import IndexView from "./Components/IndexView/IndexView";
+import NavBar from './Components/NavBar/NavBar';
+import IndexView from "./Components/IndexView/IndexView";
 import { Button } from 'reactstrap';
 
 class App extends Component {
@@ -15,7 +15,8 @@ class App extends Component {
     render() {
         return (
           <div>
-
+              <NavBar/>
+              <IndexView/>
               <div>
                   <Button>Text</Button>
               </div>

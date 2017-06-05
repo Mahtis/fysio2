@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Layer from "../../Components/Layer/Layer";
-//import { ListGroup } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 
 
 class LayerList extends Component {

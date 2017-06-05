@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
-/*import { ListGroupItem,
+import { ListGroupItem,
          ButtonDropdown,
          DropdownToggle,
          DropdownMenu
-} from 'reactstrap';*/
+} from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
 
 class Layer extends Component {
