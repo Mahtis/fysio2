@@ -848,9 +848,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
+bootstrap@^4.0.0-alpha.6:
+  version "4.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.6.tgz#4f54dd33ac0deac3b28407bc2df7ec608869c9c8"
+  dependencies:
+    jquery ">=1.9.1"
+    tether "^1.4.0"
 
 brace-expansion@^1.1.7:
   version "1.1.7"
@@ -1010,6 +1013,10 @@ center-align@^0.1.1:
   dependencies:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
+
+chain-function@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/chain-function/-/chain-function-1.0.0.tgz#0d4ab37e7e18ead0bdc47b920764118ce58733dc"
 
 chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
   version "1.1.3"
@@ -1510,6 +1517,10 @@ diffie-hellman@^5.0.0:
     bn.js "^4.1.0"
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
+
+dom-helpers@^3.2.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.2.1.tgz#3203e07fed217bd1f424b019735582fc37b2825a"
 
 domain-browser@^1.1.1:
   version "1.1.7"
@@ -2326,6 +2337,10 @@ jodid25519@^1.0.0:
   resolved "https://registry.yarnpkg.com/jodid25519/-/jodid25519-1.0.2.tgz#06d4912255093419477d425633606e0e90782967"
   dependencies:
     jsbn "~0.1.0"
+
+jquery@>=1.9.1, jquery@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.1.9"
@@ -3596,7 +3611,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
+prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@~15.5.7:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -3708,6 +3723,15 @@ react-dom@^15.5.4:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "~15.5.7"
+
+react-transition-group@^1.1.2:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.1.3.tgz#5e02cf6e44a863314ff3c68a0c826c2d9d70b221"
+  dependencies:
+    chain-function "^1.0.0"
+    dom-helpers "^3.2.0"
+    prop-types "^15.5.6"
+    warning "^3.0.0"
 
 react@^15.5.4:
   version "15.5.4"
@@ -4371,6 +4395,10 @@ tcomb@^2.5.1:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/tcomb/-/tcomb-2.7.0.tgz#10d62958041669a5d53567b9a4ee8cde22b1c2b0"
 
+tether@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-1.4.0.tgz#0f9fa171f75bf58485d8149e94799d7ae74d1c1a"
+
 timers-browserify@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-2.0.2.tgz#ab4883cf597dcd50af211349a00fbca56ac86b86"
@@ -4540,6 +4568,12 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+warning@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  dependencies:
+    loose-envify "^1.0.0"
 
 watchpack@^1.3.1:
   version "1.3.1"

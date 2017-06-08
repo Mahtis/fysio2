@@ -18,7 +18,7 @@ class App extends Component {
               <NavBar/>
               <IndexView/>
               <div>
-                  <Button>Text</Button>
+                  <Button color="danger">Text</Button>
               </div>
           </div>
         );
