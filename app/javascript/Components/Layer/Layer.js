@@ -1,10 +1,10 @@
 
 import React, { Component } from 'react';
 import { ListGroupItem,
-         ButtonDropdown,
-         DropdownToggle,
-         DropdownMenu
-} from 'reactstrap';
+        Button,
+        ButtonDropdown,
+        DropdownToggle,
+        DropdownMenu } from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
 
 class Layer extends Component {
@@ -35,7 +35,7 @@ class Layer extends Component {
 
     render(){
         return (
-            <ListGroupItem id={this.props.layer.id}>
+            <th className="transpose-th" id={this.props.layer.id}>
                 <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret>
                     {this.props.layer.name}
@@ -44,7 +44,7 @@ class Layer extends Component {
                         <CategoryList key={this.state.id} categories={this.state.categories}/>
                     </DropdownMenu>
                 </ButtonDropdown>
-            </ListGroupItem>
+            </th>
         );
     }
 }

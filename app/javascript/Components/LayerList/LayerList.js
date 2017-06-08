@@ -42,11 +42,9 @@ class LayerList extends Component {
 
     render() {
         return (
-            <div>
-                <ListGroup>
-                    { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]}/>) }
-                </ListGroup>
-            </div>
+            <tr className="transpose-tr">
+                { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]}/>) }
+            </tr>
         );
     }
 }

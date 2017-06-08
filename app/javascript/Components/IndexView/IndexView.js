@@ -6,17 +6,9 @@ import PublicationTable from "../PublicationTable/PublicationTable";
 class IndexView extends Component{
     render(){
         return (
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <LayerList />
-                        </td>
-                        <td>
-                            <PublicationTable />
-                        </td>
-                    </tr>
-                </tbody>
+            <table className="transpose-table">
+                    <LayerList/>
+                    <PublicationTable />
             </table>
         );
     }
