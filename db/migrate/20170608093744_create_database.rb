@@ -6,8 +6,9 @@ class CreateDatabase < ActiveRecord::Migration[5.1]
       t.timestamps null: false
     end
 
-    create_table :layers do |t|
+    create_table :categories do |t|
       t.string :name
+      t.integer :layer_id
 
       t.timestamps null: false
     end
