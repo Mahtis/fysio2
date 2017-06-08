@@ -15,7 +15,7 @@ class LayerList extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/layers.json')
+        fetch('/layers.json')
             .then(response => response.json())
             .then(results => {
                 this.setState({
@@ -23,7 +23,7 @@ class LayerList extends Component {
                 })
             }).then(
 
-            fetch('http://localhost:3000/categories.json')
+            fetch('/categories.json')
             .then(response => response.json())
             .then(results1 => {
                 var dictionary = {};
