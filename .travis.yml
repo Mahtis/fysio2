@@ -1,0 +1,16 @@
+language: ruby
+rvm:
+- 2.3.1
+script:
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+- bundle exec cucumber features
+deploy:
+  provider: heroku
+  api_key:
+    secure: tV6iTKO4LoCmRNktzMdHHVBlYZ37xi+reesQKPDbSDjKhiGUGulwx1ODw9AYUD+4vY+xBbkUsXfqonG/xmo5iSpLmeE1+z4eMNoKKJrSrGhiPDEXkUsV9KAQOD9z2GUys9ZCdRUnzAacTvSdhrGAA18oqVYfIEtD7gvhSNmbY24ANoz3vLOZoUuwUHm2DMnHV+CIGpKO/dizdjZmYA9H1vTArx3bKSPeobIlmj3YyhSZ1Bq3kOfEBhzRXdfDkzy2kkp1wo7s7YXbDvdfPt3Il6+l+xcHmYlsGdEvR7k+BWGBWvER3hVh9biAPxRVLYWupcVOtk/5JCts9WAwB/qcK0SzebthLLRU4tFBDPFLkpMqpak8w3L5PTygiZKzXDW4wy3N+WZNPLkqcm3RgvzK3DC6pZBCA4sWcRkTR5/b4SvBA8LZhIhknCPWS+xJTtjPa8xTlo74S8R7xzANdDLchTNbU+/dgXuFqfWPBiKBz16ydd3ebkptx2/1ee5SPpeazwN9oApr1RuOWkb84BdbqZi9kFABRP8+qvQxQuJO+LdX2S1rrecLVlw47ktTo0XLAbTXoIiJvExtm6Du/s/EcJV9vk12lfEu/UpMqqI+aAd6flqTydEXGXZOqbBkdKnrGf7pnryPN1COEizbd8BJNFYGvxCOekt32DN2E2cSTrg=
+  app: frozen-dawn-89255
+  on:
+    repo: Mahtis/fysio2
