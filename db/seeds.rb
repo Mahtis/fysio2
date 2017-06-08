@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-ayer.create([{name: 'Application'}, {name: 'Logic'}, {name: 'Indicies'}, {name: 'Metrics'}, {name: 'Signal'}]);
+Layer.create([{name: 'Application'}, {name: 'Logic'}, {name: 'Indicies'}, {name: 'Metrics'}, {name: 'Signal'}]);
 
 publications = Publication.create([{name: 'Audio Biofeedback for Poker Players', abstract: 'Abstract text here', year: 2001, journal: 'Nature'},
                                    {name: 'Neurofeedback Meditation in Virtual Reality', abstract: 'Abstract text here', year: 2005, journal: 'Science'},
