@@ -6,6 +6,7 @@ import { ListGroupItem,
         DropdownToggle,
         DropdownMenu } from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
+import CategoryFilter from "../CategoryList/CategoryFilter";
 
 class Layer extends Component {
 
@@ -16,7 +17,8 @@ class Layer extends Component {
         this.state = {
             dropdownOpen: false,
             categories: props.categories,
-            id: props.id
+            id: props.id,
+            publications: props.publications
         };
     }
 
@@ -46,11 +48,23 @@ class Layer extends Component {
                         </DropdownMenu>
                     </ButtonDropdown>
                 </th>
+                { this.state.publications.map(p => <CategoryFilter key={p.id} layer={this.props.layer.id} categories={this.state.categories} />) }
+                {/*<td>
+
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                </td>
                 <td>
                     <Button>Category</Button>
                     <Button>Category</Button>
                     <Button>Category</Button>
                 </td>
+                <td>
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                </td>*/}
             </tr>
       );
     }

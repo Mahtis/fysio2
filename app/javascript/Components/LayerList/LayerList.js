@@ -55,7 +55,7 @@ class LayerList extends Component {
                     <th>pubs</th>
                     { this.state.publications.map(p => <td>{p.name}</td>) }
                 </tr>
-                { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]}/>) }
+                { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]} publications={this.state.publications}/>) }
             </tbody>
         );
     }
