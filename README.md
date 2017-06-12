@@ -1,24 +1,9 @@
-# README
+# fysio
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/kummitus/fysio.png)](https://travis-ci.org/kummitus/fysio)
 
-Things you may want to cover:
+[Heroku](https://murmuring-oasis-41354.herokuapp.com)
 
-* Ruby version
+[Backlog](https://docs.google.com/spreadsheets/d/1jfjklsfU010FvHHj6rzSbhvvMsHWwTzUubCUJlhY1pw/) 
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
