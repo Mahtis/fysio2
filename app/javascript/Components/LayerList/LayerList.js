@@ -9,7 +9,8 @@ class LayerList extends Component {
         super();
         this.state = {
             layers: [],
-            layerCategories: []
+            layerCategories: [],
+            publications: []
         }
 
     }
@@ -38,13 +39,24 @@ class LayerList extends Component {
                     layerCategories: dictionary
                 })
             }));
+        fetch('publications.json')
+            .then(response => response.json())
+            .then(results => {
+                this.setState({
+                    publications: results
+                })
+            });
     }
 
     render() {
         return (
-            <tr className="transpose-tr">
+            <tbody>
+                <tr>
+                    <th>pubs</th>
+                    { this.state.publications.map(p => <td>{p.name}</td>) }
+                </tr>
                 { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]}/>) }
-            </tr>
+            </tbody>
         );
     }
 }

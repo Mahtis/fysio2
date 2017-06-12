@@ -2,14 +2,15 @@
 import React, { Component } from 'react';
 import LayerList from "../LayerList/LayerList";
 import PublicationTable from "../PublicationTable/PublicationTable";
+import { Table } from 'reactstrap';
 
 class IndexView extends Component{
     render(){
         return (
-            <table className="transpose-table">
+            <Table>
                     <LayerList/>
-                    <PublicationTable />
-            </table>
+                {/*<PublicationTable />*/}
+            </Table>
         );
     }
 }

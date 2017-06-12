@@ -35,17 +35,24 @@ class Layer extends Component {
 
     render(){
         return (
-            <th className="transpose-th" id={this.props.layer.id}>
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret>
-                    {this.props.layer.name}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <CategoryList key={this.state.id} categories={this.state.categories}/>
-                    </DropdownMenu>
-                </ButtonDropdown>
-            </th>
-        );
+            <tr>
+                <th id={this.props.layer.id}>
+                    <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                        <DropdownToggle caret>
+                        {this.props.layer.name}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <CategoryList key={this.state.id} categories={this.state.categories}/>
+                        </DropdownMenu>
+                    </ButtonDropdown>
+                </th>
+                <td>
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                    <Button>Category</Button>
+                </td>
+            </tr>
+      );
     }
 }
 
