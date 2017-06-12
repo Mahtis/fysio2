@@ -15,7 +15,7 @@ class LayerList extends Component {
 
     }
 
-    componentDidMount() {
+    componentWillMount() {
         fetch('/layers.json')
             .then(response => response.json())
             .then(results => {
@@ -49,16 +49,29 @@ class LayerList extends Component {
     }
 
     render() {
+        let pubs = this.createPubs();
+        let other = this.createOther();
         return (
             <tbody>
                 <tr>
                     <th>pubs</th>
-                    { this.state.publications.map(p => <td>{p.name}</td>) }
+                    {pubs}
+                    {/* this.state.publications.map(p => <td key={p.id}>{p.name}</td>) */}
                 </tr>
-                { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]} publications={this.state.publications}/>) }
+                {other}
             </tbody>
         );
     }
+
+    createPubs() {
+        let pubs = this.state.publications.map(p => <td key={p.id}>{p.name}</td>);
+        return pubs;
+    }
+    createOther() {
+        let other = this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]} publications={this.state.publications}/>);
+        return other;
+    }
+
 }
 
 export default LayerList;

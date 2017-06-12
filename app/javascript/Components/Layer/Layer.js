@@ -48,7 +48,7 @@ class Layer extends Component {
                         </DropdownMenu>
                     </ButtonDropdown>
                 </th>
-                { this.state.publications.map(p => <CategoryFilter key={p.id} layer={this.props.layer.id} categories={this.state.categories} />) }
+                { this.state.publications.map(p => <CategoryFilter key={p.id} pub_id={p.id} layer={this.props.layer.id} categories={this.state.categories} />) }
                 {/*<td>
 
                     <Button>Category</Button>

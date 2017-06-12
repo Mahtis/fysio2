@@ -8,6 +8,7 @@ class IndexView extends Component{
     render(){
         return (
             <Table>
+                {console.log("START")}
                     <LayerList/>
                 {/*<PublicationTable />*/}
             </Table>
