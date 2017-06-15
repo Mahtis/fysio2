@@ -7,25 +7,23 @@ class CategoryButton extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { selected: this.props.color };
+        this.state = { onOff: this.props.status, color: "secondary" };
 
-        this.onBtnClick = this.onBtnClick.bind(this);
+        this.selected = this.selected.bind(this);
     }
 
-    onBtnClick() {
-        if (this.state.selected === "primary") {
-            this.setState({selected: "warning"});
-            this.props.table.state.myList.push(1);
-            this.props.table.drawAgain();
+    selected() {
+        if (this.state.onOff) {
+            this.setState({onOff: false, color: "secondary"});
         } else {
-            this.setState({selected: "primary"});
+            this.setState({onOff: true, color: "success"});
         }
     }
 
     render() {
         return (
-            <Button color={this.state.selected} onClick={() => this.onBtnClick()}>
-                {this.props.category}
+            <Button onClick={this.selected} color={this.state.color}>
+                {this.props.name}
             </Button>
         );
     }

@@ -23,7 +23,7 @@ class CategoryFilter extends Component{
 
         return (
             <td>
-                {cats.map(cc => <CategoryButton key={cc.id}>{cc.name}</CategoryButton>)}
+                {cats.map(cc => <CategoryButton key={cc.id} name={cc.name} status={false}/>)}
             </td>
         )
     }

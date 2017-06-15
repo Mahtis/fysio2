@@ -6,6 +6,7 @@ import Layer from "../Layer/Layer";
 class LayerList extends Component {
     constructor() {
         super();
+
     }
 
     render() {
