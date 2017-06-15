@@ -7,7 +7,6 @@ script:
 - bundle exec rake db:test:prepare
 - bundle exec rspec -fd spec/
 - bundle exec cucumber features
-- yarn test
 deploy:
   provider: heroku
   api_key:
