@@ -1,6 +1,9 @@
 {
   "name": "fysio",
   "private": true,
+  "jest": {
+    "testMatch": ["'**/__tests__/**'"]
+  },
   "dependencies": {
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
