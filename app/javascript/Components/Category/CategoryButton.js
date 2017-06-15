@@ -6,25 +6,44 @@ class CategoryButton extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = { onOff: this.props.status, color: "secondary" };
+        const style1 = {
+            borderStyle: 'ridge',
+            borderColor: 'black',
+            backgroundColor: 'white',
+            padding: '5px',
+        }
+        this.state = { onOff: this.props.status, style: style1 };
 
         this.selected = this.selected.bind(this);
     }
 
     selected() {
+        const style1 = {
+            borderStyle: 'ridge',
+            borderColor: 'black',
+            backgroundColor: 'white',
+            padding: '5px',
+        }
+        const style2 = {
+            borderStyle: 'ridge',
+            borderColor: 'black',
+            backgroundColor: 'green',
+            padding: '5px',
+        }
         if (this.state.onOff) {
-            this.setState({onOff: false, color: "secondary"});
+            this.setState({onOff: false, style: style1});
         } else {
-            this.setState({onOff: true, color: "success"});
+            this.setState({onOff: true, style: style2});
         }
     }
 
     render() {
         return (
-            <Button onClick={this.selected} color={this.state.color}>
-                {this.props.name}
-            </Button>
+            <div style={this.state.style} onClick={this.selected}>
+                <span>
+                    {this.props.name}
+                </span>
+            </div>
         );
     }
 }

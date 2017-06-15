@@ -10,11 +10,14 @@ class IndexView extends Component{
 
 
     render(){
+        const table = {
+            tableLayout: 'auto',
+        }
         let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
         return (
-            <Table>
+            <Table style={table} reflow>
                 <LayerList key="1" categories={categories} layers={layers} publications={publications}/>
             </Table>
         );
