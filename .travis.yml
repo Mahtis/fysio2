@@ -1,11 +1,11 @@
-language: ruby
-rvm:
-- 2.3.1
+language: node_js
+node_js:
+- 6.10.3
+before_install:
+- rvm install 1.27.0
 install:
-- . $HOME/.nvm/nvm.sh
-- nvm install 6.10.3
-- nvm use 6.10.3
-- npm install
+- bundle install
+- yarn
 script:
 - bundle exec rake db:migrate --trace
 - RAILS_ENV=test bundle exec rake db:migrate --trace
