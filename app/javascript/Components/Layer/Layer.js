@@ -38,7 +38,7 @@ class Layer extends Component {
                         </DropdownMenu>
                     </ButtonDropdown>
                 </th>
-                { publications.map(p => <CategoryFilter key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
+                { publications.map(p => <CategoryFilter catSel={this.props.catSel} key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
             </tr>
       );
     }

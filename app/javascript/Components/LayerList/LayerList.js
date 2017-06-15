@@ -7,6 +7,9 @@ class LayerList extends Component {
     constructor() {
         super();
 
+        this.state = {
+            categorySelected: {EDA: true}
+        };
     }
 
     render() {
@@ -41,7 +44,7 @@ class LayerList extends Component {
             layerCategories[categories[x].layer_id].push(categories[x]);
         }
 
-        let other = layers.map(l => <Layer key={l.id} layer={l} categories={layerCategories[l.id]} publications={publications}/>);
+        let other = layers.map(l => <Layer catSel={this.state.categorySelected} key={l.id} layer={l} categories={layerCategories[l.id]} publications={publications}/>);
         return other;
     }
 
