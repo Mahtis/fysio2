@@ -1,10 +1,11 @@
 language: node_js
 node_js:
 - 6.10.3
-before_install:
-- rvm install 2.3.1
+sudo: required
 cache:
   yarn: true
+before_install:
+- rvm install 2.3.1
 install:
 - bundle install --jobs=3 --retry=3 --deployment
 script:
