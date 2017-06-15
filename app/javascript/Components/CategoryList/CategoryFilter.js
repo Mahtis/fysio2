@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import CategoryButton from "../Category/CategoryButton";
 
 class CategoryFilter extends Component{
     constructor() {
@@ -23,7 +23,7 @@ class CategoryFilter extends Component{
 
         return (
             <td>
-                {cats.map(cc => <Button key={cc.id}>{cc.name}</Button>)}
+                {cats.map(cc => <CategoryButton key={cc.id}>{cc.name}</CategoryButton>)}
             </td>
         )
     }
