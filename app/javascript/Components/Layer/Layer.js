@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
-import { ListGroupItem,
-        Button,
-        ButtonDropdown,
+import { ButtonDropdown,
         DropdownToggle,
         DropdownMenu } from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
@@ -10,15 +8,11 @@ import CategoryFilter from "../CategoryList/CategoryFilter";
 
 class Layer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.toggle = this.toggle.bind(this);
-        console.log(props.categories);
         this.state = {
             dropdownOpen: false,
-            categories: props.categories,
-            id: props.id,
-            publications: props.publications
         };
     }
 
@@ -28,43 +22,23 @@ class Layer extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            categories: nextProps.categories,
-            id: nextProps.id
-        })
-    }
-
     render(){
+        let layer = this.props.layer;
+        let categories = this.props.categories;
+        let publications = this.props.publications;
         return (
             <tr>
-                <th id={this.props.layer.id}>
+                <th id={layer.id}>
                     <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                         <DropdownToggle caret>
-                        {this.props.layer.name}
+                        {layer.name}
                         </DropdownToggle>
                         <DropdownMenu>
-                            <CategoryList key={this.state.id} categories={this.state.categories}/>
+                            <CategoryList key={layer.id} categories={categories}/>
                         </DropdownMenu>
                     </ButtonDropdown>
                 </th>
-                { this.state.publications.map(p => <CategoryFilter key={p.id} pub_id={p.id} layer={this.props.layer.id} categories={this.state.categories} />) }
-                {/*<td>
-
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                </td>
-                <td>
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                </td>
-                <td>
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                    <Button>Category</Button>
-                </td>*/}
+                { publications.map(p => <CategoryFilter key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
             </tr>
       );
     }

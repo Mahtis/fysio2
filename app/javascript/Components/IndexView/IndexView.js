@@ -1,16 +1,21 @@
 
 import React, { Component } from 'react';
 import LayerList from "../LayerList/LayerList";
-import PublicationTable from "../PublicationTable/PublicationTable";
 import { Table } from 'reactstrap';
 
 class IndexView extends Component{
+    constructor() {
+        super();
+    }
+
+
     render(){
+        let categories = this.props.categories;
+        let layers = this.props.layers;
+        let publications = this.props.publications;
         return (
             <Table>
-                {console.log("START")}
-                    <LayerList/>
-                {/*<PublicationTable />*/}
+                <LayerList key="1" categories={categories} layers={layers} publications={publications}/>
             </Table>
         );
     }
