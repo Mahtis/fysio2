@@ -1,54 +1,53 @@
 
 import React, { Component } from 'react';
 import Layer from "../Layer/Layer";
-import { ListGroup } from 'reactstrap';
 
 
 class LayerList extends Component {
     constructor() {
         super();
+
         this.state = {
-            layers: [],
-            layerCategories: []
-        }
-
-    }
-
-    componentDidMount() {
-        fetch('/layers.json')
-            .then(response => response.json())
-            .then(results => {
-                this.setState({
-                    layers: results
-                })
-            }).then(
-
-            fetch('/categories.json')
-            .then(response => response.json())
-            .then(results1 => {
-                var dictionary = {};
-                for(var x = this.state.layers[0].id; x <= this.state.layers[this.state.layers.length-1].id; x++){
-                    dictionary[x] = [];
-                }
-                for(x = 0; x < results1.length; x++){
-                    dictionary[results1[x].layer_id].push(results1[x]);
-                }
-
-                this.setState({
-                    layerCategories: dictionary
-                })
-            }));
+            categorySelected: {EDA: true}
+        };
     }
 
     render() {
+        let pubs = this.createPubs();
+        let other = this.createOther();
+
         return (
-            <div>
-                <ListGroup>
-                    { this.state.layers.map(l => <Layer key={l.id} layer={l} categories={this.state.layerCategories[l.id]}/>) }
-                </ListGroup>
-            </div>
+            <tbody>
+                <tr>
+                    <th>pubs</th>
+                    {pubs}
+                </tr>
+                {other}
+            </tbody>
         );
     }
+
+    createPubs() {
+        let pubs = this.props.publications.map(p => <td key={p.id}>{p.name}</td>);
+        return pubs;
+    }
+    createOther() {
+        let layerCategories = {};
+        let layers = this.props.layers;
+        let categories = this.props.categories;
+        let publications = this.props.publications;
+
+        for(var x = layers[0].id; x <= layers[layers.length-1].id; x++){
+            layerCategories[x] = [];
+        }
+        for(x = 0; x < categories.length; x++){
+            layerCategories[categories[x].layer_id].push(categories[x]);
+        }
+
+        let other = layers.map(l => <Layer catSel={this.state.categorySelected} key={l.id} layer={l} categories={layerCategories[l.id]} publications={publications}/>);
+        return other;
+    }
+
 }
 
 export default LayerList;

@@ -1,22 +1,18 @@
 
 import React, { Component } from 'react';
-import { ListGroupItem,
-         ButtonDropdown,
-         DropdownToggle,
-         DropdownMenu
-} from 'reactstrap';
+import { ButtonDropdown,
+        DropdownToggle,
+        DropdownMenu } from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
+import CategoryFilter from "../CategoryList/CategoryFilter";
 
 class Layer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.toggle = this.toggle.bind(this);
-        console.log(props.categories);
         this.state = {
             dropdownOpen: false,
-            categories: props.categories,
-            id: props.id
         };
     }
 
@@ -26,26 +22,25 @@ class Layer extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            categories: nextProps.categories,
-            id: nextProps.id
-        })
-    }
-
     render(){
+        let layer = this.props.layer;
+        let categories = this.props.categories;
+        let publications = this.props.publications;
         return (
-            <ListGroupItem id={this.props.layer.id}>
-                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle caret>
-                    {this.props.layer.name}
-                    </DropdownToggle>
-                    <DropdownMenu>
-                        <CategoryList key={this.state.id} categories={this.state.categories}/>
-                    </DropdownMenu>
-                </ButtonDropdown>
-            </ListGroupItem>
-        );
+            <tr>
+                <th id={layer.id}>
+                    <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                        <DropdownToggle caret>
+                        {layer.name}
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <CategoryList key={layer.id} categories={categories}/>
+                        </DropdownMenu>
+                    </ButtonDropdown>
+                </th>
+                { publications.map(p => <CategoryFilter catSel={this.props.catSel} key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
+            </tr>
+      );
     }
 }
 

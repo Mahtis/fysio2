@@ -1,0 +1,4 @@
+.transpose-table { border-collapse: collapse; }
+.transpose-tr { display: table-row; float: left; }
+.transpose-th { display: table-row; border: 1px solid black; }
+.transpose-td { display: table-row; border: 1px solid black; }
