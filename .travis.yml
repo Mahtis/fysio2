@@ -2,10 +2,9 @@ language: node_js
 node_js:
 - 6.10.3
 before_install:
-- rvm install 1.27.0
+- rvm install
 install:
 - bundle install
-- yarn
 script:
 - bundle exec rake db:migrate --trace
 - RAILS_ENV=test bundle exec rake db:migrate --trace
