@@ -38,21 +38,6 @@ class App extends Component {
                     publications: results
                 })
             });
-        /*fetch('/categories.json')
-            .then(response => response.json())
-            .then(results1 => {
-                var dictionary = {};
-                for(var x = this.state.layers[0].id; x <= this.state.layers[this.state.layers.length-1].id; x++){
-                    dictionary[x] = [];
-                }
-                for(x = 0; x < results1.length; x++){
-                    dictionary[results1[x].layer_id].push(results1[x]);
-                }
-
-                this.setState({
-                    layerCategories: dictionary
-                })
-            });*/
     }
 
     render() {
