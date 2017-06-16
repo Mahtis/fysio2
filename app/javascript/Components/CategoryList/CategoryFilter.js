@@ -20,7 +20,6 @@ class CategoryFilter extends Component{
                 }
             }
         }
-        //console.log(this.props.catSel);
 
         return (
             <td>

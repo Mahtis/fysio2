@@ -16,10 +16,6 @@ class Layer extends Component {
         };
     }
 
-    componentDidUpdate() {
-        //console.log(this.props.categorySelected);
-    }
-
     toggle() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -30,7 +26,7 @@ class Layer extends Component {
         let layer = this.props.layer;
         let categories = this.props.categories;
         let publications = this.props.publications;
-        //console.log(this.props.catSel)
+
         return (
             <tr>
                 <th id={layer.id}>
