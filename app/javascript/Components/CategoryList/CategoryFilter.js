@@ -23,7 +23,7 @@ class CategoryFilter extends Component{
 
         return (
             <td>
-                {cats.map(cc => <CategoryButton catSel={this.props.catSel} setCatState={this.props.setCatState} key={cc.id} name={cc.name} status={this.props.catSel.indexOf(cc.name) > -1}/>)}
+                {cats.map(cc => <CategoryButton catSel={this.props.catSel} setCatState={this.props.setCatState} key={cc.id} id={cc.id} name={cc.name} status={this.props.catSel.indexOf(cc.id) > -1}/>)}
             </td>
         )
     }

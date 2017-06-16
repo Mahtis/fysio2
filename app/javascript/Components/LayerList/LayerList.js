@@ -8,24 +8,59 @@ class LayerList extends Component {
         super();
 
         this.state = {
-            categorySelected: []
+            categorySelected: [],
+            publicationSelected: []
         };
         this.setCatState = this.setCatState.bind(this);
     }
 
+    componentWillReceiveProps() {
+        this.setState({ publicationSelected: this.props.publications });
+    }
+
     setCatState(newState) {
 
-        var catSel = this.state.categorySelected;
+        var catSelected = this.state.categorySelected;
 
-        var i = catSel.indexOf(newState);
+        var i = catSelected.indexOf(newState);
 
         if (i > -1) {
-            catSel.splice(i, 1);
+            catSelected.splice(i, 1);
         } else {
-            catSel.push(newState);
+            catSelected.push(newState);
         }
 
-        this.setState({categorySelected: catSel});
+        var pubSelected = this.getPublications(catSelected);
+
+        this.setState({
+            categorySelected: catSelected,
+            publicationSelected: pubSelected
+        });
+    }
+
+    getPublications(catSelected) {         //Tämä on huono (hidas)
+
+        var pubs = new Set();
+        var cats = [];
+        var pubSelected = [];
+
+        this.props.categories.map(
+            category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
+        );
+        //console.log(cats);
+        cats.map(
+          cat => cat.ids.map(pub => pubs.add(pub))
+        );
+        //for(let p of pubs) { console.log(p); }
+        this.props.publications.map(
+            publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
+        );
+
+        if (pubSelected.length == 0) {
+            pubSelected = this.props.publications;
+        }
+
+        return pubSelected;
     }
 
     render() {
@@ -37,9 +72,9 @@ class LayerList extends Component {
             <tbody>
                 <tr>
                     <th style={style}><span >pubs</span></th>
-                    {this.props.publications.map(p => <td key={p.id}>{p.name}</td>)}
+                    {this.state.publicationSelected.map(p => <td key={p.id}>{p.name}</td>)}
                 </tr>
-                {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.props.publications}/>)}
+                {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.state.publicationSelected}/>)}
             </tbody>
         );
     }

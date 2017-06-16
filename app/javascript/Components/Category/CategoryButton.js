@@ -12,7 +12,7 @@ class CategoryButton extends Component {
 
     selected() {
 
-        this.props.setCatState(this.props.name);
+        this.props.setCatState(this.props.id);
 
     }
 
