@@ -29,17 +29,21 @@ class LayerList extends Component {
     }
 
     render() {
-
+        const style = {
+            width: '150px',
+            minWidth: '150px',
+        }
         return (
             <tbody>
                 <tr>
-                    <th>pubs</th>
+                    <th style={style}><span >pubs</span></th>
                     {this.props.publications.map(p => <td key={p.id}>{p.name}</td>)}
                 </tr>
                 {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.props.publications}/>)}
             </tbody>
         );
     }
+
 }
 
 export default LayerList;
