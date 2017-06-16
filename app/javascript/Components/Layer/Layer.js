@@ -12,7 +12,7 @@ class Layer extends Component {
         super();
         this.toggle = this.toggle.bind(this);
         this.state = {
-            dropdownOpen: false,
+            dropdownOpen: false
         };
     }
 
@@ -26,6 +26,7 @@ class Layer extends Component {
         let layer = this.props.layer;
         let categories = this.props.categories;
         let publications = this.props.publications;
+
         return (
             <tr>
                 <th id={layer.id}>
@@ -38,7 +39,7 @@ class Layer extends Component {
                         </DropdownMenu>
                     </ButtonDropdown>
                 </th>
-                { publications.map(p => <CategoryFilter catSel={this.props.catSel} key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
+                { publications.map(p => <CategoryFilter setCatState={this.props.setCatState} catSel={this.props.catSel} key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
             </tr>
       );
     }
