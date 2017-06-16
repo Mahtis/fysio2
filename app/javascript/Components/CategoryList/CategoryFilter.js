@@ -20,10 +20,11 @@ class CategoryFilter extends Component{
                 }
             }
         }
+        //console.log(this.props.catSel);
 
         return (
             <td>
-                {cats.map(cc => <CategoryButton catSel={this.props.catSel} key={cc.id} name={cc.name} status={false}/>)}
+                {cats.map(cc => <CategoryButton catSel={this.props.catSel} setCatState={this.props.setCatState} key={cc.id} name={cc.name} status={this.props.catSel.indexOf(cc.name) > -1}/>)}
             </td>
         )
     }
