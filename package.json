@@ -2,11 +2,14 @@
   "name": "fysio",
   "private": true,
   "jest": {
-    "testMatch": ["**/__tests__/**"]
+    "testMatch": [
+      "**/__tests__/**"
+    ]
   },
   "dependencies": {
     "autoprefixer": "^7.1.1",
     "babel-core": "^6.24.1",
+    "babel-jest": "^20.0.3",
     "babel-loader": "7.x",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -24,6 +27,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.2",
     "glob": "^7.1.2",
+    "jest": "^20.0.4",
     "jquery": "^3.2.1",
     "js-yaml": "^3.8.4",
     "node-sass": "^4.5.3",
@@ -45,23 +49,22 @@
     "tether": "^1.4.0",
     "webpack": "^2.6.1",
     "webpack-manifest-plugin": "^1.1.0",
-    "webpack-merge": "^4.1.0",
-    "jest": "^20.0.4",
-    "babel-jest": "^20.0.3"
+    "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",
-    "enzyme": "^2.8.2",
-    "jest": "^20.0.4",
-    "regenerator-runtime": "^0.10.5",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.8.2",
     "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "react-test-renderer": "^15.5.4",
+    "regenerator-runtime": "^0.10.5",
     "test": "^0.6.0",
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   }
 }
