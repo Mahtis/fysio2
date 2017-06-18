@@ -1,6 +1,6 @@
 # fysio
 
-
+[![Build Status](https://travis-ci.org/Mahtis/ProfilerApp.svg?branch=master)](https://travis-ci.org/Mahtis/ProfilerApp)
 
 [Heroku](https://frozen-dawn-89255.herokuapp.com)
 
