@@ -8,8 +8,13 @@ class Category extends Component{
     }
 
     render() {
+        const width = {
+            width: '150px',
+            maxWidth: '150px',
+            minWidth: '150px'
+        }
         return (
-            <span>{this.props.category.name}</span>
+            <span style={width}>{this.props.category.name}</span>
         );
     }
 }
