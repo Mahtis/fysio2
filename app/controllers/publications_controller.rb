@@ -4,8 +4,35 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    parametersArray = Array.new
+    if !params[:names].nil?
+      params[:names].each do |p|
+        parametersArray << p
+      end
+    end
+    if parametersArray.size == 0
+      @publications = Publication.all
+    else
+      result = Publication.all.includes(:categories)
+         .where('categories.name = ?', parametersArray[0])
+         .references(:categories)
+      @publications = []
+      result.each do |r|
+        i = 0
+        g = Publication.find(r.id)
+        parametersArray.each do |p|
+          x = Category.find_by(name: p)
+          if g.categories.include?(x)
+            i = i + 1
+          end
+        end
+        if i == parametersArray.size
+          @publications << g
+        end
+      end
+    end
   end
+
 
   # GET /publications/1
   # GET /publications/1.json
