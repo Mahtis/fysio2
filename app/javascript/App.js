@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './Components/NavBar/NavBar';
-import IndexView from "./Components/IndexView/IndexView";
+import NavBar from './components/NavBar/NavBar';
+import IndexView from "./components/IndexView/IndexView";
 import { Button } from 'reactstrap';
 
 class App extends Component {
