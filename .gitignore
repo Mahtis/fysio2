@@ -23,3 +23,6 @@
 .byebug_history
 /public/packs
 /node_modules
+
+# ignore test coverage
+/coverage/
