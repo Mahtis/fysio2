@@ -8,7 +8,7 @@ class IndexView extends Component{
         super();
     }
 
-    createStuff() {
+    createLayerCategories() {
         let layerCategories = {};
         let layers = this.props.layers;
         let categories = this.props.categories;
@@ -32,15 +32,12 @@ class IndexView extends Component{
         const table = {
             tableLayout: 'auto',
         }
-        let categories = this.props.categories;
-        let layers = this.props.layers;
-        let publications = this.props.publications;
         let pubsIdAsIndex = this.createPubIdIndex();
-        var layerCategories = this.createStuff();
+        var layerCategories = this.createLayerCategories();
 
         return (
             <Table style={table} reflow>
-                <LayerList key="1" categories={categories} layers={layers} publications={publications} layerCategories={layerCategories} publicationsIdAsIndex={pubsIdAsIndex}/>
+                <LayerList key="1" categories={this.props.categories} layers={this.props.layers} publications={this.props.publications} layerCategories={layerCategories} publicationsIdAsIndex={pubsIdAsIndex}/>
             </Table>
         );
     }

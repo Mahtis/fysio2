@@ -56,7 +56,7 @@ class LayerList extends Component {
             publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
         );*/
 
-        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] != null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : {};
+        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] != null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : console.log("no publication with such id");
 
         if (pubSelected.length == 0) {
             pubSelected = this.props.publications;
