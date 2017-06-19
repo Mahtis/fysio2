@@ -28,8 +28,9 @@ class CategoryFilter extends Component{
                         categorySelected={this.props.categorySelected}
                         setCategoryState={this.props.setCategoryState}
                         key={categoryButton.id}
+                        id={categoryButton.id}
                         name={categoryButton.name}
-                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
+                        status={this.props.categorySelected.indexOf(categoryButton.id) > -1}
                     />
                 )}
             </td>

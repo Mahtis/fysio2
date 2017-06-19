@@ -40,10 +40,8 @@ class LayerList extends Component {
         this.setState({ publicationSelected: this.props.publications });
     }
 
-
-
     getPublications(catSelected) {         //Tämä on huono (hidas)
-
+        console.log(catSelected);
         var pubs = new Set();
         var cats = [];
         var pubSelected = [];
@@ -84,7 +82,7 @@ class LayerList extends Component {
                             pubs
                         </span>
                     </th>
-                    {this.props.publications.map(publication =>
+                    {this.state.publicationSelected.map(publication =>
                         <td key={publication.id}>
                             {publication.name}
                         </td>
@@ -96,7 +94,7 @@ class LayerList extends Component {
                             categorySelected={this.state.categorySelected}
                             key={layer.id} layer={layer}
                             categories={this.props.layerCategories[layer.id]}
-                            publications={this.props.publications}
+                            publications={this.state.publicationSelected}
                     />
                 )}
             </tbody>
