@@ -9,6 +9,7 @@ class Category extends Component{
             maxWidth: '150px',
             minWidth: '150px'
         }
+        // are these checks necessary?
         if (this.props.category === undefined || this.props.category.name === undefined) {
             return null;
         }
