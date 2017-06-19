@@ -23,11 +23,13 @@ class CategoryFilter extends Component{
 
         return (
             <td>
+
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
                         setCategoryState={this.props.setCategoryState}
                         key={categoryButton.id}
+                        id={categoryButton.id}
                         name={categoryButton.name}
                         status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
                     />
