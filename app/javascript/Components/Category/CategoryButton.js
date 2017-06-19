@@ -19,31 +19,18 @@ class CategoryButton extends Component {
     render() {
 
         const style1 = {
-            borderStyle: 'ridge',
-            borderColor: 'black',
             backgroundColor: 'white',
-            padding: '5px',
+            whiteSpace: 'normal'
         }
         const style2 = {
-            borderStyle: 'ridge',
-            borderColor: 'black',
             backgroundColor: 'green',
-            padding: '5px',
-        }
-
-        const style3= {
             whiteSpace: 'normal'
         }
 
     return (
-
-
-            <div style={this.props.status ? style2 : style1} onClick={this.selected}>
-                <Button style={style3}>
-                    {this.props.name}
-                </Button>
-            </div>
-
+        <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
+            {this.props.name}
+        </Button>
         );
     }
 }
