@@ -13,9 +13,8 @@ class IndexView extends Component{
         let layers = this.props.layers;
         let categories = this.props.categories;
 
-        for(let i = layers[0].id; i <= layers[layers.length-1].id; i++){
-            layerCategories[i] = [];
-            //console.log(this.state.categorySelected);
+        for(var x = layers[0].id; x <= layers[layers.length-1].id; x++){
+            layerCategories[x] = [];
         }
 
         for(let i = 0; i < categories.length; i++){
@@ -23,6 +22,12 @@ class IndexView extends Component{
         }
 
         return layerCategories;
+    }
+
+    createPubIdIndex() {
+        var pubs = [];
+        this.props.publications.map(publication => pubs[publication.id] = publication);
+        return pubs;
     }
 
     render(){
@@ -33,15 +38,18 @@ class IndexView extends Component{
         let layers = this.props.layers;
         let publications = this.props.publications;
         var layerCategories = this.createLayerCategories();
-        //console.log(layerCategories);
-        return (
+        let pubsIdAsIndex = this.createPubIdIndex();
+
+    return (
             <Table style={table} reflow>
                 <LayerList
                     key="1"
                     categories={categories}
                     layers={layers}
                     publications={publications}
-                    layerCategories={layerCategories}/>
+                    layerCategories={layerCategories}
+                    publicationsIdAsIndex={pubsIdAsIndex}
+                />
             </Table>
         );
     }

@@ -8,10 +8,12 @@ class LayerList extends Component {
         super(props);
 
         this.state = {
-            categorySelected: []
+            categorySelected: [],
+            publicationSelected: []
         };
         this.setCategoryState = this.setCategoryState.bind(this);
     }
+
 
     setCategoryState(newState) {
 
@@ -25,16 +27,55 @@ class LayerList extends Component {
             categorySelectedArray.push(newState);
         }
 
-        this.setState({categorySelected: categorySelectedArray});
+        var pubSelected = this.getPublications(categorySelectedArray);
+
+        this.setState({
+            categorySelected: categorySelectedArray,
+            publicationSelected: pubSelected
+        });
+
+    }
+
+    componentWillReceiveProps() {
+        this.setState({ publicationSelected: this.props.publications });
     }
 
 
 
+    getPublications(catSelected) {         //Tämä on huono (hidas)
+
+        var pubs = new Set();
+        var cats = [];
+        var pubSelected = [];
+
+        this.props.categories.map(
+            category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
+        );
+
+        cats.map(
+          cat => cat.ids.map(pub => pubs.add(pub))
+        );
+
+        /*this.props.publications.map(
+            publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
+        );*/
+
+        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] !== null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : console.log("no publication with such id");
+
+        if (pubSelected.length === 0) {
+            pubSelected = this.props.publications;
+        }
+
+        return pubSelected;
+
+    }
+
     render() {
         const style = {
             width: '150px',
-            minWidth: '150px',
-        }
+            minWidth: '150px'
+            }
+
         return (
             <tbody>
                 <tr>
