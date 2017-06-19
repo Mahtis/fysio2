@@ -9,13 +9,13 @@ class CategoryFilter extends Component{
 
 
     render() {
-        let cats = [];
+        let categories = [];
         for (let i = 0; i < this.props.categories.length; i++) {
-            let c = this.props.categories[i];
-            if (c.layer_id === this.props.layer) {
-                for (let j = 0; j < c.ids.length; j ++) {
-                    if (c.ids[j] === this.props.pub_id) {
-                        cats.push(c);
+            let category = this.props.categories[i];
+            if (category.layer_id === this.props.layer) {
+                for (let j = 0; j < category.ids.length; j ++) {
+                    if (category.ids[j] === this.props.publication_id) {
+                        categories.push(category);
                     }
                 }
             }
@@ -23,7 +23,15 @@ class CategoryFilter extends Component{
 
         return (
             <td>
-                {cats.map(cc => <CategoryButton catSel={this.props.catSel} setCatState={this.props.setCatState} key={cc.id} name={cc.name} status={this.props.catSel.indexOf(cc.name) > -1}/>)}
+                {categories.map(categoryButton =>
+                    <CategoryButton
+                        categorySelected={this.props.categorySelected}
+                        setCategoryState={this.props.setCategoryState}
+                        key={categoryButton.id}
+                        name={categoryButton.name}
+                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
+                    />
+                )}
             </td>
         )
     }

@@ -54,14 +54,21 @@ class App extends Component {
             return (
                 <div>
                     <NavBar/>
-                    <span style={loading}>Loading</span>
+                    <span style={loading}>
+                        Loading
+                    </span>
                 </div>
             );
         } else {
             return (
                 <div>
                     <NavBar/>
-                    <IndexView key="1" categories={categories} layers={layers} publications={publications}/>
+                    <IndexView
+                        key="1"
+                        categories={categories}
+                        layers={layers}
+                        publications={publications}
+                    />
                 </div>
             );
         }
