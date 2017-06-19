@@ -15,7 +15,6 @@ class IndexView extends Component{
 
         for(var x = layers[0].id; x <= layers[layers.length-1].id; x++){
             layerCategories[x] = [];
-            //console.log(this.state.categorySelected);
         }
         for(x = 0; x < categories.length; x++){
             layerCategories[categories[x].layer_id].push(categories[x]);
@@ -30,6 +29,7 @@ class IndexView extends Component{
         let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
+        let publicationsIdAsIndex = createPubIdIndex();
         var layerCategories = this.createStuff();
         //console.log(layerCategories);
         return (

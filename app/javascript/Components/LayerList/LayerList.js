@@ -47,11 +47,11 @@ class LayerList extends Component {
         this.props.categories.map(
             category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
         );
-        //console.log(cats);
+
         cats.map(
           cat => cat.ids.map(pub => pubs.add(pub))
         );
-        //for(let p of pubs) { console.log(p); }
+
         this.props.publications.map(
             publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
         );
@@ -66,12 +66,13 @@ class LayerList extends Component {
     render() {
         const style = {
             width: '150px',
-            minWidth: '150px',
-        }
+            minWidth: '150px'
+            }
+
         return (
             <tbody>
                 <tr>
-                    <th style={style}><span >pubs</span></th>
+                    <th style={style}><span ></span></th>
                     {this.state.publicationSelected.map(p => <td key={p.id}>{p.name}</td>)}
                 </tr>
                 {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.state.publicationSelected}/>)}
