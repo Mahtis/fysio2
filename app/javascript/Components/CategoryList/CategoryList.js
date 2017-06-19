@@ -19,19 +19,23 @@ class CategoryList extends Component{
     }
 
     render() {
-        if(this.state.categories == null){
+        if(this.state.categories === null){
             return null;
         }else{
+            const width = {
+                width: '100%'
+            }
             return (
-                <div>
-                    <ListGroup>
+                <div className={['btn-group']} style={width}>
+                    <ListGroup className={['btn-block']}>
                         { this.state.categories.map(category =>
                             <DropdownItem key={category.id}>
                                 <Category
                                     key={category.id}
                                     category={category}
                                 />
-                            </DropdownItem>) }
+                            </DropdownItem>
+                        )}
                     </ListGroup>
                 </div>
             )

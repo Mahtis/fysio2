@@ -18,11 +18,16 @@ class CategoryButton extends Component {
 
         const style1 = {
             backgroundColor: 'white',
-            whiteSpace: 'normal'
+            whiteSpace: 'normal',
+            minWidth: '50%',
+            maxWidth: '100%',
+
         }
         const style2 = {
             backgroundColor: 'green',
-            whiteSpace: 'normal'
+            whiteSpace: 'normal',
+            minWidth: '50%',
+            maxWidth: '100%'
         }
 
     return (

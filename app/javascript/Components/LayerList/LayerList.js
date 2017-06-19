@@ -14,6 +14,9 @@ class LayerList extends Component {
         this.setCategoryState = this.setCategoryState.bind(this);
     }
 
+    componentWillReceiveProps() {
+        this.setState({ publicationSelected: this.props.publications });
+    }
 
     setCategoryState(newState) {
 
@@ -66,13 +69,16 @@ class LayerList extends Component {
 
         return pubSelected;
 
+
     }
 
     render() {
+
         const style = {
             width: '150px',
-            minWidth: '150px'
-            }
+            minWidth: '150px',
+            maxWidth: '150px'
+        }
 
         return (
             <tbody>
@@ -98,7 +104,7 @@ class LayerList extends Component {
                     />
                 )}
             </tbody>
-        );
+      );
     }
 
 }
