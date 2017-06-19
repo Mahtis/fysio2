@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import {mount} from 'enzyme';
 import Layer from '../Layer/Layer.js'
 
 describe("Layer", () => {
@@ -32,42 +32,41 @@ describe("Layer", () => {
         mountedLayer = undefined;
     });
 
-    // ^boilerplate code that is run before each test
+    // above^ code that is run before each test to null the props
 
-    it("always renders a tr (table row)", () => {
+    it("always renders a tr element", () => {
+        initializeProps(props);
+        const listGroupItems = layer().find("tr");
+        expect(listGroupItems.length).toBeGreaterThan(0);
+    });
+
+    describe("the rendered tr", () => {
+        beforeEach(() => {
+            initializeProps(props);
+        });
+
+        it("contains everything else that is rendered", () => {
+            const tr = layer().find("tr")
+            const wrappingTr = tr.first();
+            expect(wrappingTr.children()).toEqual(layer().children());
+        });
+
+        it("contains ButtonDropdown", () => {
+            const tr = layer().find("tr");
+            const buttonDropdown = tr.first();
+            expect(buttonDropdown.length).toBeGreaterThan(0);
+        });
+
+    });
+
+    function initializeProps(props) {
         props.categories = [];
         props.layer = {
             id: 1,
             name: "Test"
         }
         props.publications = [];
-        const listGroupItems = layer().find("tr");
-        expect(listGroupItems.length).toBeGreaterThan(0);
-    });
-
-    describe("the rendered tr", () => {
-        it("contains everything else that is rendered", () => {
-            props.categories = [];
-            props.layer = {
-                id: 1,
-                name: "Test"
-            }
-            props.publications = [];
-            const trs = layer().find("tr")
-            const wrappingTr = trs.first();
-            expect(wrappingTr.children()).toEqual(layer().children());
-        });
-        it("contains ButtonDropdown", () => {
-            props.categories = [];
-            props.layer = {
-                id: 1,
-                name: "Test"
-            }
-            props.publications = [];
-        })
-    });
-
-
-
+    }
 
 });
+
