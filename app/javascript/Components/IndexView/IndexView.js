@@ -48,7 +48,6 @@ class IndexView extends Component{
                     categories={categories}
                     layers={layers}
                     publications={publications}
-
                     layerCategories={layerCategories}
                     publicationsIdAsIndex={pubsIdAsIndex}
                 />
