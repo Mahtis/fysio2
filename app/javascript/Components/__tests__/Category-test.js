@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import Category from '../Category/Category.js';
 
 test('Category spans the category name', () => {
-    // Render a checkbox with label in the document
     let c = {
         id: 1,
         name: "Dog"
@@ -16,13 +15,12 @@ test('Category spans the category name', () => {
 });
 
 test('Category no name', () => {
-    // Render a checkbox with label in the document
     let c = {
         id: 1
     }
     const categoryComponent = shallow(
-        <Category category />
+        <Category category={c} />
     );
 
-    expect(categoryComponent.getNode()).toBeNull();
+    expect(categoryComponent.text()).toEqual('');
 });
