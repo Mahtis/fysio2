@@ -40,7 +40,6 @@ class IndexView extends Component{
         let publications = this.props.publications;
         let pubsIdAsIndex = this.createPubIdIndex();
         var layerCategories = this.createLayerCategories();
-        let pubsIdAsIndex = this.createPubIdIndex();
 
         return (
             <Table style={table} reflow>
