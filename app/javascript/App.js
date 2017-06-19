@@ -41,21 +41,27 @@ class App extends Component {
     }
 
     render() {
+        const loading = {
+            textAlign: 'center',
+            verticalAlign: 'center',
+            fontSize: '40px',
+            color: '#343434',
+        }
         let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
         if (publications.length === 0) {
-            return (<div>
-                Moi
-            </div>);
+            return (
+                <div>
+                    <NavBar/>
+                    <span style={loading}>Loading</span>
+                </div>
+            );
         } else {
             return (
                 <div>
                     <NavBar/>
                     <IndexView key="1" categories={categories} layers={layers} publications={publications}/>
-                    <div>
-                        <Button color="danger">Text</Button>
-                    </div>
                 </div>
             );
         }

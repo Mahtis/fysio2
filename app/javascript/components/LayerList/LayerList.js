@@ -15,11 +15,14 @@ class LayerList extends Component {
     render() {
         let pubs = this.createPubs();
         let other = this.createOther();
-
+        const style = {
+            width: '150px',
+            minWidth: '150px',
+        }
         return (
             <tbody>
                 <tr>
-                    <th>pubs</th>
+                    <th style={style}><span >pubs</span></th>
                     {pubs}
                 </tr>
                 {other}
@@ -28,7 +31,10 @@ class LayerList extends Component {
     }
 
     createPubs() {
-        let pubs = this.props.publications.map(p => <td key={p.id}>{p.name}</td>);
+        const style = {
+            width:'auto',
+        }
+        let pubs = this.props.publications.map(p => <td style={style} key={p.id}>{p.name}</td>);
         return pubs;
     }
     createOther() {
@@ -37,13 +43,14 @@ class LayerList extends Component {
         let categories = this.props.categories;
         let publications = this.props.publications;
 
-        for(var x = layers[0].id; x <= layers[layers.length-1].id; x++){
-            layerCategories[x] = [];
+        if(layers.length > 0){
+            for(var x = layers[0].id; x <= layers[layers.length-1].id; x++){
+                layerCategories[x] = [];
+            }
+            for(x = 0; x < categories.length; x++){
+                layerCategories[categories[x].layer_id].push(categories[x]);
+            }
         }
-        for(x = 0; x < categories.length; x++){
-            layerCategories[categories[x].layer_id].push(categories[x]);
-        }
-
         let other = layers.map(l => <Layer catSel={this.state.categorySelected} key={l.id} layer={l} categories={layerCategories[l.id]} publications={publications}/>);
         return other;
     }
