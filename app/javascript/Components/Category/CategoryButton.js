@@ -11,35 +11,24 @@ class CategoryButton extends Component {
     }
 
     selected() {
-
-        this.props.setCatState(this.props.id);
-
+        this.props.setCategoryState(this.props.id);
     }
 
     render() {
 
         const style1 = {
-            borderStyle: 'ridge',
-            borderColor: 'black',
             backgroundColor: 'white',
-            padding: '5px',
+            whiteSpace: 'normal'
         }
         const style2 = {
-            borderStyle: 'ridge',
-            borderColor: 'black',
             backgroundColor: 'green',
-            padding: '5px',
+            whiteSpace: 'normal'
         }
 
     return (
-
-
-            <div style={this.props.status ? style2 : style1} onClick={this.selected}>
-                <span>
-                    {this.props.name}
-                </span>
-            </div>
-
+        <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
+            {this.props.name}
+        </Button>
         );
     }
 }

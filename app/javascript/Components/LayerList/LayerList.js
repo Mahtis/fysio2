@@ -4,36 +4,37 @@ import Layer from "../Layer/Layer";
 
 
 class LayerList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             categorySelected: [],
             publicationSelected: []
         };
-        this.setCatState = this.setCatState.bind(this);
+        this.setCategoryState = this.setCategoryState.bind(this);
     }
+
 
     componentWillReceiveProps() {
         this.setState({ publicationSelected: this.props.publications });
     }
 
-    setCatState(newState) {
+    setCategoryState(newState) {
 
-        var catSelected = this.state.categorySelected;
+        var categorySelectedArray = this.state.categorySelected;
 
-        var i = catSelected.indexOf(newState);
+        var index = categorySelectedArray.indexOf(newState);
 
-        if (i > -1) {
-            catSelected.splice(i, 1);
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
         } else {
-            catSelected.push(newState);
+            categorySelectedArray.push(newState);
         }
-
-        var pubSelected = this.getPublications(catSelected);
+    
+        var pubSelected = this.getPublications(categorySelectedArray);
 
         this.setState({
-            categorySelected: catSelected,
+            categorySelected: categorySelectedArray,
             publicationSelected: pubSelected
         });
     }
@@ -64,8 +65,8 @@ class LayerList extends Component {
 
         return pubSelected;
     }
-
-    render() {
+  
+      render() {
         const style = {
             width: '150px',
             minWidth: '150px'
@@ -74,12 +75,28 @@ class LayerList extends Component {
         return (
             <tbody>
                 <tr>
-                    <th style={style}><span ></span></th>
-                    {this.state.publicationSelected.map(p => <td key={p.id}>{p.name}</td>)}
+                    <th style={style}>
+                        <span >
+                            pubs
+                        </span>
+                    </th>
+                    {this.state.publicationSelected.map(publication =>
+                        <td key={publication.id}>
+                            {publication.name}
+                        </td>
+                    )}
                 </tr>
-                {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.state.publicationSelected}/>)}
+
+                {this.props.layers.map(layer =>
+                    <Layer  setCategoryState={this.setCategoryState}
+                            categorySelected={this.state.categorySelected}
+                            key={layer.id} layer={layer}
+                            categories={this.props.layerCategories[layer.id]}
+                            publications={this.state.publicationSelected}
+                    />
+                )}
             </tbody>
-        );
+      );
     }
 
 }

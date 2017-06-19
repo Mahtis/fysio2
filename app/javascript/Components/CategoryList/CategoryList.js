@@ -5,7 +5,7 @@ import Category from "../Category/Category";
 import { DropdownItem, ListGroup } from 'reactstrap';
 
 class CategoryList extends Component{
-    constructor(props) {
+    constructor() {
         super();
         this.state = {
             categories: []
@@ -25,7 +25,13 @@ class CategoryList extends Component{
             return (
                 <div>
                     <ListGroup>
-                        { this.state.categories.map(l => <DropdownItem key={l.id}><Category key={l.id} category={l}/></DropdownItem>) }
+                        { this.state.categories.map(category =>
+                            <DropdownItem key={category.id}>
+                                <Category
+                                    key={category.id}
+                                    category={category}
+                                />
+                            </DropdownItem>) }
                     </ListGroup>
                 </div>
             )

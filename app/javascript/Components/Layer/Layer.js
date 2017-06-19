@@ -39,7 +39,6 @@ class Layer extends Component {
 
         return (
             <tr>
-
                 <td id={layer.id}>
                     <div style={staticPosition} >
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -52,7 +51,14 @@ class Layer extends Component {
                         </ButtonDropdown>
                     </div>
                 </td>
-                { publications.map(p => <CategoryFilter setCatState={this.props.setCatState} catSel={this.props.catSel} key={p.id} pub_id={p.id} layer={layer.id} categories={categories} />) }
+                { publications.map(categoryButton =>
+                    <CategoryFilter
+                        setCategoryState={this.props.setCategoryState}
+                        categorySelected={this.props.categorySelected}
+                        key={categoryButton.id}
+                        publication_id={categoryButton.id}
+                        layer={layer.id}
+                        categories={categories} />) }
 
             </tr>
       );
