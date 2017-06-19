@@ -34,6 +34,7 @@ class LayerList extends Component {
         const style = {
             width: '150px',
             minWidth: '150px',
+            maxWidth: '150px'
         }
         return (
             <tbody>
