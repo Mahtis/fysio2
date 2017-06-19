@@ -52,9 +52,11 @@ class LayerList extends Component {
           cat => cat.ids.map(pub => pubs.add(pub))
         );
 
-        this.props.publications.map(
+        /*this.props.publications.map(
             publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
-        );
+        );*/
+
+        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] != null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : {};
 
         if (pubSelected.length == 0) {
             pubSelected = this.props.publications;
