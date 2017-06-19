@@ -12,7 +12,7 @@ class CategoryButton extends Component {
 
     selected() {
 
-        this.props.setCatState(this.props.name);
+        this.props.setCategoryState(this.props.name);
 
     }
 
@@ -31,13 +31,17 @@ class CategoryButton extends Component {
             padding: '5px',
         }
 
+        const style3= {
+            whiteSpace: 'normal'
+        }
+
     return (
 
 
             <div style={this.props.status ? style2 : style1} onClick={this.selected}>
-                <span>
+                <Button style={style3}>
                     {this.props.name}
-                </span>
+                </Button>
             </div>
 
         );

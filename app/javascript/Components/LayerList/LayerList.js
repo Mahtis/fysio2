@@ -4,29 +4,31 @@ import Layer from "../Layer/Layer";
 
 
 class LayerList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             categorySelected: []
         };
-        this.setCatState = this.setCatState.bind(this);
+        this.setCategoryState = this.setCategoryState.bind(this);
     }
 
-    setCatState(newState) {
+    setCategoryState(newState) {
 
-        var catSel = this.state.categorySelected;
+        var categorySelectedArray = this.state.categorySelected;
 
-        var i = catSel.indexOf(newState);
+        var index = categorySelectedArray.indexOf(newState);
 
-        if (i > -1) {
-            catSel.splice(i, 1);
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
         } else {
-            catSel.push(newState);
+            categorySelectedArray.push(newState);
         }
 
-        this.setState({categorySelected: catSel});
+        this.setState({categorySelected: categorySelectedArray});
     }
+
+
 
     render() {
         const style = {
@@ -36,10 +38,26 @@ class LayerList extends Component {
         return (
             <tbody>
                 <tr>
-                    <th style={style}><span >pubs</span></th>
-                    {this.props.publications.map(p => <td key={p.id}>{p.name}</td>)}
+                    <th style={style}>
+                        <span >
+                            pubs
+                        </span>
+                    </th>
+                    {this.props.publications.map(publication =>
+                        <td key={publication.id}>
+                            {publication.name}
+                        </td>
+                    )}
                 </tr>
-                {this.props.layers.map(l => <Layer setCatState={this.setCatState} catSel={this.state.categorySelected} key={l.id} layer={l} categories={this.props.layerCategories[l.id]} publications={this.props.publications}/>)}
+
+                {this.props.layers.map(layer =>
+                    <Layer  setCategoryState={this.setCategoryState}
+                            categorySelected={this.state.categorySelected}
+                            key={layer.id} layer={layer}
+                            categories={this.props.layerCategories[layer.id]}
+                            publications={this.props.publications}
+                    />
+                )}
             </tbody>
         );
     }
