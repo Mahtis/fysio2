@@ -25,11 +25,11 @@ class CategoryList extends Component{
             return (
                 <div>
                     <ListGroup>
-                        { this.state.categories.map(l =>
-                            <DropdownItem key={l.id}>
+                        { this.state.categories.map(category =>
+                            <DropdownItem key={category.id}>
                                 <Category
-                                    key={l.id}
-                                    category={l}
+                                    key={category.id}
+                                    category={category}
                                 />
                             </DropdownItem>) }
                     </ListGroup>
