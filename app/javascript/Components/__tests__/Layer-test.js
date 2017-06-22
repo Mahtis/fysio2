@@ -34,9 +34,9 @@ describe("Layer", () => {
 
     // above code that is run before each test to null the props
 
-    it("always renders a tr element", () => {
+    it("always renders one tr element", () => {
         initializeProps(props);
-        const tr = layer().find("div");
+        const tr = layer().find("tr");
         expect(tr.length).toBe(1);
     });
 
@@ -50,26 +50,36 @@ describe("Layer", () => {
             expect(tr.children()).toEqual(layer().children());
         });
 
-        it("renders td", () => {
+        it("renders one td", () => {
             const tr = layer().find("tr");
             expect(tr.find("td").length).toBe(1);
         });
 
+        it("renders one `CategoryFilter`", () => {
+            const tr = layer().find("tr").children();
+            expect(tr.find("CategoryFilter").length).toBe(1);
+        });
+
         describe("the rendered td", () => {
+
+            it("receives layer.id as id", () => {
+                const td = layer().find("td");
+                expect(td.props().id).toBe(props.layer.id)
+            });
 
             it("renders div", () => {
                 const td = layer().find("td");
-                expect(td.find("div").length).toBe(1);
+                expect(td.find("div").length).exists;
             });
 
-            it("renders ButtonDropdown", () => {
+            it("renders one ButtonDropdown", () => {
                 const tr = layer().find("tr");
                 expect(tr.find("ButtonDropdown").length).toBe(1);
             });
 
             describe("the rendered ButtonDropdown", () => {
 
-                it("renders DropdownToggle", () => {
+                it("renders one DropdownToggle", () => {
                     const buttonDropdown = layer().find("ButtonDropdown");
                     expect(buttonDropdown.find("DropdownToggle").length).toBe(1);
                 });
@@ -89,9 +99,17 @@ describe("Layer", () => {
 
                 describe("the rendered DropdownMenu", () => {
 
-                    it("contains CategoryList component", () => {
+                    it("always renders `CategoryList`", () => {
                         const dropDownMenu = layer().find("DropdownMenu");
                         expect(dropDownMenu.find("CategoryList").length).toBe(1);
+                    });
+
+                    describe("the rendered CategoryList", () => {
+
+                        it("receives categories as prop", () => {
+                            const categoryList = layer().find("CategoryList");
+                            expect(categoryList.props().categories).toBe(props.categories);
+                        });
                     });
                 });
             });
@@ -99,7 +117,14 @@ describe("Layer", () => {
     });
 
     function initializeProps(props) {
-        props.categories = [];
+        props.categories = [{
+            id: 1,
+            name: "EEG",
+            layer_id: 1,
+        },
+            {id: 2,
+             name: "ABC",
+             layer_id: "2"}];
         props.layer = {
             id: 1,
             name: "Test"
