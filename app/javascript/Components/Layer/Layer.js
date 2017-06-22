@@ -5,6 +5,7 @@ import { ButtonDropdown,
         DropdownMenu } from 'reactstrap';
 import CategoryList from "../CategoryList/CategoryList";
 import CategoryFilter from "../CategoryList/CategoryFilter";
+import PropTypes from 'prop-types';
 
 class Layer extends Component {
 
@@ -65,10 +66,15 @@ class Layer extends Component {
                         publication_id={categoryButton.id}
                         layer={layer.id}
                         categories={categories} />) }
-
             </tr>
       );
     }
+}
+
+Layer.propTypes = {
+    layer: PropTypes.object.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    publications: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Layer;
