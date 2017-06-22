@@ -56,8 +56,8 @@ describe("Layer", () => {
         });
 
         it("renders one `CategoryFilter`", () => {
-            const tr = layer().find("tr").children();
-            expect(tr.find("CategoryFilter").length).toBe(1);
+            const tr = layer().find("tr");
+            expect(tr.find("CategoryFilter")).exists;
         });
 
         describe("the rendered td", () => {
@@ -79,6 +79,16 @@ describe("Layer", () => {
 
             describe("the rendered ButtonDropdown", () => {
 
+                it("is closed if no one has clicked it", () => {
+                    const buttonDropdown = layer().find("ButtonDropdown");
+                    expect(buttonDropdown.props().isOpen).toBe(false);
+                });
+
+/*                it("opens with click", () => {
+                    const buttonDropdown = layer().find("ButtonDropdown");
+                    expect(buttonDropdown.props().isOpen).toBe(true);
+                });*/
+
                 it("renders one DropdownToggle", () => {
                     const buttonDropdown = layer().find("ButtonDropdown");
                     expect(buttonDropdown.find("DropdownToggle").length).toBe(1);
@@ -90,6 +100,7 @@ describe("Layer", () => {
                         const dropDownToggle = layer().find("DropdownToggle");
                         expect(dropDownToggle.text()).toEqual("Test");
                     });
+
                 });
 
                 it("renders DropdownMenu", () => {
@@ -115,6 +126,7 @@ describe("Layer", () => {
             });
         });
     });
+});
 
     function initializeProps(props) {
         props.categories = [{
@@ -131,6 +143,4 @@ describe("Layer", () => {
         };
         props.publications = [];
     }
-
-});
 
