@@ -34,6 +34,7 @@ class Layer extends Component {
             padding: 'auto',
             textAlign: 'center',
         }
+
         let layer = this.props.layer;
         let categories = this.props.categories;
         let publications = this.props.publications;
