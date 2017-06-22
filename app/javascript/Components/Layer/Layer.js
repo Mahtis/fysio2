@@ -25,14 +25,19 @@ class Layer extends Component {
 
     render(){
         const staticPosition = {
-            position: 'absolute',
-            float: 'left',
-            display: 'block',
+            // position: 'absolute',
+            // float: 'left',
+            // display: 'block',
+            width: '100%',
             maxWidth: '100%',
             maxHeight: '100%',
             backgroundColor: 'white',
-            padding: 'auto',
-            textAlign: 'center',
+            // padding: 'auto',
+            // textAlign: 'center',
+        }
+
+        const width = {
+            maxWidth: '150px'
         }
 
         let layer = this.props.layer;
@@ -41,7 +46,7 @@ class Layer extends Component {
 
         return (
             <tr>
-                <td id={layer.id}>
+                <td style={width} id={layer.id}>
                     <div style={staticPosition} >
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
