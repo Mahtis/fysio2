@@ -18,12 +18,12 @@ class PublicationsController < ApplicationController
                  .references(:categories)
     publications = []
     result.each do |r|
-      i = 0
-      g = result.find(r.id)
+      index = 0
+      currentpublication = Publication.find(r.id)
       parametersarray.each do |p|
-        g.categories.include?(categories.find_by(name: p)) ? i = i + 1 : i
+        currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
       end
-      parametersarray.size == i ? publications << g : publications
+      parametersarray.size == index ? publications << currentpublication : publications
     end
     return publications
   end
