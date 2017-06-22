@@ -8,7 +8,6 @@ class CategoryFilter extends Component{
         super();
     }
 
-
     render() {
         let categories = [];
         for (let i = 0; i < this.props.categories.length; i++) {
@@ -48,6 +47,7 @@ class CategoryFilter extends Component{
 CategoryFilter.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
         ids: PropTypes.arrayOf(PropTypes.number)
     })),
     layer: PropTypes.number,
