@@ -40,6 +40,7 @@ describe("CategoryFilter", () => {
             expect(td.children().length).toEqual(props.categories.length);
         });
         it("doesn't contain non-matching categories", () => {
+            // two categories now have non-matching layer_id or ids.
             props.categories = [{"id":1,"name":"EEG","layer_id":1,"ids":[1,3]},{"id":2,"name":"EDA","layer_id":2,"ids":[1,3,4,5,6]},{"id":3,"name":"fEMG","layer_id":1,"ids":[2]}];
             const td = filter().find("td")
             expect(td.children().length).toEqual(1);
