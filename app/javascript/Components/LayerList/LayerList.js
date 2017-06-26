@@ -39,10 +39,6 @@ class LayerList extends Component {
 
     }
 
-    componentWillReceiveProps() {
-        this.setState({ publicationSelected: this.props.publications });
-    }
-
     getPublications(catSelected) {         //Tämä on huono (hidas)
         console.log(catSelected);
         var pubs = new Set();
