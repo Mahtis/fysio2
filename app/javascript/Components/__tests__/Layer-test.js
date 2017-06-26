@@ -32,7 +32,7 @@ describe("Layer", () => {
         mountedLayer = undefined;
     });
 
-    // above code that is run before each test to null the props
+    // above code is run before each test to null the props
 
     it("always renders one tr element", () => {
         initializeProps(props);
@@ -84,10 +84,12 @@ describe("Layer", () => {
                     expect(buttonDropdown.props().isOpen).toBe(false);
                 });
 
-/*                it("opens with click", () => {
+               it("opens up when clicked", () => {
+                    const wrapper = layer();
                     const buttonDropdown = layer().find("ButtonDropdown");
+                    wrapper.instance().toggle();
                     expect(buttonDropdown.props().isOpen).toBe(true);
-                });*/
+                });
 
                 it("renders one DropdownToggle", () => {
                     const buttonDropdown = layer().find("ButtonDropdown");
