@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608093744) do
+ActiveRecord::Schema.define(version: 20170626135803) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20170608093744) do
   create_table "categories_publications", id: false, force: :cascade do |t|
     t.integer "publication_id", null: false
     t.integer "category_id", null: false
+  end
+
+  create_table "layer_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "layer_types_layers", id: false, force: :cascade do |t|
+    t.integer "layer_id", null: false
+    t.integer "layer_type_id", null: false
   end
 
   create_table "layers", force: :cascade do |t|
