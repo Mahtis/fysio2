@@ -27,10 +27,10 @@ describe("Navbar", () => {
     });
 
     describe("the rendered div", () => {
-        it("contains Navbar", () => {
+        it("contains one Navbar", () => {
             const divs = navBar().find("div")
             const wrappingDiv = divs.first();
-            expect(wrappingDiv.find("Navbar").length).toBeGreaterThan(0);
+            expect(wrappingDiv.find("Navbar").length).toBe(1);
         })
     })
 })
