@@ -39,7 +39,7 @@ Install Rails by running the following commands:
     gem install rails -v 4.2.7
     rbenv rehash
     
-Install needed Gems with `bundle install`
+Install needed Gems with `bundle install`.
 
 #### Running the app
 
