@@ -1,12 +1,12 @@
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CategoryButton from "../Category/CategoryButton";
 
 class CategoryFilter extends Component{
     constructor() {
         super();
     }
-
 
     render() {
         let categories = [];
@@ -44,5 +44,17 @@ class CategoryFilter extends Component{
         )
     }
 }
+
+CategoryFilter.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+    })),
+    layer: PropTypes.number,
+    publication_id: PropTypes.number,
+    categorySelected: PropTypes.arrayOf(PropTypes.number),
+    setCategoryState: PropTypes.func
+};
 
 export default CategoryFilter;

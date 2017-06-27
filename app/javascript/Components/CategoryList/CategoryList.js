@@ -1,34 +1,23 @@
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Category from "../Category/Category";
 
 import { DropdownItem, ListGroup } from 'reactstrap';
 
 class CategoryList extends Component{
-    constructor() {
-        super();
-        this.state = {
-            categories: []
-        }
-    }
-
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            categories: nextProps.categories
-        })
-    }
 
     render() {
-        if(this.state.categories === null){
+        if(this.props.categories === null){
             return null;
         }else{
             const width = {
                 width: '100%'
             }
             return (
-                <div className={['btn-group']} style={width}>
-                    <ListGroup className={['btn-block']}>
-                        { this.state.categories.map(category =>
+                <div className={'btn-group'} style={width}>
+                    <ListGroup className={'btn-block'}>
+                        { this.props.categories.map(category =>
                             <DropdownItem key={category.id}>
                                 <Category
                                     key={category.id}
@@ -42,5 +31,12 @@ class CategoryList extends Component{
         }
     }
 }
+
+CategoryList.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    }))
+};
 
 export default CategoryList;

@@ -4,33 +4,28 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    parametersArray = Array.new
-    if !params[:names].nil?
-      params[:names].each do |p|
-        parametersArray << p
+    parametersarray = Array.new
+    params[:names].nil? ? parametersarray  : params[:names].each {|p| parametersarray << p}
+    parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
+  end
+
+  def getselectedpublications(parametersarray)
+    categories = Category.all
+    result = Publication
+                 .all
+                 .includes(:categories)
+                 .where('categories.name = ?', parametersarray[0])
+                 .references(:categories)
+    publications = []
+    result.each do |r|
+      index = 0
+      currentpublication = Publication.find(r.id)
+      parametersarray.each do |p|
+        currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
       end
+      parametersarray.size == index ? publications << currentpublication : publications
     end
-    if parametersArray.size == 0
-      @publications = Publication.all
-    else
-      result = Publication.all.includes(:categories)
-         .where('categories.name = ?', parametersArray[0])
-         .references(:categories)
-      @publications = []
-      result.each do |r|
-        i = 0
-        g = Publication.find(r.id)
-        parametersArray.each do |p|
-          x = Category.find_by(name: p)
-          if g.categories.include?(x)
-            i = i + 1
-          end
-        end
-        if i == parametersArray.size
-          @publications << g
-        end
-      end
-    end
+    return publications
   end
 
 
