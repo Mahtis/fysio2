@@ -22,13 +22,14 @@ class Publication extends Component {
         return (
             <div>
                 <span onClick={this.toggle}>{this.props.pub.name}</span>
-                <Modal isOpen={this.state.modalOpen} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>{this.props.pub.name}</ModalHeader>
+                <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}><h6>{this.props.pub.name}</h6></ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <p><b>Abstract: </b>{this.props.pub.abstract}</p>
+                        <p><b>Links: </b>{this.props.pub.abstract}</p>
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Sulje</Button>
+                        <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>
                     </ModalFooter>
                 </Modal>
             </div>
