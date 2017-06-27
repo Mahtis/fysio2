@@ -11,7 +11,7 @@
 Physiological computing repository consists of React (15.5.4) frontend and Rails (5.1.1, Ruby 2.3.1) backend. Below you'll
 find directions for building  and running the application locally on Linux and Mac.
  
-## Linux
+### Linux
 
 TBA
 
