@@ -83,7 +83,7 @@ class LayerList extends Component {
                     </th>
                     {this.state.publicationSelected.map(publication =>
                         <td key={publication.id}>
-                            {publication.name}
+                            {publication}
                         </td>
                     )}
                 </tr>
