@@ -37,7 +37,7 @@ class CategoryFilter extends Component{
                         key={categoryButton.id}
                         id={categoryButton.id}
                         name={categoryButton.name}
-                        status={this.props.categorySelected.indexOf(categoryButton.id) > -1}
+                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
                     />
                 )}
             </td>

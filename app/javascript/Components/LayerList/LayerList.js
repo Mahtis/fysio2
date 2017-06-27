@@ -15,7 +15,9 @@ class LayerList extends Component {
     }
 
     componentWillReceiveProps() {
-        this.setState({ publicationSelected: this.props.publications });
+        console.log("Hello!");
+        this.state.publicationSelected = this.props.publications;
+        //this.setState({ publicationSelected: this.props.publications });
     }
 
     setCategoryState(newState) {
@@ -30,12 +32,16 @@ class LayerList extends Component {
             categorySelectedArray.push(newState);
         }
 
-        var pubSelected = this.getPublications(categorySelectedArray);
+        this.state.categorySelected = categorySelectedArray;
 
-        this.setState({
+        this.props.updatePublications(categorySelectedArray);
+
+        //var pubSelected = this.getPublications(categorySelectedArray);
+
+        /*this.setState({
             categorySelected: categorySelectedArray,
             publicationSelected: pubSelected
-        });
+        });*/
 
     }
 

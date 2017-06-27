@@ -50,6 +50,7 @@ class IndexView extends Component{
                     publications={publications}
                     layerCategories={layerCategories}
                     publicationsIdAsIndex={pubsIdAsIndex}
+                    updatePublications={this.props.updatePublications}
                 />
              </Table>
         );
