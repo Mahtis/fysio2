@@ -24,12 +24,6 @@ class IndexView extends Component{
         return layerCategories;
     }
 
-    createPubIdIndex() {
-        var pubs = [];
-        this.props.publications.map(publication => pubs[publication.id] = publication);
-        return pubs;
-    }
-
     render(){
         const table = {
             tableLayout: 'auto',
@@ -38,7 +32,6 @@ class IndexView extends Component{
         let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
-        let pubsIdAsIndex = this.createPubIdIndex();
         var layerCategories = this.createLayerCategories();
 
         return (
@@ -49,7 +42,6 @@ class IndexView extends Component{
                     layers={layers}
                     publications={publications}
                     layerCategories={layerCategories}
-                    publicationsIdAsIndex={pubsIdAsIndex}
                     updatePublications={this.props.updatePublications}
                 />
              </Table>

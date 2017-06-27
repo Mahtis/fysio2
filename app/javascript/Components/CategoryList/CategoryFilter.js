@@ -29,7 +29,6 @@ class CategoryFilter extends Component{
 
             <td style={width}>
 
-
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}

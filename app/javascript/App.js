@@ -44,11 +44,10 @@ class App extends Component {
 
     updatePublications(categories) {
         let path = this.parsePath(categories);
-        //console.log(path);
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                //console.log(results.length);
                 this.setState({
                     publications: results
                 })
