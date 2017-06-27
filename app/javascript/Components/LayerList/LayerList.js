@@ -9,15 +9,9 @@ class LayerList extends Component {
 
         this.state = {
             categorySelected: [],
-            publicationSelected: []
         };
-        this.setCategoryState = this.setCategoryState.bind(this);
-    }
 
-    componentWillReceiveProps() {
-        console.log("Hello!");
-        this.state.publicationSelected = this.props.publications;
-        //this.setState({ publicationSelected: this.props.publications });
+        this.setCategoryState = this.setCategoryState.bind(this);
     }
 
     setCategoryState(newState) {
@@ -90,7 +84,7 @@ class LayerList extends Component {
                             pubs
                         </span>
                     </th>
-                    {this.state.publicationSelected.map(publication =>
+                    {this.props.publications.map(publication =>
                         <td key={publication.id}>
                             {publication.name}
                         </td>
@@ -102,7 +96,7 @@ class LayerList extends Component {
                             categorySelected={this.state.categorySelected}
                             key={layer.id} layer={layer}
                             categories={this.props.layerCategories[layer.id]}
-                            publications={this.state.publicationSelected}
+                            publications={this.props.publications}
                     />
                 )}
             </tbody>
