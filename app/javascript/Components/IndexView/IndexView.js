@@ -43,6 +43,8 @@ class IndexView extends Component{
                     publications={publications}
                     layerCategories={layerCategories}
                     updatePublications={this.props.updatePublications}
+                    setCategoryState={this.props.setCategoryState}
+                    categorySelected={this.props.categorySelected}
                 />
              </Table>
         );

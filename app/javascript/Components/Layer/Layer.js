@@ -58,7 +58,7 @@ class Layer extends Component {
                         </ButtonDropdown>
                     </div>
                 </td>
-                { publications.map(categoryButton =>
+                    { publications.map(categoryButton =>
                     <CategoryFilter
                         setCategoryState={this.props.setCategoryState}
                         categorySelected={this.props.categorySelected}

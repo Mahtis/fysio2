@@ -31,7 +31,6 @@ class CategoryFilter extends Component{
 
                 {categories.map(categoryButton =>
                     <CategoryButton
-                        categorySelected={this.props.categorySelected}
                         setCategoryState={this.props.setCategoryState}
                         key={categoryButton.id}
                         id={categoryButton.id}
@@ -52,7 +51,7 @@ CategoryFilter.propTypes = {
     })),
     layer: PropTypes.number,
     publication_id: PropTypes.number,
-    categorySelected: PropTypes.arrayOf(PropTypes.number),
+    categorySelected: PropTypes.arrayOf(PropTypes.string),
     setCategoryState: PropTypes.func
 };
 

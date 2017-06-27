@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
-import { Button } from 'reactstrap';
 
 class App extends Component {
     constructor() {
@@ -10,10 +9,12 @@ class App extends Component {
             visible: "LayersPage",
             layers: [],
             categories: [],
-            publications: []
+            publications: [],
+            categorySelected: []
         }
         this.updatePublications = this.updatePublications.bind(this);
         this.parsePath = this.parsePath.bind(this);
+        this.setCategoryState = this.setCategoryState.bind(this);
     }
 
     componentWillMount() {
@@ -40,6 +41,23 @@ class App extends Component {
                     publications: results
                 })
             });
+    }
+
+    setCategoryState(newState) {
+
+        var categorySelectedArray = this.state.categorySelected;
+
+        var index = categorySelectedArray.indexOf(newState);
+
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
+        } else {
+            categorySelectedArray.push(newState);
+        }
+
+        this.state.categorySelected = categorySelectedArray;
+
+        this.updatePublications(categorySelectedArray);
     }
 
     updatePublications(categories) {
@@ -93,6 +111,8 @@ class App extends Component {
                         layers={layers}
                         publications={publications}
                         updatePublications={this.updatePublications}
+                        setCategoryState={this.setCategoryState}
+                        categorySelected={this.state.categorySelected}
                     />
                 </div>
             );
