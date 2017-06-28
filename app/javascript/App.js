@@ -13,6 +13,7 @@ class App extends Component {
             categorySelected: []
         }
         this.updatePublications = this.updatePublications.bind(this);
+        this.updateCategories = this.updateCategories.bind(this);
         this.parsePath = this.parsePath.bind(this);
         this.setCategoryState = this.setCategoryState.bind(this);
     }
@@ -61,21 +62,41 @@ class App extends Component {
     }
 
     updatePublications(categories) {
-        let path = this.parsePath(categories);
+        let path = this.parsePath(categories, "publications", "names");
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
+                this.updateCategories(results);
+
                 this.setState({
                     publications: results
                 })
             });
     }
 
-    parsePath(categoriesArray) {
-        let path = "publications.json?";
+    updateCategories(publications) {
+
+        let pubIds = [];
+
+        publications.map(p => pubIds.push(p.id));
+
+        let path = this.parsePath(pubIds, "categories", "pubIds");
+
+        fetch(path)
+            .then(response => response.json())
+            .then(results => {
+                console.log(results);
+                this.setState({
+                    categories: results
+                })
+            });
+    }
+
+    parsePath(categoriesArray, table, paramName) {
+        let path = table + ".json?";
         let length = path.length;
-        categoriesArray.map(cat => path += "names[]=" + cat + "&");
+        categoriesArray.map(cat => path += paramName + "[]=" + cat + "&");
         if (path.length === length) {
             return path.substring(0, path.length - 1);
         }

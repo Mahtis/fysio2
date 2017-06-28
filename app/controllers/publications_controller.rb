@@ -25,6 +25,10 @@ class PublicationsController < ApplicationController
       end
       parametersarray.size == index ? publications << currentpublication : publications
     end
+    publications.each do |p|
+      puts "BBBBB"
+      puts p.inspect
+    end
     return publications
   end
 

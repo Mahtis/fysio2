@@ -4,19 +4,34 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
     parametersarray = Array.new
     params[:pubIds].nil? ? parametersarray  : params[:pubIds].each {|p| parametersarray << p}
     parametersarray.empty? ? @categories = Category.all : @categories= self.getPublicationCategories(parametersarray)
   end
 
   def getPublicationCategories(parametersarray)
-    result = Category
-                 .all
-                 .includes(:publications)
-                 .where('publications.id = ?', parametersarray[0])
-                 .references(:publications)
-    return result
+
+    results = Array.new
+    parametersarray.each do |p|
+      result = Category
+          .all
+          .includes(:publications)
+          .where('publications.id = ?', p)
+          .references(:publications)
+      results.push(result)
+    end
+    categories = []
+    results.each do |r|
+      r.each do |c|
+        categories << c
+      end
+    end
+    categories.each do |c|
+      puts "GROOOOO"
+      puts c.inspect
+    end
+
+    return categories
   end
 
   # GET /categories/1
