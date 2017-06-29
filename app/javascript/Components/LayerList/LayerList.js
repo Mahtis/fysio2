@@ -78,7 +78,7 @@ class LayerList extends Component {
                 <tr>
                     <th style={style}>
                         <span >
-                            pubs
+                            Publications
                         </span>
                     </th>
                     {this.state.publicationSelected.map(publication =>

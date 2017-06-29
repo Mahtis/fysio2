@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 layers = Layer.create([{name: 'Application'}, {name: 'Logic'}, {name: 'Indicies'}, {name: 'Metrics'}, {name: 'Signal'}, {name: 'Software'}, {name: 'Hardware'}]);
-layerTypes = LayerType.create([{name: 'Science', :layers => Layer.where(:id => [0,1,2,3,4])}, {name: 'Hacker', :layers => Layer.where(:id => [5,6])}]);
+layerTypes = LayerType.create([{name: 'Science', :layers => Layer.where(:id => [1,2,3,4,5])}, {name: 'Hacker', :layers => Layer.where(:id => [6,7])}]);
 publications = Publication.create([{name: 'Audio Biofeedback for Poker Players', abstract: 'Abstract text here', year: 2001, journal: 'Nature'},
                                    {name: 'Neurofeedback Meditation in Virtual Reality', abstract: 'Abstract text here', year: 2005, journal: 'Science'},
                                    {name: 'Relevance Annotation for Scientific Text', abstract: 'Abstract text here', year: 2007, journal: 'Nature Neuroscience'},
@@ -25,6 +25,14 @@ publications[5].links.create({url: 'www.nature.com', publication_id: 6, link_typ
 Author.create({name: 'Pasi Kosunen', :publications => Publication.where(:id => [1,2,3])});
 Author.create({name: 'Ilkka Kosunen', :publications => Publication.where(:id => [1,2,5,6])});
 Author.create({name: 'Seppo Ilmarinen', :publications => Publication.where(:id => [4,3,6])});
+
+Category.create([{name: 'Arduino', layer_id: 7, :publications => Publication.where(:id => [2])}]);
+Category.create([{name: 'Raspberry Pi', layer_id: 7, :publications => Publication.where(:id => [1,3,6])}]);
+
+Category.create([{name: 'Java', layer_id: 6, :publications => Publication.where(:id => [1,3])}]);
+Category.create([{name: 'C++', layer_id: 6, :publications => Publication.where(:id => [1,3,4,5,6])}]);
+Category.create([{name: 'C', layer_id: 6, :publications => Publication.where(:id => [2])}]);
+Category.create([{name: 'Javascript', layer_id: 6, :publications => Publication.where(:id => [6])}]);
 
 Category.create([{name: 'EEG', layer_id: 5, :publications => Publication.where(:id => [2,3])}]);
 Category.create([{name: 'EDA', layer_id: 5, :publications => Publication.where(:id => [1,3,4,5,6])}]);

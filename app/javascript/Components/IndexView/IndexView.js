@@ -20,7 +20,9 @@ class IndexView extends Component{
         }
 
         for(let i = 0; i < categories.length; i++){
-            layerCategories[categories[i].layer_id].push(categories[i]);
+            if(layerCategories[categories[i].layer_id] != undefined) {
+                layerCategories[categories[i].layer_id].push(categories[i]);
+            }
         }
 
         return layerCategories;
