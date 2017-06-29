@@ -59,7 +59,7 @@ class App extends Component {
         }
 
         this.updatePublications(categorySelectedArray);
-        this.updateCategories(this.state.publications);
+
 
 
 
@@ -75,9 +75,10 @@ class App extends Component {
         fetch(path)
             .then(response => response.json())
             .then(results => {
+                this.updateCategories(results);
                 this.state.publications = results;
 
-            });
+            }).fetch();
         //console.log(publications);
 
     }
