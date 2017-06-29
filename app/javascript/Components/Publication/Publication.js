@@ -27,6 +27,8 @@ class Publication extends Component {
                     <ModalBody>
                         <p><b>Abstract: </b>{this.props.pub.abstract}</p>
                         <p><b>Links: </b>{this.props.pub.abstract}</p>
+                        <p><b>Authors: </b>{this.props.pub.authors}</p>
+                        <p><b>Year: </b>{this.props.pub.year}</p>
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>

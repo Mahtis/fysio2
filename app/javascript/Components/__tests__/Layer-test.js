@@ -16,7 +16,6 @@ describe("Layer", () => {
 
     beforeEach(() => {
         props = {
-            dropdownOpen: undefined,
             categories: undefined,
             id: undefined
         };
@@ -32,7 +31,7 @@ describe("Layer", () => {
         mountedLayer = undefined;
     });
 
-    // above code that is run before each test to null the props
+    // above code is run before each test to null the props
 
     it("always renders one tr element", () => {
         initializeProps(props);
@@ -133,10 +132,10 @@ describe("Layer", () => {
             id: 1,
             name: "EEG",
             layer_id: 1,
-        },
-            {id: 2,
-             name: "ABC",
-             layer_id: "2"}];
+            }, {
+            id: 2,
+            name: "ABC",
+            layer_id: "2"}];
         props.layer = {
             id: 1,
             name: "Test"
