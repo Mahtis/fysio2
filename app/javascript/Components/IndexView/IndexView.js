@@ -18,9 +18,10 @@ class IndexView extends Component{
         }
 
         for(let i = 0; i < categories.length; i++){
-            layerCategories[categories[i].layer_id].push(categories[i]);
+            this.props.categoryAvailable.indexOf(categories[i]) > -1 ? layerCategories[categories[i].layer_id].push(categories[i]) : {};
         }
-
+        //layerCategories.map(lc => console.log(lc));
+        //console.log(layerCategories);
         return layerCategories;
     }
 
@@ -34,6 +35,9 @@ class IndexView extends Component{
         let publications = this.props.publications;
         var layerCategories = this.createLayerCategories();
 
+        //console.log("IndexView!!!!!!!!!!!!!!!!!!!!!1!!!!");
+        //this.props.categoryAvailable.map(c => console.log(c));
+
         return (
             <Table style={table} reflow>
                 <LayerList
@@ -45,6 +49,7 @@ class IndexView extends Component{
                     updatePublications={this.props.updatePublications}
                     setCategoryState={this.props.setCategoryState}
                     categorySelected={this.props.categorySelected}
+                    categoryAvailable={this.props.categoryAvailable}
                 />
              </Table>
         );

@@ -20,10 +20,10 @@ class CategoriesController < ApplicationController
           .references(:publications)
       results.push(result)
     end
-    categories = []
+    categories = Set.new
     results.each do |r|
       r.each do |c|
-        categories << c
+        categories.add(c)
       end
     end
     categories.each do |c|

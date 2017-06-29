@@ -10,7 +10,8 @@ class App extends Component {
             layers: [],
             categories: [],
             publications: [],
-            categorySelected: []
+            categorySelected: [],
+            categoryAvailable: []
         }
         this.updatePublications = this.updatePublications.bind(this);
         this.updateCategories = this.updateCategories.bind(this);
@@ -31,7 +32,8 @@ class App extends Component {
             .then(response => response.json())
             .then(categories => {
                 this.setState({
-                    categories: categories
+                    categories: categories,
+                    categoryAvailable: categories
                 })
             });
 
@@ -56,23 +58,28 @@ class App extends Component {
             categorySelectedArray.push(newState);
         }
 
-        this.state.categorySelected = categorySelectedArray;
-
         this.updatePublications(categorySelectedArray);
+        this.updateCategories(this.state.publications);
+
+
+
+        this.setState({
+            categorySelected: categorySelectedArray,
+        });
     }
 
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
+        let pubs = [];
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                this.updateCategories(results);
+                this.state.publications = results;
 
-                this.setState({
-                    publications: results
-                })
             });
+        //console.log(publications);
+
     }
 
     updateCategories(publications) {
@@ -82,15 +89,19 @@ class App extends Component {
         publications.map(p => pubIds.push(p.id));
 
         let path = this.parsePath(pubIds, "categories", "pubIds");
+        let cats = [];
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                console.log(results);
-                this.setState({
-                    categories: results
-                })
+
+                this.state.categoryAvailable = results;
+
             });
+
+
+
+
     }
 
     parsePath(categoriesArray, table, paramName) {
@@ -104,6 +115,9 @@ class App extends Component {
     }
 
     render() {
+
+        console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
+
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
@@ -134,6 +148,7 @@ class App extends Component {
                         updatePublications={this.updatePublications}
                         setCategoryState={this.setCategoryState}
                         categorySelected={this.state.categorySelected}
+                        categoryAvailable={this.state.categoryAvailable}
                     />
                 </div>
             );
