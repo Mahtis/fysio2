@@ -1,4 +1,4 @@
-
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { DropdownItem } from 'reactstrap';
 
@@ -22,5 +22,13 @@ class DropdownViewItem extends Component {
         );
     }
 }
+
+DropdownViewItem.propTypes = {
+    type: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    }).isRequired,
+    changeView: PropTypes.func.isRequired
+};
 
 export default DropdownViewItem;

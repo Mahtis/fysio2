@@ -43,12 +43,12 @@ describe("DropdownView", () => {
             const v = view().find("DropdownMenu");
             expect(v.children().length).toEqual(props.layerTypes.length);
         });
-        /*it("doesn't contain non-matching categories", () => {
-            // two categories now have non-matching layer_id or ids.
-            props.categories = [{"id":1,"name":"EEG","layer_id":1,"ids":[1,3]},{"id":2,"name":"EDA","layer_id":2,"ids":[1,3,4,5,6]},{"id":3,"name":"fEMG","layer_id":1,"ids":[2]}];
-            const td = filter().find("td")
-            expect(td.children().length).toEqual(1);
-        });*/
+        it("text changes when a new type is selected", () => {
+            const v = view();
+            v.instance().changeView(props.layerTypes[1]);
+            const text = v.find("DropdownToggle");
+            expect(text.text()).toEqual(props.layerTypes[1].name);
+        });
     });
 
 

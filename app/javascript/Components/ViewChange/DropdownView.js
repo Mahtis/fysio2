@@ -20,9 +20,11 @@ class DropdownView extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            text: this.props.layerTypes[0].name
-        })
+        if(this.props.layerTypes.length > 0) {
+            this.setState({
+                text: this.props.layerTypes[0].name
+            })
+        }
     }
 
     toggle() {
