@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import DropdownViewItem from './DropdownViewItem';
 import { ButtonDropdown,
     DropdownToggle,
-    DropdownMenu,
-    DropdownItem } from 'reactstrap';
+    DropdownMenu } from 'reactstrap';
 
 
 class DropdownView extends Component {
@@ -14,8 +15,14 @@ class DropdownView extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             dropdownOpen: false,
-            text: "Science"
+            text: ""
         };
+    }
+
+    componentDidMount() {
+        this.setState({
+            text: this.props.layerTypes[0].name
+        })
     }
 
     toggle() {
@@ -31,8 +38,6 @@ class DropdownView extends Component {
         });
     }
 
-
-
     render() {
         let layerTypes = this.props.layerTypes;
         return (
@@ -41,12 +46,23 @@ class DropdownView extends Component {
                     {this.state.text}
                 </DropdownToggle>
                 <DropdownMenu>
-                    {layerTypes.map(t => <DropdownItem key={t.id} onClick={() => this.changeView(t)}>{t.name}</DropdownItem>)}
+                    {layerTypes.map(t => <DropdownViewItem key={t.id} type={t} changeView={this.changeView}/>)}
                 </DropdownMenu>
             </ButtonDropdown>
         )
     }
 }
 
+DropdownView.propTypes = {
+    layerTypes: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        layers: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired
+        }))
+    })).isRequired,
+    changeLayerView: PropTypes.func.isRequired
+};
 
 export default DropdownView;

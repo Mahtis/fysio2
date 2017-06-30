@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
-import DropdownView from "./Components/LayerList/DropdownView";
+import DropdownView from "./Components/ViewChange/DropdownView";
 import { Button } from 'reactstrap';
 
 class App extends Component {
