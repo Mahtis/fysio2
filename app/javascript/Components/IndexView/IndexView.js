@@ -18,7 +18,7 @@ class IndexView extends Component{
         }
 
         for(let i = 0; i < categories.length; i++){
-            this.props.categoryAvailable.indexOf(categories[i]) > -1 ? layerCategories[categories[i].layer_id].push(categories[i]) : {};
+            categories.indexOf(categories[i]) > -1 ? layerCategories[categories[i].layer_id].push(categories[i]) : {};
         }
         //layerCategories.map(lc => console.log(lc));
         //console.log(layerCategories);
@@ -30,7 +30,7 @@ class IndexView extends Component{
             tableLayout: 'auto',
         }
 
-        let categories = this.props.categories;
+        let categories = this.props.categoryAvailable;
         let layers = this.props.layers;
         let publications = this.props.publications;
         var layerCategories = this.createLayerCategories();

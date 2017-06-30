@@ -33,7 +33,8 @@ class LayerList extends Component {
                 </tr>
                     {this.props.layers.map(layer =>
                     <Layer  categorySelected={this.props.categorySelected}
-                            key={layer.id} layer={layer}
+                            key={layer.id}
+                            layer={layer}
                             categories={this.props.layerCategories[layer.id]}
                             publications={this.props.publications}
                             setCategoryState={this.props.setCategoryState}

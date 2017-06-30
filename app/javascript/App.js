@@ -58,35 +58,50 @@ class App extends Component {
             categorySelectedArray.push(newState);
         }
 
+
         this.updatePublications(categorySelectedArray);
 
 
 
 
-        this.setState({
-            categorySelected: categorySelectedArray,
-        });
+
     }
 
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
-        let pubs = [];
 
+        //console.log("hullo " + categories.length);
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                this.updateCategories(results);
+                //console.log("fuckr")
                 this.state.publications = results;
+                return results;
+            })
+            .then(pubs => {
+                let a = [];
+                pubs.map(pub => a.push(pub.id));
+                let p = this.parsePath(a, "categories", "pubIds");
+                return fetch(p);
 
-            }).fetch();
-        //console.log(publications);
+            }).then(resps => resps.json())
+            .then(
+                rslts => this.state.categoryAvailable = rslts
+            ).then(
+                //console.log(this.state.publications.length + " " + this.state.categoryAvailable.length),
+                this.setState({
+                    categorySelected: categories
+                })
+        );
 
     }
+
+
 
     updateCategories(publications) {
 
         let pubIds = [];
-
+        console.log("hi " + publications.length);
         publications.map(p => pubIds.push(p.id));
 
         let path = this.parsePath(pubIds, "categories", "pubIds");
@@ -117,15 +132,15 @@ class App extends Component {
 
     render() {
 
-        console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
-
+        //console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
+        console.log(this.state.categoryAvailable);
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
             fontSize: '40px',
             color: '#343434',
         }
-        let categories = this.state.categories;
+        let categories = this.state.categoryAvailable;
         let layers = this.state.layers;
         let publications = this.state.publications;
         if (publications.length === 0) {
@@ -146,7 +161,7 @@ class App extends Component {
                         categories={categories}
                         layers={layers}
                         publications={publications}
-                        updatePublications={this.updatePublications}
+                        //updatePublications={this.updatePublications}
                         setCategoryState={this.setCategoryState}
                         categorySelected={this.state.categorySelected}
                         categoryAvailable={this.state.categoryAvailable}

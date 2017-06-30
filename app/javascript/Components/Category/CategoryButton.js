@@ -11,6 +11,7 @@ class CategoryButton extends Component {
     }
 
     selected() {
+        console.log(this.props.status);
         this.props.setCategoryState(this.props.name);
     }
 
@@ -30,6 +31,8 @@ class CategoryButton extends Component {
             maxWidth: '100%'
         }
 
+
+        //console.log(this.props.status);
     return (
         <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
             {this.props.name}
