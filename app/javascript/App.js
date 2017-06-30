@@ -58,7 +58,7 @@ class App extends Component {
             categorySelectedArray.push(newState);
         }
 
-
+        //console.log(categorySelectedArray);
         this.updatePublications(categorySelectedArray);
 
 
@@ -70,15 +70,18 @@ class App extends Component {
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
 
-        //console.log("hullo " + categories.length);
+        //console.log(path);
         fetch(path)
             .then(response => response.json())
             .then(results => {
                 //console.log("fuckr")
                 this.state.publications = results;
+                //console.log(results);
                 return results;
             })
-            .then(pubs => {
+
+            /*.then(pubs => {
+
                 let a = [];
                 pubs.map(pub => a.push(pub.id));
                 let p = this.parsePath(a, "categories", "pubIds");
@@ -87,7 +90,8 @@ class App extends Component {
             }).then(resps => resps.json())
             .then(
                 rslts => this.state.categoryAvailable = rslts
-            ).then(
+            )*/
+            .then(
                 //console.log(this.state.publications.length + " " + this.state.categoryAvailable.length),
                 this.setState({
                     categorySelected: categories
@@ -133,14 +137,14 @@ class App extends Component {
     render() {
 
         //console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
-        console.log(this.state.categoryAvailable);
+        console.log(this.state.categorySelected);
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
             fontSize: '40px',
             color: '#343434',
         }
-        let categories = this.state.categoryAvailable;
+        let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
         if (publications.length === 0) {

@@ -30,7 +30,7 @@ class IndexView extends Component{
             tableLayout: 'auto',
         }
 
-        let categories = this.props.categoryAvailable;
+        let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
         var layerCategories = this.createLayerCategories();
