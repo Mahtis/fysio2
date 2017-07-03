@@ -76,7 +76,7 @@ class App extends Component {
             .then(results => {
                 //console.log("fuckr")
                 this.state.publications = results;
-                //console.log(results);
+                console.log(this.state.publications);
                 return results;
             })
 
@@ -93,6 +93,7 @@ class App extends Component {
             )*/
             .then(
                 //console.log(this.state.publications.length + " " + this.state.categoryAvailable.length),
+                //console.log(categories),
                 this.setState({
                     categorySelected: categories
                 })
@@ -137,7 +138,7 @@ class App extends Component {
     render() {
 
         //console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
-        console.log(this.state.categorySelected);
+        //console.log(this.state.categorySelected);
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
