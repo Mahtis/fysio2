@@ -23,6 +23,7 @@ class CategoriesController < ApplicationController
     categories = Set.new
     results.each do |r|
       r.each do |c|
+        #categories << c
         categories.add(c)
       end
     end

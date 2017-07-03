@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CategoryButton from "../Category/CategoryButton";
+import { Button } from 'reactstrap';
 
 class CategoryFilter extends Component{
     constructor() {
@@ -29,14 +30,15 @@ class CategoryFilter extends Component{
 
             <td style={width}>
 
-                {categories.map(categoryButton =>
-                    <CategoryButton
-                        setCategoryState={this.props.setCategoryState}
-                        key={categoryButton.id}
-                        id={categoryButton.id}
-                        name={categoryButton.name}
-                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
-                    />
+                {categories.map((category, index) =>
+                <CategoryButton
+                            setCategoryState={this.props.setCategoryState}
+                            key={index}
+                            id={category.id}
+                            name={category.name}
+                            status={this.props.categorySelected.indexOf(category.name) > -1}
+                />
+
                 )}
             </td>
         )

@@ -20,8 +20,9 @@ class IndexView extends Component{
         for(let i = 0; i < categories.length; i++){
             categories.indexOf(categories[i]) > -1 ? layerCategories[categories[i].layer_id].push(categories[i]) : {};
         }
-        //layerCategories.map(lc => console.log(lc));
+
         //console.log(layerCategories);
+
         return layerCategories;
     }
 

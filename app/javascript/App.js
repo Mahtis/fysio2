@@ -48,7 +48,7 @@ class App extends Component {
 
     setCategoryState(newState) {
 
-        console.log(2);
+
 
         var categorySelectedArray = this.state.categorySelected;
 
@@ -59,6 +59,8 @@ class App extends Component {
         } else {
             categorySelectedArray.push(newState);
         }
+
+        //this.state.categorySelected = categorySelectedArray;
 
         //console.log(categorySelectedArray);
         this.updatePublications(categorySelectedArray);
@@ -72,36 +74,19 @@ class App extends Component {
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
 
-        console.log(3);
+
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                console.log(4);
-                this.state.publications = results;
-                console.log(this.state.publications);
-                })
-
-            /*.then(pubs => {
-
-                let a = [];
-                pubs.map(pub => a.push(pub.id));
-                let p = this.parsePath(a, "categories", "pubIds");
-                return fetch(p);
-
-            }).then(resps => resps.json())
-            .then(
-                rslts => this.state.categoryAvailable = rslts
-            )*/
-            .then(
-
-                console.log(5),
-                //console.log(this.state.publications.length + " " + this.state.categoryAvailable.length),
-                //console.log(categories),
+                this.updateCategories(results);
                 this.setState({
+                    publications: results,
                     categorySelected: categories
                 })
-        );
+            });
+
+
 
     }
 
@@ -110,17 +95,21 @@ class App extends Component {
     updateCategories(publications) {
 
         let pubIds = [];
-        console.log("hi " + publications.length);
+
         publications.map(p => pubIds.push(p.id));
 
         let path = this.parsePath(pubIds, "categories", "pubIds");
         let cats = [];
 
+        console.log(path);
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
 
-                this.state.categoryAvailable = results;
+                this.setState({
+                    categoryAvailable: results
+                })
 
             });
 
@@ -141,15 +130,14 @@ class App extends Component {
 
     render() {
 
-        //console.log("catA: " + this.state.categoryAvailable.length + "  pubs: " + this.state.publications.length);
-        //console.log(this.state.categorySelected);
+        console.log(this.state.categoryAvailable.length);
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
             fontSize: '40px',
             color: '#343434',
         }
-        let categories = this.state.categories;
+        let categories = this.state.categoryAvailable;
         let layers = this.state.layers;
         let publications = this.state.publications;
         if (publications.length === 0) {

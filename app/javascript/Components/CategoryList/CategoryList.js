@@ -17,8 +17,8 @@ class CategoryList extends Component{
             return (
                 <div className={'btn-group'} style={width}>
                     <ListGroup className={'btn-block'}>
-                        { this.props.categories.map(category =>
-                            <DropdownItem key={category.id}>
+                        { this.props.categories.map((category, index) =>
+                            <DropdownItem key={index}>
                                 <Category
                                     key={category.id}
                                     category={category}
