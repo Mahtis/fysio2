@@ -9,13 +9,9 @@ class LayerList extends Component {
 
         this.state = {
             categorySelected: [],
-            publicationSelected: []
         };
-        this.setCategoryState = this.setCategoryState.bind(this);
-    }
 
-    componentWillReceiveProps() {
-        this.setState({ publicationSelected: this.props.publications });
+        this.setCategoryState = this.setCategoryState.bind(this);
     }
 
     setCategoryState(newState) {
@@ -30,12 +26,16 @@ class LayerList extends Component {
             categorySelectedArray.push(newState);
         }
 
-        var pubSelected = this.getPublications(categorySelectedArray);
+        this.state.categorySelected = categorySelectedArray;
 
-        this.setState({
+        this.props.updatePublications(categorySelectedArray);
+
+        //var pubSelected = this.getPublications(categorySelectedArray);
+
+        /*this.setState({
             categorySelected: categorySelectedArray,
             publicationSelected: pubSelected
-        });
+        });*/
 
     }
 
@@ -84,7 +84,7 @@ class LayerList extends Component {
                             pubs
                         </span>
                     </th>
-                    {this.state.publicationSelected.map(publication =>
+                    {this.props.publications.map(publication =>
                         <td key={publication.id}>
                             {publication.name}
                         </td>
@@ -96,7 +96,7 @@ class LayerList extends Component {
                             categorySelected={this.state.categorySelected}
                             key={layer.id} layer={layer}
                             categories={this.props.layerCategories[layer.id]}
-                            publications={this.state.publicationSelected}
+                            publications={this.props.publications}
                     />
                 )}
             </tbody>

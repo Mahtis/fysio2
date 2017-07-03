@@ -11,7 +11,7 @@ class CategoryButton extends Component {
     }
 
     selected() {
-        this.props.setCategoryState(this.props.id);
+        this.props.setCategoryState(this.props.name);
     }
 
     render() {
