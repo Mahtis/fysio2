@@ -30,7 +30,11 @@ class CategoryFilter extends Component{
                         updateTable={this.props.updateTable}
                         key={categoryButton.id}
                         id={categoryButton.id}
+                        unId={this.props.publication_id + ':' + categoryButton.id}
+                        //unId={Math.random()}
                         name={categoryButton.name}
+                        description={categoryButton.description}
+                        infolink={categoryButton.infolink}
                         status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
                     />
                 )}
@@ -42,6 +46,7 @@ class CategoryFilter extends Component{
 CategoryFilter.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
+        unId: PropTypes.string.isRequired,
         layer_id: PropTypes.number.isRequired,
         ids: PropTypes.arrayOf(PropTypes.number)
     })),
