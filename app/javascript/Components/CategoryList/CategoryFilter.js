@@ -29,6 +29,7 @@ class CategoryFilter extends Component{
 
             <td style={width}>
 
+
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
@@ -36,7 +37,7 @@ class CategoryFilter extends Component{
                         key={categoryButton.id}
                         id={categoryButton.id}
                         name={categoryButton.name}
-                        status={this.props.categorySelected.indexOf(categoryButton.id) > -1}
+                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
                     />
                 )}
             </td>
@@ -52,7 +53,7 @@ CategoryFilter.propTypes = {
     })),
     layer: PropTypes.number,
     publication_id: PropTypes.number,
-    categorySelected: PropTypes.arrayOf(PropTypes.number),
+    categorySelected: PropTypes.arrayOf(PropTypes.string),
     setCategoryState: PropTypes.func
 };
 

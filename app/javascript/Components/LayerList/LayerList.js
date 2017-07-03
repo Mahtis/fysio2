@@ -9,14 +9,9 @@ class LayerList extends Component {
 
         this.state = {
             categorySelected: [],
-            publicationSelected: []
         };
+
         this.setCategoryState = this.setCategoryState.bind(this);
-    }
-
-
-    componentWillReceiveProps() {
-        this.setState({ publicationSelected: this.props.publications });
     }
 
     setCategoryState(newState) {
@@ -30,43 +25,22 @@ class LayerList extends Component {
         } else {
             categorySelectedArray.push(newState);
         }
-    
-        var pubSelected = this.getPublications(categorySelectedArray);
 
-        this.setState({
+        this.state.categorySelected = categorySelectedArray;
+
+        this.props.updatePublications(categorySelectedArray);
+
+        //var pubSelected = this.getPublications(categorySelectedArray);
+
+        /*this.setState({
             categorySelected: categorySelectedArray,
             publicationSelected: pubSelected
-        });
+        });*/
+
     }
 
-    getPublications(catSelected) {         //Tämä on huono (hidas)
+    render() {
 
-        var pubs = new Set();
-        var cats = [];
-        var pubSelected = [];
-
-        this.props.categories.map(
-            category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
-        );
-
-        cats.map(
-          cat => cat.ids.map(pub => pubs.add(pub))
-        );
-
-        /*this.props.publications.map(
-            publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
-        );*/
-
-        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] != null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : console.log("no publication with such id");
-
-        if (pubSelected.length == 0) {
-            pubSelected = this.props.publications;
-        }
-
-        return pubSelected;
-    }
-  
-      render() {
         const style = {
             width: '150px',
             minWidth: '150px',
@@ -81,7 +55,7 @@ class LayerList extends Component {
                             Publications
                         </span>
                     </th>
-                    {this.state.publicationSelected.map(publication =>
+                    {this.props.publications.map(publication =>
                         <td key={publication.id}>
                             {publication.name}
                         </td>
@@ -93,7 +67,7 @@ class LayerList extends Component {
                             categorySelected={this.state.categorySelected}
                             key={layer.id} layer={layer}
                             categories={this.props.layerCategories[layer.id]}
-                            publications={this.state.publicationSelected}
+                            publications={this.props.publications}
                     />
                 )}
             </tbody>

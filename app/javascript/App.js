@@ -15,6 +15,8 @@ class App extends Component {
             layerTypes: []
         }
         this.changeLayerView = this.changeLayerView.bind(this);
+        this.updatePublications = this.updatePublications.bind(this);
+        this.parsePath = this.parsePath.bind(this);
     }
 
     changeLayerView(id) {
@@ -61,6 +63,29 @@ class App extends Component {
             });
     }
 
+    updatePublications(categories) {
+        let path = this.parsePath(categories);
+        //console.log(path);
+        fetch(path)
+            .then(response => response.json())
+            .then(results => {
+                //console.log(results.length);
+                this.setState({
+                    publications: results
+                })
+            });
+    }
+
+    parsePath(categoriesArray) {
+        let path = "publications.json?";
+        let length = path.length;
+        categoriesArray.map(cat => path += "names[]=" + cat + "&");
+        if (path.length === length) {
+            return path.substring(0, path.length - 1);
+        }
+        return path.substring(0, path.length - 1);
+    }
+
     render() {
         const loading = {
             textAlign: 'center',
@@ -91,6 +116,7 @@ class App extends Component {
                         categories={categories}
                         layers={layers}
                         publications={publications}
+                        updatePublications={this.updatePublications}
                     />
                 </div>
             );
