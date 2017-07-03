@@ -76,6 +76,8 @@ class LayerList extends Component {
             maxWidth: '150px'
         }
 
+        console.log(this.props.layerCategories);
+
         return (
             <tbody>
                 <tr>
