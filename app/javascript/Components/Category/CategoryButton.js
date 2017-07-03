@@ -11,7 +11,7 @@ class CategoryButton extends Component {
     }
 
     selected() {
-        //console.log(this.props.status);
+        console.log(1);
         this.props.setCategoryState(this.props.name);
     }
 
@@ -32,7 +32,8 @@ class CategoryButton extends Component {
         }
 
 
-        console.log(this.props.status);
+        console.log(6);
+
     return (
         <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
             {this.props.name}

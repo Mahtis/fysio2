@@ -48,6 +48,8 @@ class App extends Component {
 
     setCategoryState(newState) {
 
+        console.log(2);
+
         var categorySelectedArray = this.state.categorySelected;
 
         var index = categorySelectedArray.indexOf(newState);
@@ -70,15 +72,15 @@ class App extends Component {
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
 
-        //console.log(path);
+        console.log(3);
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                //console.log("fuckr")
+                console.log(4);
                 this.state.publications = results;
                 console.log(this.state.publications);
-                return results;
-            })
+                })
 
             /*.then(pubs => {
 
@@ -92,6 +94,8 @@ class App extends Component {
                 rslts => this.state.categoryAvailable = rslts
             )*/
             .then(
+
+                console.log(5),
                 //console.log(this.state.publications.length + " " + this.state.categoryAvailable.length),
                 //console.log(categories),
                 this.setState({
