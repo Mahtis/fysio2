@@ -21,6 +21,8 @@ class CategoryFilter extends Component{
                 }
             }
         }
+
+        //console.log(categories);
         const width = {
             maxWidth: '150px',
             width: '150px',
@@ -33,7 +35,8 @@ class CategoryFilter extends Component{
                 {categories.map((category, index) =>
                 <CategoryButton
                             setCategoryState={this.props.setCategoryState}
-                            key={index}
+                            key={this.props.publication_id + category.id}
+                            shit={this.props.publication_id + category.id}
                             id={category.id}
                             name={category.name}
                             status={this.props.categorySelected.indexOf(category.name) > -1}

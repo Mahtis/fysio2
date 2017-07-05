@@ -73,17 +73,16 @@ class App extends Component {
 
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
-        let pubs = [];
-        let cats = [];
+
+
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                let cats = this.updateCategories(results);
+                this.updateCategories(results);
                 this.setState({
                     publications: results,
-                    categorySelected: categories,
-                    categoryAvailable: cats
+                    categorySelected: categories
                 })
             });
 
@@ -106,10 +105,9 @@ class App extends Component {
             .then(response => response.json())
             .then(results => {
 
-                return results;
-                /*this.setState({
+                this.setState({
                     categoryAvailable: results
-                })*/
+                })
 
             });
 
@@ -140,6 +138,8 @@ class App extends Component {
         let categories = this.state.categoryAvailable;
         let layers = this.state.layers;
         let publications = this.state.publications;
+
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
 
         if (publications.length === 0) {
             return (
