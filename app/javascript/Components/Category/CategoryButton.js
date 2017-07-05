@@ -31,7 +31,7 @@ class CategoryButton extends Component {
             maxWidth: '100%'
         }
 
-        console.log(this.props.shit);
+        //console.log(this.props.shit);
 
 
     return (

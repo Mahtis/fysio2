@@ -73,24 +73,55 @@ class App extends Component {
 
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
-
-
-
+        let pubs = [];
+        let cats = [];
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                this.updateCategories(results);
-                this.setState({
-                    publications: results,
-                    categorySelected: categories
-                })
+                pubs = results;
+                console.log(1);
+                return results
+            })
+            .then(results => {
+                let pIds = this.extractIds(results);
+                let path2 = this.parsePath(pIds, "categories", "pubIds");
+                console.log(path2);
+                return path2;
+            })
+            .then(path2 => {
+                console.log(3);
+                fetch(path2)
+                    .then(response => response.json())
+                    .then(results => {
+                        cats = results;
+                        console.log(results);
+                        return results
+                    })
+                    .then(results => {
+                        //console.log(categories);
+                        //console.log(pubs);
+                        console.log(cats);
+                        //console.log(5);
+                        this.setState({
+                            publications: pubs,
+                            categorySelected: categories,
+                            categoryAvailable: cats
+                        })
+                        }
+                    )
             });
 
 
 
     }
 
-
+    extractIds(pubs) {
+        let pIds = [];
+        pubs.map(p => {
+            pIds.push(p.id)
+        });
+        return pIds;
+    }
 
     updateCategories(publications) {
 
@@ -117,6 +148,7 @@ class App extends Component {
     }
 
     parsePath(categoriesArray, table, paramName) {
+        //console.log(categoriesArray);
         let path = table + ".json?";
         let length = path.length;
         categoriesArray.map(cat => path += paramName + "[]=" + cat + "&");
@@ -139,7 +171,7 @@ class App extends Component {
         let layers = this.state.layers;
         let publications = this.state.publications;
 
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa");
+        console.log("Render");
 
         if (publications.length === 0) {
             return (
