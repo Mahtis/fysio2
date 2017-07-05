@@ -56,7 +56,12 @@ class Layer extends Component {
                             {layer.name}
                             </DropdownToggle>
                             <DropdownMenu>
-                                <CategoryList key={layer.id} categories={categories}/>
+                                <CategoryList
+                                    key={layer.id}
+                                    categories={categories}
+                                    setCategoryState={this.props.setCategoryState}
+                                    categorySelected={this.props.categorySelected}
+                                />
                             </DropdownMenu>
                         </ButtonDropdown>
                     </div>

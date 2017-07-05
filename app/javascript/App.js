@@ -73,16 +73,17 @@ class App extends Component {
 
     updatePublications(categories) {
         let path = this.parsePath(categories, "publications", "names");
-
-
+        let pubs = [];
+        let cats = [];
 
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                this.updateCategories(results);
+                let cats = this.updateCategories(results);
                 this.setState({
                     publications: results,
-                    categorySelected: categories
+                    categorySelected: categories,
+                    categoryAvailable: cats
                 })
             });
 
@@ -101,15 +102,14 @@ class App extends Component {
         let path = this.parsePath(pubIds, "categories", "pubIds");
         let cats = [];
 
-        console.log(path);
-
         fetch(path)
             .then(response => response.json())
             .then(results => {
 
-                this.setState({
+                return results;
+                /*this.setState({
                     categoryAvailable: results
-                })
+                })*/
 
             });
 
@@ -130,16 +130,17 @@ class App extends Component {
 
     render() {
 
-        console.log(this.state.categoryAvailable.length);
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
             fontSize: '40px',
             color: '#343434',
         }
+
         let categories = this.state.categoryAvailable;
         let layers = this.state.layers;
         let publications = this.state.publications;
+
         if (publications.length === 0) {
             return (
                 <div>
@@ -158,7 +159,6 @@ class App extends Component {
                         categories={categories}
                         layers={layers}
                         publications={publications}
-                        //updatePublications={this.updatePublications}
                         setCategoryState={this.setCategoryState}
                         categorySelected={this.state.categorySelected}
                         categoryAvailable={this.state.categoryAvailable}

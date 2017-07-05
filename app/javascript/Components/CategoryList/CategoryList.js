@@ -7,6 +7,8 @@ import { DropdownItem, ListGroup } from 'reactstrap';
 
 class CategoryList extends Component{
 
+
+
     render() {
         if(this.props.categories === null){
             return null;
@@ -18,12 +20,14 @@ class CategoryList extends Component{
                 <div className={'btn-group'} style={width}>
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category, index) =>
-                            <DropdownItem key={index}>
-                                <Category
-                                    key={category.id}
+
+                            <Category
+                                    key={index}
                                     category={category}
-                                />
-                            </DropdownItem>
+                                    setCategoryState={this.props.setCategoryState}
+                                    status={this.props.categorySelected.indexOf(category.name) > -1}
+                             />
+
                         )}
                     </ListGroup>
                 </div>

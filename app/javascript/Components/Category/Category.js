@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { DropdownItem, Button } from 'reactstrap';
 
 class Category extends Component{
 
@@ -11,8 +11,10 @@ class Category extends Component{
     }
 
     selected() {
-        this.props.setCategoryState(this.props.name);
+        this.props.setCategoryState(this.props.category.name);
     }
+
+
 
     render() {
         const width = {
@@ -24,17 +26,17 @@ class Category extends Component{
         const style1 = {
             backgroundColor: 'white',
             whiteSpace: 'normal',
-            width: '150px',
-            minWidth: '150%',
-            maxWidth: '150%',
+            //width: '150px',
+            //minWidth: '150%',
+            //maxWidth: '150%',
 
         };
         const style2 = {
             backgroundColor: 'green',
             whiteSpace: 'normal',
-            width: '150px',
-            minWidth: '150%',
-            maxWidth: '150%',
+            //width: '150px',
+            //minWidth: '150%',
+            //maxWidth: '150%',
         };
 
         // are these checks necessary?
@@ -43,7 +45,9 @@ class Category extends Component{
         }
 
         return (
-            <span style={width}>{this.props.category.name}</span>
+            <DropdownItem style={this.props.status ? style2 : style1} onClick={this.selected}>
+                <span style={width}>{this.props.category.name}</span>
+            </DropdownItem>
         );
     }
 }
