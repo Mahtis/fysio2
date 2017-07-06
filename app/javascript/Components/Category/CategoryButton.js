@@ -47,9 +47,9 @@ class CategoryButton extends Component {
         return (
             // <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
             <Button id={this.props.unId} style={useStyle} onClick={this.selected}>
-                <Tooltip isOpen={this.state.tooltipOpen} autohide={false} target={this.props.unId}
-                         toggle={this.toggle} delay={100}>
-                    {'descripton: '+this.props.description}
+                <Tooltip isOpen={this.state.tooltipOpen} autohide={false} target={this.props.unId} toggle={this.toggle}
+                         delay={100}>
+                    {this.props.description}
                     <br/>
                     <a target="_blank" href={this.props.infolink} id="TooltipExample">More</a>
                 </Tooltip>
