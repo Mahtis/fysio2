@@ -39,35 +39,6 @@ class LayerList extends Component {
 
     }
 
-    getPublications(catSelected) {         //Tämä on huono (hidas)
-        console.log(catSelected);
-        var pubs = new Set();
-        var cats = [];
-        var pubSelected = [];
-
-        this.props.categories.map(
-            category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
-        );
-
-        cats.map(
-          cat => cat.ids.map(pub => pubs.add(pub))
-        );
-
-        /*this.props.publications.map(
-            publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
-        );*/
-
-        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] !== null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : console.log("no publication with such id");
-
-        if (pubSelected.length === 0) {
-            pubSelected = this.props.publications;
-        }
-
-        return pubSelected;
-
-
-    }
-
     render() {
 
         const style = {
@@ -83,7 +54,7 @@ class LayerList extends Component {
                 <tr>
                     <th style={style}>
                         <span >
-                            pubs
+                            Publications
                         </span>
                     </th>
                     {this.props.publications.map(publication =>
