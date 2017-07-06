@@ -11,7 +11,7 @@ class Category extends Component{
     }
 
     selected() {
-        this.props.setCategoryState(this.props.category.name);
+        this.props.updateTable(this.props.category.name);
     }
 
 

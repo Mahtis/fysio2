@@ -37,8 +37,9 @@ class LayerList extends Component {
                             layer={layer}
                             categories={this.props.layerCategories[layer.id]}
                             publications={this.props.publications}
-                            setCategoryState={this.props.setCategoryState}
+                            updateTable={this.props.updateTable}
                             categoryAvailable={this.props.categoryAvailable}
+                            layerCategoriesDropDown={this.props.layerCategoriesDropDown[layer.id]}
                     />
                     )}
             </tbody>

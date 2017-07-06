@@ -27,12 +27,12 @@ class CategoriesController < ApplicationController
         categories.add(c)
       end
     end
-    categories.each do |c|
-      puts "GROOOOO"
-      puts c.inspect
-    end
 
-    return categories
+    if categories.empty? then
+      return Category.all
+    else
+      return categories
+    end
   end
 
   # GET /categories/1

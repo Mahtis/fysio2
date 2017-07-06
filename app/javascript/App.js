@@ -12,11 +12,11 @@ class App extends Component {
             publications: [],
             categorySelected: [],
             categoryAvailable: []
-        }
-        this.updatePublications = this.updatePublications.bind(this);
-        this.updateCategories = this.updateCategories.bind(this);
+        };
         this.parsePath = this.parsePath.bind(this);
-        this.setCategoryState = this.setCategoryState.bind(this);
+        this.updateTable = this.updateTable.bind(this);
+        this.extractIds = this.extractIds.bind(this);
+        this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
     }
 
     componentWillMount() {
@@ -46,74 +46,59 @@ class App extends Component {
             });
     }
 
-    setCategoryState(newState) {
-
-
-
-        var categorySelectedArray = this.state.categorySelected;
-
-        var index = categorySelectedArray.indexOf(newState);
-
-        if (index > -1) {
-            categorySelectedArray.splice(index, 1);
-        } else {
-            categorySelectedArray.push(newState);
-        }
-
-        //this.state.categorySelected = categorySelectedArray;
-
-        //console.log(categorySelectedArray);
-        this.updatePublications(categorySelectedArray);
-
-
-
-
-
-    }
-
-    updatePublications(categories) {
-        let path = this.parsePath(categories, "publications", "names");
+    updateTable(name) {
+        //console.log(name);
+        let selectedCategories = this.manageSelectedCategories(name);
+        let path = this.parsePath(selectedCategories, "publications", "names");
         let pubs = [];
         let cats = [];
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
                 pubs = results;
-                console.log(1);
                 return results
             })
             .then(results => {
                 let pIds = this.extractIds(results);
                 let path2 = this.parsePath(pIds, "categories", "pubIds");
-                console.log(path2);
+                //console.log(path2);
                 return path2;
             })
             .then(path2 => {
-                console.log(3);
                 fetch(path2)
                     .then(response => response.json())
                     .then(results => {
                         cats = results;
-                        console.log(results);
                         return results
                     })
                     .then(results => {
-                        //console.log(categories);
-                        //console.log(pubs);
-                        console.log(cats);
-                        //console.log(5);
-                        this.setState({
-                            publications: pubs,
-                            categorySelected: categories,
-                            categoryAvailable: cats
-                        })
+                            console.log(results);
+                            this.setState({
+                                publications: pubs,
+                                categorySelected: selectedCategories,
+                                categoryAvailable: results
+                            })
                         }
                     )
             });
-
-
-
     }
+
+    manageSelectedCategories(name) {
+
+        let categorySelectedArray = this.state.categorySelected;
+
+        let index = categorySelectedArray.indexOf(name);
+
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
+        } else {
+            categorySelectedArray.push(name);
+        }
+        return categorySelectedArray;
+    }
+
+
 
     extractIds(pubs) {
         let pIds = [];
@@ -123,35 +108,14 @@ class App extends Component {
         return pIds;
     }
 
-    updateCategories(publications) {
-
-        let pubIds = [];
-
-        publications.map(p => pubIds.push(p.id));
-
-        let path = this.parsePath(pubIds, "categories", "pubIds");
-        let cats = [];
-
-        fetch(path)
-            .then(response => response.json())
-            .then(results => {
-
-                this.setState({
-                    categoryAvailable: results
-                })
-
-            });
-
-
-
-
-    }
-
     parsePath(categoriesArray, table, paramName) {
+        //console.log(encodeURI(categoriesArray[0]));
+        //URI.encode_www_form
         //console.log(categoriesArray);
         let path = table + ".json?";
         let length = path.length;
-        categoriesArray.map(cat => path += paramName + "[]=" + cat + "&");
+        categoriesArray.map(cat => path += paramName + "[]=" + encodeURI(cat) + "&");
+        //console.log(path);
         if (path.length === length) {
             return path.substring(0, path.length - 1);
         }
@@ -167,7 +131,7 @@ class App extends Component {
             color: '#343434',
         }
 
-        let categories = this.state.categoryAvailable;
+        let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
 
@@ -191,7 +155,7 @@ class App extends Component {
                         categories={categories}
                         layers={layers}
                         publications={publications}
-                        setCategoryState={this.setCategoryState}
+                        updateTable={this.updateTable}
                         categorySelected={this.state.categorySelected}
                         categoryAvailable={this.state.categoryAvailable}
                     />

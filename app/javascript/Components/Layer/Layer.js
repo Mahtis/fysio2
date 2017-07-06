@@ -58,8 +58,8 @@ class Layer extends Component {
                             <DropdownMenu>
                                 <CategoryList
                                     key={layer.id}
-                                    categories={categories}
-                                    setCategoryState={this.props.setCategoryState}
+                                    categories={this.props.layerCategoriesDropDown}
+                                    updateTable={this.props.updateTable}
                                     categorySelected={this.props.categorySelected}
                                 />
                             </DropdownMenu>
@@ -68,7 +68,7 @@ class Layer extends Component {
                 </td>
                     { publications.map((publication, index) =>
                     <CategoryFilter
-                        setCategoryState={this.props.setCategoryState}
+                        updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}
                         key={index}
                         publication_id={publication.id}
