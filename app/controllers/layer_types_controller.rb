@@ -1,5 +1,5 @@
 class LayerTypesController < ApplicationController
-  before_action :set_layer_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_layer_type, only: %i[show edit update destroy]
 
   # GET /layer_types
   # GET /layer_types.json
@@ -9,8 +9,7 @@ class LayerTypesController < ApplicationController
 
   # GET /layer_types/1
   # GET /layer_types/1.json
-  def show
-  end
+  def show; end
 
   # GET /layer_types/new
   def new
@@ -18,8 +17,7 @@ class LayerTypesController < ApplicationController
   end
 
   # GET /layer_types/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /layer_types
   # POST /layer_types.json
@@ -62,13 +60,14 @@ class LayerTypesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_layer_type
-      @layer_type = LayerType.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def layer_type_params
-      params.require(:layer_type).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_layer_type
+    @layer_type = LayerType.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def layer_type_params
+    params.require(:layer_type).permit(:name)
+  end
 end
