@@ -16,7 +16,8 @@ test('Category spans the category name', () => {
 
 test('Category no name', () => {
     let c = {
-        id: 1
+        id: 1,
+        name: ''
     }
     const categoryComponent = shallow(
         <Category category={c} />
