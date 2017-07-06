@@ -1,0 +1,172 @@
+{
+	"9482496912154751069": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{xu1995efficacy,\n  title={Efficacy of tablet huperzine-A on memory, cognition, and behavior in Alzheimer's disease.},\n  author={Xu, Si-Sun and Gao, Zhi-Xu and Weng, Zheng and Du, Zun-Ming and Xu, Wei-An and Yang, Jian-Shen and Zhang, Ming-Lian and Tong, Zhen-Hua and Fang, Yong-Sheng and Chai, Xin-Sheng},\n  journal={Zhongguo yao li xue bao= Acta pharmacologica Sinica},\n  volume={16},\n  number={5},\n  pages={391--395},\n  year={1995}\n}\n",
+		"attrs": {
+			"num_versions": [3, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:XfC4gLOYmIMJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9dt1Q8CrcVByi0iNDX6BrOhv0b37y&scisf=4&ct=citation&cd=3&hl=en", "Citation link", 9],
+			"title": ["Efficacy of tablet huperzine-A on memory, cognition, and behavior in Alzheimer&#39;s disease.", "Title", 0],
+			"url": ["http://europepmc.org/abstract/med/8701750", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=9482496912154751069&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... All patients were evaluated with Wechsler memory scale, Hasegawa dementia scale, mini-mentalstate examination scale, activity of daily living scale, treatment emergency symptom scale, andmeasured with BP, HR, ECG, EEG, ALT, AKP, BUN, Cr, Hb, WBC, and urine routine. ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [236, "Citations", 3],
+			"cluster_id": ["9482496912154751069", "Cluster ID", 5],
+			"year": ["1995", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=9482496912154751069&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"11583889500955092214": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@inproceedings{salahuddin2006detection,\n  title={Detection of acute stress by heart rate variability (HRV) using a prototype mobile ECG sensor},\n  author={Salahuddin, Lizawati and Kim, Desok},\n  booktitle={Proceedings of the International Conference on Hybrid Information Technology, Cheju Island, Korea},\n  pages={9--11},\n  year={2006}\n}\n",
+		"attrs": {
+			"num_versions": [5, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:9iTOhSA-wqAJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9fAJG6g5vH7Kf3zoi3x7TzYyBUBec&scisf=4&ct=citation&cd=1&hl=en", "Citation link", 9],
+			"title": ["Detection of acute stress by heart rate variability (HRV) using a prototype mobile ECG sensor", "Title", 0],
+			"url": ["http://scholar.google.com/https://www.researchgate.net/profile/Desok_Kim/publication/237257065_Detection_of_Acute_Stress_by_Heart_Rate_Variability_Using_a_Prototype_Mobile_ECG_Sensor/links/54e3398f0cf2d90c1d9c4c52/Detection-of-Acute-Stress-by-Heart-Rate-Variability-Using-a-Prototype-Mobile-ECG-Sensor.pdf", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=11583889500955092214&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["1. SC Segerstrom and GE Miller, \u201cPsychological Stress and the Human Immune System: A Meta-Analytic Study of 30 Years of Inquiry\u201d, Psychological Bulletin, 2004 2. BS McEwen, \u201cProtective and Damaging Effects of Stress Mediators\u201d, The New England Journal of Medicine , 1998   ... ", "Excerpt", 10],
+			"url_pdf": ["http://scholar.google.com/https://www.researchgate.net/profile/Desok_Kim/publication/237257065_Detection_of_Acute_Stress_by_Heart_Rate_Variability_Using_a_Prototype_Mobile_ECG_Sensor/links/54e3398f0cf2d90c1d9c4c52/Detection-of-Acute-Stress-by-Heart-Rate-Variability-Using-a-Prototype-Mobile-ECG-Sensor.pdf", "PDF link", 6],
+			"num_citations": [78, "Citations", 3],
+			"cluster_id": ["11583889500955092214", "Cluster ID", 5],
+			"year": ["2006", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=11583889500955092214&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"1970452604338281625": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{eschweiler2002heart,\n  title={Heart-rate variability (HRV) in the ECG trace of routine EEGs: fast monitoring for the anticholinergic effects of clozapine and olanzapine?},\n  author={Eschweiler, GW and Bartels, M and L{\\\"a}ngle, G and Wild, B and Gaertner, I and Nickola, M},\n  journal={Pharmacopsychiatry},\n  volume={35},\n  number={03},\n  pages={96--100},\n  year={2002},\n  publisher={{\\copyright} Georg Thieme Verlag Stuttgart{\\textperiodcentered} New York}\n}\n",
+		"attrs": {
+			"num_versions": [4, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:mZxTKDR0WBsJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9fO_IyD1HVYDqmyUFF0asmVpAe1QZ&scisf=4&ct=citation&cd=4&hl=en", "Citation link", 9],
+			"title": ["Heart-rate variability (HRV) in the ECG trace of routine EEGs: fast monitoring for the anticholinergic effects of clozapine and olanzapine?", "Title", 0],
+			"url": ["http://scholar.google.com/https://www.thieme-connect.com/products/ejournals/html/10.1055/s-2002-31520", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=1970452604338281625&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["Clozapine was the first of the newer atypical antipsychotics for treatment of schizophrenia [12]. Clozapine plasma concentrations below 350 mg/ml were suboptimal as a treatment for acute exacerbation of schizophrenia resistant to other antipsychotics [15, 16]. Clozapine&#39;s ", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [39, "Citations", 3],
+			"cluster_id": ["1970452604338281625", "Cluster ID", 5],
+			"year": ["2002", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=1970452604338281625&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"3540364673315414885": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{bigger1984relationships,\n  title={The relationships among ventricular arrhythmias, left ventricular dysfunction, and mortality in the 2 years after myocardial infarction.},\n  author={Bigger, J Thomas and Fleiss, JOSEPH L and Kleiger, Robert and Miller, J Philip and Rolnitzky, Linda M},\n  journal={Circulation},\n  volume={69},\n  number={2},\n  pages={250--258},\n  year={1984},\n  publisher={Am Heart Assoc}\n}\n",
+		"attrs": {
+			"num_versions": [9, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:ZaNOqOnmITEJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9dtQKrYQ497mZ4jLBRVDhoaojDbys&scisf=4&ct=citation&cd=1&hl=en", "Citation link", 9],
+			"title": ["The relationships among ventricular arrhythmias, left ventricular dysfunction, and mortality in the 2 years after myocardial infarction.", "Title", 0],
+			"url": ["http://circ.ahajournals.org/content/69/2/250.short", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=3540364673315414885&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... The 452 clinical variables collected for each patient included demographics, medical history,course of treatment in the coronary care unit, 12 lead ECG findings, left ventricular ejection fraction(LVEF), 24 hr ECG recording, a low-level predischarge treadmill exercise test,13 ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [1389, "Citations", 3],
+			"cluster_id": ["3540364673315414885", "Cluster ID", 5],
+			"year": ["1984", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=3540364673315414885&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"3180837933973310244": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{critchley2003human,\n  title={Human cingulate cortex and autonomic control: converging neuroimaging and clinical evidence},\n  author={Critchley, Hugo D and Mathias, Christopher J and Josephs, Oliver and O\u2019doherty, John and Zanini, Sergio and Dewar, Bonnie-Kate and Cipolotti, Lisa and Shallice, Tim and Dolan, Raymond J},\n  journal={Brain},\n  volume={126},\n  number={10},\n  pages={2139--2152},\n  year={2003},\n  publisher={Oxford University Press}\n}\n",
+		"attrs": {
+			"num_versions": [22, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:JAuRhj-bJCwJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9fDDHr9AK139xvaUqkpYjmVfeyfqb&scisf=4&ct=citation&cd=2&hl=en", "Citation link", 9],
+			"title": ["Human cingulate cortex and autonomic control: converging neuroimaging and clinical evidence", "Title", 0],
+			"url": ["http://scholar.google.com/https://academic.oup.com/brain/article-abstract/126/10/2139/314467", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=3180837933973310244&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... Keywords: autonomic; cingulate cortex; cognition, heart rate; sympathetic.Abbreviations: ACC = anterior cingulate cortex; fMRI = functional MRI; HF = highfrequency; HRV = heart rate variability; LF = low frequency. Introduction. ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [954, "Citations", 3],
+			"cluster_id": ["3180837933973310244", "Cluster ID", 5],
+			"year": ["2003", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=3180837933973310244&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"4770904477505599172": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{almeida2006qt,\n  title={QT variability and HRV interactions in ECG: quantification and reliability},\n  author={Almeida, Rute and Gouveia, S{\\'o}nia and Rocha, Ana Paula and Pueyo, Esther and Mart{\\'\\i}nez, Juan Pablo and Laguna, Pablo},\n  journal={IEEE Transactions on Biomedical Engineering},\n  volume={53},\n  number={7},\n  pages={1317--1329},\n  year={2006},\n  publisher={IEEE}\n}\n",
+		"attrs": {
+			"num_versions": [13, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:xLYKT1ioNUIJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9fJVFstQ0TGSboQ3arqMqqoR6G5Nv&scisf=4&ct=citation&cd=3&hl=en", "Citation link", 9],
+			"title": ["QT variability and HRV interactions in ECG: quantification and reliability", "Title", 0],
+			"url": ["http://ieeexplore.ieee.org/abstract/document/1643401/", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=4770904477505599172&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["Abstract: In this paper, a dynamic linear approach was used over QT and RR series measured by an automatic delineator, to explore the interactions between QT interval variability (QTV) and heart rate variability (HRV). A low-order linear autoregressive model ", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [50, "Citations", 3],
+			"cluster_id": ["4770904477505599172", "Cluster ID", 5],
+			"year": ["2006", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=4770904477505599172&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"5914745250286113422": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{parekh2005heart,\n  title={Heart rate variability after isocaloric exercise bouts of different intensities.},\n  author={Parekh, ALPA and Lee, C MATTHEW},\n  journal={Medicine and science in sports and exercise},\n  volume={37},\n  number={4},\n  pages={599--605},\n  year={2005}\n}\n",
+		"attrs": {
+			"num_versions": [5, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:jpI7rHdlFVIJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9fPRckf9VYcP9GbGvMe6D91XYqipr&scisf=4&ct=citation&cd=0&hl=en", "Citation link", 9],
+			"title": ["Heart rate variability after isocaloric exercise bouts of different intensities.", "Title", 0],
+			"url": ["http://europepmc.org/abstract/med/15809558", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=5914745250286113422&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... The last 25 min of POST was divided into five 5-min segments to closely examine postexerciseHRV. ECG segments were analyzed for the standard deviation of RR intervals (SDNN), whereastotal- (lnTP), low- (lnLF), and high-frequency (lnHF) power were obtained via spectral ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [81, "Citations", 3],
+			"cluster_id": ["5914745250286113422", "Cluster ID", 5],
+			"year": ["2005", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=5914745250286113422&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"3172800650670352515": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{kamlin2008accuracy,\n  title={Accuracy of pulse oximetry measurement of heart rate of newborn infants in the delivery room},\n  author={Kamlin, C Omar F and Dawson, Jennifer A and O'donnell, Colm Pf and Morley, Colin J and Donath, Susan M and Sekhon, Jasbir and Davis, Peter G},\n  journal={The Journal of pediatrics},\n  volume={152},\n  number={6},\n  pages={756--760},\n  year={2008},\n  publisher={Elsevier}\n}\n",
+		"attrs": {
+			"num_versions": [23, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:g6hVrmENCCwJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9dm1ggbmyMRhrvYgYrNriv78fETlE&scisf=4&ct=citation&cd=2&hl=en", "Citation link", 9],
+			"title": ["Accuracy of pulse oximetry measurement of heart rate of newborn infants in the delivery room", "Title", 0],
+			"url": ["http://www.sciencedirect.com/science/article/pii/S0022347608000036", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=3172800650670352515&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... Objective. To determine the accuracy of heart rate obtained by pulse oximetry (HR PO ) relativeto HR obtained by 3-lead electrocardiography (HR ECG ) in newborn infants in the delivery room. ...HR PO and HR ECG measurements were compared using Bland-Altman analysis. ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [127, "Citations", 3],
+			"cluster_id": ["3172800650670352515", "Cluster ID", 5],
+			"year": ["2008", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=3172800650670352515&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"8954498468491148277": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{stein1994heart,\n  title={Heart rate variability: a measure of cardiac autonomic tone},\n  author={Stein, Phyllis K and Bosner, Matthew S and Kleiger, Robert E and Conger, Brooke M},\n  journal={American heart journal},\n  volume={127},\n  number={5},\n  pages={1376--1381},\n  year={1994},\n  publisher={Elsevier}\n}\n",
+		"attrs": {
+			"num_versions": [9, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:9bsxBOrERHwJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9dmEOnYGVHAZy2aRo1iAAx0v8l2Vp&scisf=4&ct=citation&cd=0&hl=en", "Citation link", 9],
+			"title": ["Heart rate variability: a measure of cardiac autonomic tone", "Title", 0],
+			"url": ["http://www.sciencedirect.com/science/article/pii/0002870394900590", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=8954498468491148277&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... 1377 Table I. Definitions for time domain measures of heart period variability Variable UnitsDefinition SDNN Msec SDANN Msec SDNNIDX Maec pNN50 r-MSSD Msec Baseline width MsecStandard deviation of all normal RR intervals in the entire 24-hr ECG recording (also ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [642, "Citations", 3],
+			"cluster_id": ["8954498468491148277", "Cluster ID", 5],
+			"year": ["1994", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=8954498468491148277&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	},
+	"9681879010900387743": {
+		"py/object": "scholar.ScholarArticle",
+		"citation_data": "@article{nyegaard2012mutations,\n  title={Mutations in calmodulin cause ventricular tachycardia and sudden cardiac death},\n  author={Nyegaard, Mette and Overgaard, Michael T and S{\\o}ndergaard, Mads T and Vranas, Marta and Behr, Elijah R and Hildebrandt, Lasse L and Lund, Jacob and Hedley, Paula L and Camm, A John and Wettrell, G{\\\"o}ran and others},\n  journal={The American Journal of Human Genetics},\n  volume={91},\n  number={4},\n  pages={703--712},\n  year={2012},\n  publisher={Elsevier}\n}\n",
+		"attrs": {
+			"num_versions": [14, "Versions", 4],
+			"url_citation": ["http://scholar.googleusercontent.com/scholar.bib?q=info:nycH46nxXIYJ:scholar.google.com/&output=citation&scisig=AAGBfm0AAAAAWVT9dknAKNjlEqRP12-3m5mqrZWCgfFB&scisf=4&ct=citation&cd=4&hl=en", "Citation link", 9],
+			"title": ["Mutations in calmodulin cause ventricular tachycardia and sudden cardiac death", "Title", 0],
+			"url": ["http://www.sciencedirect.com/science/article/pii/S0002929712004272", "URL", 1],
+			"url_versions": ["http://scholar.google.com/scholar?cluster=9681879010900387743&hl=en&as_sdt=0,5", "Versions list", 8],
+			"excerpt": ["... A 24 hr ECG registration revealed ventricular extrasystoles (VES), bigemini, and pairedVES (Figure 1B, lower panel) during football training, but no symptoms were reported.He was started on \u03b21-adrenergic-receptor blocker treatment. ...", "Excerpt", 10],
+			"url_pdf": [null, "PDF link", 6],
+			"num_citations": [163, "Citations", 3],
+			"cluster_id": ["9681879010900387743", "Cluster ID", 5],
+			"year": ["2012", "Year", 2],
+			"url_citations": ["http://scholar.google.com/scholar?cites=9681879010900387743&as_sdt=2005&sciodt=0,5&hl=en", "Citations list", 7]
+		}
+	}
+}

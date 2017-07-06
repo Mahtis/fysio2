@@ -20,15 +20,10 @@ class CategoryFilter extends Component{
                 }
             }
         }
-        const width = {
-            maxWidth: '150px',
-            width: '150px',
-            minWidth: '150px'
-        }
+
         return (
 
-            <td style={width}>
-
+            <td class={"tablecontent"}>
 
                 {categories.map(categoryButton =>
                     <CategoryButton

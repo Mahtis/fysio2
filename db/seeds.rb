@@ -14,7 +14,7 @@ publications = Publication.create([{name: 'Audio Biofeedback for Poker Players',
                                    {name: 'Humor Detection', abstract: 'Abstract text here', year: 2016, journal: 'Science'},
                                    {name: 'Datamining Phys. Data for Game Design', abstract: 'Abstract text here', year: 2013, journal: 'Nature'}]);
 
-publications[0].links.create({url: 'www.nature.com', publication_id: 1, link_type: 'web'});
+publications[0].links.create({ url: 'www.nature.com', publication_id: 1, link_type: 'web' })
 publications[1].links.create({url: 'www.science.com', publication_id: 2, link_type: 'web'});
 publications[1].links.create({url: 'www.github.com', publication_id: 2, link_type: 'github'});
 publications[2].links.create({url: 'www.suomi24.fi', publication_id: 3, link_type: 'web'});
