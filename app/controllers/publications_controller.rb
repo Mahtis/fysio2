@@ -4,6 +4,9 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    puts params[:names].inspect
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
     parametersarray = Array.new
     params[:names].nil? ? parametersarray  : params[:names].each {|p| parametersarray << p}
     parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
@@ -24,6 +27,10 @@ class PublicationsController < ApplicationController
         currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
       end
       parametersarray.size == index ? publications << currentpublication : publications
+    end
+    publications.each do |p|
+      puts "BBBBB"
+      puts p.inspect
     end
     return publications
   end

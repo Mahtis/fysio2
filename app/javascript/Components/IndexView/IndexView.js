@@ -8,28 +8,22 @@ class IndexView extends Component{
         super();
     }
 
-    createLayerCategories() {
+    createLayerCategories(cats) {
         let layerCategories = {};
         let layers = this.props.layers;
-        let categories = this.props.categories;
+        let categories = cats;
 
         for(let i = layers[0].id; i <= layers[layers.length-1].id; i++){
             layerCategories[i] = [];
         }
 
-        for(let i = 0; i < categories.length; i++){
-            if(layerCategories[categories[i].layer_id] != undefined) {
+        for(let i = 0; i < categories.length; i++) {
+            if (layerCategories[categories[i].layer_id] != undefined) {
                 layerCategories[categories[i].layer_id].push(categories[i]);
             }
         }
 
         return layerCategories;
-    }
-
-    createPubIdIndex() {
-        var pubs = [];
-        this.props.publications.map(publication => pubs[publication.id] = publication);
-        return pubs;
     }
 
     render(){
@@ -40,8 +34,11 @@ class IndexView extends Component{
         let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
-        let pubsIdAsIndex = this.createPubIdIndex();
-        var layerCategories = this.createLayerCategories();
+        let layerCategories = this.createLayerCategories(this.props.categories);
+        let layerCategoriesDropDown = this.createLayerCategories(this.props.categoryAvailable);
+
+        //console.log("IndexView!!!!!!!!!!!!!!!!!!!!!1!!!!");
+        //this.props.categoryAvailable.map(c => console.log(c));
 
         return (
             <Table style={table} reflow>
@@ -51,8 +48,11 @@ class IndexView extends Component{
                     layers={layers}
                     publications={publications}
                     layerCategories={layerCategories}
-                    publicationsIdAsIndex={pubsIdAsIndex}
                     updatePublications={this.props.updatePublications}
+                    updateTable={this.props.updateTable}
+                    categorySelected={this.props.categorySelected}
+                    categoryAvailable={this.props.categoryAvailable}
+                    layerCategoriesDropDown={layerCategoriesDropDown}
                 />
              </Table>
         );
