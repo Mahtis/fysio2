@@ -11,31 +11,32 @@ class PublicationsController < ApplicationController
     else
       parr = []
       params[:names].each { |p| parr << p }
-      @publications = getselectedpublications(parr)
+      @publications = getselectedpublications(Publication.all
+                                                  .includes(:categories)
+                                                  .where('categories.name = ?',
+                                                         parr[0])
+                                                  .references(:categories),
+                                              parr,
+                                              Category.all,
+                                              [])
     end
   end
 
-  def getselectedpublications(parametersarray)
-    result = Publication.all
-                        .includes(:categories)
-                        .where('categories.name = ?', parametersarray[0])
-                        .references(:categories)
-    processresults(result, parametersarray, Category.all, [])
-  end
-
-  def processresults(result, parametersarray, categories, publications)
+  def getselectedpublications(result, parametersarray, categories, publications)
     result.each do |r|
       index = 0
       parametersarray.each do |p|
         if Publication.find(r.id).categories
                       .include?(categories.find_by(name: p))
-          index += 1; end
+          index += 1
+        end
       end
-      parametersarray.size.equal? index: publications << Publication.find(r.id)
+      if parametersarray.size.equal? index
+        publications << Publication.find(r.id)
+      end
     end
     publications
   end
-
 
   # GET /publications/1
   # GET /publications/1.json

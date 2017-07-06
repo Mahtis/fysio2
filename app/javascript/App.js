@@ -13,10 +13,11 @@ class App extends Component {
             categories: [],
             publications: [],
             layerTypes: []
-        }
+        };
         this.changeLayerView = this.changeLayerView.bind(this);
         this.updatePublications = this.updatePublications.bind(this);
         this.parsePath = this.parsePath.bind(this);
+
     }
 
     changeLayerView(id) {
@@ -35,31 +36,28 @@ class App extends Component {
             .then(layerType => {
                 this.setState({
                     layers: layerType.layers
-                })
-            });
-
-        fetch('/categories.json')
-            .then(response => response.json())
-            .then(categories => {
-                this.setState({
-                    categories: categories
-                })
-            });
-
-        fetch('publications.json')
-            .then(response => response.json())
-            .then(publications => {
-                this.setState({
-                    publications: publications
-                })
-            });
-
-        fetch('layer_types.json')
-            .then(response => response.json())
-            .then(layerTypes => {
-                this.setState({
-                    layerTypes: layerTypes
-                })
+                });
+                fetch('layer_types.json')
+                    .then(response => response.json())
+                    .then(layerTypes => {
+                        this.setState({
+                            layerTypes: layerTypes
+                        });
+                    });
+                fetch('publications.json')
+                    .then(response => response.json())
+                    .then(publications => {
+                        this.setState({
+                            publications: publications
+                        })
+                    });
+                fetch('/categories.json')
+                    .then(response => response.json())
+                    .then(categories => {
+                        this.setState({
+                            categories: categories
+                        })
+                    });
             });
     }
 
