@@ -24,7 +24,8 @@ class App extends Component {
     }
 
     changeLayerView(id) {
-        this.updateTable("");
+        //purkkaa
+        this.updateTable("hack");
         fetch('/layer_types/'+ id +'.json')
             .then(response => response.json())
             .then(layerType => {
@@ -71,8 +72,16 @@ class App extends Component {
 
     updateTable(name) {
 
-        let selectedCategories = this.manageSelectedCategories(name);
-        let path = this.parsePath(selectedCategories, "publications", "names");
+        let selectedCategories = [];
+        let path = "";
+
+        if (name === "hack") {
+            path = "publications.json";
+        } else {
+            selectedCategories = this.manageSelectedCategories(name);
+            path = this.parsePath(selectedCategories, "publications", "names");
+        }
+
         let pubs = [];
         let cats = [];
 
@@ -157,7 +166,7 @@ class App extends Component {
         let layerTypes = this.state.layerTypes;
 
 
-        //console.log("Render");
+        console.log("Render");
 
         if (publications.length === 0) {
             return (
