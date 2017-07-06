@@ -1,14 +1,18 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: %i[show edit update destroy]
 
   # GET /publications
   # GET /publications.json
   def index
-    parametersarray = []
-    if defined? params[:names]
-      params[:names].nil? ? parametersarray : params[:names].each { |p| parametersarray << p }
+    if params[:names].nil?
+      @publications = Publication.all
+    elsif params[:names].empty?
+      @publications = Publication.all
+    else
+      parr = []
+      params[:names].each { |p| parr << p }
+      @publications = getselectedpublications(parr)
     end
-    parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
   end
 
   def getselectedpublications(parametersarray)
@@ -16,26 +20,26 @@ class PublicationsController < ApplicationController
                         .includes(:categories)
                         .where('categories.name = ?', parametersarray[0])
                         .references(:categories)
-    return processresults(result, parametersarray)
+    processresults(result, parametersarray, Category.all, [])
   end
 
-  def processresults(result, parametersarray)
-    categories = Category.all
-    publications = []
+  def processresults(result, parametersarray, categories, publications)
     result.each do |r|
       index = 0
-      currentpublication = Publication.find(r.id)
       parametersarray.each do |p|
-        currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
+        if Publication.find(r.id).categories
+                      .include?(categories.find_by(name: p))
+          index += 1; end
       end
-      parametersarray.size == index ? publications << currentpublication : publications
+      parametersarray.size.equal? index: publications << Publication.find(r.id)
     end
-    return publications
+    publications
   end
 
 
   # GET /publications/1
   # GET /publications/1.json
+
   def show; end
 
   # GET /publications/new
