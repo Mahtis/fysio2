@@ -19,10 +19,10 @@ class CategoryList extends Component{
             return (
                 <div className={'btn-group'} style={width}>
                     <ListGroup className={'btn-block'}>
-                        { this.props.categories.map((category, index) =>
+                        { this.props.categories.map((category) =>
 
                                 <Category
-                                        key={index}
+                                        key={category.id}
                                         name={category.name}
                                         category={category}
                                         updateTable={this.props.updateTable}

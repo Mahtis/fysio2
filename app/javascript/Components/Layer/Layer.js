@@ -66,11 +66,11 @@ class Layer extends Component {
                         </ButtonDropdown>
                     </div>
                 </td>
-                    { publications.map((publication, index) =>
+                    { publications.map((publication) =>
                     <CategoryFilter
                         updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}
-                        key={index}
+                        key={publication.id}
                         publication_id={publication.id}
                         layer={layer.id}
                         categories={categories}
