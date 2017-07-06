@@ -24,6 +24,7 @@ class App extends Component {
     }
 
     changeLayerView(id) {
+        this.updateTable("");
         fetch('/layer_types/'+ id +'.json')
             .then(response => response.json())
             .then(layerType => {

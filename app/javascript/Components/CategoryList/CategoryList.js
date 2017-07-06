@@ -23,6 +23,7 @@ class CategoryList extends Component{
 
                             <Category
                                     key={index}
+                                    name={category.name}
                                     category={category}
                                     updateTable={this.props.updateTable}
                                     status={this.props.categorySelected.indexOf(category.name) > -1}
