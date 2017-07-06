@@ -21,13 +21,13 @@ class CategoryList extends Component{
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category, index) =>
 
-                            <Category
-                                    key={index}
-                                    name={category.name}
-                                    category={category}
-                                    updateTable={this.props.updateTable}
-                                    status={this.props.categorySelected.indexOf(category.name) > -1}
-                             />
+                                <Category
+                                        key={index}
+                                        name={category.name}
+                                        category={category}
+                                        updateTable={this.props.updateTable}
+                                        status={this.props.categorySelected.indexOf(category.name) > -1}
+                                 />
 
                         )}
                     </ListGroup>

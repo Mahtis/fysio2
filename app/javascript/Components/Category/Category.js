@@ -17,6 +17,7 @@ class Category extends Component{
 
 
     render() {
+
         const width = {
             width: '150px',
             maxWidth: '150px',
@@ -39,15 +40,18 @@ class Category extends Component{
             //maxWidth: '150%',
         };
 
+
         // are these checks necessary?
         if (this.props.category === undefined || this.props.category.name === undefined) {
             return null;
         }
 
         return (
+
             <DropdownItem style={this.props.status ? style2 : style1} onClick={this.selected}>
-                <span style={width}>{this.props.category.name}</span>
+                <span>{this.props.category.name}</span>
             </DropdownItem>
+
         );
     }
 }

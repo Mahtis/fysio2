@@ -55,9 +55,9 @@ class App extends Component {
 
         fetch('publications.json')
             .then(response => response.json())
-            .then(results => {
+            .then(publications => {
                 this.setState({
-                    publications: results
+                    publications: publications
                 })
             });
 
