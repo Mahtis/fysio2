@@ -26,3 +26,4 @@
 # ignore test coverage
 /coverage/
 /.idea
+/fysio-crawler
