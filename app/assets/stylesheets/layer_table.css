@@ -32,3 +32,9 @@ tr {
     width:auto;
     margin-left:150px;
 }
+
+.categoryname {
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+}

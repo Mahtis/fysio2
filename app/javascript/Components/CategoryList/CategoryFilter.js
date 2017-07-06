@@ -23,7 +23,7 @@ class CategoryFilter extends Component{
 
         return (
 
-            <td class={"tablecontent"}>
+            <td >
 
                 {categories.map(categoryButton =>
                     <CategoryButton

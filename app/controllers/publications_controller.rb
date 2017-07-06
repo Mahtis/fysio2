@@ -4,18 +4,23 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    parametersarray = Array.new
-    params[:names].nil? ? parametersarray  : params[:names].each {|p| parametersarray << p}
+    parametersarray = []
+    if defined? params[:names]
+      params[:names].nil? ? parametersarray : params[:names].each { |p| parametersarray << p }
+    end
     parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
   end
 
   def getselectedpublications(parametersarray)
+    result = Publication.all
+                        .includes(:categories)
+                        .where('categories.name = ?', parametersarray[0])
+                        .references(:categories)
+    return processresults(result, parametersarray)
+  end
+
+  def processresults(result, parametersarray)
     categories = Category.all
-    result = Publication
-                 .all
-                 .includes(:categories)
-                 .where('categories.name = ?', parametersarray[0])
-                 .references(:categories)
     publications = []
     result.each do |r|
       index = 0
@@ -31,8 +36,7 @@ class PublicationsController < ApplicationController
 
   # GET /publications/1
   # GET /publications/1.json
-  def show
-  end
+  def show; end
 
   # GET /publications/new
   def new
@@ -40,8 +44,7 @@ class PublicationsController < ApplicationController
   end
 
   # GET /publications/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /publications
   # POST /publications.json
@@ -84,13 +87,14 @@ class PublicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_publication
-      @publication = Publication.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def publication_params
-      params.require(:publication).permit(:name, :abstract, :year, :journal)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_publication
+    @publication = Publication.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def publication_params
+    params.require(:publication).permit(:name, :abstract, :year, :journal)
+  end
 end
