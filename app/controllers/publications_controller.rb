@@ -1,50 +1,49 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: %i[show edit update destroy]
 
   # GET /publications
   # GET /publications.json
   def index
-
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts params[:names].inspect
-    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    parametersarray = []
-    if defined? params[:names]
-      params[:names].nil? ? parametersarray : params[:names].each { |p| parametersarray << p }
+if params[:names].nil?
+      @publications = Publication.all
+    elsif params[:names].empty?
+      @publications = Publication.all
+    else
+      parr = []
+      params[:names].each { |p| parr << p }
+      @publications = getselectedpublications(Publication.all
+                                                  .includes(:categories)
+                                                  .where('categories.name = ?',
+                                                         parr[0])
+                                                  .references(:categories),
+                                              parr,
+                                              Category.all,
+                                              [])
     end
 
-    parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
   end
 
-  def getselectedpublications(parametersarray)
-    result = Publication.all
-                        .includes(:categories)
-                        .where('categories.name = ?', parametersarray[0])
-                        .references(:categories)
-    return processresults(result, parametersarray)
-  end
-
-  def processresults(result, parametersarray)
-    categories = Category.all
-    publications = []
+  def getselectedpublications(result, parametersarray, categories, publications)
     result.each do |r|
       index = 0
-      currentpublication = Publication.find(r.id)
       parametersarray.each do |p|
-        currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
+        if Publication.find(r.id).categories
+                      .include?(categories.find_by(name: p))
+          index += 1
+        end
       end
-      parametersarray.size == index ? publications << currentpublication : publications
+      if parametersarray.size.equal? index
+        publications << Publication.find(r.id)
+      end
     end
-    publications.each do |p|
-      puts "BBBBB"
-      puts p.inspect
-    end
-    return publications
-  end
 
+    publications
+
+  end
 
   # GET /publications/1
   # GET /publications/1.json
+
   def show; end
 
   # GET /publications/new

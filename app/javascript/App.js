@@ -21,6 +21,7 @@ class App extends Component {
         this.updateTable = this.updateTable.bind(this);
         this.extractIds = this.extractIds.bind(this);
         this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
+
     }
 
     changeLayerView(id) {
@@ -41,32 +42,29 @@ class App extends Component {
             .then(layerType => {
                 this.setState({
                     layers: layerType.layers
-                })
-            });
+                });
+                fetch('layer_types.json')
+                    .then(response => response.json())
+                    .then(layerTypes => {
+                        this.setState({
+                            layerTypes: layerTypes
+                        });
+                    });
+                fetch('publications.json')
+                    .then(response => response.json())
+                    .then(publications => {
+                        this.setState({
+                            publications: publications
+                        })
+                    });
+                fetch('/categories.json')
+                    .then(response => response.json())
+                    .then(categories => {
+                        this.setState({
+                            categories: categories
+                        })
+                    });
 
-        fetch('/categories.json')
-            .then(response => response.json())
-            .then(categories => {
-                this.setState({
-                    categories: categories,
-                    categoryAvailable: categories
-                })
-            });
-
-        fetch('publications.json')
-            .then(response => response.json())
-            .then(publications => {
-                this.setState({
-                    publications: publications
-                })
-            });
-
-        fetch('layer_types.json')
-            .then(response => response.json())
-            .then(layerTypes => {
-                this.setState({
-                    layerTypes: layerTypes
-                })
             });
     }
 
