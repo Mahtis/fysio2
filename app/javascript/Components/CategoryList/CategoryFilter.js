@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CategoryButton from "../Category/CategoryButton";
@@ -28,7 +27,7 @@ class CategoryFilter extends Component{
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
-                        setCategoryState={this.props.setCategoryState}
+                        updateTable={this.props.updateTable}
                         key={categoryButton.id}
                         id={categoryButton.id}
                         name={categoryButton.name}

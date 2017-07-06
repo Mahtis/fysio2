@@ -18,16 +18,11 @@ describe("Layer", () => {
         props = {
             dropdownOpen: undefined,
             categories: undefined,
-            id: undefined
-        };
-        mountedLayer = undefined;
-    });
-
-    beforeEach(() => {
-        props = {
-            categories: undefined,
+            id: undefined,
             layer: undefined,
-            publications: undefined
+            publications: undefined,
+            layerCategoriesDropDown: undefined,
+            categorySelected: undefined
         };
         mountedLayer = undefined;
     });
@@ -121,7 +116,7 @@ describe("Layer", () => {
 
                         it("receives categories as prop", () => {
                             const categoryList = layer().find("CategoryList");
-                            expect(categoryList.props().categories).toBe(props.categories);
+                            expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
                         });
                     });
                 });
@@ -144,5 +139,14 @@ describe("Layer", () => {
             name: "Test"
         };
         props.publications = [];
+        props.layerCategoriesDropDown = [{
+            id: 1,
+            name: "EEG",
+            layer_id: 1,
+        },
+            {id: 2,
+                name: "ABC",
+                layer_id: "2"}];
+        props.categorySelected  = [];
     }
 

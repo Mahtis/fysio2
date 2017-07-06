@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    if params[:names].nil?
+if params[:names].nil?
       @publications = Publication.all
     elsif params[:names].empty?
       @publications = Publication.all
@@ -20,6 +20,7 @@ class PublicationsController < ApplicationController
                                               Category.all,
                                               [])
     end
+
   end
 
   def getselectedpublications(result, parametersarray, categories, publications)
@@ -35,7 +36,9 @@ class PublicationsController < ApplicationController
         publications << Publication.find(r.id)
       end
     end
+
     publications
+
   end
 
   # GET /publications/1

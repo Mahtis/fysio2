@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
 import DropdownView from "./Components/ViewChange/DropdownView";
-import { Button } from 'reactstrap';
 
 class App extends Component {
     constructor() {
@@ -12,15 +11,22 @@ class App extends Component {
             layers: [],
             categories: [],
             publications: [],
+            categorySelected: [],
+            categoryAvailable: [],
             layerTypes: []
         };
+
         this.changeLayerView = this.changeLayerView.bind(this);
-        this.updatePublications = this.updatePublications.bind(this);
         this.parsePath = this.parsePath.bind(this);
+        this.updateTable = this.updateTable.bind(this);
+        this.extractIds = this.extractIds.bind(this);
+        this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
 
     }
 
     changeLayerView(id) {
+        //purkkaa
+        this.updateTable("hack");
         fetch('/layer_types/'+ id +'.json')
             .then(response => response.json())
             .then(layerType => {
@@ -58,26 +64,85 @@ class App extends Component {
                             categories: categories
                         })
                     });
+
             });
     }
 
-    updatePublications(categories) {
-        let path = this.parsePath(categories);
-        //console.log(path);
+    updateTable(name) {
+
+        let selectedCategories = [];
+        let path = "";
+
+        if (name === "hack") {
+            path = "publications.json";
+        } else {
+            selectedCategories = this.manageSelectedCategories(name);
+            path = this.parsePath(selectedCategories, "publications", "names");
+        }
+
+        let pubs = [];
+        let cats = [];
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
-                //console.log(results.length);
-                this.setState({
-                    publications: results
-                })
+                pubs = results;
+                return results
+            })
+            .then(results => {
+                let pIds = this.extractIds(results);
+                let path2 = this.parsePath(pIds, "categories", "pubIds");
+                return path2;
+            })
+            .then(path2 => {
+                fetch(path2)
+                    .then(response => response.json())
+                    .then(results => {
+                        cats = results;
+                        return results
+                    })
+                    .then(results => {
+                            this.setState({
+                                publications: pubs,
+                                categorySelected: selectedCategories,
+                                categoryAvailable: results
+                            })
+                        }
+                    )
             });
     }
 
-    parsePath(categoriesArray) {
-        let path = "publications.json?";
+    manageSelectedCategories(name) {
+
+        let categorySelectedArray = this.state.categorySelected;
+
+        let index = categorySelectedArray.indexOf(name);
+
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
+        } else {
+            categorySelectedArray.push(name);
+        }
+        return categorySelectedArray;
+    }
+
+
+
+    extractIds(pubs) {
+        let pIds = [];
+        pubs.map(p => {
+            pIds.push(p.id)
+        });
+        return pIds;
+    }
+
+    parsePath(categoriesArray, table, paramName) {
+
+        let path = table + ".json?";
         let length = path.length;
-        categoriesArray.map(cat => path += "names[]=" + cat + "&");
+
+        categoriesArray.map(cat => path += paramName + "[]=" + encodeURIComponent(cat) + "&");
+
         if (path.length === length) {
             return path.substring(0, path.length - 1);
         }
@@ -85,16 +150,22 @@ class App extends Component {
     }
 
     render() {
+
         const loading = {
             textAlign: 'center',
             verticalAlign: 'center',
             fontSize: '40px',
             color: '#343434',
-        }
+        };
+
         let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
+
+
+        console.log("Render");
+
         if (publications.length === 0) {
             return (
                 <div>
@@ -114,13 +185,15 @@ class App extends Component {
                         categories={categories}
                         layers={layers}
                         publications={publications}
-                        updatePublications={this.updatePublications}
+                        updateTable={this.updateTable}
+                        categorySelected={this.state.categorySelected}
+                        categoryAvailable={this.state.categoryAvailable}
                     />
                 </div>
             );
         }
 
-  }
+    }
 }
 
 export default App;

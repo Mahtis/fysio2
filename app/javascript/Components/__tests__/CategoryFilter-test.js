@@ -19,7 +19,7 @@ describe("CategoryFilter", () => {
             categories: undefined,
             layer: 1,
             publication_id: 1,
-            categorySelected: [1,2],
+            categorySelected: ["EEG", "EDA"],
             setCategoryState: function(){1}
         };
         mountedLayer = undefined;

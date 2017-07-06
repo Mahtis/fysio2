@@ -4,7 +4,35 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    parametersarray = Array.new
+    params[:pubIds].nil? ? parametersarray  : params[:pubIds].each {|p| parametersarray << p}
+    parametersarray.empty? ? @categories = Category.all : @categories= self.getPublicationCategories(parametersarray)
+  end
+
+  def getPublicationCategories(parametersarray)
+
+    results = Array.new
+    parametersarray.each do |p|
+      result = Category
+          .all
+          .includes(:publications)
+          .where('publications.id = ?', p)
+          .references(:publications)
+      results.push(result)
+    end
+    categories = Set.new
+    results.each do |r|
+      r.each do |c|
+        #categories << c
+        categories.add(c)
+      end
+    end
+
+    if categories.empty? then
+      return Category.all
+    else
+      return categories
+    end
   end
 
   # GET /categories/1

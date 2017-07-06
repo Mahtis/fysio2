@@ -44,6 +44,9 @@ class Layer extends Component {
         let categories = this.props.categories;
         let publications = this.props.publications;
 
+        //console.log(this.props.layer.id);
+        //this.props.categories.map(c => {console.log(c.name)});
+
         return (
             <tr>
                 <td style={width} id={layer.id}>
@@ -53,19 +56,25 @@ class Layer extends Component {
                             {layer.name}
                             </DropdownToggle>
                             <DropdownMenu>
-                                <CategoryList key={layer.id} categories={categories}/>
+                                <CategoryList
+                                    key={layer.id}
+                                    categories={this.props.layerCategoriesDropDown}
+                                    updateTable={this.props.updateTable}
+                                    categorySelected={this.props.categorySelected}
+                                />
                             </DropdownMenu>
                         </ButtonDropdown>
                     </div>
                 </td>
-                { publications.map(categoryButton =>
+                    { publications.map((publication) =>
                     <CategoryFilter
-                        setCategoryState={this.props.setCategoryState}
+                        updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}
-                        key={categoryButton.id}
-                        publication_id={categoryButton.id}
+                        key={publication.id}
+                        publication_id={publication.id}
                         layer={layer.id}
-                        categories={categories} />) }
+                        categories={categories}
+                    />) }
             </tr>
       );
     }
