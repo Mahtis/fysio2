@@ -46,7 +46,7 @@ class CategoryFilter extends Component{
 CategoryFilter.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
-        unId: PropTypes.string.isRequired,
+        //unId: PropTypes.string.isRequired,
         layer_id: PropTypes.number.isRequired,
         ids: PropTypes.arrayOf(PropTypes.number)
     })),
