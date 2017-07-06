@@ -74,7 +74,7 @@ class App extends Component {
         let path = this.parsePath(selectedCategories, "publications", "names");
         let pubs = [];
         let cats = [];
-
+        console.log(path);
         fetch(path)
             .then(response => response.json())
             .then(results => {
@@ -84,7 +84,6 @@ class App extends Component {
             .then(results => {
                 let pIds = this.extractIds(results);
                 let path2 = this.parsePath(pIds, "categories", "pubIds");
-                //console.log(path2);
                 return path2;
             })
             .then(path2 => {
@@ -135,7 +134,7 @@ class App extends Component {
         let path = table + ".json?";
         let length = path.length;
 
-        categoriesArray.map(cat => path += paramName + "[]=" + encodeURI(cat) + "&");
+        categoriesArray.map(cat => path += paramName + "[]=" + encodeURIComponent(cat) + "&");
 
         if (path.length === length) {
             return path.substring(0, path.length - 1);
