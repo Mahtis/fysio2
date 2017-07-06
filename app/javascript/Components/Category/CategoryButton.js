@@ -11,10 +11,7 @@ class CategoryButton extends Component {
         this.state = {
             tooltipOpen: false
         };
-
         this.selected = this.selected.bind(this);
-
-        this.hover = this.selected.bind(this);
     }
 
     toggle() {
@@ -26,15 +23,6 @@ class CategoryButton extends Component {
     selected() {
 
         this.props.updateTable(this.props.name);
-    }
-
-
-    mouseOver() {
-        this.setState({hover: true});
-    }
-
-    mouseOut() {
-        this.setState({hover: false});
     }
 
     render() {
@@ -50,27 +38,19 @@ class CategoryButton extends Component {
             minWidth: '50%',
             maxWidth: '100%'
         }
-        const styleHover = {
-            backgroundColor: 'red',
-            whiteSpace: 'normal',
-            minWidth: '50%',
-            maxWidth: '100%',
-        }
         var useStyle;
         if (this.props.status) {
             useStyle = style2;
-            //} else if (this.state.hover) {
-            //    useStyle = styleHover;
         } else {
             useStyle = style1;
         }
 
-        // onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}
         return (
+            // <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
             <Button id={this.props.unId} style={useStyle} onClick={this.selected}>
                 <Tooltip isOpen={this.state.tooltipOpen} autohide={false} target={this.props.unId}
                          toggle={this.toggle} delay={100}>
-                    {'aaa'+this.props.description}
+                    {'descripton: '+this.props.description}
                     <br/>
                     <a target="_blank" href={this.props.infolink} id="TooltipExample">More</a>
                 </Tooltip>
@@ -84,7 +64,5 @@ export
 default
 CategoryButton;
 
-// <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
-//<Button style={style1} onClick={this.mores}>
-//More...
-//</Button>
+
+
