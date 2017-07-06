@@ -74,7 +74,7 @@ class App extends Component {
         let path = this.parsePath(selectedCategories, "publications", "names");
         let pubs = [];
         let cats = [];
-        console.log(path);
+
         fetch(path)
             .then(response => response.json())
             .then(results => {
@@ -94,7 +94,6 @@ class App extends Component {
                         return results
                     })
                     .then(results => {
-                            console.log(results);
                             this.setState({
                                 publications: pubs,
                                 categorySelected: selectedCategories,
@@ -157,7 +156,7 @@ class App extends Component {
         let layerTypes = this.state.layerTypes;
 
 
-        console.log("Render");
+        //console.log("Render");
 
         if (publications.length === 0) {
             return (
