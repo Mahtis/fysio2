@@ -11,7 +11,10 @@ test('Category spans the category name', () => {
         <Category category={c} />
     );
 
-    expect(categoryComponent.text()).toEqual('Dog');
+    let text = categoryComponent.find('span');
+
+    expect(text.text()).toEqual('Dog');
+
 });
 
 test('Category no name', () => {
@@ -22,5 +25,8 @@ test('Category no name', () => {
         <Category category={c} />
     );
 
-    expect(categoryComponent.text()).toEqual('');
+    let text = categoryComponent.find('span');
+
+    expect(text).exists;
+    
 });

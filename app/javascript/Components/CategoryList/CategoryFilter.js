@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CategoryButton from "../Category/CategoryButton";
@@ -20,23 +19,19 @@ class CategoryFilter extends Component{
                 }
             }
         }
-        const width = {
-            maxWidth: '150px',
-            width: '150px',
-            minWidth: '150px'
-        }
+
         return (
 
-            <td style={width}>
+            <td >
 
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
-                        setCategoryState={this.props.setCategoryState}
+                        updateTable={this.props.updateTable}
                         key={categoryButton.id}
                         id={categoryButton.id}
                         name={categoryButton.name}
-                        status={this.props.categorySelected.indexOf(categoryButton.id) > -1}
+                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
                     />
                 )}
             </td>
@@ -52,7 +47,7 @@ CategoryFilter.propTypes = {
     })),
     layer: PropTypes.number,
     publication_id: PropTypes.number,
-    categorySelected: PropTypes.arrayOf(PropTypes.number),
+    categorySelected: PropTypes.arrayOf(PropTypes.string),
     setCategoryState: PropTypes.func
 };
 

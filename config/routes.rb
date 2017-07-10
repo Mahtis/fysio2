@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :layer_types
   root 'index#index'
   resources :links
   resources :authors

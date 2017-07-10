@@ -17,16 +17,11 @@ describe("Layer", () => {
     beforeEach(() => {
         props = {
             categories: undefined,
-            id: undefined
-        };
-        mountedLayer = undefined;
-    });
-
-    beforeEach(() => {
-        props = {
-            categories: undefined,
+            id: undefined,
             layer: undefined,
-            publications: undefined
+            publications: undefined,
+            layerCategoriesDropDown: undefined,
+            categorySelected: undefined
         };
         mountedLayer = undefined;
     });
@@ -83,10 +78,12 @@ describe("Layer", () => {
                     expect(buttonDropdown.props().isOpen).toBe(false);
                 });
 
-/*                it("opens with click", () => {
+               it("opens up when clicked", () => {
+                    const wrapper = layer();
                     const buttonDropdown = layer().find("ButtonDropdown");
+                    wrapper.instance().toggle();
                     expect(buttonDropdown.props().isOpen).toBe(true);
-                });*/
+                });
 
                 it("renders one DropdownToggle", () => {
                     const buttonDropdown = layer().find("ButtonDropdown");
@@ -118,7 +115,7 @@ describe("Layer", () => {
 
                         it("receives categories as prop", () => {
                             const categoryList = layer().find("CategoryList");
-                            expect(categoryList.props().categories).toBe(props.categories);
+                            expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
                         });
                     });
                 });
@@ -141,5 +138,14 @@ describe("Layer", () => {
             name: "Test"
         };
         props.publications = [];
+        props.layerCategoriesDropDown = [{
+            id: 1,
+            name: "EEG",
+            layer_id: 1,
+        },
+            {id: 2,
+                name: "ABC",
+                layer_id: "2"}];
+        props.categorySelected  = [];
     }
 

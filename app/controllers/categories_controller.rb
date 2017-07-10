@@ -1,16 +1,43 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    parametersarray = Array.new
+    params[:pubIds].nil? ? parametersarray  : params[:pubIds].each {|p| parametersarray << p}
+    parametersarray.empty? ? @categories = Category.all : @categories= self.getPublicationCategories(parametersarray)
+  end
+
+  def getPublicationCategories(parametersarray)
+
+    results = Array.new
+    parametersarray.each do |p|
+      result = Category
+          .all
+          .includes(:publications)
+          .where('publications.id = ?', p)
+          .references(:publications)
+      results.push(result)
+    end
+    categories = Set.new
+    results.each do |r|
+      r.each do |c|
+        #categories << c
+        categories.add(c)
+      end
+    end
+
+    if categories.empty? then
+      return Category.all
+    else
+      return categories
+    end
   end
 
   # GET /categories/1
   # GET /categories/1.json
-  def show
-  end
+  def show; end
 
   # GET /categories/new
   def new
@@ -18,8 +45,7 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /categories
   # POST /categories.json
@@ -62,13 +88,14 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:category).permit(:name, :layer_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def category_params
+    params.require(:category).permit(:name, :layer_id)
+  end
 end

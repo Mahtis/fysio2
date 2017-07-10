@@ -8,66 +8,12 @@ class LayerList extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            categorySelected: [],
-            publicationSelected: []
-        };
-        this.setCategoryState = this.setCategoryState.bind(this);
+
     }
 
 
-    componentWillReceiveProps() {
-        this.setState({ publicationSelected: this.props.publications });
-    }
+    render() {
 
-    setCategoryState(newState) {
-
-        var categorySelectedArray = this.state.categorySelected;
-
-        var index = categorySelectedArray.indexOf(newState);
-
-        if (index > -1) {
-            categorySelectedArray.splice(index, 1);
-        } else {
-            categorySelectedArray.push(newState);
-        }
-    
-        var pubSelected = this.getPublications(categorySelectedArray);
-
-        this.setState({
-            categorySelected: categorySelectedArray,
-            publicationSelected: pubSelected
-        });
-    }
-
-    getPublications(catSelected) {         //Tämä on huono (hidas)
-
-        var pubs = new Set();
-        var cats = [];
-        var pubSelected = [];
-
-        this.props.categories.map(
-            category => catSelected.indexOf(category.id) > -1 ? cats.push(category) : {}
-        );
-
-        cats.map(
-          cat => cat.ids.map(pub => pubs.add(pub))
-        );
-
-        /*this.props.publications.map(
-            publication => pubs.has(publication.id) ? pubSelected.push(publication) : {}
-        );*/
-
-        for (let pub of pubs) this.props.publicationsIdAsIndex[pub] != null ? pubSelected.push(this.props.publicationsIdAsIndex[pub]) : console.log("no publication with such id");
-
-        if (pubSelected.length == 0) {
-            pubSelected = this.props.publications;
-        }
-
-        return pubSelected;
-    }
-  
-      render() {
         const style = {
             width: '150px',
             minWidth: '150px',
@@ -79,24 +25,26 @@ class LayerList extends Component {
                 <tr>
                     <th style={style}>
                         <span >
-                            pubs
+                            Publications
                         </span>
                     </th>
-                    {this.state.publicationSelected.map(publication =>
+                        {this.props.publications.map(publication =>
                         <td key={publication.id}>
                             <Publication pub={publication}/>
                         </td>
-                    )}
+                        )}
                 </tr>
-
-                {this.props.layers.map(layer =>
-                    <Layer  setCategoryState={this.setCategoryState}
-                            categorySelected={this.state.categorySelected}
-                            key={layer.id} layer={layer}
+                    {this.props.layers.map(layer =>
+                    <Layer  categorySelected={this.props.categorySelected}
+                            key={layer.id}
+                            layer={layer}
                             categories={this.props.layerCategories[layer.id]}
-                            publications={this.state.publicationSelected}
+                            publications={this.props.publications}
+                            updateTable={this.props.updateTable}
+                            categoryAvailable={this.props.categoryAvailable}
+                            layerCategoriesDropDown={this.props.layerCategoriesDropDown[layer.id]}
                     />
-                )}
+                    )}
             </tbody>
       );
     }

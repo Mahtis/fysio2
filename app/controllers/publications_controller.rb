@@ -1,38 +1,50 @@
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: %i[show edit update destroy]
 
   # GET /publications
   # GET /publications.json
   def index
-    parametersarray = Array.new
-    params[:names].nil? ? parametersarray  : params[:names].each {|p| parametersarray << p}
-    parametersarray.empty? ? @publications = Publication.all : @publications = self.getselectedpublications(parametersarray)
+if params[:names].nil?
+      @publications = Publication.all
+    elsif params[:names].empty?
+      @publications = Publication.all
+    else
+      parr = []
+      params[:names].each { |p| parr << p }
+      @publications = getselectedpublications(Publication.all
+                                                  .includes(:categories)
+                                                  .where('categories.name = ?',
+                                                         parr[0])
+                                                  .references(:categories),
+                                              parr,
+                                              Category.all,
+                                              [])
+    end
+
   end
 
-  def getselectedpublications(parametersarray)
-    categories = Category.all
-    result = Publication
-                 .all
-                 .includes(:categories)
-                 .where('categories.name = ?', parametersarray[0])
-                 .references(:categories)
-    publications = []
+  def getselectedpublications(result, parametersarray, categories, publications)
     result.each do |r|
       index = 0
-      currentpublication = Publication.find(r.id)
       parametersarray.each do |p|
-        currentpublication.categories.include?(categories.find_by(name: p)) ? index = index + 1 : index
+        if Publication.find(r.id).categories
+                      .include?(categories.find_by(name: p))
+          index += 1
+        end
       end
-      parametersarray.size == index ? publications << currentpublication : publications
+      if parametersarray.size.equal? index
+        publications << Publication.find(r.id)
+      end
     end
-    return publications
-  end
 
+    publications
+
+  end
 
   # GET /publications/1
   # GET /publications/1.json
-  def show
-  end
+
+  def show; end
 
   # GET /publications/new
   def new
@@ -40,8 +52,7 @@ class PublicationsController < ApplicationController
   end
 
   # GET /publications/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /publications
   # POST /publications.json
@@ -84,13 +95,14 @@ class PublicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_publication
-      @publication = Publication.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def publication_params
-      params.require(:publication).permit(:name, :abstract, :year, :journal)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_publication
+    @publication = Publication.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def publication_params
+    params.require(:publication).permit(:name, :abstract, :year, :journal)
+  end
 end
