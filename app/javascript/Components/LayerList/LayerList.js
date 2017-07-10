@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import Layer from "../Layer/Layer";
+import Publication from "../Publication/Publication"
 
 
 class LayerList extends Component {
@@ -29,7 +30,7 @@ class LayerList extends Component {
                     </th>
                         {this.props.publications.map(publication =>
                         <td key={publication.id}>
-                            {publication.name}
+                            <Publication pub={publication}/>
                         </td>
                         )}
                 </tr>
