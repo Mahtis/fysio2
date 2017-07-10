@@ -12,21 +12,10 @@ describe("Publication", () => {
             );
         }
         return mountedPublication;
-    }
+    };
 
     beforeEach(() => {
         props = {
-            dropdownOpen: undefined,
-            categories: undefined,
-            id: undefined
-        };
-        mountedPublication = undefined;
-    });
-
-    beforeEach(() => {
-        props = {
-            categories: undefined,
-            layer: undefined,
             publications: undefined
         };
         mountedPublication = undefined;
@@ -34,13 +23,14 @@ describe("Publication", () => {
 
     // above code is run before each test to null the props
 
-    it("always renders one div element", () => {
+    /*it("always renders one div element", () => {
         initializeProps(props);
-        const tr = layer().find("tr");
-        expect(tr.length).toBe(1);
-    });
+        const wrappingDiv = publication().find("div");
+        expect(wrappingDiv.length).toBe(1);
+    });*/
 
-    it("")
+    it("", () => {
+    });
 
     function initializeProps(props) {
         props.publications = [{
@@ -67,7 +57,7 @@ describe("Publication", () => {
             name: "Neurofeedback Meditation in Virtual Reality",
             abstract: "Abstract text here",
             year: 2005,
-            journal: "Science"
+            journal: "Science",
             authors: [{
                 id: 1,
                 name: "Pasi Kosunen"
@@ -83,4 +73,4 @@ describe("Publication", () => {
             }]
         }];
     }
-}
+});
