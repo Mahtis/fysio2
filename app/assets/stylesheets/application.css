@@ -14,5 +14,6 @@
  *= require_self
  *= require bootstrap/dist/css/bootstrap.min.css
  *= require tether/dist/css/tether.css
- *= require transpose_table
- */
+ *= require layer_table
+# *= require transpose_table
+*/

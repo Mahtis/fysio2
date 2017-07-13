@@ -13,11 +13,8 @@ class CategoryList extends Component{
         if(this.props.categories === null){
             return null;
         }else{
-            const width = {
-                width: '100%'
-            }
             return (
-                <div className={'btn-group'} style={width}>
+                <div className={'btn-group'} >
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category) =>
 

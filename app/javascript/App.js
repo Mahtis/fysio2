@@ -150,14 +150,6 @@ class App extends Component {
     }
 
     render() {
-
-        const loading = {
-            textAlign: 'center',
-            verticalAlign: 'center',
-            fontSize: '40px',
-            color: '#343434',
-        };
-
         let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
@@ -170,7 +162,7 @@ class App extends Component {
             return (
                 <div>
                     <NavBar/>
-                    <span style={loading}>
+                    <span className={"loading"}>
                         Loading
                     </span>
                 </div>
@@ -180,15 +172,17 @@ class App extends Component {
                 <div>
                     <NavBar/>
                     <DropdownView key="2" layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
-                    <IndexView
-                        key="1"
-                        categories={categories}
-                        layers={layers}
-                        publications={publications}
-                        updateTable={this.updateTable}
-                        categorySelected={this.state.categorySelected}
-                        categoryAvailable={this.state.categoryAvailable}
-                    />
+                    <div className="table-responsive">
+                        <IndexView
+                            key="1"
+                            categories={categories}
+                            layers={layers}
+                            publications={publications}
+                            updateTable={this.updateTable}
+                            categorySelected={this.state.categorySelected}
+                            categoryAvailable={this.state.categoryAvailable}
+                        />
+                    </div>
                 </div>
             );
         }
