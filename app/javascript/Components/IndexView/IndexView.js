@@ -38,7 +38,6 @@ class IndexView extends Component{
         //this.props.categoryAvailable.map(c => console.log(c));
 
         return (
-            <Table>
                 <LayerList
                     key="1"
                     categories={categories}
@@ -51,7 +50,6 @@ class IndexView extends Component{
                     categoryAvailable={this.props.categoryAvailable}
                     layerCategoriesDropDown={layerCategoriesDropDown}
                 />
-             </Table>
         );
     }
 }

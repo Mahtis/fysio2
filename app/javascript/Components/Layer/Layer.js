@@ -33,8 +33,7 @@ class Layer extends Component {
 
         return (
             <tr>
-                <td id={layer.id}>
-                    <div>
+                <td className="fixed-column" id={layer.id}>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                             {layer.name}
@@ -48,8 +47,8 @@ class Layer extends Component {
                                 />
                             </DropdownMenu>
                         </ButtonDropdown>
-                    </div>
                 </td>
+
                     { publications.map((publication) =>
                     <CategoryFilter
                         updateTable={this.props.updateTable}
@@ -68,6 +67,6 @@ Layer.propTypes = {
     layer: PropTypes.object.isRequired,
     categories: PropTypes.arrayOf(PropTypes.object).isRequired,
     publications: PropTypes.arrayOf(PropTypes.object).isRequired
-}
+};
 
 export default Layer;

@@ -14,21 +14,18 @@ class CategoryList extends Component{
             return null;
         }else{
             return (
-                <div className={'btn-group'} >
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category) =>
-
                                 <Category
                                         key={category.id}
                                         name={category.name}
                                         category={category}
                                         updateTable={this.props.updateTable}
                                         status={this.props.categorySelected.indexOf(category.name) > -1}
-                                 />
 
+                                />
                         )}
                     </ListGroup>
-                </div>
             )
         }
     }

@@ -1,21 +1,55 @@
-.table > thead:first-child > tr:first-child > th:first-child {
+/*.table > thead:first-child > tr:first-child > th:first-child {
     position: absolute;
     display: inline-block;
     height: 100%;
-}
+}*/
 
 .table > tbody > tr > td:first-child {
     position: absolute;
     display: inline-block;
-    height: 100%;
+    height: auto;
 }
 
-.table > thead:first-child > tr:first-child > th:nth-child(2) {
+.table > tbody > tr > td {
+    max-width: 150px;
+}
+
+/*.table > thead:first-child > tr:first-child > th:nth-child(2) {
     padding-left: 40px;
+}*/
+
+.table > tbody > tr > td:nth-child(n+2) {
+    padding-left: 155px !important;
 }
 
-.table > tbody > tr > td:nth-child(2) {
-    padding-left: 50px !important;
+.table > tbody > tr > td > button {
+    white-space: normal;
+}
+
+.fixed-column {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    background-color: white;
+}
+
+.table > tbody > tr:nth-child(1) > th:nth-child(1) {
+    width: 150px;
+    height: auto;
+    background-color: white;
+    border-right: solid;
+    border-right-width: 2px;
+    border-bottom-color: black;
+}
+
+.table > tbody > tr > td > div > button {
+    width: 135px;
+}
+
+.table > tbody > tr > td:nth-child(1) {
+    border-right: solid;
+    border-right-width: 2px;
+    border-bottom-color: black;
 }
 
 .loading {
@@ -23,6 +57,11 @@
     vertical-align: center;
     font-size: 120px;
     color: #343434;
+}
+
+.selected {
+    background-color: #5cb85c !important;
+    border-color: #5cb85c !important;
 }
 
 /*table {*/

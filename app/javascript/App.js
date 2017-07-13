@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
 import DropdownView from "./Components/ViewChange/DropdownView";
+import { Table } from 'reactstrap';
 
 class App extends Component {
     constructor() {
@@ -173,15 +174,17 @@ class App extends Component {
                     <NavBar/>
                     <DropdownView key="2" layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
                     <div className="table-responsive">
-                        <IndexView
-                            key="1"
-                            categories={categories}
-                            layers={layers}
-                            publications={publications}
-                            updateTable={this.updateTable}
-                            categorySelected={this.state.categorySelected}
-                            categoryAvailable={this.state.categoryAvailable}
-                        />
+                        <Table>
+                            <IndexView
+                                key="1"
+                                categories={categories}
+                                layers={layers}
+                                publications={publications}
+                                updateTable={this.updateTable}
+                                categorySelected={this.state.categorySelected}
+                                categoryAvailable={this.state.categoryAvailable}
+                            />
+                        </Table>
                     </div>
                 </div>
             );

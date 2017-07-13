@@ -23,11 +23,7 @@ class Category extends Component{
         }
 
         return (
-
-            <DropdownItem className={this.props.status ? "selected" : "unselected"} onClick={this.selected}>
-                <span>{this.props.category.name}</span>
-            </DropdownItem>
-
+                <span className={this.props.status ? "btn-success" : "btn-default"} onClick={this.selected}>{this.props.category.name}</span>
         );
     }
 }

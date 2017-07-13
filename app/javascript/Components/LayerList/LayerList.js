@@ -16,8 +16,8 @@ class LayerList extends Component {
         return (
             <tbody>
                 <tr>
-                    <th>
-                        <span >
+                    <th className="fixed-column">
+                        <span>
                             Publications
                         </span>
                     </th>
