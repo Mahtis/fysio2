@@ -72,118 +72,192 @@ Author.create(name: 'Seppo Ilmarinen',
 
 Category.create([name: 'Arduino',
                  layer_id: 7,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Raspberry Pi',
                  layer_id: 7,
-                 publications: Publication.where(id: [1, 3, 6])])
+                 publications: Publication.where(id: [1, 3, 6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'Java',
                  layer_id: 6,
-                 publications: Publication.where(id: [1, 3])])
+                 publications: Publication.where(id: [1, 3]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'C++',
                  layer_id: 6,
-                 publications: Publication.where(id: [1, 3, 4, 5, 6])])
+                 publications: Publication.where(id: [1, 3, 4, 5, 6]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'C',
                  layer_id: 6,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Javascript',
                  layer_id: 6,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'EEG',
                  layer_id: 5,
-                 publications: Publication.where(id: [2, 3])])
+                 publications: Publication.where(id: [2, 3]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'EDA',
                  layer_id: 5,
-                 publications: Publication.where(id: [1, 3, 4, 5, 6])])
+                 publications: Publication.where(id: [1, 3, 4, 5, 6]),
+                "test",
+                "http://localhost"])
 Category.create([name: 'fEMG',
                  layer_id: 5,
-                 publications: Publication.where(id: [3])])
+                 publications: Publication.where(id: [3]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'ECG',
                  layer_id: 5,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'SCL',
                  layer_id: 4,
-                 publications: Publication.where(id: [1])])
+                 publications: Publication.where(id: [1]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Alpha frequency',
                  layer_id: 4,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Theta frequency',
                  layer_id: 4,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'SCP',
                  layer_id: 4,
-                 publications: Publication.where(id: [3, 6])])
+                 publications: Publication.where(id: [3, 6]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'CS',
                  layer_id: 4,
-                 publications: Publication.where(id: [3, 6])])
+                 publications: Publication.where(id: [3, 6]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Tonic',
                  layer_id: 4,
-                 publications: Publication.where(id: [4])])
+                 publications: Publication.where(id: [4]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Phasic',
                  layer_id: 4,
-                 publications: Publication.where(id: [4])])
+                 publications: Publication.where(id: [4]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'nSCR',
                  layer_id: 4,
-                 publications: Publication.where(id: [4])])
+                 publications: Publication.where(id: [4]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Custom',
                  layer_id: 4,
-                 publications: Publication.where(id: [5])])
+                 publications: Publication.where(id: [5]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'ZM',
                  layer_id: 4,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'OO',
                  layer_id: 4,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'IBI',
                  layer_id: 4,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'Arousal',
                  layer_id: 3,
-                 publications: Publication.where(id: [1])])
+                 publications: Publication.where(id: [1]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Relaxation',
                  layer_id: 3,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Concentration',
                  layer_id: 3,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Supervised Machine Learning Features',
                  layer_id: 3,
-                 publications: Publication.where(id: [3, 4, 5])])
+                 publications: Publication.where(id: [3, 4, 5]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Unsupervised Machine Learning Features',
                  layer_id: 3,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'Arousal => Sound Mapping',
                  layer_id: 2,
-                 publications: Publication.where(id: [1])])
+                 publications: Publication.where(id: [1]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Relaxation & Concentration => Movement in VR',
                  layer_id: 2,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'ML Features => Relevance',
                  layer_id: 2,
-                 publications: Publication.where(id: [3])])
+                 publications: Publication.where(id: [3]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'ML Features => Affective States (Happy, Sad, Angry, Neutral)',
                  layer_id: 2,
-                 publications: Publication.where(id: [4, 5])])
+                 publications: Publication.where(id: [4, 5]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Cluster frequent patterns of physiological data => Find design patterns',
                  layer_id: 2,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
 
 Category.create([name: 'Sonify Arousal',
                  layer_id: 1,
-                 publications: Publication.where(id: [1])])
+                 publications: Publication.where(id: [1]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Float in VR',
                  layer_id: 1,
-                 publications: Publication.where(id: [2])])
+                 publications: Publication.where(id: [2]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Label Text',
                  layer_id: 1,
-                 publications: Publication.where(id: [3, 4])])
+                 publications: Publication.where(id: [3, 4]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Annotate Cont. Adapt Interface',
                  layer_id: 1,
-                 publications: Publication.where(id: [5])])
+                 publications: Publication.where(id: [5]),
+                 "test",
+                 "http://localhost"])
 Category.create([name: 'Extract Design Patterns',
                  layer_id: 1,
-                 publications: Publication.where(id: [6])])
+                 publications: Publication.where(id: [6]),
+                 "test",
+                 "http://localhost"])
