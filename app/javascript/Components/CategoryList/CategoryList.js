@@ -20,7 +20,6 @@ class CategoryList extends Component{
                 <div className={'btn-group'} style={width}>
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category) =>
-
                                 <Category
                                         key={category.id}
                                         name={category.name}
@@ -28,7 +27,6 @@ class CategoryList extends Component{
                                         updateTable={this.props.updateTable}
                                         status={this.props.categorySelected.indexOf(category.name) > -1}
                                  />
-
                         )}
                     </ListGroup>
                 </div>

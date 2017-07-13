@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
 import DropdownView from "./Components/ViewChange/DropdownView";
+import DatabaseConnector from "./Services/DatabaseConnector";
 
 class App extends Component {
     constructor() {
@@ -27,89 +28,61 @@ class App extends Component {
     changeLayerView(id) {
         //purkkaa
         this.updateTable("hack");
-        fetch('/layer_types/'+ id +'.json')
-            .then(response => response.json())
-            .then(layerType => {
-                this.setState({
-                    layers: layerType.layers
-                })
-            });
+        DatabaseConnector.getLayersForType(id).then((resolve) => this.setState({
+            layers: resolve
+        }));
     }
 
     componentWillMount() {
-        fetch('/layer_types/1.json')
-            .then(response => response.json())
-            .then(layerType => {
-                this.setState({
-                    layers: layerType.layers
-                });
-                fetch('layer_types.json')
-                    .then(response => response.json())
-                    .then(layerTypes => {
-                        this.setState({
-                            layerTypes: layerTypes
-                        });
-                    });
-                fetch('publications.json')
-                    .then(response => response.json())
-                    .then(publications => {
-                        this.setState({
-                            publications: publications
-                        })
-                    });
-                fetch('/categories.json')
-                    .then(response => response.json())
-                    .then(categories => {
-                        this.setState({
-                            categories: categories
-                        })
-                    });
+        this.loadData();
+    }
 
-            });
+    loadData() {
+        DatabaseConnector.getLayers().then((resolve) => this.setState({
+            layers: resolve
+        }));
+        DatabaseConnector.getPublications().then((resolve) => this.setState({
+            publications: resolve
+        }));
+        DatabaseConnector.getLayerTypes().then((resolve) => this.setState({
+            layerTypes: resolve
+        }));
+        DatabaseConnector.getCategories().then((resolve) => this.setState({
+            categories: resolve,
+            categoryAvailable: resolve
+        }));
     }
 
     updateTable(name) {
-
         let selectedCategories = [];
-        let path = "";
+        let publicationPath = "";
+        let pubs = [];
 
+        // this probably needs to change?
         if (name === "hack") {
-            path = "publications.json";
+            publicationPath = "publications.json";
         } else {
             selectedCategories = this.manageSelectedCategories(name);
-            path = this.parsePath(selectedCategories, "publications", "names");
+            publicationPath = this.parsePath(selectedCategories, "publications", "names");
         }
 
-        let pubs = [];
-        let cats = [];
-
-        fetch(path)
-            .then(response => response.json())
-            .then(results => {
-                pubs = results;
-                return results
+        // first get publications from path and create the second path
+        DatabaseConnector.fetchFromPath(publicationPath).then(publications => {
+            pubs = publications;
+            let pIds = this.extractIds(publications);
+            let categoryPath = this.parsePath(pIds, "categories", "pubIds");
+            return categoryPath;
+        })
+        // then from the second path get the categories that are still possible
+        .then(categoryPath => {
+            DatabaseConnector.fetchFromPath(categoryPath).then(categories => {
+                this.setState({
+                publications: pubs,
+                categorySelected: selectedCategories,
+                categoryAvailable: categories
+                })
             })
-            .then(results => {
-                let pIds = this.extractIds(results);
-                let path2 = this.parsePath(pIds, "categories", "pubIds");
-                return path2;
-            })
-            .then(path2 => {
-                fetch(path2)
-                    .then(response => response.json())
-                    .then(results => {
-                        cats = results;
-                        return results
-                    })
-                    .then(results => {
-                            this.setState({
-                                publications: pubs,
-                                categorySelected: selectedCategories,
-                                categoryAvailable: results
-                            })
-                        }
-                    )
-            });
+        });
     }
 
     manageSelectedCategories(name) {
@@ -163,8 +136,7 @@ class App extends Component {
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
 
-
-        console.log("Render");
+        //console.log("Render");
 
         if (publications.length === 0) {
             return (
