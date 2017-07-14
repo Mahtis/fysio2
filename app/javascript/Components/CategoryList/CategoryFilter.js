@@ -23,18 +23,17 @@ class CategoryFilter extends Component{
         return (
 
             <td >
-                {categories.map(categoryButton =>
+                {categories.map(category =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
                         updateTable={this.props.updateTable}
-                        key={categoryButton.id}
-                        id={categoryButton.id}
-                        unId={this.props.publication_id + ':' + categoryButton.id}
-                        //unId={Math.random()}
-                        name={categoryButton.name}
-                        description={categoryButton.description}
-                        infolink={categoryButton.infolink}
-                        status={this.props.categorySelected.indexOf(categoryButton.name) > -1}
+                        key={category.id}
+                        id={category.id}
+                        unId={this.props.publication_id + ':' + category.id}
+                        name={category.name}
+                        description={category.description}
+                        infolink={category.infolink}
+                        status={this.props.categorySelected.indexOf(category.name) > -1}
                     />
                 )}
             </td>

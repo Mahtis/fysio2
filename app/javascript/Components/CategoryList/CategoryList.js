@@ -22,8 +22,7 @@ class CategoryList extends Component{
                                         category={category}
                                         updateTable={this.props.updateTable}
                                         status={this.props.categorySelected.indexOf(category.name) > -1}
-
-                                />
+                                 />
                         )}
                     </ListGroup>
             )
