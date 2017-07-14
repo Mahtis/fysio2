@@ -13,18 +13,11 @@ class LayerList extends Component {
 
 
     render() {
-
-        const style = {
-            width: '150px',
-            minWidth: '150px',
-            maxWidth: '150px'
-        }
-
         return (
             <tbody>
                 <tr>
-                    <th style={style}>
-                        <span >
+                    <th className="fixed-column">
+                        <span>
                             Publications
                         </span>
                     </th>

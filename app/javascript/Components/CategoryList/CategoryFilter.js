@@ -23,7 +23,6 @@ class CategoryFilter extends Component{
         return (
 
             <td >
-
                 {categories.map(categoryButton =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}

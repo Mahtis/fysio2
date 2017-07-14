@@ -22,33 +22,20 @@ class CategoryButton extends Component {
     }
 
     selected() {
-
         this.props.updateTable(this.props.name);
     }
 
     render() {
-        const style1 = {
-            backgroundColor: 'white',
-            whiteSpace: 'normal',
-            minWidth: '50%',
-            maxWidth: '100%',
-        }
-        const style2 = {
-            backgroundColor: 'green',
-            whiteSpace: 'normal',
-            minWidth: '50%',
-            maxWidth: '100%'
-        }
-        var useStyle;
+        let useStyle;
         if (this.props.status) {
-            useStyle = style2;
+            useStyle = "btn-success";
         } else {
-            useStyle = style1;
+            useStyle = "btn-default";
         }
 
         return (
             // <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
-            <Button id={this.props.unId} style={useStyle} onClick={this.selected}>
+            <Button id={this.props.unId} className={useStyle} onClick={this.selected}>
 
                 <Tooltip isOpen={this.state.tooltipOpen} autohide={false} target={this.props.unId} toggle={this.toggle}
                          delay={100} placement="bottom left">

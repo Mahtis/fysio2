@@ -13,25 +13,19 @@ class CategoryList extends Component{
         if(this.props.categories === null){
             return null;
         }else{
-            const width = {
-                width: '100%'
-            }
             return (
-                <div className={'btn-group'} style={width}>
                     <ListGroup className={'btn-block'}>
                         { this.props.categories.map((category) =>
-
                                 <Category
                                         key={category.id}
                                         name={category.name}
                                         category={category}
                                         updateTable={this.props.updateTable}
                                         status={this.props.categorySelected.indexOf(category.name) > -1}
-                                 />
 
+                                />
                         )}
                     </ListGroup>
-                </div>
             )
         }
     }
