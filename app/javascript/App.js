@@ -129,8 +129,6 @@ class App extends Component {
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
 
-        //console.log("Render");
-
         if (publications.length === 0) {
             return (
                 <div>

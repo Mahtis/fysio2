@@ -13,7 +13,6 @@ class DatabaseConnector {
         return fetch('/layer_types/1.json')
             .then(response => response.json())
             .then(layerType => {
-                //console.log(layerType.layers);
                 return layerType.layers;
             });
     }
@@ -22,7 +21,6 @@ class DatabaseConnector {
         return fetch('layer_types.json')
             .then(response => response.json())
             .then(layerTypes => {
-                //console.log(layerTypes);
                 return layerTypes;
             });
     }
@@ -32,7 +30,6 @@ class DatabaseConnector {
             .then(response => response.json())
             .then(publications => {
                 return publications;
-                //console.log(publications);
             });
     }
 
@@ -40,7 +37,6 @@ class DatabaseConnector {
         return fetch('/categories.json')
             .then(response => response.json())
             .then(categories => {
-                //console.log(categories);
                 return categories;
             });
     }

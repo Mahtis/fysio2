@@ -30,7 +30,6 @@ class CategoryFilter extends Component{
                         key={category.id}
                         id={category.id}
                         unId={this.props.publication_id + ':' + category.id}
-                        //unId={Math.random()}
                         name={category.name}
                         description={category.description}
                         infolink={category.infolink}
