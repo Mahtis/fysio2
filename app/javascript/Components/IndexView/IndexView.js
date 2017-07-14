@@ -27,9 +27,6 @@ class IndexView extends Component{
     }
 
     render(){
-        const table = {
-            tableLayout: 'auto',
-        }
 
         let categories = this.props.categories;
         let layers = this.props.layers;
@@ -41,7 +38,6 @@ class IndexView extends Component{
         //this.props.categoryAvailable.map(c => console.log(c));
 
         return (
-            <Table style={table} reflow>
                 <LayerList
                     key="1"
                     categories={categories}
@@ -54,7 +50,6 @@ class IndexView extends Component{
                     categoryAvailable={this.props.categoryAvailable}
                     layerCategoriesDropDown={layerCategoriesDropDown}
                 />
-             </Table>
         );
     }
 }

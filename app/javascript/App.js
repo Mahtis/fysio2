@@ -3,6 +3,7 @@ import NavBar from './Components/NavBar/NavBar';
 import IndexView from "./Components/IndexView/IndexView";
 import DropdownView from "./Components/ViewChange/DropdownView";
 import DatabaseConnector from "./Services/DatabaseConnector";
+import { Table } from 'reactstrap';
 
 class App extends Component {
     constructor() {
@@ -123,14 +124,6 @@ class App extends Component {
     }
 
     render() {
-
-        const loading = {
-            textAlign: 'center',
-            verticalAlign: 'center',
-            fontSize: '40px',
-            color: '#343434',
-        };
-
         let categories = this.state.categories;
         let layers = this.state.layers;
         let publications = this.state.publications;
@@ -142,7 +135,7 @@ class App extends Component {
             return (
                 <div>
                     <NavBar/>
-                    <span style={loading}>
+                    <span className={"loading"}>
                         Loading
                     </span>
                 </div>
@@ -152,15 +145,19 @@ class App extends Component {
                 <div>
                     <NavBar/>
                     <DropdownView key="2" layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
-                    <IndexView
-                        key="1"
-                        categories={categories}
-                        layers={layers}
-                        publications={publications}
-                        updateTable={this.updateTable}
-                        categorySelected={this.state.categorySelected}
-                        categoryAvailable={this.state.categoryAvailable}
-                    />
+                    <div className="table-responsive">
+                        <Table>
+                            <IndexView
+                                key="1"
+                                categories={categories}
+                                layers={layers}
+                                publications={publications}
+                                updateTable={this.updateTable}
+                                categorySelected={this.state.categorySelected}
+                                categoryAvailable={this.state.categoryAvailable}
+                            />
+                        </Table>
+                    </div>
                 </div>
             );
         }

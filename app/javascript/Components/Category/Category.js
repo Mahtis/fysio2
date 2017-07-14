@@ -17,42 +17,16 @@ class Category extends Component{
 
 
     render() {
-
-        const width = {
-            width: '150px',
-            maxWidth: '150px',
-            minWidth: '150px'
-        };
-
-        const style1 = {
-            backgroundColor: 'white',
-            whiteSpace: 'normal',
-            //width: '150px',
-            //minWidth: '150%',
-            //maxWidth: '150%',
-
-        };
-        const style2 = {
-            backgroundColor: 'green',
-            whiteSpace: 'normal',
-            //width: '150px',
-            //minWidth: '150%',
-            //maxWidth: '150%',
-        };
-
-
         // are these checks necessary?
         if (this.props.category === undefined || this.props.category.name === undefined) {
             return null;
         }
 
         return (
-
-            <DropdownItem style={this.props.status ? style2 : style1} onClick={this.selected}>
+            <DropdownItem className={this.props.status ? "btn selected" : "btn"} onClick={this.selected}>
                 <span>{this.props.category.name}</span>
             </DropdownItem>
-
-        );
+                );
     }
 }
 

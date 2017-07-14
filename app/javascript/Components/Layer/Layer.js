@@ -24,22 +24,6 @@ class Layer extends Component {
     }
 
     render(){
-        const staticPosition = {
-            // position: 'absolute',
-            // float: 'left',
-            // display: 'block',
-            width: '100%',
-            maxWidth: '100%',
-            maxHeight: '100%',
-            backgroundColor: 'white',
-            // padding: 'auto',
-            // textAlign: 'center',
-        }
-
-        const width = {
-            maxWidth: '150px'
-        }
-
         let layer = this.props.layer;
         let categories = this.props.categories;
         let publications = this.props.publications;
@@ -49,8 +33,7 @@ class Layer extends Component {
 
         return (
             <tr>
-                <td style={width} id={layer.id}>
-                    <div style={staticPosition} >
+                <td className="fixed-column" id={layer.id}>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                             {layer.name}
@@ -64,8 +47,8 @@ class Layer extends Component {
                                 />
                             </DropdownMenu>
                         </ButtonDropdown>
-                    </div>
                 </td>
+
                     { publications.map((publication) =>
                     <CategoryFilter
                         updateTable={this.props.updateTable}
@@ -84,6 +67,6 @@ Layer.propTypes = {
     layer: PropTypes.object.isRequired,
     categories: PropTypes.arrayOf(PropTypes.object).isRequired,
     publications: PropTypes.arrayOf(PropTypes.object).isRequired
-}
+};
 
 export default Layer;
