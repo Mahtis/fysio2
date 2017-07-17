@@ -41,13 +41,22 @@ class DropdownView extends Component {
     }
 
     render() {
+        const style = {
+            color: 'rgb(0, 0, 0)',
+            backgroundColor: 'rgb(220, 255, 220)',
+            borderColor: 'rgb(0, 0, 0)',
+            whiteSpace: 'normal',
+            textAlign: 'center',
+            //minWidth: '100%',
+            //maxWidth: '100%',
+        }
         let layerTypes = this.props.layerTypes;
         return (
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
+            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
+                <DropdownToggle caret style={style}>
                     {this.state.text}
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu style={style}>
                     {layerTypes.map(t => <DropdownViewItem key={t.id} type={t} changeView={this.changeView}/>)}
                 </DropdownMenu>
             </ButtonDropdown>

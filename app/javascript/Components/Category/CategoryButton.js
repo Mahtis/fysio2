@@ -27,28 +27,37 @@ class CategoryButton extends Component {
     }
 
     render() {
-        const style1 = {
-            backgroundColor: 'white',
+        const styleDefault = {
+            color: 'rgb(0, 0, 0)',
+            backgroundColor: 'rgb(220, 255, 220)',
+            borderColor: 'rgb(0, 0, 0)',
             whiteSpace: 'normal',
+            textAlign: 'center',
             minWidth: '50%',
             maxWidth: '100%',
         }
-        const style2 = {
-            backgroundColor: 'green',
+        const styleSelected = {
+            color: 'rgb(255, 255, 255)',
+            backgroundColor: 'rgb(150, 255, 150)',
+            borderColor: 'rgb(255, 255, 255)',
             whiteSpace: 'normal',
+            textAlign: 'center',
             minWidth: '50%',
             maxWidth: '100%'
         }
         var useStyle;
         if (this.props.status) {
-            useStyle = style2;
+            useStyle = styleSelected;
         } else {
-            useStyle = style1;
+            useStyle = styleDefault;
         }
 
         return (
             // <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
-            <Button id={this.props.unId} style={useStyle} onClick={this.selected}>
+            //full width: block
+            //<p id={this.props.unId} style={useStyle} onClick={this.selected} > Button
+            <Button id={this.props.unId} style={useStyle} onClick={this.selected}
+                    size="sm" >
 
                 <Tooltip isOpen={this.state.tooltipOpen} autohide={false} target={this.props.unId} toggle={this.toggle}
                          delay={100} placement="bottom left">
@@ -59,9 +68,12 @@ class CategoryButton extends Component {
 
                 {this.props.name}
             </Button>
+            //</p>
+
         );
     }
 }
+https://react-bootstrap.github.io/components.html bsSize: one of: "lg", "large", "sm", "small", "xs", "xsmall"
 
 CategoryButton.propTypes = {
     id: PropTypes.number.isRequired,
@@ -73,6 +85,3 @@ CategoryButton.propTypes = {
 };
 
 export default CategoryButton;
-
-
-
