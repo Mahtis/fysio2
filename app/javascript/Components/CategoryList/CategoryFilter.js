@@ -9,12 +9,14 @@ class CategoryFilter extends Component{
 
     render() {
         let categories = [];
-        for (let i = 0; i < this.props.categories.length; i++) {
-            let category = this.props.categories[i];
-            if (category.layer_id === this.props.layer) {
-                for (let j = 0; j < category.ids.length; j ++) {
-                    if (category.ids[j] === this.props.publication_id) {
-                        categories.push(category);
+        if (this.props.categories !== undefined) {
+            for (let i = 0; i < this.props.categories.length; i++) {
+                let category = this.props.categories[i];
+                if (category.layer_id === this.props.layer) {
+                    for (let j = 0; j < category.ids.length; j ++) {
+                        if (category.ids[j] === this.props.publication_id) {
+                            categories.push(category);
+                        }
                     }
                 }
             }
@@ -27,7 +29,7 @@ class CategoryFilter extends Component{
                     <CategoryButton
                         categorySelected={this.props.categorySelected}
                         updateTable={this.props.updateTable}
-                        key={category.id}
+                        key={category.id + ':' + this.props.publication_id}
                         id={category.id}
                         unId={this.props.publication_id + ':' + category.id}
                         name={category.name}

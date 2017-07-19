@@ -10,7 +10,7 @@ class CategoryList extends Component{
 
 
     render() {
-        if(this.props.categories === null){
+        if(this.props.categories === null || this.props.categories === undefined){
             return null;
         }else{
             return (
