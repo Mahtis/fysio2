@@ -1,19 +1,28 @@
-.table > tbody > tr > td:first-child {
-    position: absolute;
-    display: inline-block;
-    height: auto;
-}
-
-.table > tbody > tr > td {
-    max-width: 150px;
-}
-
 .table > tbody > tr > td:nth-child(n+2) {
-    padding-left: 155px !important;
+    max-width: 260px;
+    width: 260px;
+    min-width: 260px;
+    position: relative;
+    left: 160px;
+    z-index: 5;
+}
+
+.table > tbody > tr > td:last-child {
+    float: left;
 }
 
 .table > tbody > tr > td > button {
     white-space: normal;
+    text-align: left;
+    float: left;
+}
+
+.button_narrow {
+    width: 110px;
+}
+
+.button_wide {
+    width: 250px;
 }
 
 .fixed-column {
@@ -23,23 +32,16 @@
     background-color: white;
 }
 
-.table > tbody > tr:nth-child(1) > th:nth-child(1) {
-    width: 150px;
-    height: auto;
-    background-color: white;
-    border-right: solid;
-    border-right-width: 2px;
-    border-bottom-color: black;
-}
-
 .table > tbody > tr > td > div > button {
-    width: 135px;
+    width: 140px;
+    padding-right: 10px;
 }
 
-.table > tbody > tr > td:nth-child(1) {
-    border-right: solid;
-    border-right-width: 2px;
-    border-bottom-color: black;
+.table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
+    width: 155px;
+    border-right: 2px solid black;
+    height: 200px;
+    z-index: 10;
 }
 
 .loading {
