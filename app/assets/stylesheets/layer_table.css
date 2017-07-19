@@ -22,8 +22,8 @@
     z-index: 2;
     position: relative;
     flex-direction: column;
-    top: -50px;
-    right: 300px;
+    top: -40px;
+    margin-left: 145px;
 }
 
 .table > tbody > tr > td:nth-child(1) > div > div > ul {
@@ -34,8 +34,6 @@
 
 .table > tbody > tr > td:nth-child(n+2) {
     max-width: 260px;
-    width: 260px;
-    min-width: 260px;
     position: relative;
     left: 160px;
 }
