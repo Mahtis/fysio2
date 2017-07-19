@@ -1,0 +1,43 @@
+{
+  "name": "Informing the Design of Novel Input Methods with Muscle Coactivation Clustering",
+    "abstract": "This article presents a novel summarization of biomechanical and performance data for user interface designers. Previously, there was no simple way for designers to predict how the location, direction, velocity, precision, or amplitude of users' movement affects performance and fatigue. We cluster muscle coactivation data from a 3D pointing task covering the whole reachable space of the arm. We identify 11 clusters of pointing movements with distinct muscular, spatio-temporal, and performance properties. We discuss their use as heuristics when designing for 3D pointing.",
+  "year": 2015,
+  "journal": "Transactions on Computer-Human Interaction",
+  "categories": [{
+      "name": ["joint angels", "moments and forces at the joints", "forces exerted by muscles", "muscle activations"],
+      "layer": "Metrics"
+    },
+    {
+      "name": ["optical motion tracking data"],
+      "layer": "Signal"
+    },
+ {
+      "name": ["energy expenditure", "fatigue"],
+      "layer": "Indices"
+ },
+ {
+      "name": ["clustering"],
+      "layer": "Logic"
+ },
+     {
+      "name": ["in air keyboard", "public display", "tabletop", "smarwatch"],
+      "layer": "Application"
+    }
+
+                ],
+  "authors": [{
+      "name": "MYROSLAV BACHYNSKY"
+          },
+    {
+      "name": "GREGORIO PALMAS"
+    },
+   {
+      "name": "ANTTI OULASVIRTA"
+    },
+   {
+      "name": "TINO WEINKAUF"
+    }],
+  "links": [{
+      "url": "http://dx.doi.org/10.1145/2687921"
+  }]
+}
