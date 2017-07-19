@@ -1,10 +1,43 @@
+.fixed-column {
+    position: absolute;
+    display: inline-block;
+    width: auto;
+    background-color: white;
+}
+
+.table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
+    width: 155px;
+    border-right: 2px solid black;
+    height: 200px;
+    z-index: 1;
+}
+
+.table > tbody > tr > td:nth-child(1) > div  {
+    z-index: 2;
+    position: relative;
+    flex-direction: column;
+}
+
+.table > tbody > tr > td:nth-child(1) > div > div {
+    z-index: 2;
+    position: relative;
+    flex-direction: column;
+    top: -50px;
+    right: 300px;
+}
+
+.table > tbody > tr > td:nth-child(1) > div > div > ul {
+    z-index: 2;
+    position: relative;
+    flex-direction: column;
+}
+
 .table > tbody > tr > td:nth-child(n+2) {
     max-width: 260px;
     width: 260px;
     min-width: 260px;
     position: relative;
     left: 160px;
-    z-index: 5;
 }
 
 .table > tbody > tr > td:last-child {
@@ -14,7 +47,6 @@
 .table > tbody > tr > td > button {
     white-space: normal;
     text-align: left;
-    float: left;
 }
 
 .button_narrow {
@@ -25,23 +57,9 @@
     width: 250px;
 }
 
-.fixed-column {
-    position: absolute;
-    display: inline-block;
-    width: auto;
-    background-color: white;
-}
-
 .table > tbody > tr > td > div > button {
     width: 140px;
     padding-right: 10px;
-}
-
-.table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
-    width: 155px;
-    border-right: 2px solid black;
-    height: 200px;
-    z-index: 10;
 }
 
 .loading {
