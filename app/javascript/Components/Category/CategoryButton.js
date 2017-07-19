@@ -32,7 +32,11 @@ class CategoryButton extends Component {
         } else {
             useStyle = "btn-default";
         }
-
+        if (this.props.name.length < 7){
+            useStyle += " button_narrow";
+        } else {
+            useStyle += " button_wide";
+        }
         return (
             // <Button style={this.props.status ? style2 : style1} onClick={this.selected}>
             <Button id={this.props.unId} className={useStyle} onClick={this.selected}>
