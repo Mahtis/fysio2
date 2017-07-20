@@ -1,14 +1,14 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import CategoryFilter from '../CategoryList/CategoryFilter.js'
+import PublicationLayerCategoryList from '../Fysio/LayerList/Layer/PublicationLayerCategoryList/PublicationLayerCategoryList.js'
 
-describe("CategoryFilter", () => {
+describe("PublicationLayerCategoryList", () => {
     let props;
     let mountedLayer;
     const filter = () => {
         if (!mountedLayer) {
             mountedLayer = shallow(
-                <CategoryFilter {...props} />
+                <PublicationLayerCategoryList {...props} />
             );
         }
         return mountedLayer;

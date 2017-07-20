@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CategoryButton from "../Category/CategoryButton";
+import CategoryButton from "../CategoryList/CategoryButton/CategoryButton";
 
-class CategoryFilter extends Component{
+class PublicationLayerCategoryList extends Component{
     constructor() {
         super();
     }
@@ -43,7 +43,7 @@ class CategoryFilter extends Component{
     }
 }
 
-CategoryFilter.propTypes = {
+PublicationLayerCategoryList.propTypes = {
     categories: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
         layer_id: PropTypes.number.isRequired,
@@ -55,4 +55,4 @@ CategoryFilter.propTypes = {
     setCategoryState: PropTypes.func
 };
 
-export default CategoryFilter;
+export default PublicationLayerCategoryList;

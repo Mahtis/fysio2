@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import Layer from "../Layer/Layer";
-import Publication from "../Publication/Publication"
+import Layer from "./Layer/Layer";
+import Publication from "./Publication/Publication"
 
 
 class LayerList extends Component {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Layer from '../Layer/Layer.js'
+import Layer from '../Fysio/LayerList/Layer/Layer.js'
 
 describe("Layer", () => {
     let props;
@@ -49,9 +49,9 @@ describe("Layer", () => {
             expect(tr.find("td").length).toBe(1);
         });
 
-        it("renders one `CategoryFilter`", () => {
+        it("renders one `PublicationLayerCategoryList`", () => {
             const tr = layer().find("tr");
-            expect(tr.find("CategoryFilter")).exists;
+            expect(tr.find("PublicationLayerCategoryList")).exists;
         });
 
         describe("the rendered td", () => {

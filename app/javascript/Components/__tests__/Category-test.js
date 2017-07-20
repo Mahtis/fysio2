@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Category from '../Category/Category.js';
+import Category from '../Fysio/LayerList/Layer/CategoryList/Category/Category.js';
 
 test('Category spans the category name', () => {
     let c = {

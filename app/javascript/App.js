@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
-import IndexView from "./Components/IndexView/IndexView";
-import DropdownView from "./Components/ViewChange/DropdownView";
+import Fysio from "./Components/Fysio/Fysio";
 import DatabaseConnector from "./Services/DatabaseConnector";
 import { Table } from 'reactstrap';
 
@@ -27,7 +26,7 @@ class App extends Component {
     }
 
     changeLayerView(id) {
-        //purkkaa
+        /* purkkaa */
         this.updateTable("hack");
         DatabaseConnector.getLayersForType(id).then((resolve) => this.setState({
             layers: resolve
@@ -71,8 +70,7 @@ class App extends Component {
         DatabaseConnector.fetchFromPath(publicationPath).then(publications => {
             pubs = publications;
             let pIds = this.extractIds(publications);
-            let categoryPath = this.parsePath(pIds, "categories", "pubIds");
-            return categoryPath;
+            return this.parsePath(pIds, "categories", "pubIds");
         })
         // then from the second path get the categories that are still possible
         .then(categoryPath => {
@@ -129,10 +127,10 @@ class App extends Component {
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
 
-        if (publications.length === 0) {
+        if (publications.length === 0 && layerTypes.length === 0) {
             return (
                 <div>
-                    <NavBar/>
+                    <NavBar layerTypes={[]} changeLayerView={this.changeLayerView}/>
                     <span className={"loading"}>
                         Loading
                     </span>
@@ -141,11 +139,10 @@ class App extends Component {
         } else {
             return (
                 <div>
-                    <NavBar/>
-                    <DropdownView key="2" layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
+                    <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
                     <div className="table-responsive">
                         <Table>
-                            <IndexView
+                            <Fysio
                                 key="1"
                                 categories={categories}
                                 layers={layers}
