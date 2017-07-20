@@ -40,5 +40,13 @@ describe('App component', () => {
             expect(app.state().layers.length).toEqual(1);
         })
     })
+
+    it('do it', () => {
+        //console.log(app.children());
+        const nav = app.find('NavBar');
+        const link = nav.find('LayerLink').last();
+        link.simulate('click');
+        console.log(link.props());
+    })
 });
 
