@@ -1,16 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import App from '../../App';
 import DatabaseConnector from '../../Services/__mocks__/DatabaseConnector'
 
 jest.mock('../../Services/DatabaseConnector');
 
 describe('App component', () => {
-    const app = shallow(
+    const app = mount(
         <App />
     );
 
-    // why is this working?
     it('Fetches layers correctly', () => {
         DatabaseConnector.getLayers().then(resolve => {
             expect(app.state().layers.length).toEqual(3);
@@ -20,7 +19,6 @@ describe('App component', () => {
     it('Fetches layer types correctly', () => {
         DatabaseConnector.getLayerTypes().then(resolve => {
             expect(app.state().layerTypes.length).toEqual(2);
-            expect(app.state().publications.length).toEqual(6);
         })
     })
 
@@ -29,11 +27,18 @@ describe('App component', () => {
             expect(app.state().publications.length).toEqual(6);
         })
     })
-/*
-    it('Does stuff again', () => {
+
+    it('Fetches categories correctly', () => {
         DatabaseConnector.getCategories().then(resolve => {
-            expect(app.state().layerTypes.length).toEqual(2);
+            expect(app.state().categories.length).toEqual(6);
         })
-    })*/
+    })
+
+    it('Fetches new view categories correctly', () => {
+        app.instance().changeLayerView(1);
+        DatabaseConnector.getLayersForType(1).then(resolve => {
+            expect(app.state().layers.length).toEqual(1);
+        })
+    })
 });
 

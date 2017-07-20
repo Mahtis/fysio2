@@ -2,27 +2,30 @@
 class DatabaseConnector {
 
     static getLayersForType(id) {
-        let layers =[{
-            "id": 1,
-            "name": "Application",
-            "created_at": "2017-07-06T13:48:56.340Z",
-            "updated_at": "2017-07-06T13:48:56.340Z"
-            },
-            {
-                "id": 2,
-                "name": "Logic",
-                "created_at": "2017-07-06T13:48:56.344Z",
-                "updated_at": "2017-07-06T13:48:56.344Z"
-            },
-            {
-                "id": 3,
-                "name": "Indicies",
-                "created_at": "2017-07-06T13:48:56.347Z",
-                "updated_at": "2017-07-06T13:48:56.347Z"
-            }];
-        return new Promise((resolve, reject) => {
-            resolve(layers);
-        });
+        let layers = [];
+        if (id == 2) {
+            layers =
+                [{
+                    "id": 1,
+                    "name": "Application"
+                },
+                {
+                    "id": 2,
+                    "name": "Logic"
+                },
+                {
+                    "id": 3,
+                    "name": "Indicies"
+                }];
+        } else {
+            layers =
+                [{
+                    "id": 1,
+                    "name": "Application"
+                }];
+        }
+
+        return Promise.resolve(layers);
     }
 
     static getLayers() {
@@ -224,15 +227,76 @@ class DatabaseConnector {
     }
 
     static getCategories() {
-        let layers ={
-            "id": 1,
-            "name": "Application",
-            "created_at": "2017-07-06T13:48:56.340Z",
-            "updated_at": "2017-07-06T13:48:56.340Z"
-        };
-        return new Promise((resolve, reject) => {
-            resolve(layers);
-        });
+        let categories =
+            [
+                {
+                    "id": 1,
+                    "name": "Arduino",
+                    "layer_id": 7,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        2
+                    ]
+                },
+                {
+                    "id": 2,
+                    "name": "Raspberry Pi",
+                    "layer_id": 7,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        1,
+                        3,
+                        6
+                    ]
+                },
+                {
+                    "id": 3,
+                    "name": "Java",
+                    "layer_id": 6,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        1,
+                        3
+                    ]
+                },
+                {
+                    "id": 4,
+                    "name": "C++",
+                    "layer_id": 6,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        1,
+                        3,
+                        4,
+                        5,
+                        6
+                    ]
+                },
+                {
+                    "id": 5,
+                    "name": "C",
+                    "layer_id": 6,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        2
+                    ]
+                },
+                {
+                    "id": 6,
+                    "name": "Javascript",
+                    "layer_id": 6,
+                    "description": "test",
+                    "infolink": "http://localhost",
+                    "ids": [
+                        6
+                    ]
+                }]
+        return Promise.resolve(categories);
     }
 
     static fetchFromPath(path) {
