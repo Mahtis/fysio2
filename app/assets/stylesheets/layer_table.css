@@ -1,8 +1,14 @@
+
+body{
+    background-color: #2d882d !important;
+    border-color: rgb(0, 0, 0) !important;
+}
 .fixed-column {
     position: absolute;
     display: inline-block;
     width: auto;
-    background-color: white;
+    background-color: #3C7113;
+    border-color: rgb(0, 0, 0) !important;
 }
 
 .table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
@@ -39,6 +45,7 @@
     position: relative;
     left: 160px;
     min-height: 60px;
+    border-color: rgb(0, 0, 0) !important;
 }
 
 .table > tbody > tr > td:last-child {
@@ -75,3 +82,33 @@
     border-color: #5cb85c !important;
 }
 
+
+
+.buttonNormal {
+    color: #dfffe1 !important;
+    background-color: #116611 !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.buttonSelect {
+    color: #072f07 !important;
+    background-color: #94dd94 !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+
+.buttonDrop {
+    background-color: rgb(50,190,50) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.categoryDrop {
+    background-color: #88cc88 !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+
+.navBar {
+    background-color: #3C7113 !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.pubBar {
+    background-color: #55aa55 !important;
+    border-color: rgb(0, 0, 0) !important;
+}

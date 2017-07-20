@@ -15,7 +15,7 @@ class LayerList extends Component {
     render() {
         return (
             <tbody>
-                <tr>
+                <tr className={"pubBar"}>
                     <th className="fixed-column">
                         <span>
                             Publications
