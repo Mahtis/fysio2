@@ -19,7 +19,7 @@ class NavBar extends Component{
     render(){
         return (
             <div>
-                <Navbar color="faded" light toggleable>
+                <Navbar color="faded" light toggleable className={"navBar"}>
                     <NavbarToggler right onClick={this.toggle} />
                     <NavbarBrand href="/">fysio</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>

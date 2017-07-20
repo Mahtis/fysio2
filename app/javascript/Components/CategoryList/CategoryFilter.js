@@ -26,7 +26,7 @@ class CategoryFilter extends Component{
 
             <td >
                 {categories.map(category =>
-                    <CategoryButton
+                    <CategoryButton className={"categoryDrop"}
                         categorySelected={this.props.categorySelected}
                         updateTable={this.props.updateTable}
                         key={category.id + ':' + this.props.publication_id}

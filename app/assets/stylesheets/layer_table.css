@@ -1,8 +1,16 @@
+
+
+body{
+    background-color: rgb(50,220,50) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+
 .fixed-column {
     position: absolute;
     display: inline-block;
     width: auto;
-    background-color: white;
+    background-color: rgb(50,190,50);
+    border-color: rgb(0, 0, 0) !important;
 }
 
 .table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
@@ -39,6 +47,7 @@
     position: relative;
     left: 160px;
     min-height: 60px;
+    border-color: rgb(0, 0, 0) !important;
 }
 
 .table > tbody > tr > td:last-child {
@@ -73,5 +82,33 @@
 .selected {
     background-color: #5cb85c !important;
     border-color: #5cb85c !important;
+}
+
+.buttonNormal {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(0, 150, 0) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.buttonSelect {
+    background-color: rgb(100,255,100) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+
+.buttonDrop {
+    background-color: rgb(50,190,50) !important;
+    border-color: rgb(0, 0, 0) !important;
+ }
+.categoryDrop {
+    background-color: rgb(50,190,50) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+
+.navBar {
+    background-color: rgb(50,190,50) !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.pubBar {
+    background-color: rgb(50,190,50) !important;
+    border-color: rgb(0, 0, 0) !important;
 }
 

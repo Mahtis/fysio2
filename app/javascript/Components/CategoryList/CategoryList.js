@@ -14,7 +14,7 @@ class CategoryList extends Component{
             return null;
         }else{
             return (
-                    <ListGroup className={'btn-block'}>
+                    <ListGroup className={"categoryDrop"}>
                         { this.props.categories.map((category) =>
                                 <Category
                                         key={category.id}

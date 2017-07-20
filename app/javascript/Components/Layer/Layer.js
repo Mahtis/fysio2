@@ -35,10 +35,10 @@ class Layer extends Component {
             <tr>
                 <td className="fixed-column" id={layer.id}>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <DropdownToggle caret>
+                            <DropdownToggle caret className={"categoryDrop"}>
                             {layer.name}
                             </DropdownToggle>
-                            <DropdownMenu>
+                            <DropdownMenu className={"categoryDrop"}>
                                 <CategoryList
                                     key={layer.id}
                                     categories={this.props.layerCategoriesDropDown}

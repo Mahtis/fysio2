@@ -39,15 +39,14 @@ class DropdownView extends Component {
             text: type.name
         });
     }
-
     render() {
         let layerTypes = this.props.layerTypes;
         return (
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret>
+                <DropdownToggle caret className={"buttonDrop"}>
                     {this.state.text}
                 </DropdownToggle>
-                <DropdownMenu>
+                <DropdownMenu className={"buttonDrop"}>
                     {layerTypes.map(t => <DropdownViewItem key={t.id} type={t} changeView={this.changeView}/>)}
                 </DropdownMenu>
             </ButtonDropdown>
