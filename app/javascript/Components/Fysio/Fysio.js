@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
-import LayerList from "../LayerList/LayerList";
+import LayerList from "./LayerList/LayerList";
 import { Table } from 'reactstrap';
 
-class IndexView extends Component{
+class Fysio extends Component{
     constructor() {
         super();
     }
@@ -18,7 +18,7 @@ class IndexView extends Component{
         }
 
         for(let i = 0; i < categories.length; i++) {
-            if (layerCategories[categories[i].layer_id] != undefined) {
+            if (layerCategories[categories[i].layer_id] !== undefined) {
                 layerCategories[categories[i].layer_id].push(categories[i]);
             }
         }
@@ -34,7 +34,7 @@ class IndexView extends Component{
         let layerCategories = this.createLayerCategories(this.props.categories);
         let layerCategoriesDropDown = this.createLayerCategories(this.props.categoryAvailable);
 
-        //console.log("IndexView!!!!!!!!!!!!!!!!!!!!!1!!!!");
+        //console.log("Fysio!!!!!!!!!!!!!!!!!!!!!1!!!!");
         //this.props.categoryAvailable.map(c => console.log(c));
 
         return (
@@ -54,4 +54,4 @@ class IndexView extends Component{
     }
 }
 
-export default IndexView;
+export default Fysio;

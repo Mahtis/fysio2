@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { ButtonDropdown,
         DropdownToggle,
         DropdownMenu } from 'reactstrap';
-import CategoryList from "../CategoryList/CategoryList";
-import CategoryFilter from "../CategoryList/CategoryFilter";
+import CategoryList from "./CategoryList/CategoryList";
+import PublicationLayerCategoryList from "./PublicationLayerCategoryList/PublicationLayerCategoryList";
 import PropTypes from 'prop-types';
 
 class Layer extends Component {
@@ -50,7 +50,7 @@ class Layer extends Component {
                 </td>
 
                     { publications.map((publication) =>
-                    <CategoryFilter
+                    <PublicationLayerCategoryList
                         updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}
                         key={publication.id}
