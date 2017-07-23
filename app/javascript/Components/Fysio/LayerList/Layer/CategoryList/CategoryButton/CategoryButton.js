@@ -28,9 +28,9 @@ class CategoryButton extends Component {
     render() {
         let useStyle;
         if (this.props.status) {
-            useStyle = "btn-success";
+            useStyle = "buttonSelect";
         } else {
-            useStyle = "btn-default";
+            useStyle = "buttonNormal";
         }
         if (this.props.name.length < 7){
             useStyle += " button_narrow";

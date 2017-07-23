@@ -41,7 +41,7 @@ class NavBar extends Component{
     render(){
         let layerTypes = this.props.layerTypes;
         return (
-                <Navbar color="faded" light toggleable>
+                <Navbar color="faded" light toggleable className={"navBar"}>
                     <NavbarBrand className="header" href="/">fysio</NavbarBrand>
                     <NavbarToggler right onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
