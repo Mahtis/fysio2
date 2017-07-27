@@ -13,7 +13,8 @@ class App extends Component {
             publications: [],
             categorySelected: [],
             categoryAvailable: [],
-            layerTypes: []
+            layerTypes: [],
+            appMode : 1,
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
@@ -120,6 +121,9 @@ class App extends Component {
         return path.substring(0, path.length - 1);
     }
 
+    modeChange(wantMode){
+        this.state.appMode = wantMode;
+    }
     render() {
         let categories = this.state.categories;
         let layers = this.state.layers;
@@ -136,9 +140,12 @@ class App extends Component {
                 </div>
             );
         } else {
-            return (
-                <div>
-                    <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
+            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} onModeChange = {this.modeChange} />;
+            let all = null;
+
+            if (this.state.appMode === 1) {
+                all = <div>
+                    {nav}
                     <div className="table-responsive">
                         <Fysio
                             key="1"
@@ -150,6 +157,23 @@ class App extends Component {
                             categoryAvailable={this.state.categoryAvailable}
                         />
                     </div>
+                </div>;
+
+            } else if (this.state.appMode === 2) {
+                all = <div>
+                    {nav}
+                </div>;
+
+            } else if (this.state.appMode === 3) {
+                all = <div>
+                    {nav}
+                </div>;
+            }
+            return (all);
+
+            return (
+                <div>
+
                 </div>
             );
         }

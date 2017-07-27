@@ -37,6 +37,15 @@ class NavBar extends Component{
             isOpen: !this.state.isOpen
         });
     }
+    about(e ) {
+        console.log("abouting");
+        //this.props.setState({appMode: 2});
+        this.props.onModeChange(2);
+    }
+    login(e) {
+        //this.props.setState({appMode: 3});
+        this.props.onModeChange(3);
+    }
 
     render(){
         let layerTypes = this.props.layerTypes;
@@ -49,6 +58,14 @@ class NavBar extends Component{
                             {layerTypes.map(t => <LayerLink className="navbar-left" key={t.id} type={t} changeView={this.changeView} />)}
                         </Nav>
                         <Nav className="ml-auto" navbar>
+
+                            <NavItem>
+                                <NavLink onClick={this.about}>About</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink onClick={this.login}>Login</NavLink>
+                            </NavItem>
+
                             <NavItem>
                                 <NavLink href="#">Home</NavLink>
                             </NavItem>
