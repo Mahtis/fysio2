@@ -1,39 +1,39 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { DropdownItem, Button } from 'reactstrap';
+import { DropdownItem } from 'reactstrap';
 
 class Category extends Component{
 
-    constructor(props) {
-        super(props);
-
-        this.selected = this.selected.bind(this);
+    constructor() {
+        super();
+        this.select = this.select.bind(this);
     }
 
-    selected() {
+    select() {
         this.props.updateTable(this.props.category.name);
     }
 
-
-
     render() {
-        // are these checks necessary?
-        if (this.props.category === undefined || this.props.category.name === undefined) {
-            return null;
-        }
 
         return (
-            <DropdownItem className={this.props.status ? "btn selected" : "btn"} onClick={this.selected}>
+            <DropdownItem toggle={true} className={this.props.status ? "btn selected" : "btn"} onClick={this.select}>
                 <span>{this.props.category.name}</span>
             </DropdownItem>
-                );
+        );
+
     }
 }
 
 Category.propTypes = {
     category: PropTypes.shape({
-        name: PropTypes.string.isRequired
-    })
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        description: PropTypes.string
+    }),
+    name: PropTypes.string,
+    updateTable: PropTypes.func,
+    status: PropTypes.bool
 };
 
 export default Category;
