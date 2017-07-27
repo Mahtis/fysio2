@@ -29,6 +29,20 @@ td, th {
     margin: 2px;
 }
 
+.table > tbody> tr > td > span {
+    height: auto;
+    width: 100%;
+    min-height: 80px;
+    border: solid black 2px;
+    display: flex;
+    overflow: auto;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;align-items: center;
+}
+
 .button_narrow {
     min-width: 70px;
 }
