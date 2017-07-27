@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class Publication extends Component {
+class PublicationTitle extends Component {
 
     constructor() {
         super();
@@ -20,7 +20,7 @@ class Publication extends Component {
 
     render() {
         return (
-            <div>
+            <td>
                 <span onClick={this.toggle}>{this.props.pub.name}</span>
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}><h6>{this.props.pub.name}</h6></ModalHeader>
@@ -39,9 +39,10 @@ class Publication extends Component {
                         <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>
                     </ModalFooter>
                 </Modal>
-            </div>
+            </td>
         );
+
     }
 }
 
-export default Publication;
+export default PublicationTitle;

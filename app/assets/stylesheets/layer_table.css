@@ -1,73 +1,54 @@
+html{
+    height: 100%;
+    min-height: 100%;
+}
 
 body{
     background-color: #2d882d !important;
     border-color: rgb(0, 0, 0) !important;
-}
-.fixed-column {
-    position: absolute;
-    display: inline-block;
-    width: auto;
-    background-color: #3C7113;
-    border-color: rgb(0, 0, 0) !important;
+    height: 100%;
+    min-height: 100%;
 }
 
-.table > tbody > tr > td:nth-child(1), .table > tbody > tr > th:nth-child(1) {
-    width: 155px;
-    border-right: 2px solid black;
-    height: 200px;
-    z-index: 1;
+td, th {
+    width: 20%;
+    min-width: 150px;
 }
 
-.table > tbody > tr > td:nth-child(1) > div  {
-    z-index: 2;
-    position: relative;
-    flex-direction: column;
+.table-responsive {
+    min-height: 100%;
 }
 
-.table > tbody > tr > td:nth-child(1) > div > div {
-    z-index: 2;
-    position: relative;
-    flex-direction: column;
-    top: -40px;
-    margin-left: 145px;
-}
-
-.table > tbody > tr > td:nth-child(1) > div > div > ul {
-    z-index: 2;
-    position: relative;
-    flex-direction: column;
-}
-
-.table > tbody > tr > td:nth-child(n+2) {
-    max-width: 260px;
-    width: 260px;
-    min-width: 260px;
-    position: relative;
-    left: 160px;
-    min-height: 60px;
-    border-color: rgb(0, 0, 0) !important;
-}
-
-.table > tbody > tr > td:last-child {
-    float: left;
+.table{
+    min-height: 100%;
 }
 
 .table > tbody > tr > td > button {
     white-space: normal;
     text-align: left;
+    margin: 2px;
+}
+
+.table > tbody> tr > td > span {
+    height: auto;
+    width: 100%;
+    min-height: 80px;
+    border: solid black 2px;
+    display: flex;
+    overflow: auto;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: bold;align-items: center;
 }
 
 .button_narrow {
-    width: 110px;
+    min-width: 70px;
 }
 
 .button_wide {
-    width: 250px;
-}
-
-.table > tbody > tr > td > div > button {
-    width: 140px;
-    padding-right: 10px;
+    min-width: 150px;
 }
 
 .loading {
@@ -82,13 +63,12 @@ body{
     border-color: #5cb85c !important;
 }
 
-
-
 .buttonNormal {
     color: #dfffe1 !important;
     background-color: #116611 !important;
     border-color: rgb(0, 0, 0) !important;
 }
+
 .buttonSelect {
     color: #072f07 !important;
     background-color: #94dd94 !important;
@@ -99,6 +79,17 @@ body{
     background-color: rgb(50,190,50) !important;
     border-color: rgb(0, 0, 0) !important;
 }
+
+.dropdown-toggle {
+    width: 100%;
+    min-width: 150px;
+}
+
+.categoryDropUp{
+    width: 100%;
+    min-width: 150px;
+}
+
 .categoryDrop {
     background-color: #88cc88 !important;
     border-color: rgb(0, 0, 0) !important;

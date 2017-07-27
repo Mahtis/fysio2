@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CategoryButton from "../CategoryList/CategoryButton/CategoryButton";
+import CategoryButton from "./CategoryButton/CategoryButton";
 
 class PublicationLayerCategoryList extends Component{
     constructor() {

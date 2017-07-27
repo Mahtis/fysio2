@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Layer from '../Fysio/LayerList/Layer/Layer.js'
+import Layer from '../Fysio/TableHeader/Layer/Layer.js'
 
 describe("Layer", () => {
     let props;
@@ -28,9 +28,9 @@ describe("Layer", () => {
 
     // above code is run before each test to null the props
 
-    it("always renders one tr element", () => {
+    it("always renders one th element", () => {
         initializeProps(props);
-        const tr = layer().find("tr");
+        const tr = layer().find("th");
         expect(tr.length).toBe(1);
     });
 
@@ -40,35 +40,30 @@ describe("Layer", () => {
         });
 
         it("contains everything else that is rendered", () => {
-            const tr = layer().find("tr");
-            expect(tr.children()).toEqual(layer().children());
+            const th = layer().find("th");
+            expect(th.children()).toEqual(layer().children());
         });
 
-        it("renders one td", () => {
+        /*it("renders one `CategoryList`", () => {
             const tr = layer().find("tr");
-            expect(tr.find("td").length).toBe(1);
-        });
+            expect(tr.find("CategoryList") > 0);
+        });*/
 
-        it("renders one `PublicationLayerCategoryList`", () => {
-            const tr = layer().find("tr");
-            expect(tr.find("PublicationLayerCategoryList")).exists;
-        });
-
-        describe("the rendered td", () => {
+        describe("the rendered th", () => {
 
             it("receives layer.id as id", () => {
-                const td = layer().find("td");
-                expect(td.props().id).toBe(props.layer.id)
+                const th = layer().find("th");
+                expect(th.props().id).toBe(props.layer.id)
             });
 
             it("renders div", () => {
-                const td = layer().find("td");
-                expect(td.find("div").length).exists;
+                const th = layer().find("th");
+                expect(th.find("div").length > 0);
             });
 
             it("renders one ButtonDropdown", () => {
-                const tr = layer().find("tr");
-                expect(tr.find("ButtonDropdown").length).toBe(1);
+                const th = layer().find("th");
+                expect(th.find("ButtonDropdown").length).toBe(1);
             });
 
             describe("the rendered ButtonDropdown", () => {

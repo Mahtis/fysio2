@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import Fysio from "./Components/Fysio/Fysio";
 import DatabaseConnector from "./Services/DatabaseConnector";
-import { Table } from 'reactstrap';
 
 class App extends Component {
     constructor() {
@@ -141,17 +140,15 @@ class App extends Component {
                 <div>
                     <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
                     <div className="table-responsive">
-                        <Table>
-                            <Fysio
-                                key="1"
-                                categories={categories}
-                                layers={layers}
-                                publications={publications}
-                                updateTable={this.updateTable}
-                                categorySelected={this.state.categorySelected}
-                                categoryAvailable={this.state.categoryAvailable}
-                            />
-                        </Table>
+                        <Fysio
+                            key="1"
+                            categories={categories}
+                            layers={layers}
+                            publications={publications}
+                            updateTable={this.updateTable}
+                            categorySelected={this.state.categorySelected}
+                            categoryAvailable={this.state.categoryAvailable}
+                        />
                     </div>
                 </div>
             );

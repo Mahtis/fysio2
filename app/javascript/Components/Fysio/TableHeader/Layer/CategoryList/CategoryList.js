@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Category from "./Category/Category";
 
-import { DropdownItem, ListGroup } from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 
 class CategoryList extends Component{
 
