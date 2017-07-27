@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import LayerList from "./LayerList/LayerList";
-import { Table } from 'reactstrap';
 
 class Fysio extends Component{
     constructor() {

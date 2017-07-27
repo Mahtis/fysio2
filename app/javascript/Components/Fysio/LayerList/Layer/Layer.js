@@ -4,7 +4,6 @@ import { ButtonDropdown,
         DropdownToggle,
         DropdownMenu } from 'reactstrap';
 import CategoryList from "./CategoryList/CategoryList";
-import PublicationLayerCategoryList from "./PublicationLayerCategoryList/PublicationLayerCategoryList";
 import PropTypes from 'prop-types';
 
 class Layer extends Component {
@@ -25,15 +24,12 @@ class Layer extends Component {
 
     render(){
         let layer = this.props.layer;
-        let categories = this.props.categories;
-        let publications = this.props.publications;
 
         //console.log(this.props.layer.id);
         //this.props.categories.map(c => {console.log(c.name)});
 
         return (
-            <tr>
-                <td className="fixed-column" id={layer.id}>
+                <td id={layer.id}>
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret className={"categoryDrop"}>
                             {layer.name}
@@ -48,17 +44,6 @@ class Layer extends Component {
                             </DropdownMenu>
                         </ButtonDropdown>
                 </td>
-
-                    { publications.map((publication) =>
-                    <PublicationLayerCategoryList
-                        updateTable={this.props.updateTable}
-                        categorySelected={this.props.categorySelected}
-                        key={publication.id}
-                        publication_id={publication.id}
-                        layer={layer.id}
-                        categories={categories}
-                    />) }
-            </tr>
       );
     }
 }

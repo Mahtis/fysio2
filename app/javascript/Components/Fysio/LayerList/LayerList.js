@@ -2,46 +2,76 @@
 import React, { Component } from 'react';
 import Layer from "./Layer/Layer";
 import Publication from "./Publication/Publication"
+import PublicationLayerCategoryList from "./Layer/PublicationLayerCategoryList/PublicationLayerCategoryList";
+import PropTypes from 'prop-types';
 
 
 class LayerList extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
 
     }
 
 
     render() {
-        return (
-            <tbody>
-                <tr className={"pubBar"}>
-                    <th className="fixed-column">
+        let layer = this.props.layer;
+        let categories = this.props.categories;
+        let publications = this.props.publications;
+
+        if(this.props.publications === null || this.props.publications === undefined || this.props.categories === null || this.props.categories === undefined){
+            return null;
+        }else{
+            return (
+                <tbody>
+                <tr>
+                    <td>
                         <span>
                             Publications
                         </span>
-                    </th>
-                        {this.props.publications.map(publication =>
-                        <td key={publication.id}>
-                            <Publication pub={publication}/>
-                        </td>
-                        )}
-                </tr>
+                    </td>
                     {this.props.layers.map(layer =>
-                    <Layer  categorySelected={this.props.categorySelected}
-                            key={layer.id}
-                            layer={layer}
-                            categories={this.props.layerCategories[layer.id]}
-                            publications={this.props.publications}
-                            updateTable={this.props.updateTable}
-                            categoryAvailable={this.props.categoryAvailable}
-                            layerCategoriesDropDown={this.props.layerCategoriesDropDown[layer.id]}
-                    />
+                        <Layer categorySelected={this.props.categorySelected}
+                               key={layer.id}
+                               layer={layer}
+                               categories={categories[layer.id]}
+                               publications={this.props.publications}
+                               updateTable={this.props.updateTable}
+                               categoryAvailable={this.props.categoryAvailable}
+                               layerCategoriesDropDown={this.props.layerCategoriesDropDown[layer.id]}
+                        />
                     )}
-            </tbody>
-      );
+                </tr>
+                {this.props.publications.map(publication =>
+                    <tr key={publication.id}>
+                        <Publication pub={publication}/>
+                        { publications.map((publication) =>
+                            <td>
+                                <PublicationLayerCategoryList
+                                    updateTable={this.props.updateTable}
+                                    categorySelected={this.props.categorySelected}
+                                    key={publication.id}
+                                    publication_id={publication.id}
+                                    layer={layer.id}
+                                    categories={categories}
+                                />
+                            </td>
+                        )
+                        }
+                    </tr>
+                )}
+                </tbody>
+            );
+        }
+
     }
 
-}
 
+
+}
+Layer.propTypes = {
+    layer: PropTypes.object.isRequired,
+    categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+    publications: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 export default LayerList;
