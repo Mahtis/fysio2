@@ -3,15 +3,6 @@ html{
     min-height: 100%;
 }
 
-body > div , body > div > div{
-    min-height: 100%;
-    height: 100%;
-}
-
-.table-responsive {
-    min-height: 100%;
-}
-
 body{
     background-color: #2d882d !important;
     border-color: rgb(0, 0, 0) !important;
@@ -19,27 +10,31 @@ body{
     min-height: 100%;
 }
 
+td, th {
+    width: 20%;
+    min-width: 150px;
+}
+
+.table-responsive {
+    min-height: 100%;
+}
+
 .table{
     min-height: 100%;
 }
 
-
 .table > tbody > tr > td > button {
     white-space: normal;
     text-align: left;
+    margin: 2px;
 }
 
 .button_narrow {
-    min-width: 80px;
+    min-width: 70px;
 }
 
 .button_wide {
     min-width: 150px;
-}
-
-.table > tbody > tr > td > div > button {
-    width: 140px;
-    padding-right: 10px;
 }
 
 .loading {
@@ -54,13 +49,12 @@ body{
     border-color: #5cb85c !important;
 }
 
-
-
 .buttonNormal {
     color: #dfffe1 !important;
     background-color: #116611 !important;
     border-color: rgb(0, 0, 0) !important;
 }
+
 .buttonSelect {
     color: #072f07 !important;
     background-color: #94dd94 !important;
@@ -71,6 +65,17 @@ body{
     background-color: rgb(50,190,50) !important;
     border-color: rgb(0, 0, 0) !important;
 }
+
+.dropdown-toggle {
+    width: 100%;
+    min-width: 150px;
+}
+
+.categoryDropUp{
+    width: 100%;
+    min-width: 150px;
+}
+
 .categoryDrop {
     background-color: #88cc88 !important;
     border-color: rgb(0, 0, 0) !important;
