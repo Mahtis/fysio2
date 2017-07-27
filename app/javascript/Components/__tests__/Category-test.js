@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Category from '../Fysio/LayerList/Layer/CategoryList/Category/Category.js';
 
@@ -26,8 +26,6 @@ describe("Category", () => {
         mountedCategory: undefined
     });
 
-    const select = sinon.stub();
-
     it("always renders one DropDownItem", () => {
         initializeProps(props);
         const dropDownItem = category().find("DropdownItem");
@@ -48,20 +46,6 @@ describe("Category", () => {
             expect(wrappingDropDownItem.find("span").length).toBe(1);
         });
 
-        it("calls select function once when clicked", () => {
-            initializeProps(props);
-            const wrapper = category();
-            // instance of the wrapper is needed to call functions
-            const instance = wrapper.instance();
-            // let's mock the select() function as we want to test if it gets called
-            instance.select = sinon.spy(instance.select);
-            wrapper.update();
-            // select is not called if the DropdownItem is not clicked
-            expect(instance.select.notCalled).toEqual(true)
-            wrapper.find("DropdownItem").simulate("click");
-            expect(instance.select.calledOnce).toEqual(true);
-        });
-
         it("has btn as className if status is false", () => {
             // status is initialized to false
             initializeProps(props);
@@ -70,7 +54,6 @@ describe("Category", () => {
         });
 
         it("does not have selected as className if status is false", () => {
-            // status is initialized to false
             initializeProps(props);
             const wrapper = category().find("DropdownItem");
             expect(wrapper.hasClass("selected")).toEqual(false);
@@ -103,6 +86,6 @@ function initializeProps(props) {
         layer_id: 1,
     };
     props.name = props.category.name;
-    props.satus = false;
+    props.status = false;
     props.updateTable = function mockUpdate(name) { return name;}
 }

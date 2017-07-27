@@ -16,7 +16,7 @@ class Category extends Component{
     render() {
 
         return (
-            <DropdownItem toggle={false} className={this.props.status ? "btn selected" : "btn"} onClick={this.select}>
+            <DropdownItem toggle={true} className={this.props.status ? "btn selected" : "btn"} onClick={this.select}>
                 <span>{this.props.category.name}</span>
             </DropdownItem>
         );
