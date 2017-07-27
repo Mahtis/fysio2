@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import Category from '../Fysio/LayerList/Layer/CategoryList/Category/Category.js';
+import Category from '../Fysio/TableHeader/Layer/CategoryList/Category/Category.js';
 
 describe("Category", () => {
     let props;

@@ -1,8 +1,8 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Publication from '../Fysio/LayerList/Publication/Publication.js'
+import Publication from '../Fysio/Publication/PublicationTitle/PublicationTitle.js'
 
-describe("Publication", () => {
+describe("PublicationTitle", () => {
     let props;
     let mountedPublication;
     const publication = () => {

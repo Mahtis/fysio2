@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount, render } from 'enzyme';
-import CategoryList from '../Fysio/LayerList/Layer/CategoryList/CategoryList.js'
+import CategoryList from '../Fysio/TableHeader/Layer/CategoryList/CategoryList.js'
 
 describe("CategoryList", () => {
     let props;

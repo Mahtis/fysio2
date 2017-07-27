@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Layer from '../Fysio/LayerList/Layer/Layer.js'
+import Layer from '../Fysio/TableHeader/Layer/Layer.js'
 
 describe("Layer", () => {
     let props;

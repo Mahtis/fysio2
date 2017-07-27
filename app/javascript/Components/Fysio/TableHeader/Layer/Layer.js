@@ -27,23 +27,22 @@ class Layer extends Component {
 
         //console.log(this.props.layer.id);
         //this.props.categories.map(c => {console.log(c.name)});
-
         return (
-                <td id={layer.id}>
-                        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                            <DropdownToggle caret className={"categoryDrop"}>
-                            {layer.name}
-                            </DropdownToggle>
-                            <DropdownMenu className={"categoryDrop"}>
-                                <CategoryList
-                                    key={layer.id}
-                                    categories={this.props.layerCategoriesDropDown}
-                                    updateTable={this.props.updateTable}
-                                    categorySelected={this.props.categorySelected}
-                                />
-                            </DropdownMenu>
-                        </ButtonDropdown>
-                </td>
+            <th id={layer.id}>
+                <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret className={"categoryDrop"}>
+                    {layer.name}
+                    </DropdownToggle>
+                    <DropdownMenu className={"categoryDrop"}>
+                        <CategoryList
+                            key={layer.id}
+                            categories={this.props.layerCategoriesDropDown}
+                            updateTable={this.props.updateTable}
+                            categorySelected={this.props.categorySelected}
+                        />
+                    </DropdownMenu>
+                </ButtonDropdown>
+            </th>
       );
     }
 }

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class Publication extends Component {
+class PublicationTitle extends Component {
 
     constructor() {
         super();
@@ -45,4 +45,4 @@ class Publication extends Component {
     }
 }
 
-export default Publication;
+export default PublicationTitle;
