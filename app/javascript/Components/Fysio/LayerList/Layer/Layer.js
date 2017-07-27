@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { ButtonDropdown,
+import { Dropdown,
         DropdownToggle,
         DropdownMenu } from 'reactstrap';
 import CategoryList from "./CategoryList/CategoryList";
@@ -34,7 +34,7 @@ class Layer extends Component {
         return (
             <tr>
                 <td className="fixed-column" id={layer.id}>
-                        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret className={"categoryDrop"}>
                             {layer.name}
                             </DropdownToggle>
@@ -46,7 +46,7 @@ class Layer extends Component {
                                     categorySelected={this.props.categorySelected}
                                 />
                             </DropdownMenu>
-                        </ButtonDropdown>
+                        </Dropdown>
                 </td>
 
                     { publications.map((publication) =>
