@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import LayerLink from './LayerLink/LayerLink.js';
 import PropTypes from 'prop-types';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarHeader } from 'reactstrap';
+import UserDropdown from "./UserDropdown";
 
 class NavBar extends Component{
     constructor(props) {
@@ -53,7 +54,7 @@ class NavBar extends Component{
                                 <NavLink href="#">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Users</NavLink>
+                                <UserDropdown />
                             </NavItem>
                         </Nav>
                     </Collapse>
