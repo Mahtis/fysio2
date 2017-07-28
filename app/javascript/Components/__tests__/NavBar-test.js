@@ -12,13 +12,12 @@ describe("Navbar", () => {
             );
         }
         return mountedNavbar;
-    }
+    };
 
     beforeEach(() => {
         props = {
             isOpen: undefined,
-            layerTypes: createLayerTypes(),
-            changeLayerView: function(){1}
+            layerTypes: createLayerTypes()
         };
         mountedNavbar = undefined;
     });
@@ -34,7 +33,7 @@ describe("Navbar", () => {
             const wrappingDiv = divs.first();
             expect(wrappingDiv.find("Navbar").length).toBe(0);
         })
-    })
+    });
 
     function createLayerTypes() {
 

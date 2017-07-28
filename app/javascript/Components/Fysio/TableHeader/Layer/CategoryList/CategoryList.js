@@ -30,11 +30,16 @@ class CategoryList extends Component{
     }
 }
 
-CategoryList.propTypes = {
-    categories: PropTypes.arrayOf(PropTypes.shape({
+Category.propTypes = {
+    category: PropTypes.shape({
         id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired
-    }))
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        description: PropTypes.string
+    }),
+    name: PropTypes.string,
+    updateTable: PropTypes.func,
+    status: PropTypes.bool
 };
 
 export default CategoryList;

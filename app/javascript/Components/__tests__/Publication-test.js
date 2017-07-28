@@ -1,6 +1,8 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Publication from '../Fysio/Publication/PublicationTitle/PublicationTitle.js'
+import Publication from '../Fysio/Publication/Publication.js';
+import PublicationTitle from '../Fysio/Publication/PublicationTitle/PublicationTitle.js';
+import PublicationCategoryList from '../Fysio/Publication/PublicationLayerCategoryList/PublicationLayerCategoryList.js';
 
 describe("PublicationTitle", () => {
     let props;
@@ -16,61 +18,35 @@ describe("PublicationTitle", () => {
 
     beforeEach(() => {
         props = {
-            publications: undefined
+            publication: getPublication(),
+            layers: getLayers(),
+            categories: getCategories()
         };
         mountedPublication = undefined;
     });
 
-    // above code is run before each test to null the props
-
-    /*it("always renders one div element", () => {
-        initializeProps(props);
-        const wrappingDiv = publication().find("div");
-        expect(wrappingDiv.length).toBe(1);
-    });*/
-
-    it("", () => {
+    it("always renders a tr", () => {
+        const tr = publication().find("tr");
+        expect(tr.length).toEqual(1);
+        expect(tr.text()).toEqual("Test");
     });
 
-    function initializeProps(props) {
-        props.publications = [{
-            id: 1,
-            name: "Audio Biofeedback for Poker Players",
-            abstract: "Abstract text here",
-            year: 2001,
-            journal: "Nature",
-            authors: [{
-                id: 1,
-                name: "Pasi Kosunen"
-            }, {
-                id: 2,
-                name: "Ilkka Kosunen"
-            }
-            ],
-            links: [{
-                id: 1,
-                url: "www.nature.com",
-                publication_id: 1
-            }]
-        }, {
-            id: 2,
-            name: "Neurofeedback Meditation in Virtual Reality",
-            abstract: "Abstract text here",
-            year: 2005,
-            journal: "Science",
-            authors: [{
-                id: 1,
-                name: "Pasi Kosunen"
-            }, {
-                id: 2,
-                name: "Ilkka Kosunen"
-            }
-            ],
-            links: [{
-                id: 2,
-                url: "www.science.com",
-                publication_id: 2
-            }]
-        }];
+    function getPublication() {
+        return {
+            name: "Test",
+            links: ["http://localhost"],
+            authors: ["Matti Meikäläinen"],
+            year: 2017,
+            journal: "Aku Ankka"
+        };
     }
+
+    function getLayers(){
+        return [];
+    }
+
+    function getCategories(){
+        return [];
+    }
+
 });
