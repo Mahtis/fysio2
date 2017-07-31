@@ -33,17 +33,26 @@ describe("PublicationLayerCategoryList", () => {
     });
 
     describe("the rendered td", () => {
+
         it("contains correct number of categories", () => {
             props.categories = [{"id":1,"name":"EEG","layer_id":1,"description":"test" ,"infolink":"localhost","ids":[1,3]},{"id":2,"name":"EDA","layer_id":1,"description":"test" ,"infolink":"localhost","ids":[1,3,4,5,6]},{"id":3,"name":"fEMG","layer_id":1,"description":"test" ,"infolink":"localhost","ids":[1]}];
             const td = publicationLayerCategoryList().find("td");
             expect(td.children().length).toEqual(props.categories.length);
         });
+
         it("doesn't contain non-matching categories", () => {
             // two categories now have non-matching layer_id or ids.
             props.categories = [{"id":1,"name":"EEG","layer_id":1,"description":"test" ,"infolink":"localhost","ids":[1,3]},{"id":2,"name":"EDA","layer_id":2,"description":"test" ,"infolink":"localhost","ids":[1,3,4,5,6]},{"id":3,"name":"fEMG","layer_id":1,"description":"test" ,"infolink":"localhost","ids":[2]}];
-            const td = publicationLayerCategoryList().find("td")
+            const td = publicationLayerCategoryList().find("td");
             expect(td.children().length).toEqual(1);
         });
+
+        it("doesn't contain categories if publication is not linked to any categories in particular layer", () => {
+            props.categories = undefined;
+            const td = publicationLayerCategoryList().find("td");
+            expect(td.children().length).toEqual(0);
+        })
+
     });
 
 });
