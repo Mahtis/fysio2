@@ -57,5 +57,18 @@ describe('App component', () => {
         });
         console.log(app.find('td').first().text());
     })
+
+    it('clicking the same layerType results in no change in layers', () => {
+        const nav = app.find('NavBar');
+        const link = nav.find('LayerLink').last();
+        link.simulate('click');
+        console.log(app.state().layers.length);
+        DatabaseConnector.getLayersForType(3).then(resolve => {
+            console.log(app.state().layers.length);
+        });
+        console.log(app.find('td').first().text());
+    })
+
+    
 });
 
