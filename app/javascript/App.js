@@ -23,6 +23,9 @@ class App extends Component {
         this.extractIds = this.extractIds.bind(this);
         this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
 
+        this.toNormal = this.toNormal.bind(this);
+        this.toAbout = this.toAbout.bind(this);
+        this.toLogin = this.toLogin.bind(this);
     }
 
     changeLayerView(id) {
@@ -121,8 +124,14 @@ class App extends Component {
         return path.substring(0, path.length - 1);
     }
 
-    modeChange(wantMode){
-        this.state.appMode = wantMode;
+    toNormal(){
+        this.setState({appMode: 1});
+    }
+    toAbout(){
+        this.setState({appMode: 2});
+    }
+    toLogin(){
+        this.setState({appMode: 3});
     }
     render() {
         let categories = this.state.categories;
@@ -140,12 +149,12 @@ class App extends Component {
                 </div>
             );
         } else {
-            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} onModeChange = {this.modeChange} />;
-            let all = null;
+            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}
+                              toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin}/>;
+            let more = null;
 
             if (this.state.appMode === 1) {
-                all = <div>
-                    {nav}
+                more =
                     <div className="table-responsive">
                         <Fysio
                             key="1"
@@ -156,20 +165,18 @@ class App extends Component {
                             categorySelected={this.state.categorySelected}
                             categoryAvailable={this.state.categoryAvailable}
                         />
-                    </div>
-                </div>;
+                    </div>;
 
             } else if (this.state.appMode === 2) {
-                all = <div>
-                    {nav}
-                </div>;
+                more = "";
 
             } else if (this.state.appMode === 3) {
-                all = <div>
-                    {nav}
-                </div>;
+                more = "";
             }
-            return (all);
+            return (<div>
+                {nav}
+                {more}
+            </div>);
 
             return (
                 <div>

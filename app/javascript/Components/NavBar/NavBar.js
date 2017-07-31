@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import LayerLink from './LayerLink/LayerLink.js';
 import PropTypes from 'prop-types';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarHeader } from 'reactstrap';
+import { Button} from 'reactstrap';
 
 class NavBar extends Component{
     constructor(props) {
@@ -37,42 +38,51 @@ class NavBar extends Component{
             isOpen: !this.state.isOpen
         });
     }
-    about(e ) {
+    /*
+    about() {
         console.log("abouting");
         //this.props.setState({appMode: 2});
+        //this.props.onModeChange();
+        //let layerTypes = this.props.layerTypes;
         this.props.onModeChange(2);
     }
-    login(e) {
+    login() {
         //this.props.setState({appMode: 3});
+        //this.props.onModeChange();
         this.props.onModeChange(3);
     }
+    */
 
     render(){
         let layerTypes = this.props.layerTypes;
+       // let onModeChange2 = this.props.onModeChange;
+       // this.props.onModeChange();
+        let oldStuff= <div>
+            <NavbarBrand className="header" href="/">fysio</NavbarBrand>
+            <NavItem>
+            <NavLink href="#">Home</NavLink>
+            </NavItem>
+            <NavItem>
+            <NavLink href="#">Users</NavLink>
+            </NavItem>
+        </div>;
         return (
                 <Navbar color="faded" light toggleable className={"navBar"}>
-                    <NavbarBrand className="header" href="/">fysio</NavbarBrand>
+
                     <NavbarToggler right onClick={this.toggle} />
+                    <Nav className="ml-auto" navbar>
+                        <NavItem><Button className={"modeButtons"} onClick={this.props.toNormal}>Fysio</Button></NavItem>
+                        <NavItem><Button className={"modeButtons"} onClick={this.props.toAbout}>About</Button></NavItem>
+                        <NavItem><Button className={"modeButtons"} onClick={this.props.toLogin}>Login</Button></NavItem>
+
+                    </Nav>
+
                     <Collapse isOpen={this.state.isOpen} navbar>
+                    </Collapse>
                         <Nav className="ml-auto nav-left" navbar>
                             {layerTypes.map(t => <LayerLink className="navbar-left" key={t.id} type={t} changeView={this.changeView} />)}
                         </Nav>
-                        <Nav className="ml-auto" navbar>
-
-                            <NavItem>
-                                <NavLink onClick={this.about}>About</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink onClick={this.login}>Login</NavLink>
-                            </NavItem>
-
-                            <NavItem>
-                                <NavLink href="#">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">Users</NavLink>
-                            </NavItem>
-                        </Nav>
+                    <Collapse isOpen={this.state.isOpen} navbar>
                     </Collapse>
                 </Navbar>
         );
