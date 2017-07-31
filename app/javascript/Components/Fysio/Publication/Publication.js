@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PublicationTitle from './PublicationTitle/PublicationTitle.js';
 import PublicationCategoryList from './PublicationLayerCategoryList/PublicationLayerCategoryList.js';
+import PropTypes from 'prop-types';
 
 class Publication extends Component {
     constructor(){
@@ -31,5 +32,9 @@ class Publication extends Component {
         }
     }
 }
+
+Publication.propTypes = {
+};
+
 
 export default Publication;

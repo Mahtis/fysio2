@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class PublicationTitle extends Component {
 
@@ -21,7 +21,7 @@ class PublicationTitle extends Component {
     render() {
         return (
             <td>
-                <span onClick={this.toggle}>{this.props.pub.name}</span>
+                <span key={this.props.pub.name} onClick={this.toggle}>{this.props.pub.name}</span>
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}><h6>{this.props.pub.name}</h6></ModalHeader>
                     <ModalBody>
@@ -44,5 +44,9 @@ class PublicationTitle extends Component {
 
     }
 }
+
+PublicationTitle.propTypes = {
+    pub: PropTypes.object,
+};
 
 export default PublicationTitle;

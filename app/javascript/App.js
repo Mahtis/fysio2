@@ -129,7 +129,8 @@ class App extends Component {
         if (publications.length === 0 && layerTypes.length === 0) {
             return (
                 <div>
-                    <NavBar layerTypes={[]} changeLayerView={this.changeLayerView}/>
+                    <NavBar layerTypes={[]}
+                            changeLayerView={this.changeLayerView}/>
                     <span className={"loading"}>
                         Loading
                     </span>
@@ -138,7 +139,8 @@ class App extends Component {
         } else {
             return (
                 <div>
-                    <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
+                    <NavBar layerTypes={layerTypes}
+                            changeLayerView={this.changeLayerView}/>
                     <div className="table-responsive">
                         <Fysio
                             key="1"

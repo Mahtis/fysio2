@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layer from './Layer/Layer';
+import PropTypes from 'prop-types';
 
 class TableHeader extends Component {
 
@@ -37,5 +38,10 @@ class TableHeader extends Component {
     }
 
 }
+
+TableHeader.propTypes = {
+    layers: PropTypes.array,
+    categories: PropTypes.array
+};
 
 export default TableHeader;
