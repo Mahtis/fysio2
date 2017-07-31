@@ -31,21 +31,15 @@ class DatabaseConnector {
     static getLayers() {
         let layers =[{
             "id": 1,
-            "name": "Application",
-            "created_at": "2017-07-06T13:48:56.340Z",
-            "updated_at": "2017-07-06T13:48:56.340Z"
+            "name": "Application"
         },
             {
                 "id": 2,
-                "name": "Logic",
-                "created_at": "2017-07-06T13:48:56.344Z",
-                "updated_at": "2017-07-06T13:48:56.344Z"
+                "name": "Logic"
             },
             {
                 "id": 3,
-                "name": "Indicies",
-                "created_at": "2017-07-06T13:48:56.347Z",
-                "updated_at": "2017-07-06T13:48:56.347Z"
+                "name": "Indicies"
             }];
         return Promise.resolve(layers);
     }
@@ -55,17 +49,11 @@ class DatabaseConnector {
             [
                 {
                     "id": 1,
-                    "name": "Science",
-                    "created_at": "2017-07-19T16:37:42.065Z",
-                    "updated_at": "2017-07-19T16:37:42.065Z",
-                    "url": "http://localhost:3000/layer_types/1.json"
+                    "name": "Science"
                 },
                 {
                     "id": 2,
-                    "name": "Hacker",
-                    "created_at": "2017-07-19T16:37:42.088Z",
-                    "updated_at": "2017-07-19T16:37:42.088Z",
-                    "url": "http://localhost:3000/layer_types/2.json"
+                    "name": "Hacker"
                 }
             ]
 
