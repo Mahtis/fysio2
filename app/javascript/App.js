@@ -22,6 +22,7 @@ class App extends Component {
         this.updateTable = this.updateTable.bind(this);
         this.extractIds = this.extractIds.bind(this);
         this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
+        this.createPublication = this.createPublication.bind(this);
 
     }
 
@@ -84,6 +85,12 @@ class App extends Component {
         });
     }
 
+    createPublication(data) {
+        DatabaseConnector.createPublication(data)
+            .then(this.updateTable('hack'));
+        console.log(data);
+    }
+
     manageSelectedCategories(name) {
 
         let categorySelectedArray = this.state.categorySelected;
@@ -139,7 +146,11 @@ class App extends Component {
         } else {
             return (
                 <div>
-                    <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
+                    <NavBar
+                        layerTypes={layerTypes}
+                        changeLayerView={this.changeLayerView}
+                        createPublication={this.createPublication}
+                    />
                     <div className="table-responsive">
                         <Table>
                             <Fysio

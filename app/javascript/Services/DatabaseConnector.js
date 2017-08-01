@@ -50,7 +50,9 @@ class DatabaseConnector {
     }
 
     static createPublication(data) {
-
+        let params = {publication: data};
+        console.log(params);
+        fetch('/publications', {method: 'post', body: params})
     }
 }
 

@@ -29,7 +29,7 @@ class UserDropdown extends Component {
                     </DropdownToggle>
                     <DropdownMenu className={"categoryDrop"}>
                         <DropdownItem>
-                            <PublicationForm/>
+                            <PublicationForm createPublication={this.props.createPublication} />
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>

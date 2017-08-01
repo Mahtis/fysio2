@@ -33,7 +33,14 @@ class PublicationForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
+        //console.log(this.state);
+        let attributes = {
+            name: this.state.name,
+            abstract: this.state.abstract,
+            year: this.state.year,
+            journal: this.state.journal
+        };
+        this.props.createPublication(attributes);
     }
 
     handleNameChange(e) {
@@ -85,13 +92,12 @@ class PublicationForm extends Component {
                                     Journal:
                                     <input type="text" value={this.state.journal} onChange={this.handleJournalChange} />
                                 </label>
-                                <input type="submit" value="Submit" />
+
+                                <input type="submit" value="Submit" onClick={this.toggle} />
+
                             </form>
                         </div>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>
-                    </ModalFooter>
                 </Modal>
             </div>
         );
