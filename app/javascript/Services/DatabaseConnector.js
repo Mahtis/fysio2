@@ -48,6 +48,10 @@ class DatabaseConnector {
                 return results;
             })
     }
+
+    static createPublication(data) {
+
+    }
 }
 
 export default DatabaseConnector;
