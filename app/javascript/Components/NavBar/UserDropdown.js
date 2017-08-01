@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react';
 import { NavLink, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import PublicationForm from "./PublicationForm";
 
 class UserDropdown extends Component {
     constructor() {
@@ -27,7 +28,9 @@ class UserDropdown extends Component {
                         User
                     </DropdownToggle>
                     <DropdownMenu className={"categoryDrop"}>
-                        <DropdownItem header>Header</DropdownItem>
+                        <DropdownItem>
+                            <PublicationForm/>
+                        </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </NavLink>
