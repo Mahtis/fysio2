@@ -220,7 +220,7 @@ class DatabaseConnector {
                 {
                     "id": 1,
                     "name": "Arduino",
-                    "layer_id": 7,
+                    "layer_id": 1,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -230,7 +230,7 @@ class DatabaseConnector {
                 {
                     "id": 2,
                     "name": "Raspberry Pi",
-                    "layer_id": 7,
+                    "layer_id": 2,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -242,7 +242,7 @@ class DatabaseConnector {
                 {
                     "id": 3,
                     "name": "Java",
-                    "layer_id": 6,
+                    "layer_id": 2,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -253,7 +253,7 @@ class DatabaseConnector {
                 {
                     "id": 4,
                     "name": "C++",
-                    "layer_id": 6,
+                    "layer_id": 1,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -267,7 +267,7 @@ class DatabaseConnector {
                 {
                     "id": 5,
                     "name": "C",
-                    "layer_id": 6,
+                    "layer_id": 1,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -277,7 +277,7 @@ class DatabaseConnector {
                 {
                     "id": 6,
                     "name": "Javascript",
-                    "layer_id": 6,
+                    "layer_id": 1,
                     "description": "test",
                     "infolink": "http://localhost",
                     "ids": [
@@ -288,15 +288,169 @@ class DatabaseConnector {
     }
 
     static fetchFromPath(path) {
-        let layers ={
-            "id": 1,
-            "name": "Application",
-            "created_at": "2017-07-06T13:48:56.340Z",
-            "updated_at": "2017-07-06T13:48:56.340Z"
-        };
-        return new Promise((resolve, reject) => {
-            resolve(layers);
-        });
+        let pubs = [
+            {
+                "id": 1,
+                "name": "Audio Biofeedback for Poker Players",
+                "abstract": "Abstract text here",
+                "year": 2001,
+                "journal": "Nature",
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Pasi Kosunen"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Ilkka Kosunen"
+                    }
+                ],
+                "links": [
+                    {
+                        "id": 1,
+                        "url": "www.nature.com",
+                        "publication_id": 1,
+                        "link_type": "web"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Relevance Annotation for Scientific Text",
+                "abstract": "Abstract text here",
+                "year": 2007,
+                "journal": "Nature Neuroscience",
+                "authors": [
+                    {
+                        "id": 1,
+                        "name": "Pasi Kosunen"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Seppo Ilmarinen"
+                    }
+                ],
+                "links": [
+                    {
+                        "id": 4,
+                        "url": "www.suomi24.fi",
+                        "publication_id": 3,
+                        "link_type": "web"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Affective Annotation for News Reading",
+                "abstract": "Abstract text here",
+                "year": 2016,
+                "journal": "Current Biology",
+                "authors": [
+                    {
+                        "id": 3,
+                        "name": "Seppo Ilmarinen"
+                    }
+                ],
+                "links": [
+                    {
+                        "id": 5,
+                        "url": "cs.helsinki.fi",
+                        "publication_id": 4,
+                        "link_type": "web"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "name": "Humor Detection",
+                "abstract": "Abstract text here",
+                "year": 2016,
+                "journal": "Science",
+                "authors": [
+                    {
+                        "id": 2,
+                        "name": "Ilkka Kosunen"
+                    }
+                ],
+                "links": [
+                    {
+                        "id": 6,
+                        "url": "www.science.com",
+                        "publication_id": 5,
+                        "link_type": "web"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "name": "Datamining Phys. Data for Game Design",
+                "abstract": "Abstract text here",
+                "year": 2013,
+                "journal": "Nature",
+                "authors": [
+                    {
+                        "id": 2,
+                        "name": "Ilkka Kosunen"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Seppo Ilmarinen"
+                    }
+                ],
+                "links": [
+                    {
+                        "id": 7,
+                        "url": "www.nature.com",
+                        "publication_id": 6,
+                        "link_type": "web"
+                    }
+                ]
+            }
+        ]
+
+        let categories = [
+            {
+                "id": 2,
+                "name": "Raspberry Pi",
+                "layer_id": 2,
+                "description": "test",
+                "infolink": "http://localhost",
+                "ids": [
+                    1,
+                    3,
+                    6
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Java",
+                "layer_id": 2,
+                "description": "test",
+                "infolink": "http://localhost",
+                "ids": [
+                    1,
+                    3
+                ]
+            },
+            {
+                "id": 6,
+                "name": "Javascript",
+                "layer_id": 1,
+                "description": "test",
+                "infolink": "http://localhost",
+                "ids": [
+                    6
+                ]
+            }
+        ]
+        if (path.includes('publications')) {
+            return Promise.resolve(pubs);
+        }
+        else if (path.includes('categories')) {
+            return Promise.resolve(categories);
+        } else {
+            return Promise.resolve(null);
+        }
     }
 }
 
