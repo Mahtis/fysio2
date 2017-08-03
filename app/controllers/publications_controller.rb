@@ -68,9 +68,21 @@ if params[:names].nil?
   # POST /publications
   # POST /publications.json
   def create
-    @publication = Publication.new(publication_params)
-    puts 'ADKASDÖAJSFKÖASJFASÖKFJDKFJSAKÖFJSKÖFJAFSÖFJASAFSJAFSAFSÖ'
-    puts publication_params.inspect
+    puts 'ENNEN'
+    puts publication_params['categories']
+    pb = publication_params
+    ar = []
+    pb['categories'].each do |c|
+      if c.empty?
+        #pb['categories'] - [c]
+      else
+        ar.push(Category.find(c))
+      end
+    end
+    pb[:categories] = ar
+    puts 'JÄLKEEN'
+    puts pb.inspect
+    @publication = Publication.new(pb)
 
     respond_to do |format|
       if @publication.save
