@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import Fysio from "./Components/Fysio/Fysio";
 import DatabaseConnector from "./Services/DatabaseConnector";
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
     constructor() {
@@ -137,21 +138,47 @@ class App extends Component {
                 </div>
             );
         } else {
+            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}/>
+
+            let more1 = <div>
+            </div>;
+
+            const homePage =  () => (
+                <div className="table-responsive">
+                    <Fysio
+                        key="1"
+                        categories={categories}
+                        layers={layers}
+                        publications={publications}
+                        updateTable={this.updateTable}
+                        categorySelected={this.state.categorySelected}
+                        categoryAvailable={this.state.categoryAvailable}
+                    />
+                </div>
+            )
+            const aboutPage = () => (
+                <div>
+                    <h1>Welcome to the Tornadoes ghjhgj!!</h1>
+                </div>
+            )
+            const loginPage = () => (
+                <div>
+                    <h1>Welcome to the Tornadoes xxx!!!</h1>
+                </div>
+            )
+
+            const more = (
+                <div>
+                    <BrowserRouter><Route exact path='/' component={homePage}/></BrowserRouter>
+                    <BrowserRouter><Route exact path='/about' component={aboutPage}/></BrowserRouter>
+                    <BrowserRouter><Route exact path='/login' component={loginPage}/></BrowserRouter>
+                </div>
+            );
+
             return (
                 <div>
-                    <NavBar layerTypes={layerTypes}
-                            changeLayerView={this.changeLayerView}/>
-                    <div className="table-responsive">
-                        <Fysio
-                            key="1"
-                            categories={categories}
-                            layers={layers}
-                            publications={publications}
-                            updateTable={this.updateTable}
-                            categorySelected={this.state.categorySelected}
-                            categoryAvailable={this.state.categoryAvailable}
-                        />
-                    </div>
+                    {nav}
+                    {more}
                 </div>
             );
         }
