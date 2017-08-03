@@ -49,6 +49,17 @@ if params[:names].nil?
   # GET /publications/new
   def new
     @publication = Publication.new
+    @categories = Category.all
+    @layers = Layer.all
+    @layerCategories = Hash.new
+    Layer.all.map{|l| @layerCategories[l] = Category.all
+        .includes(:layer)
+        .where('layer_id = ?', l.id)
+        .references(:layers)}
+    #Layer.all.map{|l| layerCategories[l.id] = Array.new}
+    #@categories.each do |c|
+    #  @layerCategories[c.layer_id] = @layerCategories[c.layer_id].push(c)
+    #end
   end
 
   # GET /publications/1/edit
@@ -58,6 +69,8 @@ if params[:names].nil?
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
+    puts 'ADKASDÖAJSFKÖASJFASÖKFJDKFJSAKÖFJSKÖFJAFSÖFJASAFSJAFSAFSÖ'
+    puts publication_params.inspect
 
     respond_to do |format|
       if @publication.save
@@ -103,6 +116,6 @@ if params[:names].nil?
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:name, :abstract, :year, :journal)
+    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [])
   end
 end
