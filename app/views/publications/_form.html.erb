@@ -29,12 +29,13 @@
   </div>
 
       <div>
-        <% @layerCategories.keys.each do |lc| %>
+        <% @layers.each do |lc| %>
             <h5><%= lc.name %></h5><br/>
             <%= f.collection_check_boxes :categories, Category.all
                 .includes(:layer)
                 .where('layer_id = ?', lc.id)
                 .references(:layers), :id, :name %>
+            <p><%= link_to 'New', new_category_path(:layer => lc)%></p>
         <% end %>
       </div>
   <div class="actions">

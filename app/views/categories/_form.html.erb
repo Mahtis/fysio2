@@ -16,8 +16,15 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :layer_id %><br>
-    <%= f.number_field :layer_id %>
+    <%= f.hidden_field :layer_id, :value => @layer.id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :infolink %><br>
+    <%= f.text_field :infolink %>
   </div>
   <div class="actions">
     <%= f.submit %>
