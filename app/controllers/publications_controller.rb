@@ -52,12 +52,11 @@ class PublicationsController < ApplicationController
     @categories = Category.all
     @layers = Layer.all
     @layerCategories = Hash.new
-    Layer.all.map{|l| @layerCategories[l] =
-        Category.all
-            .includes(:layer)
-            .where('categories.layer_id = ?', l.id)
-            .references(:layers)}
 
+    Layer.all.map{|l| @layerCategories[l] = Category.all
+        .includes(:layer)
+        .where('layer_id = ?', l.id)
+        .references(:layers)}
 
   end
 
@@ -67,9 +66,20 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-    puts 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
-    puts publication_params.inspect
-    @publication = Publication.new(publication_params)
+    puts publication_params['categories']
+    pb = publication_params
+    ar = []
+    pb['categories'].each do |c|
+      if c.empty?
+        #pb['categories'] - [c]
+      else
+        ar.push(Category.find(c))
+      end
+    end
+    pb[:categories] = ar
+    puts 'JÄLKEEN'
+    puts pb.inspect
+    @publication = Publication.new(pb)
 
     respond_to do |format|
       if @publication.save
@@ -115,7 +125,6 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories)
-    ##params.permit(:name, :abstract, :year, :journal)
+    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [])
   end
 end

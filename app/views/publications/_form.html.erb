@@ -27,19 +27,18 @@
     <%= f.label :journal %><br>
     <%= f.text_field :journal %>
   </div>
-  <div class="field">
-    <%= f.label :categories, 'kissa' %><br>
-    <%= f.check_box :categories %>
-  </div>
-  <div>
-    <% @layerCategories.keys.each do |lc|%>
-        <p><%=lc.name%></p>
-        <%@layerCategories[lc].each do |c| %>
-            <p><%=c.name%></p>
-        <%end%>
-    <% end %>
-  </div>
-  <div>
+
+      <div>
+        <% @layerCategories.keys.each do |lc| %>
+            <h5><%= lc.name %></h5><br/>
+            <%= f.collection_check_boxes :categories, Category.all
+                .includes(:layer)
+                .where('layer_id = ?', lc.id)
+                .references(:layers), :id, :name %>
+        <% end %>
+      </div>
+  <div class="actions">
+
     <%= f.submit %>
   </div>
 <% end %>

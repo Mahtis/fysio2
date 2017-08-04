@@ -81,5 +81,57 @@ class PublicationCreator
     end
   end
 
+  def create_dummy_data(amount)
+    name_list = create_strings(amount)
+    year_list = create_years(amount)
+    abstract = 'This is an abstract text that I am writing right now. It is very interesting
+and also not very long. Please check some things or maybe not. I am not sure. I am doing
+this for research purposes so please do not be too hard on me. I am a simple man. With simple
+dreams. Dreams of a better world, where data is generated easily with a simple script.
+I know this is a fools dream and shall not be filled so easily, but alas, I will try.'
+    journal = 'THE GREATEST JOURNAL THERE EVER WAS'
+
+    name_list.each do |name|
+      Publication.create(name: name, year: year_list[rand(year_list.length)],
+                         abstract: abstract, journal: journal);
+    end
+
+    publication = Publication.find_by_name(json['name']);
+    # go through categories
+    json['categories'].each do |category|
+      # check the layer and create it if needed.
+      layer = create_layer(category['layer']);
+      # go through the names, and transform them into new categories if needed.
+      category['name'].each do |name|
+        create_category(layer.id, name, publication);
+      end
+    end
+    # create authors like categories
+    json['authors'].each do |auth|
+      create_author(auth['name'], publication);
+    end
+    # create link, since each link is only linked to one publication
+    json['links'].each do |url|
+      create_link(publication, url);
+    end
+  end
+
+  def create_strings(amount)
+    string_list = [];
+    name = 'AAAAa';
+    for i in 1..amount do
+      string_list.push(name.next!.dup);
+    end
+    return string_list
+  end
+
+  def create_years(amount)
+    years = []
+    for i in 1..amount do
+      years.push(1900 + rand(117))
+    end
+    return years;
+  end
+
 
 end

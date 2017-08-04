@@ -12,9 +12,6 @@ class Publication extends Component {
         let publication = this.props.publication;
         let layers = this.props.layers;
         let categories = this.props.categories;
-        if(publication === null || publication === undefined || layers === null || layers === undefined || categories === null || categories === undefined){
-            return null;
-        }else {
             return (
                 <tr>
                     <PublicationTitle pub={publication} key={publication.name}/>
@@ -29,11 +26,57 @@ class Publication extends Component {
                     }
                 </tr>
             );
+
         }
     }
-}
 
 Publication.propTypes = {
+    categories: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+        })),
+    layers: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+    })),
+    publication: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        abstract: PropTypes.string,
+        year: PropTypes.number,
+        journal: PropTypes.string,
+        authors: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired
+        })),
+        links: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            url: PropTypes.string.isRequired,
+            publication_id: PropTypes.number.isRequired,
+            link_type: PropTypes.string.isRequired
+        }))
+    }),
+    layerCategories: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+    })),
+    categorySelected: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+    })),
+    categoryAvailable: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+    })),
+    layerCategoriesDropDown: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        layer_id: PropTypes.number.isRequired,
+        ids: PropTypes.arrayOf(PropTypes.number)
+    }))
 };
 
 
