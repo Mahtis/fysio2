@@ -13,7 +13,8 @@ class App extends Component {
             publications: [],
             categorySelected: [],
             categoryAvailable: [],
-            layerTypes: []
+            layerTypes: [],
+            layerCategories: {}
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
@@ -21,6 +22,8 @@ class App extends Component {
         this.updateTable = this.updateTable.bind(this);
         this.extractIds = this.extractIds.bind(this);
         this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
+        this.createPublication = this.createPublication.bind(this);
+        this.createLayerCategories = this.createLayerCategories.bind(this);
 
     }
 
@@ -48,7 +51,8 @@ class App extends Component {
         }));
         DatabaseConnector.getCategories().then((resolve) => this.setState({
             categories: resolve,
-            categoryAvailable: resolve
+            categoryAvailable: resolve,
+
         }));
     }
 
@@ -81,6 +85,30 @@ class App extends Component {
                 })
             })
         });
+    }
+
+    createPublication(data) {
+        DatabaseConnector.createPublication(data)
+            .then(this.updateTable('hack'));
+        console.log(data);
+    }
+
+    createLayerCategories(cats) {
+        let layerCategories = {};
+        let layers = this.state.layers;
+        let categories = cats;
+
+        for(let i = layers[0].id; i <= layers[layers.length-1].id; i++){
+            layerCategories[i] = [];
+        }
+
+        for(let i = 0; i < categories.length; i++) {
+            if (layerCategories[categories[i].layer_id] !== undefined) {
+                layerCategories[categories[i].layer_id].push(categories[i]);
+            }
+        }
+
+        return layerCategories;
     }
 
     manageSelectedCategories(name) {
@@ -125,6 +153,7 @@ class App extends Component {
         let layers = this.state.layers;
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
+        //let layerCategories = this.createLayerCategories(this.state.categories);
 
         if (publications.length === 0 && layerTypes.length === 0) {
             return (
@@ -139,8 +168,11 @@ class App extends Component {
         } else {
             return (
                 <div>
+
                     <NavBar layerTypes={layerTypes}
-                            changeLayerView={this.changeLayerView}/>
+                            changeLayerView={this.changeLayerView}
+                            createPublication={this.createPublication}
+                    />
                     <div className="table-responsive">
                         <Fysio
                             key="1"
@@ -151,6 +183,7 @@ class App extends Component {
                             categorySelected={this.state.categorySelected}
                             categoryAvailable={this.state.categoryAvailable}
                         />
+
                     </div>
                 </div>
             );

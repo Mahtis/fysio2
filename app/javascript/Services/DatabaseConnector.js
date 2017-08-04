@@ -48,6 +48,12 @@ class DatabaseConnector {
                 return results;
             })
     }
+
+    static createPublication(data) {
+        let params = {publication: data};
+        console.log(params);
+        fetch('/publications', {method: 'post', body: params})
+    }
 }
 
 export default DatabaseConnector;
