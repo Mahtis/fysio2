@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import Fysio from "./Components/Fysio/Fysio";
+import Login from "./Components/Tabs/Login";
 import DatabaseConnector from "./Services/DatabaseConnector";
+
+import { BrowserRouter, Route } from 'react-router-dom'
 
 class App extends Component {
     constructor() {
@@ -13,7 +16,8 @@ class App extends Component {
             publications: [],
             categorySelected: [],
             categoryAvailable: [],
-            layerTypes: []
+            layerTypes: [],
+            appMode : "normal",
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
@@ -22,6 +26,10 @@ class App extends Component {
         this.extractIds = this.extractIds.bind(this);
         this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
 
+        this.toNormal = this.toNormal.bind(this);
+        this.toAbout = this.toAbout.bind(this);
+        this.toLogin = this.toLogin.bind(this);
+        this.doClear = this.doClear.bind(this);
     }
 
     changeLayerView(id) {
@@ -120,6 +128,19 @@ class App extends Component {
         return path.substring(0, path.length - 1);
     }
 
+    toNormal(){
+        this.setState({appMode: "normal"});
+    }
+    toAbout(){
+        this.setState({appMode: "about"});
+    }
+    toLogin(){
+        this.setState({appMode: "login"});
+    }
+    doClear(){
+        //???
+    }
+
     render() {
         let categories = this.state.categories;
         let layers = this.state.layers;
@@ -136,26 +157,87 @@ class App extends Component {
                     </span>
                 </div>
             );
+
         } else {
-            return (
+            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}
+            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doClear = {this.doClear}
+            />
+            const homePage = (
+                <div className="table-responsive">
+                    <Fysio
+                        key="1"
+                        categories={categories}
+                        layers={layers}
+                        publications={publications}
+                        updateTable={this.updateTable}
+                        categorySelected={this.state.categorySelected}
+                        categoryAvailable={this.state.categoryAvailable}
+                    />
+                </div>
+            )
+            const aboutPage = (
                 <div>
-                    <NavBar layerTypes={layerTypes}
-                            changeLayerView={this.changeLayerView}/>
-                    <div className="table-responsive">
-                        <Fysio
-                            key="1"
-                            categories={categories}
-                            layers={layers}
-                            publications={publications}
-                            updateTable={this.updateTable}
-                            categorySelected={this.state.categorySelected}
-                            categoryAvailable={this.state.categoryAvailable}
-                        />
-                    </div>
+                    <h3>Welcome to the Interactive Web Repository for Physiological Computing</h3>
+                    <br/>
+                    <p className={"aboutBody"}>
+                        This repository allows you to browse, search and examine publications related to physiological computing.
+
+                        Each publication has a number of attributes, each of which belongs to a specific layer such as signal type or the type of hardware used.
+                        Layers belong to one of three groups: science, hacker or general.
+                    </p>
+
+                    <p className={"aboutBody"}>
+                        Physiological computing is a form of HCI(human-computer interaction) where the interaction depends on measuring of and responding to the physiological activity of the user in real time. Physiological computing has the potential to revolutionize human-computer interaction. For one, it widens the communication bandwidth drastically by introducing several new information channels. The traditional communication between humans and computers has been described as asymmetrical: while the computer is able to output vast amount of audiovisual information quickly the input from the user is limited to the relatively low bandwidth provided by mouse and keyboard. Furthermore, while the user has access to the internal state of the computer system such as memory consumption and processor utilization level while the computer has no information of the cognitive and emotional state of the user. Physiological computing allows symmetry both in terms of information bandwidth (the extra input modalities in form of physiological signals) as well as user state and context information derived from the physiological data.
+                    </p>
+
+                    <h5>Instructions:</h5>
+                    <ul className={"aboutBody"}>
+                        <li>You can click on any attribute to only show publications which have that attribute.</li>
+                        <li>You can also select attributes from the drop-down from the layer name.</li>
+                        <li>Click on a publication name for additional information about that publication.</li>
+                        <li>Click on a group name to show the layers that belong to it.</li>
+                        <li>Clear your attribute selections with the clear button in the nav-bar.</li>
+                    </ul>
+
+                </div>
+            )
+            const loginPage = (
+                <div>
+                    <Login/>
+                </div>
+            )
+
+            var more = null;
+            if (this.state.appMode === "normal") {
+                more = homePage;
+
+            } else if (this.state.appMode === "about") {
+                more = aboutPage;
+
+            } else if (this.state.appMode === "login") {
+                more = loginPage;
+            }
+
+            //router is currently not used as any use of links leads to a blank partially loaded page.
+            const moreRouter = (
+                <div>
+                    <BrowserRouter>
+                        <Route exact path='/' component={homePage}/></BrowserRouter>
+                    <BrowserRouter>
+                        <Route exact path='/about' component={aboutPage}/></BrowserRouter>
+                    <BrowserRouter>
+                        <Route exact path='/login' component={loginPage}/></BrowserRouter>
                 </div>
             );
-        }
 
+            return (
+                <div>
+                    {nav}
+                    {more}
+                </div>
+            );
+
+        }
     }
 }
 
