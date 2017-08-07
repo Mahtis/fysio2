@@ -37,9 +37,42 @@ describe("CategoryButton", () => {
         mountedCategoryButton = undefined;
     });
 
-    it("always renders a tr", () => {
+    it("always renders a Button", () => {
         const button = categoryButton().find("Button");
         expect(button.length).toEqual(1);
+    });
+
+    describe("the rendered Button", () => {
+
+       it("has buttonSelect as style if status is true", () => {
+           const wrapper = categoryButton();
+           wrapper.setProps({ status : true });
+           expect(wrapper.find("Button").hasClass("buttonSelect")).toBe(true);
+       });
+
+       it("has buttonNormal as style if status is false", () => {
+           const wrapper = categoryButton();
+           expect(wrapper.find("Button").hasClass("buttonNormal")).toBe(true);
+       });
+
+       it("has button_narrow as style if length of the name prop < 7", () => {
+           const wrapper = categoryButton();
+           expect(wrapper.find("Button").hasClass("button_wide")).toBe(false);
+           expect(wrapper.find("Button").hasClass("button_narrow")).toBe(true);
+       });
+
+       it("has button_wide as style if length of the name prop >= 7", () => {
+           const wrapper = categoryButton();
+           wrapper.setProps({ name : "Testi12" });
+           expect(wrapper.find("Button").hasClass("button_narrow")).toBe(false);
+           expect(wrapper.find("Button").hasClass("button_wide")).toBe(true);
+       });
+
+       it("always renders a Tooltip", () => {
+          const wrapper = categoryButton().find("Button");
+          expect(wrapper.find("Tooltip").length).toBe(1);
+       });
+
     });
 
 

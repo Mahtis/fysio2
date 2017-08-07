@@ -44,11 +44,6 @@ describe("Layer", () => {
             expect(th.children()).toEqual(layer().children());
         });
 
-        /*it("renders one `CategoryList`", () => {
-            const tr = layer().find("tr");
-            expect(tr.find("CategoryList") > 0);
-        });*/
-
         describe("the rendered th", () => {
 
             it("receives layer.id as id", () => {
