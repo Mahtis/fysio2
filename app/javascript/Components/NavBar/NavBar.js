@@ -50,7 +50,7 @@ class NavBar extends Component{
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="#">Home</NavLink>
+                                <NavLink href="/publications/new">Create Publication</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="#">Users</NavLink>
