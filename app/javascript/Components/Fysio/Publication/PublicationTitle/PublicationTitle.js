@@ -21,7 +21,7 @@ class PublicationTitle extends Component {
     render() {
         return (
             <td>
-                <Button className="pubName" key={this.props.pub.name} onClick={this.toggle}> {this.props.pub.name}
+                <span key={this.props.pub.name} onClick={this.toggle}>{this.props.pub.name} </span>
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}><h6>{this.props.pub.name}</h6></ModalHeader>
                     <ModalBody>
@@ -39,7 +39,7 @@ class PublicationTitle extends Component {
                         <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>
                     </ModalFooter>
                 </Modal>
-                </Button>
+
             </td>
         );
 
