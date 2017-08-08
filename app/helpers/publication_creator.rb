@@ -1,5 +1,6 @@
 class PublicationCreator
 
+
   def create_publication_with_associations(path)
     json = read_to_json(path);
     # check if publication exists, if not, create it.
@@ -26,13 +27,15 @@ class PublicationCreator
     end
     # create link, since each link is only linked to one publication
     json['links'].each do |url|
-      create_link(publication, url);
+      create_link(publication, url['url']);
     end
   end
 
+
   def create_link(publication, url)
-    Link.create(url: url['url'], publication_id: publication.id, link_type: 'web')
+    Link.create(url: url, publication_id: publication.id, link_type: 'web')
   end
+
 
   def create_author(auth, publication)
     author = Author.find_by_name(auth);
@@ -42,6 +45,7 @@ class PublicationCreator
       author.update(publications: author.publications.push(publication));
     end
   end
+
 
   def create_category(layer_id, name, publication)
     category = Category.find_by_name(name);
@@ -54,6 +58,7 @@ class PublicationCreator
     end
   end
 
+
   def create_layer(layer_name)
     if Layer.find_by_name(layer_name) == nil
       Layer.create(name: layer_name);
@@ -61,10 +66,12 @@ class PublicationCreator
     return Layer.find_by_name(layer_name);
   end
 
+
   def read_to_json(path)
     file = File.read(path);
     return JSON.parse(file);
   end
+
 
   def read_the_big_one(path)
     json = read_to_json(path)
@@ -79,6 +86,53 @@ class PublicationCreator
         create_author(auth,publication)
       end
     end
+  end
+
+
+  def create_dummy_data(amount)
+    name_list = create_strings(amount)
+    year_list = create_years(amount)
+    abstract = 'This is an abstract text that I am writing right now. It is very interesting
+and also not very long. Please check some things or maybe not. I am not sure. I am doing
+this for research purposes so please do not be too hard on me. I am a simple man. With simple
+dreams. Dreams of a better world, where data is generated easily with a simple script.
+I know this is a fools dream and shall not be filled so easily, but alas, I will try.'
+    journal = 'THE GREATEST JOURNAL THERE EVER WAS'
+    layers = Layer.all
+    categories = {}
+    layers.each do |layer|
+      categories[layer] = Category.where(layer_id: layer.id)
+    end
+    authors = Author.where(id: [1,2])
+    name_list.each do |name|
+      pub_categories = []
+      layers.each do |layer|
+        pub_categories.push(categories[layer][rand(categories[layer].length)])
+      end
+      publication = Publication.create(name: name, year: year_list[rand(year_list.length)],
+                         abstract: abstract, journal: journal, categories: pub_categories, authors: authors);
+      create_link(publication, 'www.' + publication.name + '.org');
+    end
+
+  end
+
+
+  def create_strings(amount)
+    string_list = [];
+    name = 'AAAAa';
+    for i in 1..amount do
+      string_list.push(name.next!.dup);
+    end
+    return string_list
+  end
+
+
+  def create_years(amount)
+    years = []
+    for i in 1..amount do
+      years.push(1900 + rand(117))
+    end
+    return years;
   end
 
 
