@@ -15,7 +15,7 @@ class PublicationCreator
     # go through categories
     json['categories'].each do |category|
       # check the layer and create it if needed.
-      layer = create_layer(category['layer']);
+      layer = create_layer(category['layer'], 10);
       # go through the names, and transform them into new categories if needed.
       category['name'].each do |name|
         create_category(layer.id, name, publication);
@@ -27,15 +27,42 @@ class PublicationCreator
     end
     # create link, since each link is only linked to one publication
     json['links'].each do |url|
-      create_link(publication, url['url']);
+      create_link(publication.id, url['url'], 'web');
     end
   end
 
 
-  def create_link(publication, url)
-    Link.create(url: url, publication_id: publication.id, link_type: 'web')
+  def create_publications(path)
+    json = read_to_json(path)
+    json.each do |pub|
+      authors = []
+      pub['authors'].each do |author|
+        if Author.find_by_name(author) == nil
+          authors.push(Author.create(name: author))
+        else
+          authors.push(Author.find_by_name(author))
+        end
+      end
+      if Publication.find_by_name(pub['name']) == nil
+        Publication.create(name: pub['name'], year: pub['year'],
+                           abstract: pub['abstract'], journal: pub['journal'],
+        categories: Category.where(name: pub['categories']), authors: authors);
+      end
+    end
   end
 
+
+  def create_link(publication_id, url, link_type)
+    Link.create(url: url, publication_id: publication_id, link_type: link_type)
+  end
+
+
+  def create_links(path)
+    json = read_to_json(path)
+    json.each do |link|
+      create_link(link['publication_id'], link['address'], link['link_type'])
+    end
+  end
 
   def create_author(auth, publication)
     author = Author.find_by_name(auth);
@@ -43,6 +70,17 @@ class PublicationCreator
       Author.create(name: auth, publications: [publication]);
     else
       author.update(publications: author.publications.push(publication));
+    end
+  end
+
+
+  def create_categories(path)
+    json = read_to_json(path)
+    json.each do |category|
+      if Category.find_by_name(category['name']) == nil
+        Category.create(name: category['name'], layer_id: category['layer_id'],
+                        description: category['description'], infolink: category['infolink']);
+      end
     end
   end
 
@@ -59,11 +97,29 @@ class PublicationCreator
   end
 
 
-  def create_layer(layer_name)
+  def create_layer(layer_name, order)
     if Layer.find_by_name(layer_name) == nil
-      Layer.create(name: layer_name);
+      Layer.create(name: layer_name, order: order);
     end
     return Layer.find_by_name(layer_name);
+  end
+
+
+  def create_layers(path)
+    json = read_to_json(path)
+    json.each do |layer|
+      create_layer(layer['name'], layer['order'])
+    end
+  end
+
+
+  def create_layer_types(path)
+    json = read_to_json(path)
+    json.each do |type|
+      if LayerType.find_by_name(type['name']) == nil
+        LayerType.create(name: type['name'], layers: Layer.find(type['layer_ids']));
+      end
+    end
   end
 
 
@@ -111,7 +167,7 @@ I know this is a fools dream and shall not be filled so easily, but alas, I will
       end
       publication = Publication.create(name: name, year: year_list[rand(year_list.length)],
                          abstract: abstract, journal: journal, categories: pub_categories, authors: authors);
-      create_link(publication, 'www.' + publication.name + '.org');
+      create_link(publication.id, 'www.' + publication.name + '.org', 'web');
     end
 
   end

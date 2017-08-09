@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Application",
+    "order": 7
+  },
+  {
+    "name": "Logic",
+    "order": 6
+  },
+  {
+    "name": "Indicies",
+    "order": 5
+  },
+  {
+    "name": "Metrics",
+    "order": 4
+  },
+  {
+    "name": "Signal",
+    "order": 1
+  },
+  {
+    "name": "Software",
+    "order": 3
+  },
+  {
+    "name": "Hardware",
+    "order": 2
+  },
+  {
+    "name": "Role",
+    "order": 8
+  }
+]
