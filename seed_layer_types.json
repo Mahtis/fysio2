@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Science",
+    "layer_ids": [5,4,3,2,1]
+  },
+  {
+    "name": "Hacker",
+    "layer_ids": [5,7,6,4,8]
+  },
+  {
+    "name": "General",
+    "layer_ids": [8,1]
+  }
+]
