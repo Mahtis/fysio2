@@ -18,6 +18,7 @@ class App extends Component {
             categoryAvailable: [],
             layerTypes: [],
             appMode : "normal",
+            userMode : "guest",
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
@@ -29,7 +30,9 @@ class App extends Component {
         this.toNormal = this.toNormal.bind(this);
         this.toAbout = this.toAbout.bind(this);
         this.toLogin = this.toLogin.bind(this);
+        this.doLogout = this.doLogout.bind(this);
         this.doClear = this.doClear.bind(this);
+        this.setUserMode = this.setUserMode.bind(this);
     }
 
     changeLayerView(id) {
@@ -137,8 +140,15 @@ class App extends Component {
     toLogin(){
         this.setState({appMode: "login"});
     }
+    doLogout(){
+        this.setState({userMode: "guest"});
+    }
     doClear(){
         //???
+    }
+    setUserMode(wantMode){
+        this.setState({userMode: wantMode});
+        this.setState({appMode: "normal"});
     }
 
     render() {
@@ -159,8 +169,8 @@ class App extends Component {
             );
 
         } else {
-            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView}
-            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doClear = {this.doClear}
+            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
+            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
             />
             const homePage = (
                 <div className="table-responsive">
@@ -203,7 +213,7 @@ class App extends Component {
             )
             const loginPage = (
                 <div>
-                    <Login/>
+                    <Login setUserMode={this.setUserMode} />
                 </div>
             )
 
