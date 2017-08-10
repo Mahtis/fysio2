@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<div class="form-group">
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -27,7 +27,21 @@
     <%= f.label :journal %><br>
     <%= f.text_field :journal %>
   </div>
+      <div>
+        <% @layerCategories.keys.each do |lc| %>
+            <h5><%= lc.name %></h5><br/>
+            <div data-toggle="buttons">
+            <%= f.collection_check_boxes(:categories, Category.all
+                .includes(:layer)
+                .where('layer_id = ?', lc.id)
+                .references(:layers), :id, :name) do |b| %>
+                <%= b.label(class:"btn btn-primary") { b.check_box + b.text } %>
+            <% end %>
+            </div>
+        <% end %>
+      </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
 <% end %>

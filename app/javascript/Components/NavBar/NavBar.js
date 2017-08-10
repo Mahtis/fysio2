@@ -52,6 +52,7 @@ class NavBar extends Component{
                     <NavItem><Button className={"modeButtons"} onClick={this.props.toAbout}>About</Button></NavItem>
                     <NavItem><Button className={"modeButtons"} onClick={this.props.toLogin}>Login</Button></NavItem>
                     <NavItem><Button className={"modeButtons"} onClick={this.props.doClear}>Clear</Button></NavItem>
+                    <NavItem><NavLink className="btn modeButtons" href="/publications/new">Create Publication</NavLink></NavItem>
                 </Nav>
 
                 <Collapse isOpen={this.state.isOpen} navbar>
