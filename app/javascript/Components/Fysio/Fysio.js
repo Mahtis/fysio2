@@ -31,8 +31,8 @@ class Fysio extends Component{
         if(layers !== undefined && layers !== null){
             let categories = cats;
 
-            for(let i = layers[0].id; i <= layers[layers.length-1].id; i++){
-                layerCategories[i] = [];
+            for(let i = 0; i < layers.length; i++){
+                layerCategories[layers[i].id] = [];
             }
 
             for(let i = 0; i < categories.length; i++) {

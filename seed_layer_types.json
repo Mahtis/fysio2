@@ -5,10 +5,10 @@
   },
   {
     "name": "Hacker",
-    "layer_ids": [5,7,6,4,8]
+    "layer_ids": [7,6,8,5,1]
   },
   {
     "name": "General",
-    "layer_ids": [8,1]
+    "layer_ids": [9,10,11]
   }
 ]
