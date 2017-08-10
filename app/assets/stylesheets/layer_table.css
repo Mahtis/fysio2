@@ -40,7 +40,10 @@ td, th {
     text-align: center;
     justify-content: center;
     font-size: large;
-    font-weight: bold;align-items: center;
+    font-weight: bold;
+    align-items: center;
+    border-style:hidden;
+    background-color: #68cc6c !important;
 }
 
 .button_narrow {
@@ -99,7 +102,19 @@ td, th {
     background-color: #3C7113 !important;
     border-color: rgb(0, 0, 0) !important;
 }
-.pubBar {
+.pubName {
     background-color: #55aa55 !important;
     border-color: rgb(0, 0, 0) !important;
+}
+.modeButtons {
+    background-color: #4c974c !important;
+    border-color: rgb(0, 0, 0) !important;
+}
+.aboutBody {
+    font-size: large;
+}
+
+.loginForm {
+    min-width: 300px;
+    max-width: 300px;
 }
