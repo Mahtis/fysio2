@@ -1,20 +1,15 @@
-/*
-
-This is helper class that contains all database functions
-
- */
 
 /**
- * Helper class that handles database connections
+ * Class handling fetching data from database.
+ * Each function returns a Promise-object.
+ * As is, the class could use some refactoring to reduce copy-paste code.
  */
-
 class DatabaseConnector {
 
     /**
-     * Get layers related to a type ie view
-     * @param id {number} Layer type id
+     * Fetches the layers for a given layerType (aka view/perspective)
+     * @param {number} id - id of the layerType
      */
-
     static getLayersForType(id) {
         return fetch('/layer_types/' + id + '.json')
             .then(response => response.json())
@@ -24,9 +19,9 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches default layer
+     * Fetches the default layers to be shown.
+     * The default view is hardcoded to be layerType 1, the Science view.
      */
-
     static getLayers() {
         return fetch('/layer_types/1.json')
             .then(response => response.json())
@@ -36,9 +31,8 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches layers related to a type
+     * Fetches all views.
      */
-
     static getLayerTypes() {
         return fetch('layer_types.json')
             .then(response => response.json())
@@ -48,9 +42,8 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches all publications
+     * Fetches all publications.
      */
-
     static getPublications() {
         return fetch('publications.json')
             .then(response => response.json())
@@ -60,9 +53,8 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches categories
+     * Fetches all categories.
      */
-
     static getCategories() {
         return fetch('/categories.json')
             .then(response => response.json())
@@ -72,10 +64,9 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches generic query
-     * @param path {string} Name of backend database
+     * Fetches information from a specific path.
+     * @param {string} path - the path for desired data.
      */
-
     static fetchFromPath(path) {
         return fetch(path)
             .then(response => response.json())
