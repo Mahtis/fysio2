@@ -4,10 +4,32 @@ import { Table } from 'reactstrap';
 import TableHeader from './TableHeader/TableHeader.js';
 import Publication from './Publication/Publication.js';
 
+/*
+
+Base data component, contains everything else except for navigation bar and alternative tabs
+
+ */
+
 class Fysio extends Component{
+
+    /*
+
+    Component constructor
+
+    */
+
     constructor() {
         super();
     }
+
+    /*
+
+    Generates array of layers that each contain an array of categories respectively
+
+    @param array of categories
+    @return array of arrays
+
+     */
 
     createLayerCategories(cats) {
         let layerCategories = {};
@@ -28,6 +50,12 @@ class Fysio extends Component{
         return layerCategories;
     }
 
+    /*
+
+    Lifecycle render method
+
+     */
+
     render(){
 
         let categories = this.props.categories;
@@ -38,6 +66,13 @@ class Fysio extends Component{
 
         //console.log("Fysio!!!!!!!!!!!!!!!!!!!!!1!!!!");
         //this.props.categoryAvailable.map(c => console.log(c));
+
+        /*
+
+        If data is not yet available in parent component, displays loading screen instead
+
+         */
+
         if(layers === undefined || layers === null){
           return (<span>loading</span>);
         } else if(publications === undefined || publications === null || categories === undefined || categories === null){

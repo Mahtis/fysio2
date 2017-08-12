@@ -5,9 +5,29 @@ import Category from "./Category/Category";
 
 import { ListGroup } from 'reactstrap';
 
+/*
+
+Component that is the dropdown menu of the layer and contains list of the categories
+
+ */
+
 class CategoryList extends Component{
 
+    /*
 
+    Component constructor
+
+    */
+
+    constructor(){
+        super();
+    }
+
+    /*
+
+    Lifecycle render method
+
+     */
 
     render() {
         if(this.props.categories === null || this.props.categories === undefined){

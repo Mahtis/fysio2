@@ -6,7 +6,19 @@ import { ButtonDropdown,
 import CategoryList from "./CategoryList/CategoryList";
 import PropTypes from 'prop-types';
 
+/*
+
+Component that contains one layer, essentially one column in the table
+
+ */
+
 class Layer extends Component {
+
+    /*
+
+    Component constructor
+
+    */
 
     constructor() {
         super();
@@ -16,11 +28,23 @@ class Layer extends Component {
         };
     }
 
+    /*
+
+    Toggles the dropdown menu
+
+     */
+
     toggle() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
         });
     }
+
+    /*
+
+    Lifecycle render method
+
+     */
 
     render(){
         let layer = this.props.layer;
