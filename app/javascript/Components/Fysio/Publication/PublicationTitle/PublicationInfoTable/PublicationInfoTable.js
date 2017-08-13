@@ -15,7 +15,7 @@ class PublicationInfoTable extends Component {
                 <thead>
                     <tr>
                         {this.props.layers.map(layer =>
-                            <th>
+                            <th key={layer.name + "-table-header"}>
                                 {layer.name}
                             </th>
                         )}
@@ -24,11 +24,12 @@ class PublicationInfoTable extends Component {
                 <tbody>
                     <tr>
                         {this.props.layers.map(layer =>
-                                <td>
+                                <td key={layer.id + "-tablecell"}>
                                     <PublicationCategoryList
                                         key={this.props.publication.id + "-info-" + layer.id}
                                         layer={layer.id}
                                         categories={this.props.categories}
+                                        publication_id={this.props.publication.id}
                                     />
                                 </td>
                         )}
