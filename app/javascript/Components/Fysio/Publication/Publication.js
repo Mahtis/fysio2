@@ -14,7 +14,7 @@ class Publication extends Component {
         let categories = this.props.categories;
             return (
                 <tr>
-                    <PublicationTitle pub={publication} key={publication.name}/>
+                    <PublicationTitle pub={publication} key={publication.name} layers={layers} categories={categories} />
                     { layers.map(layer =>
                             <PublicationCategoryList updateTable={this.props.updateTable}
                                                      categorySelected={this.props.categorySelected}

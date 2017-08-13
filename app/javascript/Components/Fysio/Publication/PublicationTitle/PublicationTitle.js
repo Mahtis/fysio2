@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
+import PublicationInfoTable from './PublicationInfoTable/PublicationInfoTable';
 
 class PublicationTitle extends Component {
 
@@ -34,6 +35,7 @@ class PublicationTitle extends Component {
                             {this.props.pub.authors.indexOf(author) !== this.props.pub.authors.length-1 && ", "}</span>))}</p>
                         <p><b>Year: </b>{this.props.pub.year}</p>
                         <p><b>Journal: </b>{this.props.pub.journal}</p>
+                        <PublicationInfoTable categories={this.props.categories} layers={this.props.layers} />
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" size="sm" onClick={this.toggle}>Close</Button>
