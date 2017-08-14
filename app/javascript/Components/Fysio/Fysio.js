@@ -78,8 +78,8 @@ class Fysio extends Component{
           return (<span>loading</span>);
         } else if(publications === undefined || publications === null || categories === undefined || categories === null){
             return (
-                <Table>
-                    <thead>
+                <Table >
+                    <thead >
                         <TableHeader    categories={categories}
                                         layers={layers}
                                         publications={publications}
