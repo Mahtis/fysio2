@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import Login from '../Tabs/Login';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("Login", () => {
     let props;
@@ -20,10 +21,8 @@ describe("Login", () => {
         mountedPublicationInfoTable = undefined;
     });
 
-    it("always renders a p", () => {
-        const div = login().find("div");
-        expect(div.length).toEqual(4);
-
+    it("always renders a div", () => {
+        TestHelper.sizeEqualWithFindAndLength(login, "div", 4);
     });
 });
 

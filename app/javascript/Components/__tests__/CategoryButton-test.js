@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import CategoryButton from '../Fysio/Publication/PublicationLayerCategoryList/CategoryButton/CategoryButton';
 import {Tooltip} from 'reactstrap';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("CategoryButton", () => {
     let props;
@@ -38,8 +39,7 @@ describe("CategoryButton", () => {
     });
 
     it("always renders a Button", () => {
-        const button = categoryButton().find("Button");
-        expect(button.length).toEqual(1);
+        TestHelper.sizeEqualWithFindAndLength(categoryButton, "Button", 1)
     });
 
     describe("the rendered Button", () => {

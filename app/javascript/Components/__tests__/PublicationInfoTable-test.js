@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import PublicationInfoTable from '../Fysio/Publication/PublicationTitle/PublicationInfoTable/PublicationInfoTable';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("PublicationCategoryList", () => {
     let props;
@@ -32,10 +33,8 @@ describe("PublicationCategoryList", () => {
         mountedPublicationInfoTable = undefined;
     });
 
-    it("always renders a p", () => {
-        const p = publicationInfoTable().find("Table");
-        expect(p.length).toEqual(1);
-
+    it("always renders a Table", () => {
+        TestHelper.sizeEqualWithFindAndLength(publicationInfoTable, "Table", 1);
     });
 });
 
