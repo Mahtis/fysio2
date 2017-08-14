@@ -54,7 +54,7 @@ class Fysio extends Component{
         let categories = this.props.categories;
         let layers = this.props.layers;
         let publications = this.props.publications;
-        let layerCategories = this.createLayerCategories(this.props.categories);
+        //let layerCategories = this.createLayerCategories(this.props.categories);
         let layerCategoriesDropDown = this.createLayerCategories(this.props.categoryAvailable);
 
         //console.log("Fysio!!!!!!!!!!!!!!!!!!!!!1!!!!");
@@ -75,7 +75,7 @@ class Fysio extends Component{
                         <TableHeader    categories={categories}
                                         layers={layers}
                                         publications={publications}
-                                        layerCategories={layerCategories}
+                                        //layerCategories={layerCategories}
                                         updatePublications={this.props.updatePublications}
                                         updateTable={this.props.updateTable}
                                         categorySelected={this.props.categorySelected}
@@ -95,7 +95,7 @@ class Fysio extends Component{
                     <TableHeader categories={categories}
                                  layers={layers}
                                  publications={publications}
-                                 layerCategories={layerCategories}
+                                 //layerCategories={layerCategories}
                                  updatePublications={this.props.updatePublications}
                                  updateTable={this.props.updateTable}
                                  categorySelected={this.props.categorySelected}
@@ -108,7 +108,7 @@ class Fysio extends Component{
                         categories={categories}
                         layers={layers}
                         publication={publication}
-                        layerCategories={layerCategories}
+                        //layerCategories={layerCategories}
                         updatePublications={this.props.updatePublications}
                         updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}

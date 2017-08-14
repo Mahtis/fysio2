@@ -2,14 +2,14 @@
 import React, { Component } from 'react';
 import LayerLink from './LayerLink/LayerLink.js';
 import PropTypes from 'prop-types';
-
 import { Collapse, Button, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarHeader } from 'reactstrap';
 import { Link } from 'react-router-link'
-
+import UserDropdown from "./UserDropdown";
 /**
  * Navigation bar component, contains all the components within navigation bar
  * @extends Component
  */
+
 
 class NavBar extends Component{
 
@@ -87,7 +87,10 @@ class NavBar extends Component{
         if(this.props.userMode !== "guest"){
             addPubButton=(
                 <NavItem>
-                    <NavLink className="btn modeButtons" href="/publications/new">Create Publication</NavLink>
+                    <UserDropdown
+                        createPublication={this.props.createPublication}
+                        layerCategories={this.props.layerCategories}
+                    />
                 </NavItem>
             );
         }
