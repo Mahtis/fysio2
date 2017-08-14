@@ -4,14 +4,14 @@ import PublicationLayerCategoryList from '../Fysio/Publication/PublicationLayerC
 
 describe("PublicationLayerCategoryList", () => {
     let props;
-    let mountedLayer;
+    let mountedPublicationLayerCategoryList;
     const publicationLayerCategoryList = () => {
-        if (!mountedLayer) {
-            mountedLayer = shallow(
+        if (!mountedPublicationLayerCategoryList) {
+            mountedPublicationLayerCategoryList = shallow(
                 <PublicationLayerCategoryList {...props} />
             );
         }
-        return mountedLayer;
+        return mountedPublicationLayerCategoryList;
     };
 
     beforeEach(() => {
@@ -21,15 +21,15 @@ describe("PublicationLayerCategoryList", () => {
             publication_id: 1,
             categorySelected: ["EEG", "EDA"]
         };
-        mountedLayer = undefined;
+        mountedPublicationLayerCategoryList = undefined;
     });
 
     // ^boilerplate code that is run before each test
 
     it("always renders a td (table cell)", () => {
         props.categories = [];
-        //const buttons = publicationLayerCategoryList().find("td");
-        expect(publicationLayerCategoryList().find("td")).exists;
+        const buttons = publicationLayerCategoryList().find("td");
+        expect(buttons.children().length).toEqual(0);
     });
 
     describe("the rendered td", () => {
