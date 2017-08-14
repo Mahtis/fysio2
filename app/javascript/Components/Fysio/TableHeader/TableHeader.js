@@ -47,7 +47,7 @@ class TableHeader extends Component {
         }else{
             return (
             <tr>
-                <th>
+                <th className="rowCell">
                     <span>{searchBox}</span>
                 </th>
                 { layers.map(layer => <Layer categorySelected={this.props.categorySelected}
