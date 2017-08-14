@@ -4,20 +4,40 @@ import PropTypes from 'prop-types';
 
 import { Label, Input } from 'reactstrap';
 
+/*
+
+Class that makes up the data table header.
+
+ */
+
 class TableHeader extends Component {
+
+    /*
+
+    Component constructor
+
+    */
 
     constructor(){
         super();
     }
+
+    /*
+
+    Lifecycle render method
+
+     */
 
     render(){
         let layers = this.props.layers;
         let categories = this.props.categories;
 
         //let corner = "Publications";
-        let searchBox = <div>
-            <Input className={"pubName"} type="username" name="email" id="username" placeholder="" />
-        </div>
+        let searchBox = (
+            <div>
+                <Input className={"pubName"} type="username" name="email" id="username" placeholder="" />
+            </div>
+        );
 
         if(layers === null || layers === undefined || categories === undefined || categories === null){
             return (

@@ -6,7 +6,20 @@ import DatabaseConnector from "./Services/DatabaseConnector";
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
+/*
+
+The Base Class, contains all app data in the state and calls every other component
+
+ */
+
 class App extends Component {
+
+    /*
+
+    Component constructor
+
+     */
+
     constructor() {
         super();
         this.state = {
@@ -35,6 +48,16 @@ class App extends Component {
         this.setUserMode = this.setUserMode.bind(this);
     }
 
+
+    /*
+
+    Function to change the view,
+
+    @param: id of the desired view
+    @return sets the layers with desired values
+
+     */
+
     changeLayerView(id) {
         /* purkkaa */
         this.updateTable("hack");
@@ -43,9 +66,21 @@ class App extends Component {
         }));
     }
 
+    /*
+
+    Lifecycle method that makes the calls to fetch all necessary data
+
+     */
+
     componentWillMount() {
         this.loadData();
     }
+
+    /*
+
+    Extracted calls to a separate method
+
+     */
 
     loadData() {
         DatabaseConnector.getLayers().then((resolve) => this.setState({
@@ -62,6 +97,15 @@ class App extends Component {
             categoryAvailable: resolve
         }));
     }
+
+    /*
+
+    Method that mutates data currently visible to user
+
+    @param name of the categories
+    @return sets the values for publications and categories selected and still available for grabs
+
+     */
 
     updateTable(name) {
         let selectedCategories = [];
@@ -94,6 +138,15 @@ class App extends Component {
         });
     }
 
+    /*
+
+    Helper method that makes the category listing usable
+
+    @param name of the category
+    @return array of selected categories
+
+     */
+
     manageSelectedCategories(name) {
 
         let categorySelectedArray = this.state.categorySelected;
@@ -108,6 +161,14 @@ class App extends Component {
         return categorySelectedArray;
     }
 
+    /*
+
+    Helper method that extracts publication id's out of publication list
+
+    @param array of publications
+    @return array of publication id's
+
+     */
 
 
     extractIds(pubs) {
@@ -117,6 +178,17 @@ class App extends Component {
         });
         return pIds;
     }
+
+    /*
+
+    Helper method that generates the url to query database for categories
+
+    @param array of categories
+    @param name of the rails database
+    @param name that the objects get in the url
+    @return url that gets invoked to fetch data
+
+     */
 
     parsePath(categoriesArray, table, paramName) {
 
@@ -131,6 +203,13 @@ class App extends Component {
         return path.substring(0, path.length - 1);
     }
 
+
+    /*
+
+    Sets app mode
+
+     */
+
     toNormal(){
         this.setState({appMode: "normal"});
     }
@@ -143,13 +222,33 @@ class App extends Component {
     doLogout(){
         this.setState({userMode: "guest"});
     }
+
+    /*
+
+    Clears selected categories
+
+     */
+
     doClear(){
         //???
     }
+
+    /*
+
+    Sets user and appmode
+
+     */
+
     setUserMode(wantMode){
         this.setState({userMode: wantMode});
         this.setState({appMode: "normal"});
     }
+
+    /*
+
+    Lifecycle render method
+
+     */
 
     render() {
         let categories = this.state.categories;
@@ -171,7 +270,7 @@ class App extends Component {
         } else {
             let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
             toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
-            />
+            />;
             const homePage = (
                 <div className="table-responsive">
                     <Fysio
@@ -184,7 +283,7 @@ class App extends Component {
                         categoryAvailable={this.state.categoryAvailable}
                     />
                 </div>
-            )
+            );
             const aboutPage = (
                 <div>
                     <h3>Welcome to the Interactive Web Repository for Physiological Computing</h3>
@@ -210,14 +309,14 @@ class App extends Component {
                     </ul>
 
                 </div>
-            )
+            );
             const loginPage = (
                 <div>
                     <Login setUserMode={this.setUserMode} />
                 </div>
-            )
+            );
 
-            var more = null;
+            let more = null;
             if (this.state.appMode === "normal") {
                 more = homePage;
 
