@@ -1,0 +1,404 @@
+[
+  {
+    "name": "Arduino",
+    "layer_id": 7,
+    "description": "Arduino",
+    "infolink": "#"
+  },
+  {
+    "name": "Raspberry Pi",
+    "layer_id": 7,
+    "description": "Raspberry Pi",
+    "infolink": "#"
+  },
+  {
+    "name": "Java",
+    "layer_id": 6,
+    "description": "Java",
+    "infolink": "#"
+  },
+  {
+    "name": "C++",
+    "layer_id": 6,
+    "description": "C++",
+    "infolink": "#"
+  },
+  {
+    "name": "C",
+    "layer_id": 6,
+    "description": "C",
+    "infolink": "#"
+  },
+  {
+    "name": "Javascript",
+    "layer_id": 6,
+    "description": "test",
+    "infolink": "#"
+  },
+  {
+    "name": "EEG",
+    "layer_id": 5,
+    "description": "EEG",
+    "infolink": "#"
+  },
+  {
+    "name": "EDA",
+    "layer_id": 5,
+    "description": "EDA",
+    "infolink": "#"
+  },
+  {
+    "name": "fEMG",
+    "layer_id": 5,
+    "description": "fEMG",
+    "infolink": "#"
+  },
+  {
+    "name": "EMG",
+    "layer_id": 5,
+    "description": "EMG",
+    "infolink": "#"
+  },
+  {
+    "name": "MMG",
+    "layer_id": 5,
+    "description": "MMG",
+    "infolink": "#"
+  },
+  {
+    "name": "ECG",
+    "layer_id": 5,
+    "description": "ECG",
+    "infolink": "#"
+  },
+  {
+    "name": "Optical motion tracking data",
+    "layer_id": 5,
+    "description": "Optical motion tracking data",
+    "infolink": "#"
+  },
+  {
+    "name": "SCL",
+    "layer_id": 4,
+    "description": "SCL",
+    "infolink": "#"
+  },
+  {
+    "name": "Alpha frequency",
+    "layer_id": 4,
+    "description": "Alpha frequency",
+    "infolink": "#"
+  },
+  {
+    "name": "Theta frequency",
+    "layer_id": 4,
+    "description": "Theta frequency",
+    "infolink": "#"
+  },
+  {
+    "name": "SCP",
+    "layer_id": 4,
+    "description": "SCP",
+    "infolink": "#"
+  },
+  {
+    "name": "CS",
+    "layer_id": 4,
+    "description": "CS",
+    "infolink": "#"
+  },
+  {
+    "name": "Tonic",
+    "layer_id": 4,
+    "description": "Tonic",
+    "infolink": "#"
+  },
+  {
+    "name": "Phasic",
+    "layer_id": 4,
+    "description": "Phasic",
+    "infolink": "#"
+  },
+  {
+    "name": "nSCR",
+    "layer_id": 4,
+    "description": "nSCR",
+    "infolink": "#"
+  },
+  {
+    "name": "Custom",
+    "layer_id": 4,
+    "description": "Custom",
+    "infolink": "#"
+  },
+  {
+    "name": "ZM",
+    "layer_id": 4,
+    "description": "ZM",
+    "infolink": "#"
+  },
+  {
+    "name": "OO",
+    "layer_id": 4,
+    "description": "OO",
+    "infolink": "#"
+  },
+  {
+    "name": "IBI",
+    "layer_id": 4,
+    "description": "IBI",
+    "infolink": "#"
+  },
+  {
+    "name": "Joint angles",
+    "layer_id": 4,
+    "description": "Joint angles",
+    "infolink": "#"
+  },
+  {
+    "name": "Moments and forces at the joints",
+    "layer_id": 4,
+    "description": "Moments and forces at the joints",
+    "infolink": "#"
+  },
+  {
+    "name": "Forces exerted by muscles",
+    "layer_id": 4,
+    "description": "Forces exerted by muscles",
+    "infolink": "#"
+  },
+  {
+    "name": "Muscle activations",
+    "layer_id": 4,
+    "description": "Muscle activations",
+    "infolink": "#"
+  },
+  {
+    "name": "Exertion",
+    "layer_id": 4,
+    "description": "Exertion",
+    "infolink": "#"
+  },
+  {
+    "name": "Tension",
+    "layer_id": 4,
+    "description": "Tension",
+    "infolink": "#"
+  },
+  {
+    "name": "Force",
+    "layer_id": 4,
+    "description": "Force",
+    "infolink": "#"
+  },
+  {
+    "name": "Arousal",
+    "layer_id": 3,
+    "description": "Arousal",
+    "infolink": "#"
+  },
+  {
+    "name": "Relaxation",
+    "layer_id": 3,
+    "description": "Relaxation",
+    "infolink": "#"
+  },
+  {
+    "name": "Concentration",
+    "layer_id": 3,
+    "description": "Concentration",
+    "infolink": "#"
+  },
+  {
+    "name": "Supervised Machine Learning Features",
+    "layer_id": 3,
+    "description": "Supervised Machine Learning Features",
+    "infolink": "#"
+  },
+  {
+    "name": "Unsupervised Machine Learning Features",
+    "layer_id": 3,
+    "description": "Unsupervised Machine Learning Features",
+    "infolink": "#"
+  },
+  {
+    "name": "Energy expenditure",
+    "layer_id": 3,
+    "description": "Energy expenditure",
+    "infolink": "#"
+  },
+  {
+    "name": "Fatigue",
+    "layer_id": 3,
+    "description": "Fatigue",
+    "infolink": "#"
+  },
+  {
+    "name": "Power",
+    "layer_id": 3,
+    "description": "Power",
+    "infolink": "#"
+  },
+  {
+    "name": "Arousal => Sound Mapping",
+    "layer_id": 2,
+    "description": "Arousal => Sound Mapping",
+    "infolink": "#"
+  },
+  {
+    "name": "Relaxation & Concentration => Movement in VR",
+    "layer_id": 2,
+    "description": "Relaxation & Concentration => Movement in VR",
+    "infolink": "#"
+  },
+  {
+    "name": "ML Features => Relevance",
+    "layer_id": 2,
+    "description": "ML Features => Relevance",
+    "infolink": "#"
+  },
+  {
+    "name": "ML Features => Affective States (Happy, Sad, Angry, Neutral)",
+    "layer_id": 2,
+    "description": "ML Features => Affective States (Happy, Sad, Angry, Neutral)",
+    "infolink": "#"
+  },
+  {
+    "name": "Cluster frequent patterns of physiological data => Find design patterns",
+    "layer_id": 2,
+    "description": "Cluster frequent patterns of physiological data => Find design patterns",
+    "infolink": "#"
+  },
+  {
+    "name": "Clustering",
+    "layer_id": 2,
+    "description": "Clustering",
+    "infolink": "#"
+  },
+  {
+    "name": "Sonify Arousal",
+    "layer_id": 1,
+    "description": "Sonify Arousal",
+    "infolink": "#"
+  },
+  {
+    "name": "Float in VR",
+    "layer_id": 1,
+    "description": "Float in VR",
+    "infolink": "#"
+  },
+  {
+    "name": "Label Text",
+    "layer_id": 1,
+    "description": "Label Text",
+    "infolink": "#"
+  },
+  {
+    "name": "Annotate Cont. Adapt Interface",
+    "layer_id": 1,
+    "description": "Annotate Cont. Adapt Interface",
+    "infolink": "#"
+  },
+  {
+    "name": "Extract Design Patterns",
+    "layer_id": 1,
+    "description": "Extract Design Patterns",
+    "infolink": "#"
+  },
+  {
+    "name": "In air keyboard",
+    "layer_id": 1,
+    "description": "In air keyboard",
+    "infolink": "#"
+  },
+  {
+    "name": "Public display",
+    "layer_id": 1,
+    "description": "Public display",
+    "infolink": "#"
+  },
+  {
+    "name": "Tabletop",
+    "layer_id": 1,
+    "description": "Tabletop",
+    "infolink": "#"
+  },
+  {
+    "name": "Smarwatch",
+    "layer_id": 1,
+    "description": "Smarwatch",
+    "infolink": "#"
+  },
+  {
+    "name": "Understanding Gesture Expressivity",
+    "layer_id": 1,
+    "description": "Understanding Gesture Expressivity",
+    "infolink": "#"
+  },
+  {
+    "name": "Artist",
+    "layer_id": 8,
+    "description": "Draws pictures",
+    "infolink": "#"
+  },
+  {
+    "name": "Coder",
+    "layer_id": 8,
+    "description": "Codes the application",
+    "infolink": "#"
+  },
+  {
+    "name": "Researcher",
+    "layer_id": 8,
+    "description": "Researches the subject matter",
+    "infolink": "#"
+  },
+  {
+    "name": "Designer",
+    "layer_id": 8,
+    "description": "Designs the appearence",
+    "infolink": "#"
+  },
+  {
+    "name": "Manager",
+    "layer_id": 8,
+    "description": "Manager manages the project",
+    "infolink": "#"
+  },
+  {
+    "name": "Layperson",
+    "layer_id": 8,
+    "description": "Someone who is not very well-versed in the subject matter",
+    "infolink": "#"
+  },
+  {
+    "name": "Investor",
+    "layer_id": 8,
+    "description": "Pours money into the project",
+    "infolink": "#"
+  },
+  {
+    "name": "Despite how previous studies have shown that certain meditative relaxation techniques are efficient tools for stress management, these methods are not widely in use in work environments. Traditionally these methods require commitment and effort, and technological aids to support these activities are scarce. In this project we examined how the latest 3D virtual technologies can be utilized in enhancing meditation techniques.",
+    "layer_id": 9,
+    "description": "Despite how previous studies have shown that certain meditative relaxation techniques are efficient tools for stress management, these methods are not widely in use in work environments. Traditionally these methods require commitment and effort, and technological aids to support these activities are scarce. In this project we examined how the latest 3D virtual technologies can be utilized in enhancing meditation techniques.",
+    "infolink": "#"
+  },
+  {
+    "name": "The strong feel of being somewhere else typical to 3D virtual environments hastens the detachment from one's every day surroundings and boosts the effects of the relaxation techniques, and also enables the user to use the system during the work day in the work place.In this project we developed a neuroadaptive 3D virtual environment. In this first prototype phase we implemented two different meditation techniques – the body awareness and point focus exercises. In addition to the original project plan, an additional feature was developed for the environment: EEG based neuroadaptivity so that the environment is responsive to changes in the users brainwaves. Based on states of relaxation and focused attention measured from the brainwaves, the users avatar could levitate in the environment. The purpose of this neuroadaptivity is to boost the effects of the exercise and make the environment more responsive and immersive. It also provided feedback to the user and guided the meditation",
+    "layer_id": 10,
+    "description": "The strong feel of being somewhere else typical to 3D virtual environments hastens the detachment from one's every day surroundings and boosts the effects of the relaxation techniques, and also enables the user to use the system during the work day in the work place.In this project we developed a neuroadaptive 3D virtual environment. In this first prototype phase we implemented two different meditation techniques – the body awareness and point focus exercises. In addition to the original project plan, an additional feature was developed for the environment: EEG based neuroadaptivity so that the environment is responsive to changes in the users brainwaves. Based on states of relaxation and focused attention measured from the brainwaves, the users avatar could levitate in the environment. The purpose of this neuroadaptivity is to boost the effects of the exercise and make the environment more responsive and immersive. It also provided feedback to the user and guided the meditation",
+    "infolink": "#"
+  },
+  {
+    "name": "University of Helsinki",
+    "layer_id": 11,
+    "description": "University of Helsinki",
+    "infolink": "#"
+  },
+  {
+    "name": "Aalto University",
+    "layer_id": 11,
+    "description": "Aalto University",
+    "infolink": "#"
+  }
+]

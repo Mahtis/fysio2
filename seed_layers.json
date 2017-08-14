@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Application",
+    "order": 80
+  },
+  {
+    "name": "Logic",
+    "order": 70
+  },
+  {
+    "name": "Indicies",
+    "order": 60
+  },
+  {
+    "name": "Metrics",
+    "order": 50
+  },
+  {
+    "name": "Signal",
+    "order": 40
+  },
+  {
+    "name": "Software",
+    "order": 20
+  },
+  {
+    "name": "Hardware",
+    "order": 10
+  },
+  {
+    "name": "Role",
+    "order": 30
+  },
+  {
+    "name": "What",
+    "order": 90
+  },
+  {
+    "name": "How",
+    "order": 100
+  },
+  {
+    "name": "Who",
+    "order": 110
+  }
+]
