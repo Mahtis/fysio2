@@ -41,6 +41,18 @@ Install Rails by running the following commands:
     
 Install needed Gems with `bundle install`.
 
+#### Generating documentation
+
+Install jsdoc
+
+    npm install -g jsdoc
+    
+Run jsdoc from project root directory
+
+    jsdoc -r app/javascript -d docs
+    
+Documentation can be found under docs directory
+
 #### Running the app
 
 We use [Yarn](https://yarnpkg.com/en/) for managing JS dependencies so you need to
