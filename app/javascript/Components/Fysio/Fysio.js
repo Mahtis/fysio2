@@ -51,7 +51,6 @@ class Fysio extends Component{
 
     setTextSearch(wantText){
         this.setState({currentSearch: wantText});
-        console.log(wantText);
     }
     /**
      * Lifecycle render method
