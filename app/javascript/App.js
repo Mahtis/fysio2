@@ -284,8 +284,17 @@ class App extends Component {
             );
 
         } else {
-            let nav = <NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
-            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
+            let nav = <NavBar layerTypes={layerTypes}
+                              changeLayerView={this.changeLayerView}
+                              appMode = {this.state.appMode}
+                              userMode = {this.state.userMode}
+                              toNormal = {this.toNormal}
+                              toAbout = {this.toAbout}
+                              toLogin = {this.toLogin}
+                              doLogout = {this.doLogout}
+                              doClear = {this.doClear}
+                              createPublication={this.createPublication}
+                              layerCategories={layerCategories}
             />;
             const homePage = (
                 <div className="table-responsive">
@@ -359,23 +368,6 @@ class App extends Component {
                 <div>
                     {nav}
                     {more}
-                    <NavBar layerTypes={layerTypes}
-                            changeLayerView={this.changeLayerView}
-                            createPublication={this.createPublication}
-                            layerCategories={layerCategories}
-                    />
-                    <div className="table-responsive">
-                        <Fysio
-                            key="1"
-                            categories={categories}
-                            layers={layers}
-                            publications={publications}
-                            updateTable={this.updateTable}
-                            categorySelected={this.state.categorySelected}
-                            categoryAvailable={this.state.categoryAvailable}
-                        />
-
-                    </div>
                 </div>
             );
 
