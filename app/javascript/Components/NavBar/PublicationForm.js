@@ -38,7 +38,8 @@ class PublicationForm extends Component {
             name: this.state.name,
             abstract: this.state.abstract,
             year: this.state.year,
-            journal: this.state.journal
+            journal: this.state.journal,
+            categories: []
         };
         this.props.createPublication(attributes);
     }
@@ -68,6 +69,7 @@ class PublicationForm extends Component {
     }
 
     render() {
+        //console.log(this.props.layerCategories);
         return (
             <div>
                 <span onClick={this.toggle}>Add publication</span>
@@ -92,7 +94,9 @@ class PublicationForm extends Component {
                                     Journal:
                                     <input type="text" value={this.state.journal} onChange={this.handleJournalChange} />
                                 </label>
-
+                                {Object.keys(this.props.layerCategories).forEach(layer =>
+                                  <label>{layer}</label>
+                                )}
                                 <input type="submit" value="Submit" onClick={this.toggle} />
 
                             </form>

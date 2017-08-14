@@ -33,6 +33,12 @@ class UserDropdown extends Component {
                                 Create publication
 
                         </DropdownItem>
+                        <DropdownItem>
+                            <PublicationForm
+                                createPublication={this.props.createPublication}
+                                layerCategories={this.props.layerCategories}
+                            />
+                        </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
             </NavLink>

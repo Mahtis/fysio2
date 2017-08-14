@@ -52,8 +52,11 @@ class App extends Component {
         DatabaseConnector.getCategories().then((resolve) => this.setState({
             categories: resolve,
             categoryAvailable: resolve,
-
-        }));
+        })).then(
+            this.setState({
+                layerCategories: this.createLayerCategories(this.state.categories)
+            })
+        );
     }
 
     updateTable(name) {
@@ -90,7 +93,7 @@ class App extends Component {
     createPublication(data) {
         DatabaseConnector.createPublication(data)
             .then(this.updateTable('hack'));
-        console.log(data);
+        //console.log(data);
     }
 
     createLayerCategories(cats) {
@@ -98,13 +101,16 @@ class App extends Component {
         let layers = this.state.layers;
         let categories = cats;
 
-        for(let i = layers[0].id; i <= layers[layers.length-1].id; i++){
-            layerCategories[i] = [];
-        }
+        if (this.state.categories.length > 0 && this.state.layers.length > 0) {
 
-        for(let i = 0; i < categories.length; i++) {
-            if (layerCategories[categories[i].layer_id] !== undefined) {
-                layerCategories[categories[i].layer_id].push(categories[i]);
+            for(let i = 0; i < layers.length; i++){
+                layerCategories[layers[i].id] = [];
+            }
+
+            for(let i = 0; i < categories.length; i++) {
+                if (layerCategories[categories[i].layer_id] !== undefined) {
+                    layerCategories[categories[i].layer_id].push(categories[i]);
+                }
             }
         }
 
@@ -153,13 +159,15 @@ class App extends Component {
         let layers = this.state.layers;
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
-        //let layerCategories = this.createLayerCategories(this.state.categories);
+        let layerCategories = this.createLayerCategories(this.state.categories);
 
         if (publications.length === 0 && layerTypes.length === 0) {
             return (
                 <div>
                     <NavBar layerTypes={[]}
-                            changeLayerView={this.changeLayerView}/>
+                            changeLayerView={this.changeLayerView}
+                            layerCategories={layerCategories}
+                    />
                     <span className={"loading"}>
                         Loading
                     </span>
@@ -172,6 +180,7 @@ class App extends Component {
                     <NavBar layerTypes={layerTypes}
                             changeLayerView={this.changeLayerView}
                             createPublication={this.createPublication}
+                            layerCategories={layerCategories}
                     />
                     <div className="table-responsive">
                         <Fysio

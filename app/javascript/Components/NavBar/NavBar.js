@@ -54,7 +54,10 @@ class NavBar extends Component{
                                 <NavLink href="#">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <UserDropdown createPublication={this.props.createPublication} />
+                                <UserDropdown
+                                    createPublication={this.props.createPublication}
+                                    layerCategories={this.props.layerCategories}
+                                 />
                             </NavItem>
                         </Nav>
                     </Collapse>
