@@ -17,6 +17,11 @@ class Fysio extends Component{
 
     constructor() {
         super();
+
+        this.state = {
+            currentSearch: "",
+        }
+        this.setTextSearch = this.setTextSearch.bind(this);
     }
 
     /**
@@ -44,6 +49,10 @@ class Fysio extends Component{
         return layerCategories;
     }
 
+    setTextSearch(wantText){
+        this.setState({currentSearch: wantText});
+        console.log(wantText);
+    }
     /**
      * Lifecycle render method
      * @returns {XML} The view as jsx
@@ -81,6 +90,7 @@ class Fysio extends Component{
                                         categorySelected={this.props.categorySelected}
                                         categoryAvailable={this.props.categoryAvailable}
                                         layerCategoriesDropDown={layerCategoriesDropDown}
+                                        setTextSearch={this.setTextSearch}
                         />
                     </thead>
                     <tbody>
@@ -100,20 +110,28 @@ class Fysio extends Component{
                                  updateTable={this.props.updateTable}
                                  categorySelected={this.props.categorySelected}
                                  categoryAvailable={this.props.categoryAvailable}
-                                 layerCategoriesDropDown={layerCategoriesDropDown} />
+                                 layerCategoriesDropDown={layerCategoriesDropDown}
+                                 setTextSearch={this.setTextSearch}
+                    />
                     </thead>
                     <tbody>
-                    { publications.map(publication  => <Publication
-                        key={publication.name}
-                        categories={categories}
-                        layers={layers}
-                        publication={publication}
-                        layerCategories={layerCategories}
-                        updatePublications={this.props.updatePublications}
-                        updateTable={this.props.updateTable}
-                        categorySelected={this.props.categorySelected}
-                        categoryAvailable={this.props.categoryAvailable}
-                        layerCategoriesDropDown={layerCategoriesDropDown} />)}
+                    { publications.map(publication  =>{
+                        if(publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
+                            return <Publication
+                                key={publication.name}
+                                categories={categories}
+                                layers={layers}
+                                publication={publication}
+                                layerCategories={layerCategories}
+                                updatePublications={this.props.updatePublications}
+                                updateTable={this.props.updateTable}
+                                categorySelected={this.props.categorySelected}
+                                categoryAvailable={this.props.categoryAvailable}
+                                layerCategoriesDropDown={layerCategoriesDropDown}
+                                currentSearch = {this.state.currentSearch}
+                            />
+                        }
+                    })}
                     </tbody>
                 </Table>
             );
