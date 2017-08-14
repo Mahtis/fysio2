@@ -118,3 +118,8 @@ td, th {
     min-width: 300px;
     max-width: 300px;
 }
+
+.modal-dialog {
+    max-width: 90% !important;
+    min-width: 500px !important;
+}
