@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import {Button} from 'reactstrap';
 import {Tooltip} from 'reactstrap';
 
+/**
+ * Component for single category button
+ * @extends Component
+ */
+
 class CategoryButton extends Component {
+
+    /**
+     * Constructor
+     * @param props {object} Props as object
+     */
 
     constructor(props) {
         super(props);
@@ -15,15 +25,28 @@ class CategoryButton extends Component {
         this.selected = this.selected.bind(this);
     }
 
+    /**
+     * Function that toggles the state of associated tooltip
+     */
+
     toggle() {
         this.setState({
             tooltipOpen: !this.state.tooltipOpen
         });
     }
 
+    /**
+     * Calls parent node update table function telling the category has been selected
+     */
+
     selected() {
         this.props.updateTable(this.props.name);
     }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render() {
         let useStyle;
@@ -63,7 +86,7 @@ CategoryButton.propTypes = {
     status: PropTypes.bool.isRequired,
 };
 
-export default CategoryButton;
+export default CategoryButton;git
 
 
 

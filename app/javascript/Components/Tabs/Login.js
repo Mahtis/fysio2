@@ -5,13 +5,16 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
+/**
+ * Login component
+ * @extends Component
+ */
+
 class Login extends Component{
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor(props) {
         super(props);
@@ -26,39 +29,31 @@ class Login extends Component{
         this.submitLogin = this.submitLogin.bind(this);
     }
 
-    /*
-
-    Lifecycle method
-
+    /**
+     * Lifecycle method
      */
 
     componentDidMount() {
     }
 
-    /*
-
-    Function that updates visible username
-
-    */
+    /**
+     * Function that updates visible username
+     */
 
     updateUsername(e) {
         this.setState({usernameI: e.target.value});
     }
 
-    /*
-
-    Function that updates password
-
-    */
+    /**
+     * Function that updates password
+     */
 
     updatePassword(e) {
         this.setState({passwordI: e.target.value});
     }
 
-    /*
-
-    Login handler
-
+    /**
+     * Login handler
      */
 
     submitLogin() {
@@ -77,10 +72,9 @@ class Login extends Component{
         }
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render(){

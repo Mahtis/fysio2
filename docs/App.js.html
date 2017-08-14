@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: App.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: App.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { Component } from 'react';
+import NavBar from './Components/NavBar/NavBar';
+import Fysio from "./Components/Fysio/Fysio";
+import Login from "./Components/Tabs/Login";
+import DatabaseConnector from "./Services/DatabaseConnector";
+
+import { BrowserRouter, Route } from 'react-router-dom'
+
+/**
+ * The Base Class, contains all app data in the state and calls every other component
+ */
+
+class App extends Component {
+
+    /**
+     * Component constructor
+     */
+
+    constructor() {
+        super();
+        this.state = {
+            visible: "LayersPage",
+            layers: [],
+            categories: [],
+            publications: [],
+            categorySelected: [],
+            categoryAvailable: [],
+            layerTypes: [],
+            appMode : "normal",
+            userMode : "guest",
+        };
+
+        this.changeLayerView = this.changeLayerView.bind(this);
+        this.parsePath = this.parsePath.bind(this);
+        this.updateTable = this.updateTable.bind(this);
+        this.extractIds = this.extractIds.bind(this);
+        this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
+
+        this.toNormal = this.toNormal.bind(this);
+        this.toAbout = this.toAbout.bind(this);
+        this.toLogin = this.toLogin.bind(this);
+        this.doLogout = this.doLogout.bind(this);
+        this.doClear = this.doClear.bind(this);
+        this.setUserMode = this.setUserMode.bind(this);
+    }
+
+    /**
+     * Funciton to change the view
+     * @param id {number} Id of the required view
+     */
+
+    changeLayerView(id) {
+        /* purkkaa */
+        this.updateTable("hack");
+        DatabaseConnector.getLayersForType(id).then((resolve) => this.setState({
+            layers: resolve
+        }));
+    }
+
+    /**
+     * Lifecycle method that makes the calls to fetch all necessary data
+     */
+
+    componentWillMount() {
+        this.loadData();
+    }
+
+    /**
+     * Extracted calls to a separate method
+     */
+
+    loadData() {
+        DatabaseConnector.getLayers().then((resolve) => this.setState({
+            layers: resolve
+        }));
+        DatabaseConnector.getPublications().then((resolve) => this.setState({
+            publications: resolve
+        }));
+        DatabaseConnector.getLayerTypes().then((resolve) => this.setState({
+            layerTypes: resolve
+        }));
+        DatabaseConnector.getCategories().then((resolve) => this.setState({
+            categories: resolve,
+            categoryAvailable: resolve
+        }));
+    }
+
+    /**
+     * Method that mutates data currently visible to user
+     * @param name {string} Name of view
+     */
+
+    updateTable(name) {
+        let selectedCategories = [];
+        let publicationPath = "";
+        let pubs = [];
+
+        // this probably needs to change?
+        if (name === "hack") {
+            publicationPath = "publications.json";
+        } else {
+            selectedCategories = this.manageSelectedCategories(name);
+            publicationPath = this.parsePath(selectedCategories, "publications", "names");
+        }
+
+        // first get publications from path and create the second path
+        DatabaseConnector.fetchFromPath(publicationPath).then(publications => {
+            pubs = publications;
+            let pIds = this.extractIds(publications);
+            return this.parsePath(pIds, "categories", "pubIds");
+        })
+        // then from the second path get the categories that are still possible
+        .then(categoryPath => {
+            DatabaseConnector.fetchFromPath(categoryPath).then(categories => {
+                this.setState({
+                publications: pubs,
+                categorySelected: selectedCategories,
+                categoryAvailable: categories
+                })
+            })
+        });
+    }
+
+    /**
+     * Helper method that makes the category listing usable
+     * @param name {string} Name of view
+     * @returns {Array} Array of selected categories
+     */
+
+    manageSelectedCategories(name) {
+
+        let categorySelectedArray = this.state.categorySelected;
+
+        let index = categorySelectedArray.indexOf(name);
+
+        if (index > -1) {
+            categorySelectedArray.splice(index, 1);
+        } else {
+            categorySelectedArray.push(name);
+        }
+        return categorySelectedArray;
+    }
+
+    /**
+     * Helper method that extracts publication id's out of publication list
+     * @param pubs {Array} Array of publications
+     * @returns {Array}
+     */
+
+    extractIds(pubs) {
+        let pIds = [];
+        pubs.map(p => {
+            pIds.push(p.id)
+        });
+        return pIds;
+    }
+
+    /**
+     * Helper method that generates the url to query database for categories
+     * @param categoriesArray {Array} Array of categories
+     * @param table {string} Name of required database table
+     * @param paramName {string} parameter name that is supplied to backend
+     * @returns {string}
+     */
+
+    parsePath(categoriesArray, table, paramName) {
+
+        let path = table + ".json?";
+        let length = path.length;
+
+        categoriesArray.map(cat => path += paramName + "[]=" + encodeURIComponent(cat) + "&amp;");
+
+        if (path.length === length) {
+            return path.substring(0, path.length - 1);
+        }
+        return path.substring(0, path.length - 1);
+    }
+
+    /**
+     * Sets app mode
+     */
+
+    toNormal(){
+        this.setState({appMode: "normal"});
+    }
+
+    /**
+     * Sets app mode
+     */
+
+    toAbout(){
+        this.setState({appMode: "about"});
+    }
+
+    /**
+     * Sets app mode
+     */
+
+    toLogin(){
+        this.setState({appMode: "login"});
+    }
+
+    /**
+     * Sets app mode
+     */
+
+    doLogout(){
+        this.setState({userMode: "guest"});
+    }
+
+    /**
+     * Sets app mode
+     */
+
+    doClear(){
+        //???
+    }
+
+    /**
+     * Sets app and user mode
+     */
+
+    setUserMode(wantMode){
+        this.setState({userMode: wantMode});
+        this.setState({appMode: "normal"});
+    }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
+
+    render() {
+        let categories = this.state.categories;
+        let layers = this.state.layers;
+        let publications = this.state.publications;
+        let layerTypes = this.state.layerTypes;
+
+        if (publications.length === 0 &amp;&amp; layerTypes.length === 0) {
+            return (
+                &lt;div>
+                    &lt;NavBar layerTypes={[]}
+                            changeLayerView={this.changeLayerView}/>
+                    &lt;span className={"loading"}>
+                        Loading
+                    &lt;/span>
+                &lt;/div>
+            );
+
+        } else {
+            let nav = &lt;NavBar layerTypes={layerTypes} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
+            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
+            />;
+            const homePage = (
+                &lt;div className="table-responsive">
+                    &lt;Fysio
+                        key="1"
+                        categories={categories}
+                        layers={layers}
+                        publications={publications}
+                        updateTable={this.updateTable}
+                        categorySelected={this.state.categorySelected}
+                        categoryAvailable={this.state.categoryAvailable}
+                    />
+                &lt;/div>
+            );
+            const aboutPage = (
+                &lt;div>
+                    &lt;h3>Welcome to the Interactive Web Repository for Physiological Computing&lt;/h3>
+                    &lt;br/>
+                    &lt;p className={"aboutBody"}>
+                        This repository allows you to browse, search and examine publications related to physiological computing.
+
+                        Each publication has a number of attributes, each of which belongs to a specific layer such as signal type or the type of hardware used.
+                        Layers belong to one of three groups: science, hacker or general.
+                    &lt;/p>
+
+                    &lt;p className={"aboutBody"}>
+                        Physiological computing is a form of HCI(human-computer interaction) where the interaction depends on measuring of and responding to the physiological activity of the user in real time. Physiological computing has the potential to revolutionize human-computer interaction. For one, it widens the communication bandwidth drastically by introducing several new information channels. The traditional communication between humans and computers has been described as asymmetrical: while the computer is able to output vast amount of audiovisual information quickly the input from the user is limited to the relatively low bandwidth provided by mouse and keyboard. Furthermore, while the user has access to the internal state of the computer system such as memory consumption and processor utilization level while the computer has no information of the cognitive and emotional state of the user. Physiological computing allows symmetry both in terms of information bandwidth (the extra input modalities in form of physiological signals) as well as user state and context information derived from the physiological data.
+                    &lt;/p>
+
+                    &lt;h5>Instructions:&lt;/h5>
+                    &lt;ul className={"aboutBody"}>
+                        &lt;li>You can click on any attribute to only show publications which have that attribute.&lt;/li>
+                        &lt;li>You can also select attributes from the drop-down from the layer name.&lt;/li>
+                        &lt;li>Click on a publication name for additional information about that publication.&lt;/li>
+                        &lt;li>Click on a group name to show the layers that belong to it.&lt;/li>
+                        &lt;li>Clear your attribute selections with the clear button in the nav-bar.&lt;/li>
+                    &lt;/ul>
+
+                &lt;/div>
+            );
+            const loginPage = (
+                &lt;div>
+                    &lt;Login setUserMode={this.setUserMode} />
+                &lt;/div>
+            );
+
+            let more = null;
+            if (this.state.appMode === "normal") {
+                more = homePage;
+
+            } else if (this.state.appMode === "about") {
+                more = aboutPage;
+
+            } else if (this.state.appMode === "login") {
+                more = loginPage;
+            }
+
+            //router is currently not used as any use of links leads to a blank partially loaded page.
+            const moreRouter = (
+                &lt;div>
+                    &lt;BrowserRouter>
+                        &lt;Route exact path='/' component={homePage}/>&lt;/BrowserRouter>
+                    &lt;BrowserRouter>
+                        &lt;Route exact path='/about' component={aboutPage}/>&lt;/BrowserRouter>
+                    &lt;BrowserRouter>
+                        &lt;Route exact path='/login' component={loginPage}/>&lt;/BrowserRouter>
+                &lt;/div>
+            );
+
+            return (
+                &lt;div>
+                    {nav}
+                    {more}
+                &lt;/div>
+            );
+
+        }
+    }
+}
+
+export default App;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="App.html">App</a></li><li><a href="Category.html">Category</a></li><li><a href="CategoryButton.html">CategoryButton</a></li><li><a href="CategoryList.html">CategoryList</a></li><li><a href="DatabaseConnector.html">DatabaseConnector</a></li><li><a href="Fysio.html">Fysio</a></li><li><a href="Layer.html">Layer</a></li><li><a href="LayerLink.html">LayerLink</a></li><li><a href="Login.html">Login</a></li><li><a href="NavBar.html">NavBar</a></li><li><a href="Publication.html">Publication</a></li><li><a href="PublicationCategoryList.html">PublicationCategoryList</a></li><li><a href="PublicationInfoTable.html">PublicationInfoTable</a></li><li><a href="PublicationLayerCategoryList.html">PublicationLayerCategoryList</a></li><li><a href="PublicationTitle.html">PublicationTitle</a></li><li><a href="TableHeader.html">TableHeader</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.4</a> on Mon Aug 14 2017 13:35:04 GMT+0300 (EEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

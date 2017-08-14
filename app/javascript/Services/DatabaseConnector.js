@@ -4,14 +4,15 @@ This is helper class that contains all database functions
 
  */
 
+/**
+ * Helper class that handles database connections
+ */
 
 class DatabaseConnector {
 
-    /*
-
-    @param id of desired layer type
-    @return array of desired layers
-
+    /**
+     * Get layers related to a type ie view
+     * @param id {number} Layer type id
      */
 
     static getLayersForType(id) {
@@ -22,12 +23,8 @@ class DatabaseConnector {
             });
     }
 
-    /*
-
-    Default layer fetcher, gets the default set
-
-    @return array of layers
-
+    /**
+     * Fetches default layer
      */
 
     static getLayers() {
@@ -38,12 +35,8 @@ class DatabaseConnector {
             });
     }
 
-    /*
-
-    Fetches all available layer types
-
-    @return array of layer types
-
+    /**
+     * Fetches layers related to a type
      */
 
     static getLayerTypes() {
@@ -54,12 +47,8 @@ class DatabaseConnector {
             });
     }
 
-    /*
-
-    Fetches all publications
-
-    @return array of publications
-
+    /**
+     * Fetches all publications
      */
 
     static getPublications() {
@@ -70,12 +59,8 @@ class DatabaseConnector {
             });
     }
 
-    /*
-
-    Fetches categories
-
-    @return array of all categories
-
+    /**
+     * Fetches categories
      */
 
     static getCategories() {
@@ -86,12 +71,9 @@ class DatabaseConnector {
             });
     }
 
-    /*
-
-    Generic fetcher
-
-    @return array of objects
-
+    /**
+     * Fetches generic query
+     * @param path {string} Name of backend database
      */
 
     static fetchFromPath(path) {

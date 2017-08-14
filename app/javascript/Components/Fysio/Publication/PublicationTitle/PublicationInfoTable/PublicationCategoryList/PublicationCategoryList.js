@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Lists publication categories related to a layer
+ * @extends Component
+ */
+
 class PublicationCategoryList extends Component {
+
+    /**
+     * Constructor
+     */
 
     constructor() {
         super();
     }
+
+    /**
+     * Extracts relevant categories out of global array
+     * @returns {Array} Categories associated
+     */
 
     getPublicationLayerCategories() {
         const categories = [];
@@ -23,6 +37,11 @@ class PublicationCategoryList extends Component {
         }
         return categories;
     }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render() {
         let categories = this.getPublicationLayerCategories();

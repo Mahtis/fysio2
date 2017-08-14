@@ -4,31 +4,25 @@ import { Table } from 'reactstrap';
 import TableHeader from './TableHeader/TableHeader.js';
 import Publication from './Publication/Publication.js';
 
-/*
-
-Base data component, contains everything else except for navigation bar and alternative tabs
-
+/**
+ * Base data component, contains everything else except for navigation bar and alternative tabs
+ * @extends Component
  */
 
 class Fysio extends Component{
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor() {
         super();
     }
 
-    /*
-
-    Generates array of layers that each contain an array of categories respectively
-
-    @param array of categories
-    @return array of arrays
-
+    /**
+     * Generates array of layers that each contain an array of categories respectively
+     * @param cats {Array} Array of Categories
+     * @returns {{}} Layers with associated categories
      */
 
     createLayerCategories(cats) {
@@ -50,10 +44,9 @@ class Fysio extends Component{
         return layerCategories;
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render(){

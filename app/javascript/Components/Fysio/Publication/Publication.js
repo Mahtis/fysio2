@@ -3,10 +3,25 @@ import PublicationTitle from './PublicationTitle/PublicationTitle.js';
 import PublicationCategoryList from './PublicationLayerCategoryList/PublicationLayerCategoryList.js';
 import PropTypes from 'prop-types';
 
+/**
+ * One single publication
+ * @extends Component
+ */
+
 class Publication extends Component {
+
+    /**
+     * Constructor
+     */
+
     constructor(){
         super();
     }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render(){
         let publication = this.props.publication;

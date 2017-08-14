@@ -6,18 +6,14 @@ import DatabaseConnector from "./Services/DatabaseConnector";
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
-/*
-
-The Base Class, contains all app data in the state and calls every other component
-
+/**
+ * The Base Class, contains all app data in the state and calls every other component
  */
 
 class App extends Component {
 
-    /*
-
-    Component constructor
-
+    /**
+     * Component constructor
      */
 
     constructor() {
@@ -48,14 +44,9 @@ class App extends Component {
         this.setUserMode = this.setUserMode.bind(this);
     }
 
-
-    /*
-
-    Function to change the view,
-
-    @param: id of the desired view
-    @return sets the layers with desired values
-
+    /**
+     * Funciton to change the view
+     * @param id {number} Id of the required view
      */
 
     changeLayerView(id) {
@@ -66,20 +57,16 @@ class App extends Component {
         }));
     }
 
-    /*
-
-    Lifecycle method that makes the calls to fetch all necessary data
-
+    /**
+     * Lifecycle method that makes the calls to fetch all necessary data
      */
 
     componentWillMount() {
         this.loadData();
     }
 
-    /*
-
-    Extracted calls to a separate method
-
+    /**
+     * Extracted calls to a separate method
      */
 
     loadData() {
@@ -98,13 +85,9 @@ class App extends Component {
         }));
     }
 
-    /*
-
-    Method that mutates data currently visible to user
-
-    @param name of the categories
-    @return sets the values for publications and categories selected and still available for grabs
-
+    /**
+     * Method that mutates data currently visible to user
+     * @param name {string} Name of view
      */
 
     updateTable(name) {
@@ -138,13 +121,10 @@ class App extends Component {
         });
     }
 
-    /*
-
-    Helper method that makes the category listing usable
-
-    @param name of the category
-    @return array of selected categories
-
+    /**
+     * Helper method that makes the category listing usable
+     * @param name {string} Name of view
+     * @returns {Array} Array of selected categories
      */
 
     manageSelectedCategories(name) {
@@ -161,15 +141,11 @@ class App extends Component {
         return categorySelectedArray;
     }
 
-    /*
-
-    Helper method that extracts publication id's out of publication list
-
-    @param array of publications
-    @return array of publication id's
-
+    /**
+     * Helper method that extracts publication id's out of publication list
+     * @param pubs {Array} Array of publications
+     * @returns {Array}
      */
-
 
     extractIds(pubs) {
         let pIds = [];
@@ -179,15 +155,12 @@ class App extends Component {
         return pIds;
     }
 
-    /*
-
-    Helper method that generates the url to query database for categories
-
-    @param array of categories
-    @param name of the rails database
-    @param name that the objects get in the url
-    @return url that gets invoked to fetch data
-
+    /**
+     * Helper method that generates the url to query database for categories
+     * @param categoriesArray {Array} Array of categories
+     * @param table {string} Name of required database table
+     * @param paramName {string} parameter name that is supplied to backend
+     * @returns {string}
      */
 
     parsePath(categoriesArray, table, paramName) {
@@ -203,40 +176,48 @@ class App extends Component {
         return path.substring(0, path.length - 1);
     }
 
-
-    /*
-
-    Sets app mode
-
+    /**
+     * Sets app mode
      */
 
     toNormal(){
         this.setState({appMode: "normal"});
     }
+
+    /**
+     * Sets app mode
+     */
+
     toAbout(){
         this.setState({appMode: "about"});
     }
+
+    /**
+     * Sets app mode
+     */
+
     toLogin(){
         this.setState({appMode: "login"});
     }
+
+    /**
+     * Sets app mode
+     */
+
     doLogout(){
         this.setState({userMode: "guest"});
     }
 
-    /*
-
-    Clears selected categories
-
+    /**
+     * Sets app mode
      */
 
     doClear(){
         //???
     }
 
-    /*
-
-    Sets user and appmode
-
+    /**
+     * Sets app and user mode
      */
 
     setUserMode(wantMode){
@@ -244,10 +225,9 @@ class App extends Component {
         this.setState({appMode: "normal"});
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render() {
