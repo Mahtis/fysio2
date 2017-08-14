@@ -27,6 +27,7 @@ class Login extends Component{
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
