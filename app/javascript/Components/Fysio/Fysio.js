@@ -19,7 +19,7 @@ class Fysio extends Component{
         super();
 
         this.state = {
-            currentSearch: "",
+            currentSearch: ""
         }
         this.setTextSearch = this.setTextSearch.bind(this);
     }
@@ -74,24 +74,28 @@ class Fysio extends Component{
 
          */
 
+        var TabHead = (
+            <thead >
+                <TableHeader    categories={categories}
+                                layers={layers}
+                                publications={publications}
+                                layerCategories={layerCategories}
+                                updatePublications={this.props.updatePublications}
+                                updateTable={this.props.updateTable}
+                                categorySelected={this.props.categorySelected}
+                                categoryAvailable={this.props.categoryAvailable}
+                                layerCategoriesDropDown={layerCategoriesDropDown}
+                                setTextSearch={this.setTextSearch}
+                />
+            </thead>
+        );
+
         if(layers === undefined || layers === null){
           return (<span>loading</span>);
         } else if(publications === undefined || publications === null || categories === undefined || categories === null){
             return (
                 <Table >
-                    <thead >
-                        <TableHeader    categories={categories}
-                                        layers={layers}
-                                        publications={publications}
-                                        layerCategories={layerCategories}
-                                        updatePublications={this.props.updatePublications}
-                                        updateTable={this.props.updateTable}
-                                        categorySelected={this.props.categorySelected}
-                                        categoryAvailable={this.props.categoryAvailable}
-                                        layerCategoriesDropDown={layerCategoriesDropDown}
-                                        setTextSearch={this.setTextSearch}
-                        />
-                    </thead>
+                    {TabHead}
                     <tbody>
 
                     </tbody>
@@ -100,19 +104,7 @@ class Fysio extends Component{
         } else {
             return (
                 <Table>
-                    <thead>
-                    <TableHeader categories={categories}
-                                 layers={layers}
-                                 publications={publications}
-                                 layerCategories={layerCategories}
-                                 updatePublications={this.props.updatePublications}
-                                 updateTable={this.props.updateTable}
-                                 categorySelected={this.props.categorySelected}
-                                 categoryAvailable={this.props.categoryAvailable}
-                                 layerCategoriesDropDown={layerCategoriesDropDown}
-                                 setTextSearch={this.setTextSearch}
-                    />
-                    </thead>
+                    {TabHead}
                     <tbody>
                     { publications.map(publication  =>{
                         if(publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
