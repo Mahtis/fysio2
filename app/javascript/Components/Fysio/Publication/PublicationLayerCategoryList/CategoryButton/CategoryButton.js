@@ -86,7 +86,7 @@ CategoryButton.propTypes = {
     status: PropTypes.bool.isRequired,
 };
 
-export default CategoryButton;git
+export default CategoryButton;
 
 
 
