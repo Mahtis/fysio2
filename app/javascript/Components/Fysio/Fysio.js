@@ -17,6 +17,11 @@ class Fysio extends Component{
 
     constructor() {
         super();
+
+        this.state = {
+            currentSearch: "",
+        }
+        this.setTextSearch = this.setTextSearch.bind(this);
     }
 
     /**
@@ -42,6 +47,11 @@ class Fysio extends Component{
             }
         }
         return layerCategories;
+    }
+
+    setTextSearch(wantText){
+        this.setState({currentSearch: wantText});
+        console.log(wantText);
     }
 
     /**
@@ -81,6 +91,7 @@ class Fysio extends Component{
                                         categorySelected={this.props.categorySelected}
                                         categoryAvailable={this.props.categoryAvailable}
                                         layerCategoriesDropDown={layerCategoriesDropDown}
+                                        setTextSearch={this.setTextSearch}
                         />
                     </thead>
                     <tbody>
@@ -100,7 +111,9 @@ class Fysio extends Component{
                                  updateTable={this.props.updateTable}
                                  categorySelected={this.props.categorySelected}
                                  categoryAvailable={this.props.categoryAvailable}
-                                 layerCategoriesDropDown={layerCategoriesDropDown} />
+                                 layerCategoriesDropDown={layerCategoriesDropDown}
+                                 setTextSearch={this.setTextSearch}
+                    />
                     </thead>
                     <tbody>
                     { publications.map(publication  => <Publication
@@ -113,7 +126,9 @@ class Fysio extends Component{
                         updateTable={this.props.updateTable}
                         categorySelected={this.props.categorySelected}
                         categoryAvailable={this.props.categoryAvailable}
-                        layerCategoriesDropDown={layerCategoriesDropDown} />)}
+                        layerCategoriesDropDown={layerCategoriesDropDown}
+                        currentSearch = {this.state.currentSearch}
+                    />)}
                     </tbody>
                 </Table>
             );

@@ -27,6 +27,13 @@ class Publication extends Component {
         let publication = this.props.publication;
         let layers = this.props.layers;
         let categories = this.props.categories;
+
+        let name = publication.name.toLowerCase();
+        let need = this.props.currentSearch.toLowerCase();
+        if (!name.includes(need)) {
+            return null;
+        }
+
             return (
                 <tr>
                     <PublicationTitle pub={publication} key={publication.name} layers={layers} categories={categories} />
