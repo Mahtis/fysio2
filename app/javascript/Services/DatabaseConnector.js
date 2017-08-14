@@ -52,7 +52,22 @@ class DatabaseConnector {
     static createPublication(data) {
         let params = {publication: data};
         console.log(params);
-        fetch('/publications', {method: 'post', body: params})
+        fetch('/publications', {
+            method: 'POST',
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+            },
+
+            credentials: 'same-origin',
+            body: JSON.stringify(params)
+        })
     }
 }
 
