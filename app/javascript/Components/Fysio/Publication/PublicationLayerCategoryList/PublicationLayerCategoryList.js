@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CategoryButton from "./CategoryButton/CategoryButton";
+import CategoryButton from "./CategoryButton/CategoryButton.js";
+
+/**
+ * Lists all categories in a selected layer
+ * @extends Component
+ */
 
 class PublicationLayerCategoryList extends Component{
+
+    /**
+     * Constructor
+     */
+
     constructor() {
         super();
     }
+
+    /**
+     * Function that extracts all the associated categories
+     * @returns {Array} The associated categories
+     */
 
     getPublicationLayerCategories() {
         const categories = [];
@@ -23,6 +38,11 @@ class PublicationLayerCategoryList extends Component{
         }
         return categories;
     }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render() {
         let categories = this.getPublicationLayerCategories();

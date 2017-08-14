@@ -2,18 +2,15 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { DropdownItem } from 'reactstrap';
 
-/*
-
-Component that is each category item in the dropdown
-
+/**
+ * Component that is each category item in the dropdown
+ * @extends Component
  */
 
 class Category extends Component{
 
-    /*
-
-    Component constructor
-
+    /**
+     * Component constructor
     */
 
     constructor() {
@@ -21,20 +18,17 @@ class Category extends Component{
         this.select = this.select.bind(this);
     }
 
-    /*
-
-    Helper method that invokes the selection process in the parent node
-
+    /**
+     *  Helper method that invokes the selection process in the parent node
      */
 
     select() {
         this.props.updateTable(this.props.category.name);
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     *  Lifecycle render method
+     *  @returns {XML} The view as jsx
      */
 
     render() {

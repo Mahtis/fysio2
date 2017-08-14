@@ -5,28 +5,24 @@ import Category from "./Category/Category";
 
 import { ListGroup } from 'reactstrap';
 
-/*
-
-Component that is the dropdown menu of the layer and contains list of the categories
-
+/**
+ * Component that is the dropdown menu of the layer and contains list of the categories
+ * @extends Component
  */
 
 class CategoryList extends Component{
 
-    /*
-
-    Component constructor
-
+    /**
+     * Component constructor
     */
 
     constructor(){
         super();
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render() {

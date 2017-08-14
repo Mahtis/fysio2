@@ -6,19 +6,16 @@ import PropTypes from 'prop-types';
 import { Collapse, Button, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarHeader } from 'reactstrap';
 import { Link } from 'react-router-link'
 
-/*
-
-Navigation bar component, contains all the components within navigation bar
-
+/**
+ * Navigation bar component, contains all the components within navigation bar
+ * @extends Component
  */
 
 class NavBar extends Component{
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor(props) {
         super(props);
@@ -31,10 +28,8 @@ class NavBar extends Component{
         };
     }
 
-    /*
-
-    Lifecycle method that triggers changing of its text after the component has loaded
-
+    /**
+     * Lifecycle method that triggers changing of its text after the component has loaded
      */
 
     componentDidMount() {
@@ -46,13 +41,9 @@ class NavBar extends Component{
         }
     }
 
-    /*
-
-    Changes the layers in the view
-
-    @param object of the type
-    @return sets the state to the new type
-
+    /**
+     * Changes the layers in the view
+     * @param type {object} Type object
      */
 
     changeView(type) {
@@ -62,10 +53,8 @@ class NavBar extends Component{
         });
     }
 
-    /*
-
-    Toggles the dropdown menu state
-
+    /**
+     * Toggles the dropdown menu state
      */
 
     toggle() {
@@ -74,10 +63,9 @@ class NavBar extends Component{
         });
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render(){

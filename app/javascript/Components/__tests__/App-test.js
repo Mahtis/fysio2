@@ -23,32 +23,32 @@ describe('App component', () => {
         DatabaseConnector.getLayers().then(resolve => {
             expect(app.state().layers.length).toEqual(3);
         })
-    })
+    });
 
     it('Fetches layer types correctly', () => {
         DatabaseConnector.getLayerTypes().then(resolve => {
             expect(app.state().layerTypes.length).toEqual(2);
         })
-    })
+    });
 
     it('Fetches publications correctly', () => {
         DatabaseConnector.getPublications().then(resolve => {
             expect(app.state().publications.length).toEqual(6);
         })
-    })
+    });
 
     it('Fetches categories correctly', () => {
         DatabaseConnector.getCategories().then(resolve => {
             expect(app.state().categories.length).toEqual(6);
         })
-    })
+    });
 
     it('Fetches new view categories correctly', () => {
         app.instance().changeLayerView(1);
         DatabaseConnector.getLayersForType(1).then(resolve => {
             expect(app.state().layers.length).toEqual(1);
         })
-    })
+    });
 
     it('clicking a layerType results in a change in layers', () => {
         const nav = app.find('NavBar');
@@ -57,7 +57,7 @@ describe('App component', () => {
         DatabaseConnector.getLayersForType(1).then(resolve => {
             expect(app.state().layers.length).toEqual(1);
         });
-    })
+    });
 
     it('clicking the same layerType results in no change in layers', () => {
         const nav = app.find('NavBar');
@@ -66,7 +66,7 @@ describe('App component', () => {
         DatabaseConnector.getLayersForType(2).then(resolve => {
             expect(app.state().layers.length).toEqual(3);
         });
-    })
+    });
 
     it('clicking a category filters down number of displayed publications', () => {
         const fysio = app.find('Fysio');

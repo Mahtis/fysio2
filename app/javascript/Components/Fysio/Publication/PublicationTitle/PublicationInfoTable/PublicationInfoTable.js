@@ -3,11 +3,24 @@ import { Table } from 'reactstrap';
 import PublicationCategoryList from './PublicationCategoryList/PublicationCategoryList.js';
 import PropTypes from 'prop-types';
 
+/**
+ * Table for publication information modal
+ */
+
 class PublicationInfoTable extends Component {
+
+    /**
+     * Constructor
+     */
 
     constructor() {
         super();
     }
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render() {
         return (

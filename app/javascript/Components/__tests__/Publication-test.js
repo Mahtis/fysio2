@@ -43,7 +43,7 @@ describe("PublicationTitle", () => {
 
         })
 
-    })
+    });
 
     function getPublication() {
         return {

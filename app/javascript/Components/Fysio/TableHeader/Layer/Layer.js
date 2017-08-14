@@ -6,19 +6,16 @@ import { ButtonDropdown,
 import CategoryList from "./CategoryList/CategoryList";
 import PropTypes from 'prop-types';
 
-/*
-
-Component that contains one layer, essentially one column in the table
-
+/**
+ * Component that contains one layer, essentially one column in the table
+ * @extends Component
  */
 
 class Layer extends Component {
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor() {
         super();
@@ -28,10 +25,8 @@ class Layer extends Component {
         };
     }
 
-    /*
-
-    Toggles the dropdown menu
-
+    /**
+     * Toggles the dropdown menu
      */
 
     toggle() {
@@ -40,10 +35,9 @@ class Layer extends Component {
         });
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render(){

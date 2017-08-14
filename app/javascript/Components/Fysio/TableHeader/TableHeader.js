@@ -4,28 +4,24 @@ import PropTypes from 'prop-types';
 
 import { Label, Input } from 'reactstrap';
 
-/*
-
-Class that makes up the data table header.
-
+/**
+ * Class that makes up the data table header.
+ * @extends Component
  */
 
 class TableHeader extends Component {
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor(){
         super();
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render(){

@@ -3,7 +3,16 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
 import PublicationInfoTable from './PublicationInfoTable/PublicationInfoTable.js';
 
+/**
+ * Modal that is opened when a publication is clicked showing all information related to it
+ * @extends Component
+ */
+
 class PublicationTitle extends Component {
+
+    /**
+     * Constructor
+     */
 
     constructor() {
         super();
@@ -13,11 +22,20 @@ class PublicationTitle extends Component {
         };
     }
 
+    /**
+     * Function that toggles the state of the modal
+     */
+
     toggle() {
         this.setState({
             modalOpen: !this.state.modalOpen
         });
     };
+
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
+     */
 
     render() {
         return (

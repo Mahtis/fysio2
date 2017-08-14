@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
 import {NavItem, NavLink} from 'reactstrap';
 
-/*
-
-Component for the different layer type views
-
+/**
+ * Component for the different layer type views
+ * @extends Component
  */
 
 class LayerLink extends Component {
 
-    /*
-
-    Component constructor
-
-    */
+    /**
+     * Component constructor
+     */
 
     constructor(){
         super();
         this.handleOnClick = this.handleOnClick.bind(this);
     }
 
-    /*
-
-    CLick handler that propagates the status change to parent
-
+    /**
+     * CLick handler that propagates the status change to parent
      */
 
     handleOnClick() {
         this.props.changeView(this.props.type);
     }
 
-    /*
-
-    Lifecycle render method
-
+    /**
+     * Lifecycle render method
+     * @returns {XML} The view as jsx
      */
 
     render() {
