@@ -1,16 +1,12 @@
 import React from "react";
-import { mount } from "enzyme";
 import TableHeader from '../Fysio/TableHeader/TableHeader';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("TableHeader", () => {
     let props;
     let mountedTableHeader;
     const tableHeader = () => {
-        if (!mountedTableHeader) {
-            mountedTableHeader = mount(
-                <TableHeader {...props} />
-            );
-        }
+        mountedTableHeader = TestHelper.initializationWithMount(mountedTableHeader, <TableHeader {...props} />);
         return mountedTableHeader;
     };
 
@@ -23,10 +19,8 @@ describe("TableHeader", () => {
     });
 
     it("always renders a tr", () => {
-        const tr = tableHeader().find("tr");
-        expect(tr.length).toEqual(1);
-        const th = tableHeader().find("th");
-        expect(th.length).toEqual(1);
+        TestHelper.sizeEqualWithFindAndLength(tableHeader, "tr", 1);
+        TestHelper.sizeEqualWithFindAndLength(tableHeader, "th", 1);
         const span = tableHeader().find("span");
         expect(span.text()).toContain("Publications");
     });

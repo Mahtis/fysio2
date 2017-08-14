@@ -1,17 +1,13 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import PublicationLayerCategoryList from '../Fysio/Publication/PublicationLayerCategoryList/PublicationLayerCategoryList.js'
+import PublicationLayerCategoryList from '../Fysio/Publication/PublicationLayerCategoryList/PublicationLayerCategoryList.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("PublicationLayerCategoryList", () => {
     let props;
-    let mountedLayer;
+    let mountedPublicationLayerCategoryList;
     const publicationLayerCategoryList = () => {
-        if (!mountedLayer) {
-            mountedLayer = shallow(
-                <PublicationLayerCategoryList {...props} />
-            );
-        }
-        return mountedLayer;
+        mountedPublicationLayerCategoryList = TestHelper.initializationWithShallow(mountedPublicationLayerCategoryList, <PublicationLayerCategoryList {...props} />);
+        return mountedPublicationLayerCategoryList;
     };
 
     beforeEach(() => {
@@ -21,15 +17,15 @@ describe("PublicationLayerCategoryList", () => {
             publication_id: 1,
             categorySelected: ["EEG", "EDA"]
         };
-        mountedLayer = undefined;
+        mountedPublicationLayerCategoryList = undefined;
     });
 
     // ^boilerplate code that is run before each test
 
     it("always renders a td (table cell)", () => {
         props.categories = [];
-        //const buttons = publicationLayerCategoryList().find("td");
-        expect(publicationLayerCategoryList().find("td")).exists;
+        const buttons = publicationLayerCategoryList().find("td");
+        expect(buttons.children().length).toEqual(0);
     });
 
     describe("the rendered td", () => {
