@@ -1,16 +1,12 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
 import PublicationCategoryList from '../Fysio/Publication/PublicationTitle/PublicationInfoTable/PublicationCategoryList/PublicationCategoryList';
+import TestHelper from '../Helpers/Tests';
 
 describe("PublicationCategoryList", () => {
     let props;
     let mountedPublicationCategoryList;
     const publicationCategoryList = () => {
-        if (!mountedPublicationCategoryList) {
-            mountedPublicationCategoryList = mount(
-                <PublicationCategoryList {...props} />
-            );
-        }
+        mountedPublicationCategoryList = TestHelper.initializationWithMount(mountedPublicationCategoryList, <PublicationCategoryList {...props} />);
         return mountedPublicationCategoryList;
     };
 

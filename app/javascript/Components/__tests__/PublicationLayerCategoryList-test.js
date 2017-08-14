@@ -1,16 +1,12 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import PublicationLayerCategoryList from '../Fysio/Publication/PublicationLayerCategoryList/PublicationLayerCategoryList.js'
+import PublicationLayerCategoryList from '../Fysio/Publication/PublicationLayerCategoryList/PublicationLayerCategoryList.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("PublicationLayerCategoryList", () => {
     let props;
     let mountedPublicationLayerCategoryList;
     const publicationLayerCategoryList = () => {
-        if (!mountedPublicationLayerCategoryList) {
-            mountedPublicationLayerCategoryList = shallow(
-                <PublicationLayerCategoryList {...props} />
-            );
-        }
+        mountedPublicationLayerCategoryList = TestHelper.initializationWithShallow(mountedPublicationLayerCategoryList, <PublicationLayerCategoryList {...props} />);
         return mountedPublicationLayerCategoryList;
     };
 

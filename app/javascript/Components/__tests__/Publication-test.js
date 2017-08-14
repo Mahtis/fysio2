@@ -1,5 +1,4 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import Publication from '../Fysio/Publication/Publication.js';
 import TestHelper from '../Helpers/Tests.js';
 
@@ -7,11 +6,7 @@ describe("PublicationTitle", () => {
     let props;
     let mountedPublication;
     const publication = () => {
-        if (!mountedPublication) {
-            mountedPublication = mount(
-                <Publication {...props} />
-            );
-        }
+        mountedPublication = TestHelper.initializationWithMount(mountedPublication, <Publication {...props} />);
         return mountedPublication;
     };
 

@@ -7,11 +7,7 @@ describe("PublicationCategoryList", () => {
     let props;
     let mountedPublicationInfoTable;
     const publicationInfoTable = () => {
-        if (!mountedPublicationInfoTable) {
-            mountedPublicationInfoTable = mount(
-                <PublicationInfoTable {...props} />
-            );
-        }
+        mountedPublicationInfoTable = TestHelper.initializationWithMount(mountedPublicationInfoTable, <PublicationInfoTable {...props} />);
         return mountedPublicationInfoTable;
     };
 

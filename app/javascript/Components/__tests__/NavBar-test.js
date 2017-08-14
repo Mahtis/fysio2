@@ -1,5 +1,4 @@
 import React from "react";
-import { mount } from "enzyme";
 import NavBar from '../NavBar/NavBar.js';
 import TestHelper from '../Helpers/Tests.js';
 
@@ -7,11 +6,7 @@ describe("Navbar", () => {
     let props;
     let mountedNavbar;
     const navBar = () => {
-        if (!mountedNavbar) {
-            mountedNavbar = mount(
-                <NavBar {...props} />
-            );
-        }
+        mountedNavbar = TestHelper.initializationWithMount(mountedNavbar, <NavBar {...props} />);
         return mountedNavbar;
     };
 
