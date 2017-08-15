@@ -1,24 +1,20 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import CategoryList from '../Fysio/TableHeader/Layer/CategoryList/CategoryList.js'
+import CategoryList from '../Fysio/TableHeader/Layer/CategoryList/CategoryList.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("CategoryList", () => {
     let props;
-    let mountedLayer;
+    let mountedCategory;
     const categoryList = () => {
-        if (!mountedLayer) {
-            mountedLayer = mount(
-                <CategoryList {...props} />
-            );
-        }
-        return mountedLayer;
+        mountedCategory = TestHelper.initializationWithMount(mountedCategory, <CategoryList {...props} />);
+        return mountedCategory;
     }
 
     beforeEach(() => {
         props = {
             categories: undefined
         };
-        mountedLayer = undefined;
+        mountedCategory = undefined;
     });
 
     // ^boilerplate code that is run before each test

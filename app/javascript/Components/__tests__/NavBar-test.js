@@ -1,16 +1,12 @@
 import React from "react";
-import { mount } from "enzyme";
-import NavBar from '../NavBar/NavBar.js'
+import NavBar from '../NavBar/NavBar.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("Navbar", () => {
     let props;
     let mountedNavbar;
     const navBar = () => {
-        if (!mountedNavbar) {
-            mountedNavbar = mount(
-                <NavBar {...props} />
-            );
-        }
+        mountedNavbar = TestHelper.initializationWithMount(mountedNavbar, <NavBar {...props} />);
         return mountedNavbar;
     };
 
@@ -23,8 +19,7 @@ describe("Navbar", () => {
     });
 
     it("always renders a div", () => {
-        const div = navBar().find("div");
-        expect(div.length).toBeGreaterThan(0);
+        TestHelper.sizeEqualWithFindAndLength(navBar, "div", 2)
     });
 
     describe("the rendered div is not included", () => {

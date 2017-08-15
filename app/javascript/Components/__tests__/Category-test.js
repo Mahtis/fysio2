@@ -2,16 +2,13 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
 import Category from '../Fysio/TableHeader/Layer/CategoryList/Category/Category.js';
+import TestHelper from "../Helpers/Tests";
 
 describe("Category", () => {
     let props;
     let mountedCategory;
     const category = () => {
-        if (!mountedCategory) {
-            mountedCategory = mount(
-                <Category {...props} />
-            );
-        }
+        mountedCategory = TestHelper.initializationWithMount(mountedCategory, <Category {...props} />)
         return mountedCategory;
     }
 

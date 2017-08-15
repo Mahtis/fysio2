@@ -1,16 +1,12 @@
 import React from 'react';
-import {mount} from 'enzyme';
-import Layer from '../Fysio/TableHeader/Layer/Layer.js'
+import Layer from '../Fysio/TableHeader/Layer/Layer.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("Layer", () => {
     let props;
     let mountedLayer;
     const layer = () => {
-        if (!mountedLayer) {
-            mountedLayer = mount(
-                <Layer {...props} />
-            );
-        }
+        mountedLayer = TestHelper.initializationWithMount(mountedLayer, <Layer {...props} />);
         return mountedLayer;
     }
 

@@ -1,17 +1,14 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { shallow } from "enzyme";
 import PublicationTitle from '../Fysio/Publication/PublicationTitle/PublicationTitle';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("TableHeader", () => {
     let props;
-    let mountedTableHeader;
+    let mountedPublicationTitle;
     const publicationTitle = () => {
-        if (!mountedTableHeader) {
-            mountedTableHeader = mount(
-                <PublicationTitle {...props} />
-            );
-        }
-        return mountedTableHeader;
+        mountedPublicationTitle = TestHelper.initializationWithMount(mountedPublicationTitle, <PublicationTitle {...props} />);
+        return mountedPublicationTitle;
     };
 
     beforeEach(() => {
@@ -19,14 +16,12 @@ describe("TableHeader", () => {
             modalOpen: false,
             pub: createPublication()
         };
-        mountedTableHeader = undefined;
+        mountedPublicationTitle = undefined;
     });
 
     it("always renders a tr", () => {
-        const tr = publicationTitle().find("td");
-        expect(tr.length).toEqual(1);
-        const span = publicationTitle().find("span");
-        expect(span.length).toEqual(1);
+        TestHelper.sizeEqualWithFindAndLength(publicationTitle, "td", 1);
+        TestHelper.sizeEqualWithFindAndLength(publicationTitle, "span", 1);
 
         const wrapper = shallow(<PublicationTitle modalOpen={false}
                                                   pub={createPublication()} />).instance();

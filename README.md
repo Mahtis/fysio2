@@ -1,6 +1,6 @@
 # fysio
 
-[![Build Status](https://travis-ci.org/Mahtis/ProfilerApp.svg?branch=master)](https://travis-ci.org/Mahtis/ProfilerApp)
+[![Build Status](https://travis-ci.org/Mahtis/fysio2.svg?branch=master)](https://travis-ci.org/Mahtis/fysio2) [![Code Climate](https://codeclimate.com/github/Mahtis/fysio/badges/gpa.svg)](https://codeclimate.com/github/Mahtis/fysio2)
 
 [Heroku](https://frozen-dawn-89255.herokuapp.com)
 

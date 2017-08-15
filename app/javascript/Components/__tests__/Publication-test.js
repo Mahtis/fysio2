@@ -1,16 +1,12 @@
 import React from 'react';
-import { mount } from 'enzyme';
 import Publication from '../Fysio/Publication/Publication.js';
+import TestHelper from '../Helpers/Tests.js';
 
 describe("PublicationTitle", () => {
     let props;
     let mountedPublication;
     const publication = () => {
-        if (!mountedPublication) {
-            mountedPublication = mount(
-                <Publication {...props} />
-            );
-        }
+        mountedPublication = TestHelper.initializationWithMount(mountedPublication, <Publication {...props} />);
         return mountedPublication;
     };
 
@@ -31,8 +27,7 @@ describe("PublicationTitle", () => {
     describe("the rendered tr", () => {
 
         it("always renders a PublicationTitle", () => {
-            const wrapper = publication().find("tr");;
-            expect(wrapper.find("PublicationTitle").length).toBe(1);
+            TestHelper.sizeEqualWithFindAndLength(publication, "tr", 1);
         });
 
         it("always renders a PublicationCategoryList for each layer", () => {
