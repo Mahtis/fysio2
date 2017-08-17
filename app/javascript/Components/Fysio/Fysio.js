@@ -4,6 +4,8 @@ import { Table } from 'reactstrap';
 import TableHeader from './TableHeader/TableHeader.js';
 import Publication from './Publication/Publication.js';
 
+import { Button, Collapse } from 'reactstrap';
+
 /**
  * Base data component, contains everything else except for navigation bar and alternative tabs
  * @extends Component
@@ -19,9 +21,12 @@ class Fysio extends Component{
         super();
 
         this.state = {
-            currentSearch: ""
+            currentSearch: "",
+            pubIdLimit: 10,
+            pubsSeen: 10
         }
         this.setTextSearch = this.setTextSearch.bind(this);
+        this.changePub = this.changePub.bind(this);
     }
 
     /**
@@ -52,11 +57,25 @@ class Fysio extends Component{
     setTextSearch(wantText){
         this.setState({currentSearch: wantText});
     }
+
+    changePub(change){
+        var want = this.state.pubIdLimit+change;
+        if(change>0){
+            if(this.state.pubIdLimit>this.state.pubsSeen){
+                return;
+            }
+        }
+        if(want <= 0){
+            want = 5;
+        }
+        this.setState({ pubIdLimit: want});
+        console.log(this.state.pubIdLimit);
+    }
+
     /**
      * Lifecycle render method
      * @returns {XML} The view as jsx
      */
-
     render(){
 
         let categories = this.props.categories;
@@ -90,24 +109,47 @@ class Fysio extends Component{
             </thead>
         );
 
+        var moreLess = (<div>
+                <div className={"moreLessBar"}>
+                    <Button className={"modeButtons"} onClick={()=>this.changePub(-20)} > -- </Button>
+                    <Button className={"modeButtons"} onClick={()=>this.changePub(-5)} > - </Button>
+                    <Button className={"modeButtons"}> {this.state.pubIdLimit} </Button>
+                    <Button className={"modeButtons"} onClick={()=>this.changePub(+5)}> + </Button>
+                    <Button className={"modeButtons"} onClick={()=>this.changePub(+20)} > ++ </Button>
+                </div>
+        </div>);
+
+        this.state.pubsSeen = publications.length;
+        //console.log("this.state.pubsSeen");
+        //console.log(this.state.pubsSeen);
+
+        var iterated = 0;
+        var returnable = null;
         if(layers === undefined || layers === null){
-          return (<span>loading</span>);
+            returnable = (<span>loading</span>);
         } else if(publications === undefined || publications === null || categories === undefined || categories === null){
-            return (
+            returnable = (
+                <div>
+                    {moreLess}
                 <Table >
-                    {TabHead}
+                    TabHead
                     <tbody>
 
                     </tbody>
                 </Table>
+                    {moreLess}
+                </div>
             );
         } else {
-            return (
+            returnable = (
+                <div>
+                    {moreLess}
                 <Table>
                     {TabHead}
                     <tbody>
                     { publications.map(publication  =>{
-                        if(publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
+                        if(iterated < this.state.pubIdLimit && publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
+                            iterated++;
                             return <Publication
                                 key={publication.name}
                                 categories={categories}
@@ -125,9 +167,11 @@ class Fysio extends Component{
                     })}
                     </tbody>
                 </Table>
+                    {moreLess}
+        </div>
             );
         }
-
+        return returnable;
     }
 }
 
