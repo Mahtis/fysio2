@@ -35,6 +35,7 @@ class App extends Component {
         this.doLogout = this.doLogout.bind(this);
         this.doClear = this.doClear.bind(this);
         this.setUserMode = this.setUserMode.bind(this);
+        this.checkUser = this.checkUser.bind(this);
     }
 
     /**
@@ -59,7 +60,25 @@ class App extends Component {
      */
 
     componentWillMount() {
+        this.checkUser();
         this.loadData();
+    }
+
+    checkUser() {
+        let token = localStorage.getItem('token');
+        if (token !== undefined) {
+            return fetch('/users.json', {
+                method: 'GET',
+                headers: {
+                    'Authorization': token,
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                credentials: 'same-origin',
+            }).then(response => response.json()).then(resp => {
+                console.log(resp);
+                this.setState({userMode: 'user'})
+            })
+        }
     }
 
     /**

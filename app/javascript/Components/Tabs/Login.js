@@ -27,6 +27,7 @@ class Login extends Component{
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
+        this.doFetch = this.doFetch.bind(this);
     }
 
     /**
@@ -63,6 +64,13 @@ class Login extends Component{
             this.props.setUserMode(this.state.usernameI);
         } else if (this.state.usernameI === 'user'){
             this.props.setUserMode(this.state.usernameI);
+            this.doFetch().then(response => {
+                return response.json()}).then(resp => {
+                    console.log(resp.auth_token);
+                    if(resp.auth_token !== undefined) {
+                        localStorage.setItem('token', resp.auth_token);
+                    }
+            })
         } else if (this.state.usernameI === 'admin'){
             this.props.setUserMode(this.state.usernameI);
         } else {
@@ -70,6 +78,22 @@ class Login extends Component{
             //this.setState({usernameI: ""});cant overwrite input field from here?
             //this.setState({passwordI: ""});
         }
+    }
+
+    doFetch() {
+        return fetch('/authenticate', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify({
+                name: 'Paavo',
+                email: 'example@mail.com'
+            })
+        });
     }
 
     /**
