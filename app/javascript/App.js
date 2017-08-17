@@ -113,9 +113,9 @@ class App extends Component {
         .then(categoryPath => {
             DatabaseConnector.fetchFromPath(categoryPath).then(categories => {
                 this.setState({
-                publications: pubs,
-                categorySelected: selectedCategories,
-                categoryAvailable: categories
+                    publications: pubs,
+                    categorySelected: selectedCategories,
+                    categoryAvailable: categories
                 })
             })
         });
@@ -139,6 +139,16 @@ class App extends Component {
             categorySelectedArray.push(name);
         }
         return categorySelectedArray;
+    }
+
+    /**
+     * clears category selections
+     */
+    doClear(){
+        //console.log(this.state.categorySelected.length);
+        while(this.state.categorySelected.length > 0){
+            this.updateTable(this.state.categorySelected[0]);
+        }
     }
 
     /**
@@ -208,13 +218,6 @@ class App extends Component {
         this.setState({userMode: "guest"});
     }
 
-    /**
-     * clears category selections
-     */
-
-    doClear(){
-        //???
-    }
 
     /**
      * Sets app and user mode

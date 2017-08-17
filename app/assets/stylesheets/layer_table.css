@@ -127,3 +127,8 @@ td, th {
 .rowCell {
     border-color: rgb(0, 0, 0) !important;
 }
+
+
+.moreLessBar {
+    text-align: center;
+}
