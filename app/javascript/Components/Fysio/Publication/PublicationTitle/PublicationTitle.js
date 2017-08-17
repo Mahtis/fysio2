@@ -18,19 +18,46 @@ class PublicationTitle extends Component {
         super();
         this.toggle = this.toggle.bind(this);
         this.state = {
-            modalOpen: false
+            modalOpen: false,
+            authors: [],
+            links: []
         };
     }
 
     /**
-     * Function that toggles the state of the modal
+     * Function that toggles the state of the modal and launches fetch for links and authors related
+     * to publication
      */
 
     toggle() {
         this.setState({
             modalOpen: !this.state.modalOpen
         });
+        this.getAuthors().then((resolve) => this.setState({
+            authors: resolve
+        }));
+        this.getLinks().then((resolve) => this.setState({
+            links: resolve
+        }));
     };
+
+    getAuthors() {
+        const path = "authors.json?pubId=" + this.props.pub.id;
+        return fetch(path)
+            .then(response => response.json())
+            .then(authors => {
+                return authors;
+            });
+    }
+
+    getLinks() {
+        const path = "links.json?pubId=" + this.props.pub.id;
+        return fetch(path)
+            .then(response => response.json())
+            .then(links => {
+                return links;
+            });
+    }
 
     /**
      * Lifecycle render method
@@ -45,12 +72,12 @@ class PublicationTitle extends Component {
                     <ModalHeader toggle={this.toggle}>{this.props.pub.name}</ModalHeader>
                     <ModalBody>
                         <p><b>Abstract: </b>{this.props.pub.abstract}</p>
-                        <p><b>Links: </b>{this.props.pub.links.map((link => <a key={link.id} href={link.url}>
+                        <p><b>Links: </b>{this.state.links.map((link => <a key={link.id} href={link.url}>
                             {link.url} </a>))}</p>
-                        <p><b>Authors: </b>{this.props.pub.authors.map((author => <span key={author.id}>
+                        <p><b>Authors: </b>{this.state.authors.map((author => <span key={author.id}>
                             {author.name}
                             {/*We'll separate authors with ","*/}
-                            {this.props.pub.authors.indexOf(author) !== this.props.pub.authors.length-1 && ", "}</span>))}</p>
+                            {this.state.authors.indexOf(author) !== this.state.authors.length-1 && ", "}</span>))}</p>
                         <p><b>Year: </b>{this.props.pub.year}</p>
                         <p><b>Journal: </b>{this.props.pub.journal}</p>
                         <PublicationInfoTable
