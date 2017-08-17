@@ -4,13 +4,18 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-if params[:names].nil?
-      @publications = Publication.all
+    if params[:names].nil?
+    #  Rails.cache.fetch("all_publications", :expires_in => 5.minutes) do
+        @publications = Publication.all
+    #  end
     elsif params[:names].empty?
-      @publications = Publication.all
+    #  Rails.cache.fetch("all_publications", :expires_in => 5.minutes) do
+        @publications = Publication.all
+    #  end
     else
       parr = []
       params[:names].each { |p| parr << p }
+      #Rails.cache.fetch(params, :expires_in => 5.minutes) do
       @publications = getselectedpublications(Publication.all
                                                   .includes(:categories)
                                                   .where('categories.name = ?',
@@ -19,8 +24,8 @@ if params[:names].nil?
                                               parr,
                                               Category.all,
                                               [])
-    end
-
+        #end
+      end
   end
 
   def getselectedpublications(result, parametersarray, categories, publications)

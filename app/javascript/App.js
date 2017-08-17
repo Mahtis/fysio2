@@ -255,6 +255,7 @@ class App extends Component {
         let layers = this.state.layers;
         let publications = this.state.publications;
         let layerTypes = this.state.layerTypes;
+        console.log(publications);
 
         if (publications.length === 0 && layerTypes.length === 0) {
             return (

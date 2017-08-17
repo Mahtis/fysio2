@@ -4,7 +4,16 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    publicationId = params[:pubId]
+    if publicationId.nil?
+      @authors = Author.all
+    else
+      @authors = getPublicationAuthors(publicationId)
+    end
+  end
+
+  def getPublicationAuthors(publicationId)
+    return Author.select('name', 'id').joins(:publications).where('publications.id = ?', publicationId)
   end
 
   # GET /authors/1
@@ -17,7 +26,8 @@ class AuthorsController < ApplicationController
   end
 
   # GET /authors/1/edit
-  def edit; end
+  def edit;
+  end
 
   # POST /authors
   # POST /authors.json
@@ -26,11 +36,11 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
-        format.json { render :show, status: :created, location: @author }
+        format.html {redirect_to @author, notice: 'Author was successfully created.'}
+        format.json {render :show, status: :created, location: @author}
       else
-        format.html { render :new }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @author.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -40,11 +50,11 @@ class AuthorsController < ApplicationController
   def update
     respond_to do |format|
       if @author.update(author_params)
-        format.html { redirect_to @author, notice: 'Author was successfully updated.' }
-        format.json { render :show, status: :ok, location: @author }
+        format.html {redirect_to @author, notice: 'Author was successfully updated.'}
+        format.json {render :show, status: :ok, location: @author}
       else
-        format.html { render :edit }
-        format.json { render json: @author.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @author.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -54,8 +64,8 @@ class AuthorsController < ApplicationController
   def destroy
     @author.destroy
     respond_to do |format|
-      format.html { redirect_to authors_url, notice: 'Author was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to authors_url, notice: 'Author was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
@@ -68,6 +78,6 @@ class AuthorsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_params
-    params.require(:author).permit(:name)
+    params.require(:author).permit(:name, :pubId)
   end
 end

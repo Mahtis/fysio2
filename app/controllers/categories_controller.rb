@@ -6,7 +6,14 @@ class CategoriesController < ApplicationController
   def index
     parametersarray = Array.new
     params[:pubIds].nil? ? parametersarray  : params[:pubIds].each {|p| parametersarray << p}
-    parametersarray.empty? ? @categories = Category.all : @categories= self.getPublicationCategories(parametersarray)
+    if parametersarray.empty?
+      @categories = Category.all
+    else
+      Rails.cache.fetch(parametersarray, :expires_in => 5.minutes) do
+      @categories= self.getPublicationCategories(parametersarray)
+        end
+    end
+ #   parametersarray.empty? ? @categories = Category.all : @categories= self.getPublicationCategories(parametersarray)
   end
 
   def getPublicationCategories(parametersarray)
