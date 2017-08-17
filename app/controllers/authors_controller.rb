@@ -4,7 +4,16 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    publicationId = params[:pubId]
+    if publicationId.nil?
+      @authors = Author.all
+    else
+      @authors = getPublicationAuthors(publicationId)
+    end
+  end
+
+  def getPublicationAuthors(publicationId)
+    return Author.select('name', 'id').joins(:publications).where('publications.id = ?', publicationId)
   end
 
   # GET /authors/1
@@ -68,6 +77,6 @@ class AuthorsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def author_params
-    params.require(:author).permit(:name)
+    params.require(:author).permit(:name, :pubId)
   end
 end
