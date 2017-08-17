@@ -33,10 +33,10 @@ class PublicationTitle extends Component {
         this.setState({
             modalOpen: !this.state.modalOpen
         });
-        this.getAuthors().then((resolve) => this.setState({
+        this.getData("authors").then((resolve) => this.setState({
             authors: resolve
         }));
-        this.getLinks().then((resolve) => this.setState({
+        this.getData("links").then((resolve) => this.setState({
             links: resolve
         }));
     };
@@ -47,6 +47,15 @@ class PublicationTitle extends Component {
             .then(response => response.json())
             .then(authors => {
                 return authors;
+            });
+    }
+
+    getData(table) {
+        const path = table + "json?PubId=" + this.props.pub.id;
+        return fetch(path)
+            .then(response => response.json())
+            .then(data => {
+                return data;
             });
     }
 
