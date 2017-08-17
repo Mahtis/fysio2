@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import PropTypes from 'prop-types';
-import PublicationInfoTable from './PublicationInfoTable/PublicationInfoTable.js';
-
 /**
  * Modal that is opened when a publication is clicked showing all information related to it
  * @extends Component
  */
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
+import PublicationInfoTable from './PublicationInfoTable/PublicationInfoTable.js';
+import DatabaseConnector from "../../../../Services/DatabaseConnector";
 
 class PublicationTitle extends Component {
 
@@ -26,33 +26,20 @@ class PublicationTitle extends Component {
 
     /**
      * Function that toggles the state of the modal and launches fetch for links and authors related
-     * to publication
+     * to the publication
      */
 
     toggle() {
         this.setState({
             modalOpen: !this.state.modalOpen
         });
-        this.getData("authors").then((resolve) => this.setState({
+        DatabaseConnector.fetchFromPath("authors.json?pubId=" + this.props.pub.id).then((resolve) => this.setState({
             authors: resolve
         }));
-        this.getData("links").then((resolve) => this.setState({
+        DatabaseConnector.fetchFromPath("links.json?pubId=" + this.props.pub.id).then((resolve) => this.setState({
             links: resolve
         }));
     };
-
-    /**
-     * Get data related to publication from table given as a parameter
-     * @param table
-     */
-    getData(table) {
-        const path = table + "json?PubId=" + this.props.pub.id;
-        return fetch(path)
-            .then(response => response.json())
-            .then(data => {
-                return data;
-            });
-    }
 
     /**
      * Lifecycle render method
