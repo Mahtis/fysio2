@@ -54,8 +54,8 @@ class PublicationTitle extends Component {
                     <ModalHeader toggle={this.toggle}>{this.props.pub.name}</ModalHeader>
                     <ModalBody>
                         <p><b>Abstract: </b>{this.props.pub.abstract}</p>
-                        <p><b>Links: </b>{this.state.links.map((link => <a key={link.id} href={link.url}>
-                            {link.url} </a>))}</p>
+                        <p><b>Links: </b>{this.state.links.map((link => <a key={link.id} href={link.link_url}>
+                            {link.link_url} </a>))}</p>
                         <p><b>Authors: </b>{this.state.authors.map((author => <span key={author.id}>
                             {author.name}
                             {/*We'll separate authors with ","*/}
