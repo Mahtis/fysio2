@@ -49,7 +49,7 @@ class PublicationLayerCategoryList extends Component{
 
         return (
 
-            <td >
+            <td className="rowCell">
                 {categories.map(category =>
                     <CategoryButton
                         categorySelected={this.props.categorySelected}

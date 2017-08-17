@@ -71,23 +71,21 @@ class NavBar extends Component{
     render(){
         let layerTypes = this.props.layerTypes;
 
+        let addPubButton = (
+            <NavItem>
+                <NavLink className="btn modeButtons" href="/publications/new">Create Publication</NavLink>
+            </NavItem>
+        );
         let loginButton = (
             <NavItem>
                 <Button className={"modeButtons"} onClick={this.props.doLogout}>Logout</Button>
             </NavItem>
         );
         if(this.props.userMode === "guest"){
+            addPubButton = null;
             loginButton=(
                 <NavItem>
                     <Button className={"modeButtons"} onClick={this.props.toLogin}>Login</Button>
-                </NavItem>
-            );
-        }
-        let addPubButton=null;
-        if(this.props.userMode !== "guest"){
-            addPubButton=(
-                <NavItem>
-                    <NavLink className="btn modeButtons" href="/publications/new">Create Publication</NavLink>
                 </NavItem>
             );
         }
@@ -100,7 +98,6 @@ class NavBar extends Component{
                 <Nav className="ml-auto" navbar>
                     <NavItem><Button className={"modeButtons"} onClick={this.props.toNormal}>Fysio</Button></NavItem>
                     <NavItem><Button className={"modeButtons"} onClick={this.props.toAbout}>About</Button></NavItem>
-
                     <NavItem><Button className={"modeButtons"} onClick={this.props.doClear}>Clear</Button></NavItem>
                     {addPubButton}
 

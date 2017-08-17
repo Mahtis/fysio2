@@ -123,3 +123,7 @@ td, th {
     max-width: 90% !important;
     min-width: 500px !important;
 }
+
+.rowCell {
+    border-color: rgb(0, 0, 0) !important;
+}
