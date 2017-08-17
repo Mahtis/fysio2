@@ -41,30 +41,16 @@ class PublicationTitle extends Component {
         }));
     };
 
-    getAuthors() {
-        const path = "authors.json?pubId=" + this.props.pub.id;
-        return fetch(path)
-            .then(response => response.json())
-            .then(authors => {
-                return authors;
-            });
-    }
-
+    /**
+     * Get data related to publication from table given as a parameter
+     * @param table
+     */
     getData(table) {
         const path = table + "json?PubId=" + this.props.pub.id;
         return fetch(path)
             .then(response => response.json())
             .then(data => {
                 return data;
-            });
-    }
-
-    getLinks() {
-        const path = "links.json?pubId=" + this.props.pub.id;
-        return fetch(path)
-            .then(response => response.json())
-            .then(links => {
-                return links;
             });
     }
 
