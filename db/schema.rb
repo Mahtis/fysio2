@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809142116) do
+ActiveRecord::Schema.define(version: 20170817125856) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170809142116) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.string "url"
+    t.string "link_url"
     t.integer "publication_id"
     t.string "link_type"
     t.datetime "created_at", null: false

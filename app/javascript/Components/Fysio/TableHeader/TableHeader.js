@@ -17,8 +17,12 @@ class TableHeader extends Component {
 
     constructor(){
         super();
+        this.setTextSearch = this.setTextSearch.bind(this);
     }
 
+    setTextSearch(e) {
+        this.props.setTextSearch(e.target.value);
+    }
     /**
      * Lifecycle render method
      * @returns {XML} The view as jsx
@@ -31,7 +35,8 @@ class TableHeader extends Component {
         //let corner = "Publications";
         let searchBox = (
             <div>
-                <Input className={"pubName"} type="username" name="email" id="username" placeholder="" />
+                <Input className={"pubName"} type="username" name="email" id="username" placeholder="" onChange = {this.setTextSearch}
+                />
             </div>
         );
 
@@ -42,7 +47,7 @@ class TableHeader extends Component {
         }else{
             return (
             <tr>
-                <th>
+                <th className="rowCell">
                     <span>{searchBox}</span>
                 </th>
                 { layers.map(layer => <Layer categorySelected={this.props.categorySelected}

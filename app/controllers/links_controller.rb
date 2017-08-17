@@ -4,7 +4,16 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    publicationId = params[:pubId]
+    if publicationId.nil?
+      @links = Link.all
+    else
+      @links = getPublicationLinks(publicationId)
+    end
+  end
+
+  def getPublicationLinks(publicationId)
+    return Link.select('link_url', 'id', 'publication_id', 'link_type').where('publication_id = ?', publicationId)
   end
 
   # GET /links/1
@@ -68,6 +77,6 @@ class LinksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def link_params
-    params.require(:link).permit(:url, :publication_id, :link_type)
+    params.require(:link).permit(:link_url, :publication_id, :link_type, :pubId)
   end
 end

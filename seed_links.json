@@ -1,46 +1,46 @@
 [
   {
-    "address": "www.nature.com",
+    "link_url": "www.nature.com",
     "publication_id": 1,
     "link_type": "web"
   },
   {
-    "address": "www.science.com",
+    "link_url": "www.science.com",
     "publication_id": 2,
     "link_type": "web"
   },
   {
-    "address": "www.github.com",
+    "link_url": "www.github.com",
     "publication_id": 2,
     "link_type": "github"
   },
   {
-    "address": "www.suomi24.fi",
+    "link_url": "www.suomi24.fi",
     "publication_id": 3,
     "link_type": "web"
   },
   {
-    "address": "cs.helsinki.fi",
+    "link_url": "cs.helsinki.fi",
     "publication_id": 4,
     "link_type": "web"
   },
   {
-    "address": "www.science.com",
+    "link_url": "www.science.com",
     "publication_id": 5,
     "link_type": "web"
   },
   {
-    "address": "www.nature.com",
+    "link_url": "www.nature.com",
     "publication_id": 6,
     "link_type": "web"
   },
   {
-    "address": "http://dx.doi.org/10.1145/2687921",
+    "link_url": "http://dx.doi.org/10.1145/2687921",
     "publication_id": 6,
     "link_type": "web"
   },
   {
-    "address": "http://dl.acm.org/citation.cfm?id=2687922",
+    "link_url": "http://dl.acm.org/citation.cfm?id=2687922",
     "publication_id": 6,
     "link_type": "web"
   }

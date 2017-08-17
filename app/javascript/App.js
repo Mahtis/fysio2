@@ -234,7 +234,7 @@ class App extends Component {
     }
 
     /**
-     * Sets app mode
+     * Sets user mode
      */
 
     doLogout(){
@@ -242,7 +242,7 @@ class App extends Component {
     }
 
     /**
-     * Sets app mode
+     * clears category selections
      */
 
     doClear(){

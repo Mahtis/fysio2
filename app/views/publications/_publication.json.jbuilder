@@ -1,2 +1,2 @@
-json.extract! publication, :id, :name, :abstract, :year, :journal, :authors, :links, :created_at, :updated_at
+json.extract! publication, :id, :name, :abstract, :year, :journal
 json.url publication_url(publication, format: :json)

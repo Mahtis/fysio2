@@ -46,7 +46,7 @@ class Layer extends Component {
         //console.log(this.props.layer.id);
         //this.props.categories.map(c => {console.log(c.name)});
         return (
-            <th id={layer.id}>
+            <th id={layer.id} className="rowCell">
                 <ButtonDropdown className="categoryDropUp" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                     <DropdownToggle caret className={"categoryDrop"}>
                     {layer.name}
