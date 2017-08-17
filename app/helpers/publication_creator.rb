@@ -26,8 +26,8 @@ class PublicationCreator
       create_author(auth['name'], publication);
     end
     # create link, since each link is only linked to one publication
-    json['links'].each do |url|
-      create_link(publication.id, url['url'], 'web');
+    json['links'].each do |link_url|
+      create_link(publication.id, link_url['link_url'], 'web');
     end
   end
 
@@ -52,15 +52,15 @@ class PublicationCreator
   end
 
 
-  def create_link(publication_id, url, link_type)
-    Link.create(url: url, publication_id: publication_id, link_type: link_type)
+  def create_link(publication_id, link_url, link_type)
+    Link.create(link_url: link_url, publication_id: publication_id, link_type: link_type)
   end
 
 
   def create_links(path)
     json = read_to_json(path)
     json.each do |link|
-      create_link(link['publication_id'], link['address'], link['link_type'])
+      create_link(link['publication_id'], link['link_url'], link['link_type'])
     end
   end
 
