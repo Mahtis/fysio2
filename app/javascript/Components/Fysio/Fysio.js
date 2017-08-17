@@ -69,7 +69,7 @@ class Fysio extends Component{
             want = 5;
         }
         this.setState({ pubIdLimit: want});
-        console.log(this.state.pubIdLimit);
+        //console.log(this.state.pubIdLimit);
     }
 
     /**
