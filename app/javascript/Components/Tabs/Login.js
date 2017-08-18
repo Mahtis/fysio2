@@ -57,7 +57,7 @@ class Login extends Component{
      */
 
     submitLogin() {
-        console.log("aaa");
+        //console.log("aaa");
         this.setState({errorMessage: ""});
         if (this.state.usernameI === 'guest'){
             this.props.setUserMode(this.state.usernameI);
