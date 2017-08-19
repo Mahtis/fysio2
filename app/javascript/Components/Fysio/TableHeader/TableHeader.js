@@ -29,8 +29,8 @@ class TableHeader extends Component {
      */
 
     render(){
-        let layers = this.props.layers;
-        let categories = this.props.categories;
+        let layers = this.props.data.getLayers();
+        let categories = this.props.data.getCategories();
 
         //let corner = "Publications";
         let searchBox = (
@@ -50,14 +50,12 @@ class TableHeader extends Component {
                 <th className="rowCell">
                     <span>{searchBox}</span>
                 </th>
-                { layers.map(layer => <Layer categorySelected={this.props.categorySelected}
-                                                            key={layer.id}
-                                                            layer={layer}
-                                                            categories={categories}
-                                                            publications={this.props.publications}
-                                                            updateTable={this.props.updateTable}
-                                                            categoryAvailable={this.props.categoryAvailable}
-                                                            layerCategoriesDropDown={this.props.layerCategoriesDropDown[layer.id]} />
+                { layers.map(layer => <Layer
+                                            key={layer.id}
+                                            id={layer.id}
+                                            updateTable={this.props.updateTable}
+                                            data={this.props.data}
+                    />
                                         )}
             </tr>
             )
@@ -67,8 +65,7 @@ class TableHeader extends Component {
 }
 
 TableHeader.propTypes = {
-    layers: PropTypes.array,
-    categories: PropTypes.array
+    data: PropTypes.object
 };
 
 export default TableHeader;

@@ -40,7 +40,7 @@ class CategoryButton extends Component {
      */
 
     selected() {
-        this.props.updateTable(this.props.name);
+        this.props.updateTable(this.props.id);
     }
 
     /**
