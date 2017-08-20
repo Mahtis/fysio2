@@ -13,6 +13,7 @@ class Data {
         this.layertypes = [];
         this.categories = [];
         this.publications = [];
+        this.selected_count = 0;
     }
 
     /**
@@ -120,7 +121,25 @@ class Data {
      */
 
     getPublications(){
-        return this.publications;
+        let publications = [];
+        if(!this.selected_count){
+            publications = this.publications;
+        } else {
+            publications = this.publications.filter(p => this.testIfSelected(p));
+        }
+        return publications;
+    }
+
+    testIfSelected(publication){
+        let selected = 0;
+        this.categories.map(c => {
+            if(c.selected){
+                c.ids.map(i => {
+                    if(i === publication.id && c.selected === true) selected++;
+                })
+            }
+        });
+        return selected === this.selected_count;
     }
 
     getPublicationById(id){
@@ -140,7 +159,14 @@ class Data {
      */
 
     selectCategory(id){
-        this.categories.map(c => {if(c.id === id) c["selected"] = !c["selected"]});
+        let select = 0;
+        for(let i = 0; i < this.categories.length; i++){
+            if(this.categories[i].id === id){
+                this.categories[i]["selected"] = !this.categories[i]["selected"];
+            }
+            if(this.categories[i]["selected"] === true) select++;
+        }
+        this.selected_count = select;
     }
 
     getPublicationLayerCategories(publication_id, layer_id) {
