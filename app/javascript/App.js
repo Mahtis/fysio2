@@ -67,31 +67,31 @@ class App extends Component {
      */
 
     loadData() {
-        DatabaseConnector.getLayers().then((resolve) => {
+        DatabaseConnector.getDataFromDatabase("/layer_types/1").then((layers) => {
             this.setState(function(){
                 let data = this.state.data;
-                data.setLayers(resolve);
+                data.setLayers(layers.layers);
                 return data;
             });
         });
-        DatabaseConnector.getPublications().then((resolve) => {
+        DatabaseConnector.getDataFromDatabase("/publications").then((publications) => {
             this.setState(function(){
                 let data = this.state.data;
-                data.setPublications(resolve);
+                data.setPublications(publications);
                 return data;
             });
         });
-        DatabaseConnector.getLayerTypes().then((resolve) => {
+        DatabaseConnector.getDataFromDatabase("/layer_types").then((layertypes) => {
             this.setState(function(){
                 let data = this.state.data;
-                data.setLayerTypes(resolve);
+                data.setLayerTypes(layertypes);
                 return data;
             });
         });
-        DatabaseConnector.getCategories().then((resolve) => {
+        DatabaseConnector.getDataFromDatabase("/categories").then((categories) => {
             this.setState(function(){
                 let data = this.state.data;
-                data.setCategories(resolve);
+                data.setCategories(categories);
                 return data;
             });
         });
