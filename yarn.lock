@@ -4746,7 +4746,7 @@ react-router@^4.1.1, react-router@^4.1.2:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
-react-test-renderer@^15.5.4:
+react-test-renderer@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.6.1.tgz#026f4a5bb5552661fd2cc4bbcd0d4bc8a35ebf7e"
   dependencies:
