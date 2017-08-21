@@ -165,7 +165,7 @@ class App extends Component {
      */
 
     render() {
-        if (this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
+        if (this.state.data.getCategories().length === 0 && this.state.data.getLayers().length === 0 && this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
             return (
                 <div>
                     <NavBar layerTypes={[]}
