@@ -76,9 +76,18 @@ class App extends Component {
                     'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 },
                 credentials: 'same-origin',
-            }).then(response => response.json()).then(resp => {
-                console.log(resp);
-                this.setState({userMode: 'user'})
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            }).then(resp => {
+                if(resp !== null) {
+                    this.setState({userMode: 'user'})
+                } else {
+                    throw new Error('Invalid user credentials');
+                }
             })
         }
     }
