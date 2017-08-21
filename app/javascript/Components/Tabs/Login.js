@@ -115,6 +115,7 @@ class Login extends Component{
                     </FormGroup>
                 </Form>
                 <Button className={"modeButtons"} onClick = {this.submitLogin}>Submit</Button>
+                <a className="btn modeButtons" href="auth/github">github</a>
                 <p> </p>
                 <h4>{this.state.errorMessage}</h4>
             </div>

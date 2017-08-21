@@ -4,6 +4,7 @@ import Fysio from "./Components/Fysio/Fysio";
 import Login from "./Components/Tabs/Login";
 import Data from './Services/Data';
 import DatabaseConnector from "./Services/DatabaseConnector";
+import cookie from 'react-cookies';
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -65,7 +66,8 @@ class App extends Component {
     }
 
     checkUser() {
-        let token = localStorage.getItem('token');
+        let token = cookie.load('auth_token');
+        console.log(token);
         if (token !== undefined) {
             return fetch('/users.json', {
                 method: 'GET',

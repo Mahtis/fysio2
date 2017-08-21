@@ -41,7 +41,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'jwt', '~> 1.5', '>= 1.5.4'
 gem 'simple_command'
-
+gem 'omniauth-github'
 
 group :test do
   gem 'factory_girl_rails'
