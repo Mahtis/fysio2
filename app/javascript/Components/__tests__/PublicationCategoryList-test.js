@@ -12,22 +12,20 @@ describe("PublicationCategoryList", () => {
 
     beforeEach(() => {
         props = {
-            categories: [{  "id" : 1,
-                            "name" : "EEG",
-                            "layer_id" : 1,
-                            "ids" : [1]}],
-            publication_id: 1,
-            layer: 1
+            id: undefined,
+            layer_id: undefined,
+            data: undefined
         };
         mountedPublicationCategoryList = undefined;
     });
 
     it("always renders a p", () => {
+        props = TestHelper.initializePublicationCategoryListProps(props);
         const p = publicationCategoryList().find("p");
         expect(p.length).toEqual(1);
 
         const span = publicationCategoryList().find("span");
-        expect(span.length).toEqual(1);
+        expect(span.length).toEqual(0);
 
     });
 });

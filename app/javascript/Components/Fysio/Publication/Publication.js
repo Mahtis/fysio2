@@ -38,7 +38,7 @@ class Publication extends Component {
                     { this.props.data.getLayers().map(layer =>
                             <PublicationCategoryList
                                 updateTable={this.props.updateTable}
-                                key={this.props.id + "publication-" + layer.id + "-layer-category-list"}
+                                key={this.props.id + "-publication-" + layer.id + "-layer-category-list"}
                                 id={this.props.id}
                                 layer_id={layer.id}
                                 data={this.props.data}

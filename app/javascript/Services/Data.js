@@ -130,16 +130,23 @@ class Data {
         return publications;
     }
 
+    /**
+     * Test if the publication should be visible or not
+     * @param publication Publication that is to be tested
+     * @returns {boolean} If the publication should be visible or not
+     */
+
     testIfSelected(publication){
         let selected = 0;
         this.categories.map(c => {
             if(c.selected){
                 c.ids.map(i => {
                     if(i === publication.id && c.selected === true) selected++;
+                    if(selected === this.selected_count) return true;
                 })
             }
         });
-        return selected === this.selected_count;
+        return false;
     }
 
     getPublicationById(id){
