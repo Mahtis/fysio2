@@ -1,2 +1,5 @@
 exclude_paths:
 - "app/javascript/Components/Helpers/Tests.js"
+- "__tests__/"
+- "tests/"
+- "spec/"
