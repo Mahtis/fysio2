@@ -157,6 +157,7 @@ class Data {
 
     clearCategorySelections(){
         this.categories.map(c => c["selected"] = false);
+        this.selected_count = 0;
     }
 
     /**
