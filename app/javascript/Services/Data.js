@@ -142,11 +142,10 @@ class Data {
             if(c.selected){
                 c.ids.map(i => {
                     if(i === publication.id && c.selected === true) selected++;
-                    if(selected === this.selected_count) return true;
                 })
             }
         });
-        return false;
+        return selected === this.selected_count;
     }
 
     getPublicationById(id){
