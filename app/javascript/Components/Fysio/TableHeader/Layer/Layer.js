@@ -41,7 +41,7 @@ class Layer extends Component {
      */
 
     render(){
-        let layer = this.props.layer;
+        let layer = this.props.data.getLayerById(this.props.id);
 
         //console.log(this.props.layer.id);
         //this.props.categories.map(c => {console.log(c.name)});
@@ -54,9 +54,9 @@ class Layer extends Component {
                     <DropdownMenu className={"categoryDrop"}>
                         <CategoryList
                             key={layer.id}
-                            categories={this.props.layerCategoriesDropDown}
+                            layer_id={layer.id}
+                            data={this.props.data}
                             updateTable={this.props.updateTable}
-                            categorySelected={this.props.categorySelected}
                         />
                     </DropdownMenu>
                 </ButtonDropdown>
@@ -66,9 +66,7 @@ class Layer extends Component {
 }
 
 Layer.propTypes = {
-    layer: PropTypes.object.isRequired,
-    categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-    publications: PropTypes.arrayOf(PropTypes.object).isRequired
+    data: PropTypes.object.isRequired
 };
 
 export default Layer;

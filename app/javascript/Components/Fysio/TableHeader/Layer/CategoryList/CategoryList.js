@@ -26,18 +26,17 @@ class CategoryList extends Component{
      */
 
     render() {
-        if(this.props.categories === null || this.props.categories === undefined){
+        if(this.props.data.getCategories() === null || this.props.data.getCategories() === undefined){
             return null;
         }else{
             return (
                     <ListGroup className={"categoryDrop"}>
-                        { this.props.categories.map((category) =>
+                        { this.props.data.getCategoriesByLayerId(this.props.layer_id).map((category) =>
                                 <Category
                                         key={category.id}
-                                        name={category.name}
-                                        category={category}
+                                        id={category.id}
+                                        data={this.props.data}
                                         updateTable={this.props.updateTable}
-                                        status={this.props.categorySelected.indexOf(category.name) > -1}
                                  />
                         )}
                     </ListGroup>
@@ -47,15 +46,7 @@ class CategoryList extends Component{
 }
 
 Category.propTypes = {
-    category: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        layer_id: PropTypes.number.isRequired,
-        description: PropTypes.string
-    }),
-    name: PropTypes.string,
-    updateTable: PropTypes.func,
-    status: PropTypes.bool
+    data: PropTypes.object.isRequired
 };
 
 export default CategoryList;
