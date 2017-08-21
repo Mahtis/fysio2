@@ -10,4 +10,12 @@ class AuthenticationController < ApplicationController
       render json: { error: command.errors }, status: :unauthorized
     end
   end
+
+  def create_oauth
+    callback = request.env['omniauth.auth']
+    payload = {:user => callback.info.nickname, :github_client => ENV['GITHUB_KEY'] }
+    cookies['auth_token'] = JsonWebToken.encode(payload)
+    redirect_to root_path
+  end
+
 end
