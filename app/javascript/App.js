@@ -30,6 +30,8 @@ class App extends Component {
         this.changeLayerView = this.changeLayerView.bind(this);
         this.updateTable = this.updateTable.bind(this);
         this.createLayerCategories = this.createLayerCategories.bind(this);
+        this.createCategory = this.createCategory.bind(this);
+        this.loadData = this.loadData.bind(this);
 
         this.toNormal = this.toNormal.bind(this);
         this.toAbout = this.toAbout.bind(this);
@@ -100,16 +102,24 @@ class App extends Component {
         });
     }
 
-    /**
-     * Method that mutates data currently visible to user
-     */
 
     createPublication(data) {
         DatabaseConnector.createPublication(data)
-            .then(this.updateTable('hack'));
+            .then(this.loadData());
         //console.log(data);
     }
 
+    createCategory(data) {
+        DatabaseConnector.createCategory(data)
+            .then(this.loadData());
+        //console.log(data);
+    }
+
+    /**
+     * Helper method that makes the category listing usable
+     * @param name {string} Name of view
+     * @returns {Array} Array of selected categories
+     */
     createLayerCategories(cats) {
         let layerCategories = {};
         let layers = this.state.data.getLayers();
@@ -124,8 +134,10 @@ class App extends Component {
             for(let i = 0; i < categories.length; i++) {
                 if (layerCategories[categories[i].layer_id] !== undefined) {
                     layerCategories[categories[i].layer_id].push(categories[i]);
+
                 }
             }
+            
         }
 
         return layerCategories;
@@ -197,7 +209,9 @@ class App extends Component {
 
     render() {
 
-        let layerCategories = this.createLayerCategories(this.state.data.getCategories);
+        //console.log(this.state.data.getCategories());
+
+        let layerCategories = this.createLayerCategories(this.state.data.getCategories());
 
         if (this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
 
@@ -215,8 +229,19 @@ class App extends Component {
 
         } else {
 
-            let nav = <NavBar layerTypes={this.state.data.getLayerTypes()} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
-            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
+            let nav = <NavBar
+                layerTypes={this.state.data.getLayerTypes()}
+                changeLayerView={this.changeLayerView}
+                appMode = {this.state.appMode}
+                userMode = {this.state.userMode}
+                toNormal = {this.toNormal}
+                toAbout = {this.toAbout}
+                toLogin = {this.toLogin}
+                doLogout = {this.doLogout}
+                doClear = {this.doClear}
+                createPublication = {this.createPublication}
+                createCategory = {this.createCategory}
+                layerCategories={layerCategories}
             />;
 
             const homePage = (
@@ -228,6 +253,7 @@ class App extends Component {
                     />
                 </div>
             );
+
             const aboutPage = (
                 <div>
                     <h3>Welcome to the Interactive Web Repository for Physiological Computing</h3>
@@ -254,6 +280,7 @@ class App extends Component {
 
                 </div>
             );
+
             const loginPage = (
                 <div>
                     <Login setUserMode={this.setUserMode} />
@@ -261,6 +288,7 @@ class App extends Component {
             );
 
             let more = null;
+
             if (this.state.appMode === "normal") {
                 more = homePage;
 

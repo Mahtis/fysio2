@@ -66,19 +66,15 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-    puts publication_params['categories']
+    puts publication_params.inspect
     pb = publication_params
     ar = []
     pb['categories'].each do |c|
-      if c.empty?
-        #pb['categories'] - [c]
-      else
-        ar.push(Category.find(c))
-      end
+
+      ar.push(Category.find(c))
+
     end
     pb[:categories] = ar
-    puts 'JÄLKEEN'
-    puts pb.inspect
     @publication = Publication.new(pb)
 
     respond_to do |format|

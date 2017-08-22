@@ -74,11 +74,13 @@ class Fysio extends Component{
 
         let TabHead = (
             <thead >
+
                 <TableHeader
                     data={this.props.data}
                     updateTable={this.props.updateTable}
                     setTextSearch={this.setTextSearch}
                 />
+
             </thead>
         );
 
@@ -124,6 +126,7 @@ class Fysio extends Component{
                         if(iterated < this.state.pubIdLimit && publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
                             iterated++;
                             return <Publication
+
                                 data={this.props.data}
                                 updateTable={this.props.updateTable}
                                 key={publication.id}
