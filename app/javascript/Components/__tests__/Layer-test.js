@@ -8,16 +8,13 @@ describe("Layer", () => {
     const layer = () => {
         mountedLayer = TestHelper.initializationWithMount(mountedLayer, <Layer {...props} />);
         return mountedLayer;
-    }
+    };
 
     beforeEach(() => {
         props = {
-            categories: undefined,
             id: undefined,
-            layer: undefined,
-            publications: undefined,
-            layerCategoriesDropDown: undefined,
-            categorySelected: undefined
+            updateTable: undefined,
+            data: undefined
         };
         mountedLayer = undefined;
     });
@@ -25,14 +22,14 @@ describe("Layer", () => {
     // above code is run before each test to null the props
 
     it("always renders one th element", () => {
-        initializeProps(props);
+        props = TestHelper.initializeLayerProps(props);
         const tr = layer().find("th");
         expect(tr.length).toBe(1);
     });
 
     describe("the rendered tr", () => {
         beforeEach(() => {
-            initializeProps(props);
+            props = TestHelper.initializeLayerProps(props);
         });
 
         it("contains everything else that is rendered", () => {
@@ -44,7 +41,7 @@ describe("Layer", () => {
 
             it("receives layer.id as id", () => {
                 const th = layer().find("th");
-                expect(th.props().id).toBe(props.layer.id)
+                expect(th.props().id).toBe(props.data.getLayerById(1).id)
             });
 
             it("renders div", () => {
@@ -80,7 +77,7 @@ describe("Layer", () => {
 
                     it("has name of the layer as label", () => {
                         const dropDownToggle = layer().find("DropdownToggle");
-                        expect(dropDownToggle.text()).toEqual("Test");
+                        expect(dropDownToggle.text()).toEqual("Application");
                     });
 
                 });
@@ -97,41 +94,17 @@ describe("Layer", () => {
                         expect(dropDownMenu.find("CategoryList").length).toBe(1);
                     });
 
-                    describe("the rendered CategoryList", () => {
-
-                        it("receives categories as prop", () => {
-                            const categoryList = layer().find("CategoryList");
-                            expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
-                        });
-                    });
+                    // describe("the rendered CategoryList", () => {
+                    //
+                    //     it("receives categories as prop", () => {
+                    //         const categoryList = layer().find("CategoryList");
+                    //         expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
+                    //     });
+                    // });
                 });
             });
         });
     });
 });
 
-    function initializeProps(props) {
-        props.categories = [{
-            id: 1,
-            name: "EEG",
-            layer_id: 1,
-            }, {
-            id: 2,
-            name: "ABC",
-            layer_id: "2"}];
-        props.layer = {
-            id: 1,
-            name: "Test"
-        };
-        props.publications = [];
-        props.layerCategoriesDropDown = [{
-            id: 1,
-            name: "EEG",
-            layer_id: 1,
-        },
-            {id: 2,
-                name: "ABC",
-                layer_id: "2"}];
-        props.categorySelected  = [];
-    }
 

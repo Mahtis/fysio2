@@ -14,29 +14,23 @@ describe("TableHeader", () => {
     beforeEach(() => {
         props = {
             modalOpen: false,
-            pub: createPublication()
+            data: undefined,
+            id: undefined
         };
         mountedPublicationTitle = undefined;
     });
 
     it("always renders a tr", () => {
+        props = TestHelper.initializePublicationTitleProps(props);
         TestHelper.sizeEqualWithFindAndLength(publicationTitle, "td", 1);
         TestHelper.sizeEqualWithFindAndLength(publicationTitle, "span", 1);
 
-        const wrapper = shallow(<PublicationTitle modalOpen={false}
-                                                  pub={createPublication()} />).instance();
+        const wrapper = shallow(
+            <PublicationTitle
+                id={props.id}
+                modalOpen={false}
+                data={props.data} />).instance();
         expect(wrapper.props.modalOpen).toEqual(false);
 
     });
-
-    function createPublication() {
-        return {
-            name: "Test",
-            links: ["http://localhost"],
-            authors: ["Matti Meikäläinen"],
-            year: 2017,
-            journal: "Aku Ankka"
-        }
-    }
-
 });

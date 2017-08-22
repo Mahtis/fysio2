@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NavBar from './Components/NavBar/NavBar';
 import Fysio from "./Components/Fysio/Fysio";
 import Login from "./Components/Tabs/Login";
+import Data from './Services/Data';
 import DatabaseConnector from "./Services/DatabaseConnector";
 
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -20,23 +21,14 @@ class App extends Component {
         super();
         this.state = {
             visible: "LayersPage",
-            layers: [],
-            categories: [],
-            publications: [],
-            categorySelected: [],
-            categoryAvailable: [],
-            layerTypes: [],
+            data: new Data(),
             appMode : "normal",
             userMode : "guest",
             layerCategories: {}
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
-        this.parsePath = this.parsePath.bind(this);
         this.updateTable = this.updateTable.bind(this);
-        this.extractIds = this.extractIds.bind(this);
-        this.manageSelectedCategories = this.manageSelectedCategories.bind(this);
-        this.createPublication = this.createPublication.bind(this);
         this.createLayerCategories = this.createLayerCategories.bind(this);
 
         this.toNormal = this.toNormal.bind(this);
@@ -54,10 +46,14 @@ class App extends Component {
 
     changeLayerView(id) {
         /* purkkaa */
-        this.updateTable("hack");
-        DatabaseConnector.getLayersForType(id).then((resolve) => this.setState({
-            layers: resolve
-        }));
+        this.updateTable();
+        DatabaseConnector.getLayersForType(id).then((resolve) => {
+            this.setState(function() {
+                let data = this.state.data;
+                data.setLayers(resolve);
+                return data;
+            })
+        });
     }
 
     /**
@@ -73,66 +69,41 @@ class App extends Component {
      */
 
     loadData() {
-        DatabaseConnector.getLayers().then((resolve) => this.setState({
-            layers: resolve
-        }));
-        DatabaseConnector.getPublications().then((resolve) => this.setState({
-            publications: resolve
-        }));
-        DatabaseConnector.getLayerTypes().then((resolve) => this.setState({
-            layerTypes: resolve
-        }));
-        DatabaseConnector.getCategories().then((resolve) => this.setState({
-            categories: resolve,
-            categoryAvailable: resolve,
-        })).then(
-            this.setState({
-                layerCategories: this.createLayerCategories(this.state.categories)
-            })
-        );
-    }
 
-    /**
-     * Method that mutates data currently visible to user
-     * @param name {string} Name of view
-     */
-
-    updateTable(name) {
-        let selectedCategories = [];
-        let publicationPath = "";
-        let pubs = [];
-
-        // this probably needs to change?
-        if (name === "hack") {
-            publicationPath = "publications.json";
-        } else {
-            selectedCategories = this.manageSelectedCategories(name);
-            publicationPath = this.parsePath(selectedCategories, "publications", "names");
-        }
-
-        // first get publications from path and create the second path
-        DatabaseConnector.fetchFromPath(publicationPath).then(publications => {
-            pubs = publications;
-            let pIds = this.extractIds(publications);
-            return this.parsePath(pIds, "categories", "pubIds");
-        })
-        // then from the second path get the categories that are still possible
-        .then(categoryPath => {
-            DatabaseConnector.fetchFromPath(categoryPath).then(categories => {
-                this.setState({
-                    publications: pubs,
-                    categorySelected: selectedCategories,
-                    categoryAvailable: categories
-                })
-            })
+        DatabaseConnector.getDataFromDatabase("/layer_types/1").then((layers) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setLayers(layers.layers);
+                return data;
+            });
+        });
+        DatabaseConnector.getDataFromDatabase("/publications").then((publications) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setPublications(publications);
+                return data;
+            });
+        });
+        DatabaseConnector.getDataFromDatabase("/layer_types").then((layertypes) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setLayerTypes(layertypes);
+                return data;
+            });
+        });
+        DatabaseConnector.getDataFromDatabase("/categories").then((categories) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setCategories(categories);
+                return data;
+            });
         });
     }
 
     /**
-     * Helper method that makes the category listing usable
-     * @param name {string} Name of view
-     * @returns {Array} Array of selected categories
+     * Method that mutates data currently visible to user
      */
+
     createPublication(data) {
         DatabaseConnector.createPublication(data)
             .then(this.updateTable('hack'));
@@ -141,10 +112,10 @@ class App extends Component {
 
     createLayerCategories(cats) {
         let layerCategories = {};
-        let layers = this.state.layers;
+        let layers = this.state.data.getLayers();
         let categories = cats;
 
-        if (this.state.categories.length > 0 && this.state.layers.length > 0) {
+        if (this.state.data.getCategories().length > 0 && this.state.data.getLayers().length > 0) {
 
             for(let i = 0; i < layers.length; i++){
                 layerCategories[layers[i].id] = [];
@@ -160,18 +131,11 @@ class App extends Component {
         return layerCategories;
     }
 
-    manageSelectedCategories(name) {
+     updateTable(id) {
+        let data = this.state.data;
+        data.selectCategory(id);
+        this.setState({data: data});
 
-        let categorySelectedArray = this.state.categorySelected;
-
-        let index = categorySelectedArray.indexOf(name);
-
-        if (index > -1) {
-            categorySelectedArray.splice(index, 1);
-        } else {
-            categorySelectedArray.push(name);
-        }
-        return categorySelectedArray;
     }
 
     /**
@@ -179,44 +143,9 @@ class App extends Component {
      */
     doClear(){
         //console.log(this.state.categorySelected.length);
-        while(this.state.categorySelected.length > 0){
-            this.updateTable(this.state.categorySelected[0]);
-        }
-    }
-
-    /**
-     * Helper method that extracts publication id's out of publication list
-     * @param pubs {Array} Array of publications
-     * @returns {Array}
-     */
-
-    extractIds(pubs) {
-        let pIds = [];
-        pubs.map(p => {
-            pIds.push(p.id)
-        });
-        return pIds;
-    }
-
-    /**
-     * Helper method that generates the url to query database for categories
-     * @param categoriesArray {Array} Array of categories
-     * @param table {string} Name of required database table
-     * @param paramName {string} parameter name that is supplied to backend
-     * @returns {string}
-     */
-
-    parsePath(categoriesArray, table, paramName) {
-
-        let path = table + ".json?";
-        let length = path.length;
-
-        categoriesArray.map(cat => path += paramName + "[]=" + encodeURIComponent(cat) + "&");
-
-        if (path.length === length) {
-            return path.substring(0, path.length - 1);
-        }
-        return path.substring(0, path.length - 1);
+        let data = this.state.data;
+        data.clearCategorySelections();
+        this.setState({data: data});
     }
 
     /**
@@ -267,13 +196,11 @@ class App extends Component {
      */
 
     render() {
-        let categories = this.state.categories;
-        let layers = this.state.layers;
-        let publications = this.state.publications;
-        let layerTypes = this.state.layerTypes;
-        let layerCategories = this.createLayerCategories(this.state.categories);
 
-        if (publications.length === 0 && layerTypes.length === 0) {
+        let layerCategories = this.createLayerCategories(this.state.data.getCategories);
+
+        if (this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
+
             return (
                 <div>
                     <NavBar layerTypes={[]}
@@ -287,28 +214,17 @@ class App extends Component {
             );
 
         } else {
-            let nav = <NavBar layerTypes={layerTypes}
-                              changeLayerView={this.changeLayerView}
-                              appMode = {this.state.appMode}
-                              userMode = {this.state.userMode}
-                              toNormal = {this.toNormal}
-                              toAbout = {this.toAbout}
-                              toLogin = {this.toLogin}
-                              doLogout = {this.doLogout}
-                              doClear = {this.doClear}
-                              createPublication={this.createPublication}
-                              layerCategories={layerCategories}
+
+            let nav = <NavBar layerTypes={this.state.data.getLayerTypes()} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
+            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
             />;
+
             const homePage = (
                 <div className="table-responsive">
                     <Fysio
                         key="1"
-                        categories={categories}
-                        layers={layers}
-                        publications={publications}
                         updateTable={this.updateTable}
-                        categorySelected={this.state.categorySelected}
-                        categoryAvailable={this.state.categoryAvailable}
+                        data={this.state.data}
                     />
                 </div>
             );

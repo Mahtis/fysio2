@@ -19,47 +19,14 @@ class DatabaseConnector {
     }
 
     /**
-     * Fetches the default layers to be shown.
-     * The default view is hardcoded to be layerType 1, the Science view.
-     */
-    static getLayers() {
-        return fetch('/layer_types/1.json')
-            .then(response => response.json())
-            .then(layerType => {
-                return layerType.layers;
-            });
-    }
-
-    /**
      * Fetches all views.
      */
-    static getLayerTypes() {
-        return fetch('layer_types.json')
-            .then(response => response.json())
-            .then(layerTypes => {
-                return layerTypes;
-            });
-    }
 
-    /**
-     * Fetches all publications.
-     */
-    static getPublications() {
-        return fetch('publications.json')
+    static getDataFromDatabase(database) {
+        return fetch(database + '.json')
             .then(response => response.json())
-            .then(publications => {
-                return publications;
-            });
-    }
-
-    /**
-     * Fetches all categories.
-     */
-    static getCategories() {
-        return fetch('/categories.json')
-            .then(response => response.json())
-            .then(categories => {
-                return categories;
+            .then(data => {
+                return data;
             });
     }
 

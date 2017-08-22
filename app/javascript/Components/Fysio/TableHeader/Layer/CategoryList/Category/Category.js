@@ -23,7 +23,7 @@ class Category extends Component{
      */
 
     select() {
-        this.props.updateTable(this.props.category.name);
+        this.props.updateTable(this.props.id);
     }
 
     /**
@@ -32,10 +32,11 @@ class Category extends Component{
      */
 
     render() {
+        let category = this.props.data.getCategoryById(this.props.id);
 
         return (
-            <DropdownItem toggle={true} className={this.props.status ? "btn selected" : "btn"} onClick={this.select}>
-                <span>{this.props.category.name}</span>
+            <DropdownItem toggle={true} className={category.selected ? "btn selected" : "btn"} onClick={this.select}>
+                <span>{category.name}</span>
             </DropdownItem>
         );
 
@@ -43,15 +44,7 @@ class Category extends Component{
 }
 
 Category.propTypes = {
-    category: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        layer_id: PropTypes.number.isRequired,
-        description: PropTypes.string
-    }),
-    name: PropTypes.string,
-    updateTable: PropTypes.func,
-    status: PropTypes.bool
+    data: PropTypes.object
 };
 
 export default Category;
