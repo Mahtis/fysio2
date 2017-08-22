@@ -18,4 +18,9 @@ class AuthenticationController < ApplicationController
     redirect_to root_path
   end
 
+  def get_authenticated_user
+    authenticate_request
+    @current_user
+  end
+
 end

@@ -69,7 +69,7 @@ class App extends Component {
         let token = cookie.load('auth_token');
         console.log(token);
         if (token !== undefined) {
-            return fetch('/users.json', {
+            return fetch('auth/current_user.json', {
                 method: 'GET',
                 headers: {
                     'Authorization': token,
