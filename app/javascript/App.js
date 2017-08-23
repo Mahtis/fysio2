@@ -61,10 +61,12 @@ class App extends Component {
      */
 
     componentWillMount() {
-        this.checkUser();
         this.loadData();
     }
 
+    /**
+     * Checks whether there is a cookie containing auth information for the user.
+     */
     checkUser() {
         let token = cookie.load('auth_token');
         console.log(token);
@@ -82,9 +84,10 @@ class App extends Component {
                 } else {
                     return null;
                 }
-            }).then(resp => {
-                if(resp !== null) {
-                    this.setState({userMode: 'user'})
+            }).then(user => {
+                if(user !== null) {
+                    console.log(user);
+                    this.setState({userMode: user.role})
                 } else {
                     throw new Error('Invalid user credentials');
                 }
@@ -176,6 +179,7 @@ class App extends Component {
      */
 
     doLogout(){
+        cookie.remove('auth_token')
         this.setState({userMode: "guest"});
     }
 
@@ -195,6 +199,7 @@ class App extends Component {
      */
 
     render() {
+        this.checkUser();
         if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
                 <div>

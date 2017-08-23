@@ -81,9 +81,12 @@ class Login extends Component{
         }
     }
 
+    /**
+     * Handles posting the form.
+     * @param event
+     */
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state.usernameI + ' : ' + this.state.passwordI)
         return fetch('/authenticate', {
             method: 'POST',
             headers: {
@@ -97,17 +100,15 @@ class Login extends Component{
                 password: this.state.passwordI
             })})
                 .then(response => {
-                    if (response.status === 200) {
-                        return response.json();
-                    } else {
-                        return null;
-                    }
+                    return response.json();
                 })
                 .then(resp => {
-                    console.log(resp.auth_token);
                     if(resp.auth_token !== undefined) {
                         cookie.save('auth_token', resp.auth_token);
                         this.props.setUserMode(resp.user.role);
+                    } else if (resp.errors !== undefined) {
+                        this.setState({errorMessage: resp.error});
+                        console.log(resp.error);
                     }
         });
     }
