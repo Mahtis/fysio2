@@ -1,22 +1,22 @@
 class AuthenticateUser
   prepend SimpleCommand
 
-  def initialize(name, email)
+  def initialize(name, password)
     @name = name
-    @email = email
+    @password = password
   end
 
   def call
-    JsonWebToken.encode(user_id: user.id) if user
+    JsonWebToken.encode({:user => user.name}) if user
   end
 
   private
 
-  attr_accessor :name, :email
+  attr_accessor :name, :password
 
   def user
-    user = User.find_by_email(email)
-    return user if user
+    user = User.find_by_name(name)
+    return user if user && user.authenticate(password)
 
     errors.add :user_authentication, 'invalid credentials'
     nil

@@ -14,7 +14,7 @@ class AuthenticateApiRequest
   attr_reader :headers
 
   def user
-    @user ||= User.find_by_name(decoded_auth_token[:user]) if decoded_auth_token && decoded_auth_token[:github_client] == ENV['GITHUB_KEY']
+    @user ||= User.find_by_name(decoded_auth_token[:user]) if decoded_auth_token
     @user || errors.add(:token, 'Invalid token') && nil
   end
 

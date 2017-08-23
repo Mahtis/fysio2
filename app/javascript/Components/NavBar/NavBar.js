@@ -85,7 +85,7 @@ class NavBar extends Component{
             addPubButton = null;
             loginButton=(
                 <NavItem>
-                    <a className="btn modeButtons" href="auth/github">github</a>
+                    <Button className={"modeButtons"} onClick={this.props.toLogin}>Login</Button>
                 </NavItem>
             );
         }
