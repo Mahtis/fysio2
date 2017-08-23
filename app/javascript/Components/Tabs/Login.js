@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import cookie from 'react-cookies';
 
 /**
  * Login component
@@ -27,7 +28,7 @@ class Login extends Component{
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
         this.submitLogin = this.submitLogin.bind(this);
-        this.doFetch = this.doFetch.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
@@ -80,7 +81,9 @@ class Login extends Component{
         }
     }
 
-    doFetch() {
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log(this.state.usernameI + ' : ' + this.state.passwordI)
         return fetch('/authenticate', {
             method: 'POST',
             headers: {
@@ -90,9 +93,22 @@ class Login extends Component{
             },
             credentials: 'same-origin',
             body: JSON.stringify({
-                name: 'Paavo',
-                email: 'example@mail.com'
-            })
+                name: this.state.usernameI,
+                password: this.state.passwordI
+            })})
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        return null;
+                    }
+                })
+                .then(resp => {
+                    console.log(resp.auth_token);
+                    if(resp.auth_token !== undefined) {
+                        cookie.save('auth_token', resp.auth_token);
+                        this.props.setUserMode(resp.user.role);
+                    }
         });
     }
 
@@ -104,7 +120,7 @@ class Login extends Component{
     render(){
         let mix = (
             <div>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup className={"loginForm"}>
                         <Label for="username">UserName</Label>
                         <Input className={"modeButtons"} type="username" name="email" id="username" placeholder="" onChange = {this.updateUsername}/>
@@ -113,6 +129,7 @@ class Login extends Component{
                         <Label for="password">Password</Label>
                         <Input className={"modeButtons"} type="password" name="password" id="password" placeholder="" onChange = {this.updatePassword}/>
                     </FormGroup>
+                    <Button type="submit" className="modeButtons">Submit</Button>
                 </Form>
                 <Button className={"modeButtons"} onClick = {this.submitLogin}>Submit</Button>
                 <a className="btn modeButtons" href="auth/github">github</a>

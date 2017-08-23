@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bcrypt', '~> 3.1.7'
 gem 'jwt', '~> 1.5', '>= 1.5.4'
 gem 'simple_command'
 gem 'omniauth-github'
