@@ -100,6 +100,13 @@ class App extends Component {
                 return data;
             });
         });
+        DatabaseConnector.getDataFromDatabase("/authors").then((authors) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAuthors(authors);
+                return data;
+            });
+        });
     }
 
 
@@ -220,6 +227,7 @@ class App extends Component {
                     <NavBar layerTypes={[]}
                             changeLayerView={this.changeLayerView}
                             layerCategories={layerCategories}
+                            authors = {this.state.data.getAuthors()}
                     />
                     <span className={"loading"}>
                         Loading
@@ -242,6 +250,7 @@ class App extends Component {
                 createPublication = {this.createPublication}
                 createCategory = {this.createCategory}
                 layerCategories={layerCategories}
+                authors = {this.state.data.getAuthors()}
             />;
 
             const homePage = (

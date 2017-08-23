@@ -114,6 +114,20 @@ class PublicationForm extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     <Label>
+                                        Author
+                                        <Input type="text" list="authors"/>
+                                        <datalist id="authors">
+                                            {this.props.authors.map(author =>
+                                                <option value={author.name}>{author.name}</option>
+                                            )}
+                                            <option value="Pen">Pen</option>
+                                            <option value="Pencil">Pencil</option>
+                                            <option value="Paper">Paper</option>
+                                        </datalist>
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup>
+                                    <Label>
                                         Abstract:
                                         <Input type="text" value={this.state.abstract} onChange={this.handleAbstractChange} />
                                     </Label>

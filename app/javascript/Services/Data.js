@@ -13,6 +13,7 @@ class Data {
         this.layertypes = [];
         this.categories = [];
         this.publications = [];
+        this.authors = [];
         this.selected_count = 0;
     }
 
@@ -56,6 +57,24 @@ class Data {
 
     setPublications(publications){
         this.publications = publications;
+    }
+
+    /**
+     * Setter for authors
+     * @param publications
+     */
+
+    setAuthors(authors){
+        this.authors = authors;
+    }
+
+    /**
+     * Getter for authors
+     * @returns {Array|*}
+     */
+
+    getAuthors(){
+        return this.authors;
     }
 
     /**

@@ -77,6 +77,7 @@ class NavBar extends Component{
                     createPublication={this.props.createPublication}
                     createCategory={this.props.createCategory}
                     layerCategories={this.props.layerCategories}
+                    authors={this.props.authors}
                 />
             </NavItem>
         );
