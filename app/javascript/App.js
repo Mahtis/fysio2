@@ -170,9 +170,7 @@ class App extends Component {
                 <div>
                     <NavBar layerTypes={[]}
                             changeLayerView={this.changeLayerView}/>
-                    <span className={"loading"}>
-                        Loading
-                    </span>
+                    <div className="loader" />
                 </div>
             );
 
