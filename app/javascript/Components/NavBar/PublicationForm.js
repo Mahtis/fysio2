@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import CategoryCheckbox from "./CategoryCheckbox";
 import CategoryForm from "./CategoryForm";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, NavItem } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col} from 'reactstrap';
 
 class PublicationForm extends Component {
 
@@ -18,6 +18,8 @@ class PublicationForm extends Component {
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleJournalChange = this.handleJournalChange.bind(this);
         this.handleCheckbox = this.handleCheckbox.bind(this);
+        this.handleAuthorChange = this.handleAuthorChange.bind(this);
+        this.addAuthor = this.addAuthor.bind(this);
 
         this.state = {
             modalOpen: false,
@@ -25,7 +27,9 @@ class PublicationForm extends Component {
             abstract: "",
             year: "",
             journal: "",
-            categories: []
+            categories: [],
+            authors: [],
+            authorField: ""
         };
     }
 
@@ -59,6 +63,24 @@ class PublicationForm extends Component {
         this.setState({
             name: e.target.value
         })
+    }
+
+    handleAuthorChange(e) {
+        this.setState({
+           authorField: e.target.value
+        });
+        console.log(e.target.value);
+    }
+
+    addAuthor(e) {
+        e.preventDefault();
+        let authors = this.state.authors;
+        authors.push(this.state.authorField);
+        this.setState({
+            authorField: "",
+            authors: authors
+        });
+        console.log(this.state.authors);
     }
 
     handleAbstractChange(e) {
@@ -112,19 +134,38 @@ class PublicationForm extends Component {
                                         <Input type="text" value={this.state.name} onChange={this.handleNameChange} />
                                     </Label>
                                 </FormGroup>
-                                <FormGroup>
-                                    <Label>
-                                        Author
-                                        <Input type="text" list="authors"/>
-                                        <datalist id="authors">
-                                            {this.props.authors.map(author =>
-                                                <option value={author.name}>{author.name}</option>
-                                            )}
-                                            <option value="Pen">Pen</option>
-                                            <option value="Pencil">Pencil</option>
-                                            <option value="Paper">Paper</option>
-                                        </datalist>
-                                    </Label>
+                                <FormGroup row>
+                                    <Col>
+                                        <Label>
+                                            Author
+                                            <Input type="text" list="authors" value={this.state.authorField} onChange={this.handleAuthorChange}/>
+                                            <datalist id="authors" >
+                                                {this.props.authors.map(author =>
+                                                    <option value={author.name} >{author.name}</option>
+                                                )}
+                                            </datalist>
+
+                                        </Label>
+                                        <Button onClick={this.addAuthor}>Add</Button>
+                                    </Col>
+
+                                    <Col>
+                                        
+                                        <Label>
+                                            <Button>Remove</Button>
+                                            <Input type="select" multiple>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </Input>
+                                        </Label>
+
+                                    </Col>
+
+
+
                                 </FormGroup>
                                 <FormGroup>
                                     <Label>
