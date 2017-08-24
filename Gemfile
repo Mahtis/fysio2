@@ -44,6 +44,7 @@ gem 'jwt', '~> 1.5', '>= 1.5.4'
 gem 'omniauth-github'
 gem 'simple_command'
 
+
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'

@@ -12,6 +12,7 @@ class AuthenticationController < ApplicationController
       else
         render json: { error: command.errors }, status: :unauthorized
       end
+
     end
   end
 
