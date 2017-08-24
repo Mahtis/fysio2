@@ -24,6 +24,7 @@ class PublicationForm extends Component {
         this.addAuthor = this.addAuthor.bind(this);
         this.removeAuthor = this.removeAuthor.bind(this);
         this.handleAuthorCheckbox = this.handleAuthorCheckbox.bind(this);
+        this.filterAuthors = this.filterAuthors.bind(this);
 
         this.state = {
             modalOpen: false,
@@ -34,7 +35,9 @@ class PublicationForm extends Component {
             categories: [],
             authors: [],
             authorField: "",
-            authorSelected: []
+            authorSelected: [],
+            existing: [],
+            toCreate: []
         };
     }
 
@@ -46,7 +49,9 @@ class PublicationForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        //console.log(this.state);
+
+        this.filterAuthors();
+
         let attributes = {
             name: this.state.name,
             abstract: this.state.abstract,
@@ -66,6 +71,19 @@ class PublicationForm extends Component {
             authorSelected: []
         });
         this.props.createPublication(attributes);
+    }
+
+    filterAuthors() {
+        let existing = [];
+        let toCreate = [];
+        this.state.authors.map(author => {
+            for (let i = 0; i < this.props.authors.length; i++) {
+                if (author === this.props.authors[i].name) {
+                    existing.push(this.props.authors[i].id)
+                    break;
+                }
+            }
+        })
     }
 
     handleNameChange(e) {
@@ -97,7 +115,7 @@ class PublicationForm extends Component {
         let selection = this.state.authorSelected;
         selection.map(selected =>
             authors.splice(authors.indexOf(selected), 1)
-        )
+        );
         this.setState({
             authors: authors,
             authorSelected: []
@@ -149,7 +167,7 @@ class PublicationForm extends Component {
         } else {
             authors.push(author);
         }
-        console.log(authors);
+        //console.log(authors);
         this.setState({
             authorSelected: authors
         })

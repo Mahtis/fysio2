@@ -109,6 +109,35 @@ class DatabaseConnector {
                 body: JSON.stringify(params)
 
             }).then(response => {
+                console.log(response);
+                return data;
+            }
+        )
+    }
+
+    static createAuthor(data) {
+        let params = {author: data};
+
+        return fetch('/authors',
+            {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Accept': 'application/json',
+
+                    'Content-Type': 'application/json',
+
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                },
+
+                credentials: 'same-origin',
+
+                body: JSON.stringify(params)
+
+            }).then(response => {
                 return data;
             }
         )
