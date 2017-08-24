@@ -2,9 +2,11 @@
  * Created by perkoila on 27.7.2017.
  */
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import CategoryCheckbox from "./CategoryCheckbox";
 import CategoryForm from "./CategoryForm";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col} from 'reactstrap';
+import AuthorCheckbox from "./AuthorCheckbox";
 
 class PublicationForm extends Component {
 
@@ -17,9 +19,11 @@ class PublicationForm extends Component {
         this.handleAbstractChange = this.handleAbstractChange.bind(this);
         this.handleYearChange = this.handleYearChange.bind(this);
         this.handleJournalChange = this.handleJournalChange.bind(this);
-        this.handleCheckbox = this.handleCheckbox.bind(this);
+        this.handleCategoryCheckbox = this.handleCategoryCheckbox.bind(this);
         this.handleAuthorChange = this.handleAuthorChange.bind(this);
         this.addAuthor = this.addAuthor.bind(this);
+        this.removeAuthor = this.removeAuthor.bind(this);
+        this.handleAuthorCheckbox = this.handleAuthorCheckbox.bind(this);
 
         this.state = {
             modalOpen: false,
@@ -29,7 +33,8 @@ class PublicationForm extends Component {
             journal: "",
             categories: [],
             authors: [],
-            authorField: ""
+            authorField: "",
+            authorSelected: []
         };
     }
 
@@ -47,14 +52,18 @@ class PublicationForm extends Component {
             abstract: this.state.abstract,
             year: this.state.year,
             journal: this.state.journal,
-            categories: this.state.categories
+            categories: this.state.categories,
+            authors: this.state.authors
         };
         this.setState({
             name: "",
             abstract: "",
             year: "",
             journal: "",
-            categories: []
+            categories: [],
+            authors: [],
+            authorField: "",
+            authorSelected: []
         });
         this.props.createPublication(attributes);
     }
@@ -80,7 +89,19 @@ class PublicationForm extends Component {
             authorField: "",
             authors: authors
         });
-        console.log(this.state.authors);
+        //console.log(this.state.authors);
+    }
+
+    removeAuthor() {
+        let authors = this.state.authors;
+        let selection = this.state.authorSelected;
+        selection.map(selected =>
+            authors.splice(authors.indexOf(selected), 1)
+        )
+        this.setState({
+            authors: authors,
+            authorSelected: []
+        })
     }
 
     handleAbstractChange(e) {
@@ -101,7 +122,7 @@ class PublicationForm extends Component {
         })
     }
 
-    handleCheckbox(category) {
+    handleCategoryCheckbox(category) {
 
         let cats = this.state.categories;
 
@@ -118,8 +139,25 @@ class PublicationForm extends Component {
         })
     }
 
+    handleAuthorCheckbox(author) {
+        let authors = this.state.authorSelected;
+
+        let index = authors.indexOf(author);
+
+        if (index > -1) {
+            authors.splice(index, 1);
+        } else {
+            authors.push(author);
+        }
+        console.log(authors);
+        this.setState({
+            authorSelected: authors
+        })
+    }
+
     render() {
         //console.log(this.props.layerCategories);
+
         return (
             <Button onClick={this.toggle} className="modeButtons">
                 Add publication
@@ -127,7 +165,7 @@ class PublicationForm extends Component {
                     <ModalHeader toggle={this.toggle}>Add publication</ModalHeader>
                     <ModalBody>
                         <div>
-                            <Form onSubmit={this.handleSubmit}>
+                            <Form>
                                 <FormGroup>
                                     <Label>
                                         Name:
@@ -141,31 +179,33 @@ class PublicationForm extends Component {
                                             <Input type="text" list="authors" value={this.state.authorField} onChange={this.handleAuthorChange}/>
                                             <datalist id="authors" >
                                                 {this.props.authors.map(author =>
-                                                    <option value={author.name} >{author.name}</option>
+                                                    <option value={author.name} ></option>
                                                 )}
                                             </datalist>
-
                                         </Label>
-                                        <Button onClick={this.addAuthor}>Add</Button>
                                     </Col>
-
                                     <Col>
-                                        
                                         <Label>
-                                            <Button>Remove</Button>
-                                            <Input type="select" multiple>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </Input>
+                                            <br/>
+                                            <Button onClick={this.addAuthor}>Add</Button>
                                         </Label>
-
                                     </Col>
-
-
-
+                                    <Col>
+                                        <Label>
+                                            <br/>
+                                            <Button onClick={this.removeAuthor}>Remove</Button>
+                                        </Label>
+                                    </Col>
+                                    <Col>
+                                        <br/>
+                                        {this.state.authors.map(author =>
+                                            <AuthorCheckbox
+                                                key={author}
+                                                author={author}
+                                                handleCheckbox={this.handleAuthorCheckbox}
+                                            />
+                                        )}
+                                    </Col>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label>
@@ -187,35 +227,27 @@ class PublicationForm extends Component {
                                 </FormGroup>
                                 <FormGroup>
                                     {Object.keys(this.props.layerCategories).map(layer =>
-                                        <FormGroup key={layer}>
+                                        <FormGroup key={layer} >
                                             <Label>{layer}</Label>
                                             {this.props.layerCategories[layer].map(category =>
                                                 <CategoryCheckbox
                                                     key={category.id}
                                                     category={category}
-                                                    handleCheckbox={this.handleCheckbox}
+                                                    handleCheckbox={this.handleCategoryCheckbox}
                                                 />
                                             )}
-
-
                                             <CategoryForm layer={layer} createCategory={this.props.createCategory}/>
-
-
                                         </FormGroup>
                                     )}
                                 </FormGroup>
                                 <Input type="submit" value="Submit" onClick={this.toggle} />
-
-
-
-
-
                             </Form>
                         </div>
                     </ModalBody>
                 </Modal>
             </Button>
-        );
+
+        )
     }
 }
 
