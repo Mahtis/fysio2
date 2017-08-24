@@ -50,6 +50,21 @@ class PublicationTitle extends Component {
     render() {
         let publication = this.props.data.getPublicationById(this.props.id);
 
+        //var desc = "What|Despite how previous studies have shown that certain meditative relaxation techniques are efficient tools for stress management, these methods are not widely in use in work environments. Traditionally these methods require commitment and effort, and technological aids to support these activities are scarce. In this project we examined how the latest 3D virtual technologies can be utilized in enhancing meditation techniques.|How|The strong feel of being somewhere else typical to 3D virtual environments hastens the detachment from one's every day surroundings and boosts the effects of the relaxation techniques, and also enables the user to use the system during the work day in the work place.In this project we developed a neuroadaptive 3D virtual environment. In this first prototype phase we implemented two different meditation techniques – the body awareness and point focus exercises. In addition to the original project plan, an additional feature was developed for the environment: EEG based neuroadaptivity so that the environment is responsive to changes in the users brainwaves. Based on states of relaxation and focused attention measured from the brainwaves, the users avatar could levitate in the environment. The purpose of this neuroadaptivity is to boost the effects of the exercise and make the environment more responsive and immersive. It also provided feedback to the user and guided the meditation"
+        var desc = publication.moreTitles;
+        var fulldesc=desc;
+       /* if(desc != null && desc.length > 0){
+            var array = desc.split("|");
+            fulldesc = <div>
+            {array.map(function(object, i){
+                if (i % 2 == 0) {
+                    return <p><b>{array[i]}: </b>{array[i+1]}</p>
+                } else {
+                    return null;
+                }
+            })}</div>;
+        }*/
+
         return (
             <td className="rowCell">
                 <span key={publication.name} onClick={this.toggle}>{publication.name} </span>
@@ -65,6 +80,9 @@ class PublicationTitle extends Component {
                             {this.state.authors.indexOf(author) !== this.state.authors.length-1 && ", "}</span>))}</p>
                         <p><b>Year: </b>{publication.year}</p>
                         <p><b>Journal: </b>{publication.journal}</p>
+
+                        {fulldesc}
+
                         <PublicationInfoTable
                             key={publication.id}
                             data={this.props.data}
