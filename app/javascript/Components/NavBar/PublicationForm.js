@@ -50,8 +50,6 @@ class PublicationForm extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.filterAuthors();
-
         let attributes = {
             name: this.state.name,
             abstract: this.state.abstract,
@@ -70,6 +68,7 @@ class PublicationForm extends Component {
             authorField: "",
             authorSelected: []
         });
+        console.log(attributes);
         this.props.createPublication(attributes);
     }
 
@@ -183,7 +182,7 @@ class PublicationForm extends Component {
                     <ModalHeader toggle={this.toggle}>Add publication</ModalHeader>
                     <ModalBody>
                         <div>
-                            <Form>
+                            <Form onSubmit={this.handleSubmit}>
                                 <FormGroup>
                                     <Label>
                                         Name:

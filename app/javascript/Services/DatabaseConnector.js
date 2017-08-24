@@ -109,7 +109,6 @@ class DatabaseConnector {
                 body: JSON.stringify(params)
 
             }).then(response => {
-                console.log(response);
                 return data;
             }
         )

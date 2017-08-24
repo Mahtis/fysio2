@@ -68,13 +68,31 @@ class PublicationsController < ApplicationController
   def create
     puts publication_params.inspect
     pb = publication_params
-    ar = []
+    cats = []
+    authors = []
     pb['categories'].each do |c|
 
-      ar.push(Category.find(c))
+      cats.push(Category.find(c))
 
     end
-    pb[:categories] = ar
+    pb['authors'].each do |a|
+      puts "ENNEN"
+      author = Author.find_by name: a
+      puts "JÄLKEEN"
+      if author.nil?
+        param = Hash["name" => a]
+        @author = Author.new(param)
+        @author.save
+        authors.push(@author)
+      else
+        authors.push(author)
+      end
+
+    end
+
+    pb[:categories] = cats
+    pb[:authors] = authors
+
     @publication = Publication.new(pb)
 
     respond_to do |format|
@@ -121,6 +139,6 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [], authors => [])
+    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [], :authors => [])
   end
 end

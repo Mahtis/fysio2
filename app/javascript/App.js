@@ -111,14 +111,15 @@ class App extends Component {
 
 
     createPublication(data) {
+        console.log(data);
         DatabaseConnector.createPublication(data)
-            .then(this.loadData());
-        //console.log(data);
+            .then(this.loadData);
+
     }
 
     createCategory(data) {
         DatabaseConnector.createCategory(data)
-            .then(this.loadData());
+            .then(this.loadData);
         //console.log(data);
     }
 
