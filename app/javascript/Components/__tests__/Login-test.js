@@ -22,7 +22,7 @@ describe("Login", () => {
     });
 
     it("always renders a div", () => {
-        TestHelper.sizeEqualWithFindAndLength(login, "div", 4);
+        TestHelper.sizeEqualWithFindAndLength(login, "div", 3);
     });
 });
 
