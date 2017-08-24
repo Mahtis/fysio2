@@ -4,6 +4,7 @@ import Fysio from "./Components/Fysio/Fysio";
 import Login from "./Components/Tabs/Login";
 import Data from './Services/Data';
 import DatabaseConnector from "./Services/DatabaseConnector";
+import cookie from 'react-cookies';
 
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -35,6 +36,7 @@ class App extends Component {
         this.doLogout = this.doLogout.bind(this);
         this.doClear = this.doClear.bind(this);
         this.setUserMode = this.setUserMode.bind(this);
+        this.checkUser = this.checkUser.bind(this);
     }
 
     /**
@@ -60,6 +62,27 @@ class App extends Component {
 
     componentWillMount() {
         this.loadData();
+    }
+
+    /**
+     * Checks whether there is a cookie containing auth information for the user.
+     * Changes the userMode only if the role is different from the current mode,
+     * otherwise it would be stuck in a constant loop of rendering.
+     */
+    checkUser() {
+        let token = cookie.load('auth_token');
+        if (token !== undefined) {
+            return DatabaseConnector.getCurrentUser(token)
+                .then(user => {
+                if (user !== null) {
+                    if (this.state.userMode !== user.role) {
+                        this.setState({userMode: user.role});
+                    }
+                } else {
+                    throw new Error('Invalid user credentials');
+                }
+            });
+        }
     }
 
     /**
@@ -146,6 +169,7 @@ class App extends Component {
      */
 
     doLogout(){
+        cookie.remove('auth_token');
         this.setState({userMode: "guest"});
     }
 
@@ -165,6 +189,8 @@ class App extends Component {
      */
 
     render() {
+        console.log('rendering');
+        this.checkUser();
         if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
                 <div>
