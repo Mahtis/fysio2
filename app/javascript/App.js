@@ -6,8 +6,6 @@ import Data from './Services/Data';
 import DatabaseConnector from "./Services/DatabaseConnector";
 import cookie from 'react-cookies';
 
-import { BrowserRouter, Route } from 'react-router-dom'
-
 /**
  * The Base Class, contains all app data in the state and calls every other component
  */
@@ -189,7 +187,6 @@ class App extends Component {
      */
 
     render() {
-        console.log('rendering');
         this.checkUser();
         if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
@@ -255,18 +252,6 @@ class App extends Component {
             } else if (this.state.appMode === "login") {
                 more = loginPage;
             }
-
-            //router is currently not used as any use of links leads to a blank partially loaded page.
-            const moreRouter = (
-                <div>
-                    <BrowserRouter>
-                        <Route exact path='/' component={homePage}/></BrowserRouter>
-                    <BrowserRouter>
-                        <Route exact path='/about' component={aboutPage}/></BrowserRouter>
-                    <BrowserRouter>
-                        <Route exact path='/login' component={loginPage}/></BrowserRouter>
-                </div>
-            );
 
             return (
                 <div>

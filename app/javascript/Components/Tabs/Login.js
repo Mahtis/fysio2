@@ -72,7 +72,7 @@ class Login extends Component{
                     console.log(response.error.user_authentication);
                     this.setState({usernameI: ''});
                     this.setState({passwordI: ''});
-                    this.setState({errorMessage: response.error.user_authentication});
+                    this.setState({errorMessage: "Wrong username/password or GitHub account"});
                 }
             });
     }
@@ -84,6 +84,7 @@ class Login extends Component{
     render(){
         return (
             <div>
+                <span><h4 className={"loginError"}>{this.state.errorMessage}</h4><br /></span>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup className={"loginForm"}>
                         <Label for="username">Username</Label>
@@ -95,9 +96,9 @@ class Login extends Component{
                     </FormGroup>
                     <Button type="submit" className="modeButtons">Submit</Button>
                 </Form>
-                <a className="btn modeButtons" href="auth/github">github</a>
+                <a className="btn modeButtons" href={"auth/github"}>github</a>
                 <p> </p>
-                <h4>{this.state.errorMessage}</h4>
+
             </div>
         );
     }
