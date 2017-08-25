@@ -65,7 +65,7 @@ class Login extends Component{
         DatabaseConnector.sendUserCredentials(this.state.usernameI, this.state.passwordI)
             .then(response => {
                 if (response.auth_token !== undefined) {
-                    cookie.save('auth_token', response.auth_token);
+                    //cookie.save('auth_token', response.auth_token);
                     this.setState({errorMessage: ''});
                     this.props.setUserMode(response.user.role);
                 } else {
