@@ -15,6 +15,7 @@ class Data {
         this.publications = [];
         this.authors = [];
         this.selected_count = 0;
+        this.allLayers = [];
     }
 
     /**
@@ -66,6 +67,15 @@ class Data {
 
     setAuthors(authors){
         this.authors = authors;
+    }
+
+    /**
+     * Setter for all layers
+     * @param layers
+     */
+
+    setAllLayers(layers){
+        this.allLayers = layers;
     }
 
     /**
@@ -210,6 +220,37 @@ class Data {
             }
         }
         return categories;
+    }
+
+    getLayerCategories() {
+        let layerCategories = {};
+        let layerCategoriesId = {};
+        let layers = this.allLayers;
+        let categories = this.categories;
+
+        if (this.categories.length > 0 && this.layers.length > 0) {
+
+            for(let i = 0; i < layers.length; i++) {
+                layerCategoriesId[layers[i].id] = [];
+            }
+
+            for(let i = 0; i < categories.length; i++) {
+                if (layerCategoriesId[categories[i].layer_id] !== undefined) {
+                    layerCategoriesId[categories[i].layer_id].push(categories[i]);
+
+                }
+            }
+
+            Object.keys(layerCategoriesId).map(layerId => {
+                layers.map(layer => {
+                    if (layer.id.toString() === layerId) {
+                        layerCategories[JSON.stringify(layer)] = layerCategoriesId[layerId]
+                    }
+                })
+            });
+        }
+
+        return layerCategories;
     }
 }
 

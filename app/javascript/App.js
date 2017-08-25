@@ -29,7 +29,6 @@ class App extends Component {
 
         this.changeLayerView = this.changeLayerView.bind(this);
         this.updateTable = this.updateTable.bind(this);
-        this.createLayerCategories = this.createLayerCategories.bind(this);
         this.createCategory = this.createCategory.bind(this);
         this.loadData = this.loadData.bind(this);
 
@@ -107,11 +106,17 @@ class App extends Component {
                 return data;
             });
         });
+        DatabaseConnector.getDataFromDatabase("/layers").then((layers) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAllLayers(layers);
+                return data;
+            });
+        });
     }
 
 
     createPublication(data) {
-        console.log(data);
         DatabaseConnector.createPublication(data)
             .then(this.loadData);
 
@@ -123,35 +128,7 @@ class App extends Component {
         //console.log(data);
     }
 
-    /**
-     * Helper method that makes the category listing usable
-     * @param name {string} Name of view
-     * @returns {Array} Array of selected categories
-     */
-    createLayerCategories(cats) {
-        let layerCategories = {};
-        let layers = this.state.data.getLayers();
-        let categories = cats;
-
-        if (this.state.data.getCategories().length > 0 && this.state.data.getLayers().length > 0) {
-
-            for(let i = 0; i < layers.length; i++){
-                layerCategories[layers[i].id] = [];
-            }
-
-            for(let i = 0; i < categories.length; i++) {
-                if (layerCategories[categories[i].layer_id] !== undefined) {
-                    layerCategories[categories[i].layer_id].push(categories[i]);
-
-                }
-            }
-            
-        }
-
-        return layerCategories;
-    }
-
-     updateTable(id) {
+    updateTable(id) {
         let data = this.state.data;
         data.selectCategory(id);
         this.setState({data: data});
@@ -217,9 +194,9 @@ class App extends Component {
 
     render() {
 
-        //console.log(this.state.data.getCategories());
+        //console.log(this.state.data.getLayers());
 
-        let layerCategories = this.createLayerCategories(this.state.data.getCategories());
+        let layerCategories = this.state.data.getLayerCategories();
 
         if (this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
 

@@ -16,11 +16,11 @@ class AuthorCheckbox extends Component{
 
     render() {
         return(
-            <FormGroup check>
-                <Label check>
+            <FormGroup >
+
                     <Input type="checkbox" onChange={this.handleCheckbox} />
                     {this.props.author}
-                </Label>
+
             </FormGroup>
         )
     }

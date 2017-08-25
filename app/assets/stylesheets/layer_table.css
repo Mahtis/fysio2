@@ -132,3 +132,12 @@ td, th {
 .moreLessBar {
     text-align: center;
 }
+
+.formRow {
+    position: absolute;
+    top: 110px;
+}
+
+.authorCheckbox {
+
+}
