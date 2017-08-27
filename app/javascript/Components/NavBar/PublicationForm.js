@@ -378,7 +378,7 @@ class PublicationForm extends Component {
                                 handleCheckbox={this.handleCategoryCheckbox}
                             />
                         )}
-                        <CategoryForm layer={layer} createCategory={this.props.createCategory}/>
+                        <CategoryForm layer={JSON.parse(layer)} createCategory={this.props.createCategory}/>
                     </FormGroup>
                 )}
             </FormGroup>

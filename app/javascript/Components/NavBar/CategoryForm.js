@@ -34,7 +34,7 @@ class CategoryForm extends Component {
         //e.preventDefault();
         let attributes = {
             name: this.state.name,
-            layer_id: this.props.layer,
+            layer_id: this.props.layer.id,
             description: this.state.description,
             infolink: this.state.infolink,
         };
@@ -71,7 +71,7 @@ class CategoryForm extends Component {
             <Button onClick={this.toggle}>
                 New
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Add category for layer {this.props.layer}</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Add category for layer {this.props.layer.name}</ModalHeader>
                     <ModalBody>
                         <Form >
                             <FormGroup>
