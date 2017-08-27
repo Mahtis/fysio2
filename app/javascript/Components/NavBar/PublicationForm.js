@@ -91,15 +91,15 @@ class PublicationForm extends Component {
         e.preventDefault();
         let authors = this.state.authors;
         let author = this.state.authorField;
-        if (authors.indexOf(author) === -1) {
+        if (authors.indexOf(author) === -1 && author !== "") {
             authors.push(author);
+            this.setState({
+                authorField: "",
+                authors: authors,
+                collapse: true
+            })
         }
-        if (this.state.authorSelected)
-        this.setState({
-            authorField: "",
-            authors: authors,
-            collapse: true
-        });
+
     }
 
     removeAuthor() {
@@ -108,7 +108,7 @@ class PublicationForm extends Component {
         selection.map(selected =>
             authors.splice(authors.indexOf(selected), 1)
         );
-        if (selection.length === 0) {
+        if (authors.length === 0) {
             this.setState({
                 authors: authors,
                 authorSelected: [],
@@ -168,16 +168,13 @@ class PublicationForm extends Component {
         } else {
             authors.push(author);
         }
-        //console.log(authors);
+
         this.setState({
             authorSelected: authors
         })
     }
 
     render() {
-
-        //console.log(Object.keys(this.props.layerCategories).length);
-        //console.log(Object.keys(this.props.layerCategories));
 
         let name = (
             <FormGroup key="name">
@@ -216,7 +213,11 @@ class PublicationForm extends Component {
             </FormGroup>
         );
 
-        let removeAuthorButton = <Button className="formRow" onClick={this.removeAuthor}>Remove</Button>;
+        let removeAuthorButton = (
+            <Collapse isOpen={this.state.collapse}>
+                <Button className="formRow" onClick={this.removeAuthor}>Remove</Button>
+            </Collapse>
+        );
 
         let abstract = (
             <FormGroup key="abstract">
@@ -288,9 +289,7 @@ class PublicationForm extends Component {
                                     {addAuthorButton}
                                 </Col>
                                 <Col sm="2">
-                                    <Collapse isOpen={this.state.collapse}>
-                                        <Button className="formRow" onClick={this.removeAuthor}>Remove</Button>
-                                    </Collapse>
+                                    {removeAuthorButton}
                                 </Col>
                                 <Col sm="4">
                                     {authorSelected}

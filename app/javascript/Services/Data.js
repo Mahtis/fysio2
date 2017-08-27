@@ -227,7 +227,6 @@ class Data {
         let layerCategoriesId = {};
         let layers = this.allLayers;
         let categories = this.categories;
-        let kissa = {};
 
         if (categories.length > 0 && layers.length > 0) {
 
@@ -253,20 +252,8 @@ class Data {
                     }
                 }
             }
-
-            /*Object.keys(layerCategoriesId).map(layerId => {
-                layers.map(layer => {
-                    console.log(layerId + " " + layer.id);
-                    if (layer.id.toString() === layerId) {
-
-                        layerCategories[JSON.stringify(layer)] = layerCategoriesId[layerId]
-                    }
-                })
-            });*/
         }
-        //kissa = layerCategories[Object.keys(layerCategories)[0]];
-        //console.log(layerCategoriesId);
-        //console.log(layerCategories);
+
         return layerCategories;
     }
 }
