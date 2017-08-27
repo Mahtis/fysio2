@@ -133,11 +133,12 @@ td, th {
     text-align: center;
 }
 
-.formRow {
+.authorRow {
     position: absolute;
     top: 110px;
 }
 
-.authorCheckbox {
-
+.linkRow {
+    position: absolute;
+    top: 25px;
 }

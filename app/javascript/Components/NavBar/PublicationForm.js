@@ -7,6 +7,7 @@ import CategoryCheckbox from "./CategoryCheckbox";
 import CategoryForm from "./CategoryForm";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col, Row, Collapse} from 'reactstrap';
 import AuthorCheckbox from "./AuthorCheckbox";
+import LinkCheckbox from "./LinkCheckbox";
 
 class PublicationForm extends Component {
 
@@ -25,6 +26,11 @@ class PublicationForm extends Component {
         this.removeAuthor = this.removeAuthor.bind(this);
         this.handleAuthorCheckbox = this.handleAuthorCheckbox.bind(this);
         this.clearState = this.clearState.bind(this);
+        this.addLink = this.addLink.bind(this);
+        this.handleUrlChange = this.handleUrlChange.bind(this);
+        this.handleLinkTypeChange = this.handleLinkTypeChange.bind(this);
+        this.handleLinkCheckbox = this.handleLinkCheckbox.bind(this);
+        this.removeLink = this.removeLink.bind(this);
 
         this.state = {
             modalOpen: false,
@@ -36,7 +42,12 @@ class PublicationForm extends Component {
             authors: [],
             authorField: "",
             authorSelected: [],
-            collapse: false
+            links: [],
+            linkField: "",
+            linkSelect: "",
+            linkSelected: [],
+            collapseAuthor: false,
+            collapseLink: false
         };
     }
 
@@ -53,7 +64,8 @@ class PublicationForm extends Component {
             year: this.state.year,
             journal: this.state.journal,
             categories: this.state.categories,
-            authors: this.state.authors
+            authors: this.state.authors,
+            links: this.state.links
         };
 
         this.clearState();
@@ -71,7 +83,13 @@ class PublicationForm extends Component {
             authors: [],
             authorField: "",
             authorSelected: [],
-            modalOpen: !this.state.modalOpen
+            links: [],
+            linkField: "",
+            linkSelect: "",
+            linkSelected: [],
+            modalOpen: !this.state.modalOpen,
+            collapseLink: false,
+            collapseAuthor: false
         });
     }
 
@@ -96,7 +114,7 @@ class PublicationForm extends Component {
             this.setState({
                 authorField: "",
                 authors: authors,
-                collapse: true
+                collapseAuthor: true
             })
         }
 
@@ -112,7 +130,7 @@ class PublicationForm extends Component {
             this.setState({
                 authors: authors,
                 authorSelected: [],
-                collapse: false
+                collapseAuthor: false
             })
         } else {
             this.setState({
@@ -123,9 +141,75 @@ class PublicationForm extends Component {
 
     }
 
+    addLink() {
+        let links = this.state.links;
+        let link = {
+            link_url: this.state.linkField,
+            link_type: this.state.linkSelect
+        };
+        console.log(link);
+        if (links.indexOf(link) === -1) {
+            links.push(link);
+            this.setState({
+                linkField: "",
+                linkSelect: "",
+                links: links,
+                collapseLink: true
+            })
+        }
+    }
+
+    removeLink() {
+        let links = this.state.links;
+        let selection = this.state.linkSelected;
+        selection.map(selected =>
+            links.splice(links.indexOf(selected), 1)
+        );
+        if (links.length === 0) {
+            this.setState({
+                links: links,
+                linkSelected: [],
+                collapseLink: false
+            })
+        } else {
+            this.setState({
+                links: links,
+                linkSelected: []
+            })
+        }
+    }
+
+    handleUrlChange(e) {
+        this.setState({
+            linkField: e.target.value
+        });
+    }
+
+    handleLinkTypeChange(e) {
+        this.setState({
+            linkSelect: e.target.value
+        });
+    }
+
     handleAbstractChange(e) {
         this.setState({
             abstract: e.target.value
+        })
+    }
+
+    handleLinkCheckbox(link) {
+        let links = this.state.linkSelected;
+
+        let index = links.indexOf(link);
+
+        if (index > -1) {
+            links.splice(index, 1);
+        } else {
+            links.push(link);
+        }
+        console.log(links);
+        this.setState({
+            linkSelected: links
         })
     }
 
@@ -199,10 +283,10 @@ class PublicationForm extends Component {
             </FormGroup>
         );
 
-        let addAuthorButton = <Button className="formRow" onClick={this.addAuthor}>Add</Button>;
+        let addAuthorButton = <Button className="authorRow" onClick={this.addAuthor}>Add</Button>;
 
         let authorSelected = (
-            <FormGroup className="formRow" key="authorSelected">
+            <FormGroup className="authorRow" key="authorSelected">
                 {this.state.authors.map(author =>
                     <AuthorCheckbox
                         key={author}
@@ -215,7 +299,7 @@ class PublicationForm extends Component {
 
         let removeAuthorButton = (
             <Collapse isOpen={this.state.collapse}>
-                <Button className="formRow" onClick={this.removeAuthor}>Remove</Button>
+                <Button className="authorRow" onClick={this.removeAuthor}>Remove</Button>
             </Collapse>
         );
 
@@ -247,7 +331,39 @@ class PublicationForm extends Component {
         );
 
         let links = (
-            <FormGroup></FormGroup>
+            <FormGroup>
+                <Label>
+                    Link
+                    <Input type="text" value={this.state.linkField} onChange={this.handleUrlChange}/>
+                    <Input type="select" onChange={this.handleLinkTypeChange} value={this.state.linkSelect}>
+                        <option hidden>Link type</option>
+                        <option value="web">web</option>
+                        <option value="github">github</option>
+                    </Input>
+                </Label>
+            </FormGroup>
+        );
+
+        let addLinkButton = <Button className="linkRow" onClick={this.addLink}>Add</Button>;
+
+        let removeLinkButton = (
+            <Collapse isOpen={this.state.collapseLink}>
+                <Button className="linkRow" onClick={this.removeLink}>Remove</Button>
+            </Collapse>
+        );
+
+        //let removeLinkButton = <Button onClick={this.removeLink}>Remove</Button>;
+
+        let linkSelected = (
+            <FormGroup className="linkRow">
+                {this.state.links.map(link =>
+                    <LinkCheckbox
+                        key={link.link_url}
+                        link={link}
+                        handleCheckbox={this.handleLinkCheckbox}
+                        check/>
+                )}
+            </FormGroup>
         );
 
         let categories = (
@@ -296,7 +412,18 @@ class PublicationForm extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                {links}
+                                <Col sm="4">
+                                    {links}
+                                </Col>
+                                <Col sm="2">
+                                    {addLinkButton}
+                                </Col>
+                                <Col sm="2">
+                                    {removeLinkButton}
+                                </Col>
+                                <Col sm="4">
+                                    {linkSelected}
+                                </Col>
                             </Row>
                             <Row>
                                 {categories}

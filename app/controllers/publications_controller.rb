@@ -76,9 +76,7 @@ class PublicationsController < ApplicationController
 
     end
     pb['authors'].each do |a|
-      puts "ENNEN"
       author = Author.find_by name: a
-      puts "JÄLKEEN"
       if author.nil?
         param = Hash["name" => a]
         @author = Author.new(param)
@@ -139,6 +137,6 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [], :authors => [])
+    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [], :authors => [], :links => [])
   end
 end
