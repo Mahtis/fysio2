@@ -227,11 +227,15 @@ class Data {
         let layerCategoriesId = {};
         let layers = this.allLayers;
         let categories = this.categories;
+        let kissa = {};
 
-        if (this.categories.length > 0 && this.layers.length > 0) {
+        if (categories.length > 0 && layers.length > 0) {
+
+
 
             for(let i = 0; i < layers.length; i++) {
                 layerCategoriesId[layers[i].id] = [];
+                layerCategories[JSON.stringify(layers[i])] = [];
             }
 
             for(let i = 0; i < categories.length; i++) {
@@ -241,15 +245,28 @@ class Data {
                 }
             }
 
-            Object.keys(layerCategoriesId).map(layerId => {
+            for (let i = 0; i < Object.keys(layerCategoriesId).length; i++) {
+                for (let j = 0; j < layers.length; j++) {
+                    if (Object.keys(layerCategoriesId)[i] === layers[j].id.toString()) {
+                        layerCategories[JSON.stringify(layers[j])] = layerCategoriesId[Object.keys(layerCategoriesId)[i]];
+                        break
+                    }
+                }
+            }
+
+            /*Object.keys(layerCategoriesId).map(layerId => {
                 layers.map(layer => {
+                    console.log(layerId + " " + layer.id);
                     if (layer.id.toString() === layerId) {
+
                         layerCategories[JSON.stringify(layer)] = layerCategoriesId[layerId]
                     }
                 })
-            });
+            });*/
         }
-
+        //kissa = layerCategories[Object.keys(layerCategories)[0]];
+        //console.log(layerCategoriesId);
+        //console.log(layerCategories);
         return layerCategories;
     }
 }

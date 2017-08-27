@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import CategoryCheckbox from "./CategoryCheckbox";
 import CategoryForm from "./CategoryForm";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col, Row} from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col, Row, Collapse} from 'reactstrap';
 import AuthorCheckbox from "./AuthorCheckbox";
 
 class PublicationForm extends Component {
@@ -25,7 +25,6 @@ class PublicationForm extends Component {
         this.removeAuthor = this.removeAuthor.bind(this);
         this.handleAuthorCheckbox = this.handleAuthorCheckbox.bind(this);
         this.clearState = this.clearState.bind(this);
-        this.toggleAndClear = this.toggleAndClear.bind(this);
 
         this.state = {
             modalOpen: false,
@@ -37,6 +36,7 @@ class PublicationForm extends Component {
             authors: [],
             authorField: "",
             authorSelected: [],
+            collapse: false
         };
     }
 
@@ -44,11 +44,7 @@ class PublicationForm extends Component {
         this.clearState();
     }
 
-    toggleAndClear() {
-
-    }
-
-    handleSubmit(e) {
+     handleSubmit(e) {
         e.preventDefault();
 
         let attributes = {
@@ -98,11 +94,12 @@ class PublicationForm extends Component {
         if (authors.indexOf(author) === -1) {
             authors.push(author);
         }
+        if (this.state.authorSelected)
         this.setState({
             authorField: "",
-            authors: authors
+            authors: authors,
+            collapse: true
         });
-        //console.log(this.state.authors);
     }
 
     removeAuthor() {
@@ -111,10 +108,19 @@ class PublicationForm extends Component {
         selection.map(selected =>
             authors.splice(authors.indexOf(selected), 1)
         );
-        this.setState({
-            authors: authors,
-            authorSelected: []
-        })
+        if (selection.length === 0) {
+            this.setState({
+                authors: authors,
+                authorSelected: [],
+                collapse: false
+            })
+        } else {
+            this.setState({
+                authors: authors,
+                authorSelected: []
+            })
+        }
+
     }
 
     handleAbstractChange(e) {
@@ -169,7 +175,9 @@ class PublicationForm extends Component {
     }
 
     render() {
-        //console.log(this.props.layerCategories);
+
+        //console.log(Object.keys(this.props.layerCategories).length);
+        //console.log(Object.keys(this.props.layerCategories));
 
         let name = (
             <FormGroup key="name">
@@ -244,7 +252,7 @@ class PublicationForm extends Component {
         let categories = (
             <FormGroup key="categories">
                 {Object.keys(this.props.layerCategories).map(layer =>
-                    <FormGroup key={JSON.parse(layer)} >
+                    <FormGroup key={JSON.parse(layer).id} >
                         <Label>{JSON.parse(layer).name}</Label>
                         {this.props.layerCategories[layer].map(category =>
                             <CategoryCheckbox
@@ -280,7 +288,9 @@ class PublicationForm extends Component {
                                     {addAuthorButton}
                                 </Col>
                                 <Col sm="2">
-                                    {removeAuthorButton}
+                                    <Collapse isOpen={this.state.collapse}>
+                                        <Button className="formRow" onClick={this.removeAuthor}>Remove</Button>
+                                    </Collapse>
                                 </Col>
                                 <Col sm="4">
                                     {authorSelected}
