@@ -14,7 +14,11 @@ describe("Navbar", () => {
         props = {
             isOpen: undefined,
             changeLayerView: function(){},
-            layerTypes: []
+            layerTypes: [],
+            layerCategories: [],
+            createPublication: function() {},
+            createCategory: function() {},
+
         };
         mountedNavbar = undefined;
     });

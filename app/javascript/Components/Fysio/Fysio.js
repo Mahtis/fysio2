@@ -57,9 +57,11 @@ class Fysio extends Component{
      * @returns {XML} The view as jsx
      */
     render(){
+
         let publications = this.props.data.getPublications();
         let layers = this.props.data.getLayers();
         let categories = this.props.data.getCategories();
+
 
         //console.log("Fysio!!!!!!!!!!!!!!!!!!!!!1!!!!");
         //this.props.categoryAvailable.map(c => console.log(c));
@@ -72,11 +74,13 @@ class Fysio extends Component{
 
         let TabHead = (
             <thead >
+
                 <TableHeader
                     data={this.props.data}
                     updateTable={this.props.updateTable}
                     setTextSearch={this.setTextSearch}
                 />
+
             </thead>
         );
 
@@ -99,19 +103,22 @@ class Fysio extends Component{
         }
         let iterated = 0;
         let returnable = null;
+
         if(publications === undefined || publications === null || categories === undefined || categories === null){
             returnable = (
                     <tbody>
 
                     </tbody>
+
             );
-        } else {
+        } else {
             returnable = (
                     <tbody>
                     { publications.map(publication  =>{
                         if(iterated < this.state.pubIdLimit && publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
                             iterated++;
                             return <Publication
+
                                 data={this.props.data}
                                 updateTable={this.props.updateTable}
                                 key={publication.id}

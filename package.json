@@ -52,7 +52,8 @@
     "tether": "^1.4.0",
     "webpack": "^2.6.1",
     "webpack-manifest-plugin": "^1.1.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "react-select": "^0.9.1"
   },
   "devDependencies": {
     "babel-jest": "^20.0.3",

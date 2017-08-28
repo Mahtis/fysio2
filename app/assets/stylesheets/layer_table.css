@@ -157,3 +157,13 @@ td, th {
 .loginError {
     color: red;
 }
+
+.authorRow {
+    position: absolute;
+    top: 110px;
+}
+
+.linkRow {
+    position: absolute;
+    top: 25px;
+}

@@ -2,13 +2,14 @@
 import React, { Component } from 'react';
 import LayerLink from './LayerLink/LayerLink.js';
 import PropTypes from 'prop-types';
-
+import PublicationForm from './PublicationForm';
 import { Collapse, Button, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarHeader } from 'reactstrap';
 
 /**
  * Navigation bar component, contains all the components within navigation bar
  * @extends Component
  */
+
 
 class NavBar extends Component{
 
@@ -71,9 +72,15 @@ class NavBar extends Component{
 
         let addPubButton = (
             <NavItem>
-                <NavLink className={"btn modeButtons"} href="/publications/new">Create Publication</NavLink>
+                <PublicationForm
+                    createPublication={this.props.createPublication}
+                    createCategory={this.props.createCategory}
+                    layerCategories={this.props.layerCategories}
+                    authors={this.props.authors}
+                />
             </NavItem>
         );
+
         let loginButton = (
             <NavItem>
                 <Button className={"modeButtons"} onClick={this.props.doLogout}>Logout</Button>
@@ -93,7 +100,6 @@ class NavBar extends Component{
         if(this.props.userMode !== undefined){
             statusText= (<Button className={"modeButtons"}>{this.props.userMode} </Button>);
         }
-
 
         let appModeVersion = (
             <Navbar color="faded" light toggleable className={"navBar"}>

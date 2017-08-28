@@ -4,7 +4,6 @@
 
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import cookie from 'react-cookies';
 import DatabaseConnector from '../../Services/DatabaseConnector';
 
 /**
@@ -60,6 +59,7 @@ class Login extends Component{
      * userMode.
      * @param event
      */
+
     handleSubmit(event) {
         event.preventDefault();
         DatabaseConnector.sendUserCredentials(this.state.usernameI, this.state.passwordI)

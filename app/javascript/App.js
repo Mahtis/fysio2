@@ -23,10 +23,13 @@ class App extends Component {
             data: new Data(),
             appMode : "normal",
             userMode : "guest",
+            layerCategories: {}
         };
 
         this.changeLayerView = this.changeLayerView.bind(this);
         this.updateTable = this.updateTable.bind(this);
+        this.createCategory = this.createCategory.bind(this);
+        this.loadData = this.loadData.bind(this);
 
         this.toNormal = this.toNormal.bind(this);
         this.toAbout = this.toAbout.bind(this);
@@ -88,6 +91,7 @@ class App extends Component {
      */
 
     loadData() {
+
         DatabaseConnector.getDataFromDatabase("/layer_types/1").then((layers) => {
             this.setState(function(){
                 let data = this.state.data;
@@ -116,16 +120,40 @@ class App extends Component {
                 return data;
             });
         });
+        DatabaseConnector.getDataFromDatabase("/authors").then((authors) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAuthors(authors);
+                return data;
+            });
+        });
+        DatabaseConnector.getDataFromDatabase("/layers").then((layers) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAllLayers(layers);
+                return data;
+            });
+        });
     }
 
-    /**
-     * Method that mutates data currently visible to user
-     */
+
+    createPublication(data) {
+        DatabaseConnector.createPublication(data)
+            .then(this.loadData);
+
+    }
+
+    createCategory(data) {
+        DatabaseConnector.createCategory(data)
+            .then(this.loadData);
+        //console.log(data);
+    }
 
     updateTable(id) {
         let data = this.state.data;
         data.selectCategory(id);
         this.setState({data: data});
+
     }
 
     /**
@@ -187,20 +215,41 @@ class App extends Component {
      */
 
     render() {
+
         this.checkUser();
+
         if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
                 <div>
                     <NavBar layerTypes={[]}
-                            changeLayerView={this.changeLayerView}/>
+                            changeLayerView={this.changeLayerView}
+                            layerCategories={this.state.data.getLayerCategories()}
+                            authors = {this.state.data.getAuthors()}
+                    />
+
                     <div className="loader" />
-                </div>
+                 </div>
+
             );
 
         } else {
-            let nav = <NavBar layerTypes={this.state.data.getLayerTypes()} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
-            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
+
+            let nav = <NavBar
+                layerTypes={this.state.data.getLayerTypes()}
+                changeLayerView={this.changeLayerView}
+                appMode = {this.state.appMode}
+                userMode = {this.state.userMode}
+                toNormal = {this.toNormal}
+                toAbout = {this.toAbout}
+                toLogin = {this.toLogin}
+                doLogout = {this.doLogout}
+                doClear = {this.doClear}
+                createPublication = {this.createPublication}
+                createCategory = {this.createCategory}
+                layerCategories={this.state.data.getLayerCategories()}
+                authors = {this.state.data.getAuthors()}
             />;
+
             const homePage = (
                 <div className="table-responsive">
                     <Fysio
@@ -210,6 +259,7 @@ class App extends Component {
                     />
                 </div>
             );
+
             const aboutPage = (
                 <div>
                     <h3>Welcome to the Interactive Web Repository for Physiological Computing</h3>
@@ -236,6 +286,7 @@ class App extends Component {
 
                 </div>
             );
+
             const loginPage = (
                 <div>
                     <Login setUserMode={this.setUserMode} />
@@ -243,6 +294,7 @@ class App extends Component {
             );
 
             let more = null;
+
             if (this.state.appMode === "normal") {
                 more = homePage;
 
