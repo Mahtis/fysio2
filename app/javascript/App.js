@@ -4,8 +4,7 @@ import Fysio from "./Components/Fysio/Fysio";
 import Login from "./Components/Tabs/Login";
 import Data from './Services/Data';
 import DatabaseConnector from "./Services/DatabaseConnector";
-
-import { BrowserRouter, Route } from 'react-router-dom'
+import cookie from 'react-cookies';
 
 /**
  * The Base Class, contains all app data in the state and calls every other component
@@ -37,6 +36,7 @@ class App extends Component {
         this.doLogout = this.doLogout.bind(this);
         this.doClear = this.doClear.bind(this);
         this.setUserMode = this.setUserMode.bind(this);
+        this.checkUser = this.checkUser.bind(this);
     }
 
     /**
@@ -62,6 +62,27 @@ class App extends Component {
 
     componentWillMount() {
         this.loadData();
+    }
+
+    /**
+     * Checks whether there is a cookie containing auth information for the user.
+     * Changes the userMode only if the role is different from the current mode,
+     * otherwise it would be stuck in a constant loop of rendering.
+     */
+    checkUser() {
+        let token = cookie.load('auth_token');
+        if (token !== undefined) {
+            return DatabaseConnector.getCurrentUser(token)
+                .then(user => {
+                if (user !== null) {
+                    if (this.state.userMode !== user.role) {
+                        this.setState({userMode: user.role});
+                    }
+                } else {
+                    throw new Error('Invalid user credentials');
+                }
+            });
+        }
     }
 
     /**
@@ -177,6 +198,7 @@ class App extends Component {
      */
 
     doLogout(){
+        cookie.remove('auth_token');
         this.setState({userMode: "guest"});
     }
 
@@ -197,20 +219,14 @@ class App extends Component {
 
     render() {
 
-        let layerCategories = this.createLayerCategories(this.state.data.getCategories);
-
-        if (this.state.data.getPublications().length === 0 && this.state.data.getLayerTypes().length === 0 && this.state.data !== undefined) {
-
+        this.checkUser();
+        if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
                 <div>
                     <NavBar layerTypes={[]}
-                            changeLayerView={this.changeLayerView}
-                            layerCategories={layerCategories}
-                    />
-                    <span className={"loading"}>
-                        Loading
-                    </span>
-                </div>
+                            changeLayerView={this.changeLayerView}/>
+                    <div className="loader" />
+                 </div>
             );
 
         } else {
@@ -270,18 +286,6 @@ class App extends Component {
             } else if (this.state.appMode === "login") {
                 more = loginPage;
             }
-
-            //router is currently not used as any use of links leads to a blank partially loaded page.
-            const moreRouter = (
-                <div>
-                    <BrowserRouter>
-                        <Route exact path='/' component={homePage}/></BrowserRouter>
-                    <BrowserRouter>
-                        <Route exact path='/about' component={aboutPage}/></BrowserRouter>
-                    <BrowserRouter>
-                        <Route exact path='/login' component={loginPage}/></BrowserRouter>
-                </div>
-            );
 
             return (
                 <div>

@@ -4,6 +4,8 @@
 
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import cookie from 'react-cookies';
+import DatabaseConnector from '../../Services/DatabaseConnector';
 
 /**
  * Login component
@@ -26,7 +28,7 @@ class Login extends Component{
         };
         this.updateUsername = this.updateUsername.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
-        this.submitLogin = this.submitLogin.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
@@ -53,79 +55,50 @@ class Login extends Component{
     }
 
     /**
-     * Login handler
+     * Handles submitting the form.
+     * If login is successful, sets a cookie with the auth_token, and also the correct
+     * userMode.
+     * @param event
      */
-
-    submitLogin() {
-        //console.log("aaa");
-        this.setState({errorMessage: ""});
-        if (this.state.usernameI === 'guest'){
-            this.props.setUserMode(this.state.usernameI);
-        } else if (this.state.usernameI === 'user'){
-            this.props.setUserMode(this.state.usernameI);
-        } else if (this.state.usernameI === 'admin'){
-            this.props.setUserMode(this.state.usernameI);
-        } else {
-            this.setState({errorMessage: "login failed"});
-            //this.setState({usernameI: ""});cant overwrite input field from here?
-            //this.setState({passwordI: ""});
-        }
+    handleSubmit(event) {
+        event.preventDefault();
+        DatabaseConnector.sendUserCredentials(this.state.usernameI, this.state.passwordI)
+            .then(response => {
+                if (response.auth_token !== undefined) {
+                    //cookie.save('auth_token', response.auth_token);
+                    this.setState({errorMessage: ''});
+                    this.props.setUserMode(response.user.role);
+                } else {
+                    console.log(response.error.user_authentication);
+                    this.setState({usernameI: ''});
+                    this.setState({passwordI: ''});
+                    this.setState({errorMessage: "Wrong username/password or GitHub account"});
+                }
+            });
     }
 
     /**
      * Lifecycle render method
      * @returns {XML} The view as jsx
      */
-
     render(){
-        let mix = (
+        return (
             <div>
-                <Form>
+                <span><h4 className={"loginError"}>{this.state.errorMessage}</h4><br /></span>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup className={"loginForm"}>
-                        <Label for="username">UserName</Label>
-                        <Input className={"modeButtons"} type="username" name="email" id="username" placeholder="" onChange = {this.updateUsername}/>
+                        <Label for="username">Username</Label>
+                        <Input className={"modeButtons"} type="username" name="name" id="username" placeholder="" onChange = {this.updateUsername} value={this.state.usernameI}/>
                     </FormGroup>
                     <FormGroup className={"loginForm"}>
                         <Label for="password">Password</Label>
-                        <Input className={"modeButtons"} type="password" name="password" id="password" placeholder="" onChange = {this.updatePassword}/>
+                        <Input className={"modeButtons"} type="password" name="password" id="password" placeholder="" onChange = {this.updatePassword} value={this.state.passwordI}/>
                     </FormGroup>
+                    <Button type="submit" className="modeButtons">Submit</Button>
                 </Form>
-                <Button className={"modeButtons"} onClick = {this.submitLogin}>Submit</Button>
+                <a className="btn modeButtons" href={"auth/github"}>github</a>
                 <p> </p>
-                <h4>{this.state.errorMessage}</h4>
-            </div>
-        );
 
-        let old = (
-            <Form>
-                <FormGroup className={"loginForm"}>
-                    <Label for="username">UserName</Label>
-                    <Input className={"modeButtons"} type="username" name="email" id="username" placeholder="" />
-                </FormGroup>
-                <FormGroup className={"loginForm"}>
-                    <Label for="password">Password</Label>
-                    <Input className={"modeButtons"} type="password" name="password" id="password" placeholder="" />
-                </FormGroup>
-            </Form>
-        );
-
-        let dynamic = (
-            <div>
-                <Label for="username" >UserName</Label>
-                <br/>
-                <input className={"modeButtons"} type = "text" value = {this.state.data} onChange = {this.updateUsername} />
-                <br/>
-                <Label for="password">Password</Label>
-                <br/>
-                <input className={"modeButtons"} type = "text" value = {this.state.data} onChange = {this.updatePassword} />
-                <h4>{this.state.usernameI}</h4>
-                <h4>{this.state.passwordI}</h4>
-            </div>
-        );
-
-        return (
-            <div>
-                {mix}
             </div>
         );
     }

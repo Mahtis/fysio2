@@ -39,9 +39,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bcrypt', '~> 3.1.7'
+gem 'jwt', '~> 1.5', '>= 1.5.4'
+gem 'omniauth-github'
+gem 'simple_command'
+
+
 group :test do
-  gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'launchy'
 
 end
@@ -53,7 +59,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
 
-  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails', require: false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
 
@@ -65,11 +71,11 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
