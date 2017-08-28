@@ -22,8 +22,8 @@ class Fysio extends Component{
 
         this.state = {
             currentSearch: "",
-            pubIdLimit: 10,
-            pubsSeen: 10
+            pubIdLimit: 15,
+            pubsSeen: 15
         };
         this.setTextSearch = this.setTextSearch.bind(this);
         this.changePub = this.changePub.bind(this);
