@@ -52,7 +52,7 @@ class PublicationTitle extends Component {
 
         return (
             <td className="rowCell">
-                <span key={publication.name} onClick={this.toggle}>{publication.name} </span>
+                <span key={publication.name} onClick={this.toggle}>{publication.name}</span>
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>{publication.name}</ModalHeader>
                     <ModalBody>

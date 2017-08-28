@@ -2,6 +2,10 @@ import React from "react";
 import { shallow } from "enzyme";
 import PublicationTitle from '../Fysio/Publication/PublicationTitle/PublicationTitle';
 import TestHelper from '../Helpers/Tests.js';
+import Data from '../../Services/Data';
+import DatabaseConnector from '../../Services/__mocks__/DatabaseConnector';
+
+jest.mock("../../Services/DatabaseConnector");
 
 describe("TableHeader", () => {
     let props;
@@ -13,24 +17,37 @@ describe("TableHeader", () => {
 
     beforeEach(() => {
         props = {
-            modalOpen: false,
-            data: undefined,
-            id: undefined
+            data: TestHelper.newData(new Data()),
+            id: 1
         };
         mountedPublicationTitle = undefined;
     });
 
-    it("always renders a tr", () => {
-        props = TestHelper.initializePublicationTitleProps(props);
-        TestHelper.sizeEqualWithFindAndLength(publicationTitle, "td", 1);
-        TestHelper.sizeEqualWithFindAndLength(publicationTitle, "span", 1);
+    describe("Works", () => {
+        it("renders a td", () => {
+            expect(publicationTitle().find("td").length).toBe(1);
+        });
+        it("renders a span", () => {
+            expect(publicationTitle().find("span").length).toBe(1);
+        });
+        it("modalOpen is false", () => {
+           expect(publicationTitle().state().modalOpen).toBe(false);
+        });
+        it("Span value", () => {
+            expect(publicationTitle().find("span").first().text()).toBe("Audio Biofeedback for Poker Players");
+        });
+        it("Modal is closed", () => {
+           expect(publicationTitle().find("ModalHeader").length).toBe(0);
+           expect(publicationTitle().find("ModalBody").length).toBe(0);
+        });
 
-        const wrapper = shallow(
-            <PublicationTitle
-                id={props.id}
-                modalOpen={false}
-                data={props.data} />).instance();
-        expect(wrapper.props.modalOpen).toEqual(false);
+        describe("Clicking it, opens the modal", () => {
+           it("Clicking opens the modal", () => {
+               publicationTitle().find("span").first().simulate("click");
+               expect(publicationTitle().state().modalOpen).toBe(true);
 
+           });
+        });
     });
+
 });
