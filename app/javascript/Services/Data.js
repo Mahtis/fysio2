@@ -40,13 +40,17 @@ class Data {
      */
 
     setCategories(categories){
-        let newCategories = [];
-        for(let i = 0; i < categories.length; i++){
-            let entry = categories[i];
-            entry["selected"] = false;
-            newCategories.push(entry);
+        if(categories === undefined){
+            this.categories = [];
+        }else{
+            let newCategories = [];
+            for(let i = 0; i < categories.length; i++){
+                let entry = categories[i];
+                entry["selected"] = false;
+                newCategories.push(entry);
+            }
+            this.categories = newCategories;
         }
-        this.categories = newCategories;
     }
 
     /**
@@ -178,7 +182,7 @@ class Data {
 
     getPublicationLayerCategories(publication_id, layer_id) {
         let categories = [];
-        if (this.categories !== undefined) {
+        if (this.categories.length > 0 ) {
             for (let i = 0; i < this.categories.length; i++) {
                 let category = this.categories[i];
                 if (category.layer_id === layer_id) {
