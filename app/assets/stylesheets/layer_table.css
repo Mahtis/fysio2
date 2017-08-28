@@ -132,6 +132,11 @@ td, th {
 .moreLessBar {
     text-align: center;
 }
+.moreLessButton {
+    background-color: #4c974c !important;
+    border-color: rgb(0, 0, 0) !important;
+    min-width: 70px;
+}
 
 .loader {
     margin-left: 40%;

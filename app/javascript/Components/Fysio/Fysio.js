@@ -22,8 +22,8 @@ class Fysio extends Component{
 
         this.state = {
             currentSearch: "",
-            pubIdLimit: 10,
-            pubsSeen: 10
+            pubIdLimit: 15,
+            pubsSeen: 15
         };
         this.setTextSearch = this.setTextSearch.bind(this);
         this.changePub = this.changePub.bind(this);
@@ -86,11 +86,11 @@ class Fysio extends Component{
 
         let moreLess = (<div>
                 <div className={"moreLessBar"}>
-                    <Button className={"modeButtons"} onClick={()=>this.changePub(-20)} > -- </Button>
-                    <Button className={"modeButtons"} onClick={()=>this.changePub(-5)} > - </Button>
+                    <Button className={"moreLessButton"} onClick={()=>this.changePub(-20)} > -- </Button>
+                    <Button className={"moreLessButton"} onClick={()=>this.changePub(-5)} > - </Button>
                     <Button className={"modeButtons"}> {this.state.pubIdLimit} </Button>
-                    <Button className={"modeButtons"} onClick={()=>this.changePub(+5)}> + </Button>
-                    <Button className={"modeButtons"} onClick={()=>this.changePub(+20)} > ++ </Button>
+                    <Button className={"moreLessButton"} onClick={()=>this.changePub(+5)}> + </Button>
+                    <Button className={"moreLessButton"} onClick={()=>this.changePub(+20)} > ++ </Button>
                 </div>
         </div>);
 
@@ -98,29 +98,21 @@ class Fysio extends Component{
         //console.log("this.state.pubsSeen");
         //console.log(this.state.pubsSeen);
 
+        if(layers === undefined || layers === null){
+            return (<span>loading</span>);
+        }
         let iterated = 0;
         let returnable = null;
-        if(layers === undefined || layers === null){
-            returnable = (<span>loading</span>);
-        } else if(publications === undefined || publications === null || categories === undefined || categories === null){
-            returnable = (
-                <div>
-                    {moreLess}
-                    <Table >
-                        TabHead
-                        <tbody>
 
-                        </tbody>
-                    </Table>
-                    {moreLess}
-                </div>
+        if(publications === undefined || publications === null || categories === undefined || categories === null){
+            returnable = (
+                    <tbody>
+
+                    </tbody>
+
             );
         } else {
             returnable = (
-                <div>
-                    {moreLess}
-                <Table>
-                    {TabHead}
                     <tbody>
                     { publications.map(publication  =>{
                         if(iterated < this.state.pubIdLimit && publication.name.toLowerCase().includes(this.state.currentSearch.toLowerCase())){
@@ -136,12 +128,17 @@ class Fysio extends Component{
                         }
                     })}
                     </tbody>
-                </Table>
-                    {moreLess}
-        </div>
             );
         }
-        return returnable;
+        return <div>
+            {moreLess}
+            <Table>
+                {TabHead}
+                {returnable}
+            </Table>
+            {moreLess}
+        </div>
+        ;
     }
 }
 
