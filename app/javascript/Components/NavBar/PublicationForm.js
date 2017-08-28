@@ -65,7 +65,7 @@ class PublicationForm extends Component {
             journal: this.state.journal,
             categories: this.state.categories,
             authors: this.state.authors,
-            links: this.state.links
+            links_attributes: this.state.links
         };
 
         this.clearState();
@@ -298,7 +298,7 @@ class PublicationForm extends Component {
         );
 
         let removeAuthorButton = (
-            <Collapse isOpen={this.state.collapse}>
+            <Collapse isOpen={this.state.collapseAuthor}>
                 <Button className="authorRow" onClick={this.removeAuthor}>Remove</Button>
             </Collapse>
         );
