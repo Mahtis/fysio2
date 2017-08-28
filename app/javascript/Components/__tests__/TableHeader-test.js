@@ -22,7 +22,6 @@ describe("TableHeader", () => {
         TestHelper.sizeEqualWithFindAndLength(tableHeader, "tr", 1);
         TestHelper.sizeEqualWithFindAndLength(tableHeader, "th", 6);
         const span = tableHeader().find("Layer");
-        console.log(span.nodes[0].props.id);
         expect(span.nodes[0].props.id).toEqual(1);
     });
 
