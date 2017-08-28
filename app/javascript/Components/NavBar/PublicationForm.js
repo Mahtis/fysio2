@@ -370,7 +370,10 @@ class PublicationForm extends Component {
             <FormGroup key="categories">
                 {Object.keys(this.props.layerCategories).map(layer =>
                     <FormGroup key={JSON.parse(layer).id} >
+                        <br/>
                         <Label>{JSON.parse(layer).name}</Label>
+                        <br/>
+                        <br/>
                         {this.props.layerCategories[layer].map(category =>
                             <CategoryCheckbox
                                 key={category.id}
