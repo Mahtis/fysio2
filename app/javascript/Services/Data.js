@@ -22,7 +22,9 @@ class Data {
      */
 
     setLayers(layers){
-        this.layers = layers;
+        if(layers !== undefined){
+            this.layers = layers;
+        }
     }
 
     /**
@@ -31,7 +33,9 @@ class Data {
      */
 
     setLayerTypes(layertypes){
-        this.layertypes = layertypes;
+        if(layertypes !== undefined){
+            this.layertypes = layertypes;
+        }
     }
 
     /**
@@ -40,9 +44,7 @@ class Data {
      */
 
     setCategories(categories){
-        if(categories === undefined){
-            this.categories = [];
-        }else{
+        if(categories !== undefined){
             let newCategories = [];
             for(let i = 0; i < categories.length; i++){
                 let entry = categories[i];
@@ -59,7 +61,9 @@ class Data {
      */
 
     setPublications(publications){
-        this.publications = publications;
+        if(publications !== undefined){
+            this.publications = publications;
+        }
     }
 
     /**

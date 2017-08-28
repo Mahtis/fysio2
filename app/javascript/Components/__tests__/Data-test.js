@@ -156,7 +156,22 @@ describe("Data.js", () => {
 
         it("Without data", () => {
             data.setCategories(undefined);
-            expect(data.getPublicationLayerCategories(5,3).length).toBe(0);
-        })
+            expect(data.getPublicationLayerCategories(5,3).length).toBe(1);
+        });
+
+        it("Without data", () => {
+            data.setPublications(undefined);
+            expect(data.getPublications().length).toBe(6);
+        });
+
+        it("Without data", () => {
+            data.setLayerTypes(undefined);
+            expect(data.getLayerTypes().length).toBe(2);
+        });
+
+        it("Without data", () => {
+            data.setLayers(undefined);
+            expect(data.getLayers().length).toBe(5);
+        });
     })
 });
