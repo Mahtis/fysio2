@@ -6,7 +6,7 @@ class PublicationCreator
     # check if publication exists, if not, create it.
     if Publication.find_by_name(json['name']) == nil
       Publication.create(name: json['name'], year: json['year'],
-                         abstract: json['abstract'], journal: json['journal']);
+                         abstract: json['abstract'], journal: json['journal'], moreTitles: json['moreTitles']);
     else
       return;
     end
@@ -45,7 +45,7 @@ class PublicationCreator
       end
       if Publication.find_by_name(pub['name']) == nil
         Publication.create(name: pub['name'], year: pub['year'],
-                           abstract: pub['abstract'], journal: pub['journal'],
+                           abstract: pub['abstract'], journal: pub['journal'], moreTitles: pub['moreTitles'],
         categories: Category.where(name: pub['categories']), authors: authors);
       end
     end
@@ -154,6 +154,7 @@ this for research purposes so please do not be too hard on me. I am a simple man
 dreams. Dreams of a better world, where data is generated easily with a simple script.
 I know this is a fools dream and shall not be filled so easily, but alas, I will try.'
     journal = 'THE GREATEST JOURNAL THERE EVER WAS'
+    moreTitles = 'MORE|READ MORE, KNOW MORE.'
     layers = Layer.all
     categories = {}
     layers.each do |layer|
@@ -166,7 +167,7 @@ I know this is a fools dream and shall not be filled so easily, but alas, I will
         pub_categories.push(categories[layer][rand(categories[layer].length)])
       end
       publication = Publication.create(name: name, year: year_list[rand(year_list.length)],
-                         abstract: abstract, journal: journal, categories: pub_categories, authors: authors);
+                         abstract: abstract, journal: journal, moreTitles: moreTitles, categories: pub_categories, authors: authors);
       create_link(publication.id, 'www.' + publication.name + '.org', 'web');
     end
 
