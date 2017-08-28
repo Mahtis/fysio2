@@ -71,9 +71,15 @@ class NavBar extends Component{
 
         let addPubButton = (
             <NavItem>
-                <NavLink className={"btn modeButtons"} href="/publications/new">Create Publication</NavLink>
+                <PublicationForm
+                    createPublication={this.props.createPublication}
+                    createCategory={this.props.createCategory}
+                    layerCategories={this.props.layerCategories}
+                    authors={this.props.authors}
+                />
             </NavItem>
         );
+
         let loginButton = (
             <NavItem>
                 <Button className={"modeButtons"} onClick={this.props.doLogout}>Logout</Button>

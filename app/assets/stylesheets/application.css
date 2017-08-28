@@ -15,4 +15,5 @@
  *= require bootstrap/dist/css/bootstrap.min.css
  *= require tether/dist/css/tether.css
  *= require layer_table
+ *= require react-select/dist/react-select.css
 */

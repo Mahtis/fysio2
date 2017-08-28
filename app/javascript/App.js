@@ -28,7 +28,8 @@ class App extends Component {
 
         this.changeLayerView = this.changeLayerView.bind(this);
         this.updateTable = this.updateTable.bind(this);
-        this.createLayerCategories = this.createLayerCategories.bind(this);
+        this.createCategory = this.createCategory.bind(this);
+        this.loadData = this.loadData.bind(this);
 
         this.toNormal = this.toNormal.bind(this);
         this.toAbout = this.toAbout.bind(this);
@@ -119,40 +120,36 @@ class App extends Component {
                 return data;
             });
         });
+        DatabaseConnector.getDataFromDatabase("/authors").then((authors) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAuthors(authors);
+                return data;
+            });
+        });
+        DatabaseConnector.getDataFromDatabase("/layers").then((layers) => {
+            this.setState(function(){
+                let data = this.state.data;
+                data.setAllLayers(layers);
+                return data;
+            });
+        });
     }
 
-    /**
-     * Method that mutates data currently visible to user
-     */
 
     createPublication(data) {
         DatabaseConnector.createPublication(data)
-            .then(this.updateTable('hack'));
+            .then(this.loadData);
+
+    }
+
+    createCategory(data) {
+        DatabaseConnector.createCategory(data)
+            .then(this.loadData);
         //console.log(data);
     }
 
-    createLayerCategories(cats) {
-        let layerCategories = {};
-        let layers = this.state.data.getLayers();
-        let categories = cats;
-
-        if (this.state.data.getCategories().length > 0 && this.state.data.getLayers().length > 0) {
-
-            for(let i = 0; i < layers.length; i++){
-                layerCategories[layers[i].id] = [];
-            }
-
-            for(let i = 0; i < categories.length; i++) {
-                if (layerCategories[categories[i].layer_id] !== undefined) {
-                    layerCategories[categories[i].layer_id].push(categories[i]);
-                }
-            }
-        }
-
-        return layerCategories;
-    }
-
-     updateTable(id) {
+    updateTable(id) {
         let data = this.state.data;
         data.selectCategory(id);
         this.setState({data: data});
@@ -220,19 +217,35 @@ class App extends Component {
     render() {
 
         this.checkUser();
+
         if (this.state.data.getCategories().length === 0 || this.state.data.getLayers().length === 0 || this.state.data.getPublications().length === 0 || this.state.data.getLayerTypes().length === 0) {
             return (
                 <div>
                     <NavBar layerTypes={[]}
                             changeLayerView={this.changeLayerView}/>
+                            layerCategories={this.state.data.getLayerCategories()}
+                            authors = {this.state.data.getAuthors()}
                     <div className="loader" />
                  </div>
+
             );
 
         } else {
 
-            let nav = <NavBar layerTypes={this.state.data.getLayerTypes()} changeLayerView={this.changeLayerView} appMode = {this.state.appMode} userMode = {this.state.userMode}
-            toNormal = {this.toNormal} toAbout = {this.toAbout} toLogin = {this.toLogin} doLogout = {this.doLogout} doClear = {this.doClear}
+            let nav = <NavBar
+                layerTypes={this.state.data.getLayerTypes()}
+                changeLayerView={this.changeLayerView}
+                appMode = {this.state.appMode}
+                userMode = {this.state.userMode}
+                toNormal = {this.toNormal}
+                toAbout = {this.toAbout}
+                toLogin = {this.toLogin}
+                doLogout = {this.doLogout}
+                doClear = {this.doClear}
+                createPublication = {this.createPublication}
+                createCategory = {this.createCategory}
+                layerCategories={layerCategories}
+                authors = {this.state.data.getAuthors()}
             />;
 
             const homePage = (
@@ -244,6 +257,7 @@ class App extends Component {
                     />
                 </div>
             );
+
             const aboutPage = (
                 <div>
                     <h3>Welcome to the Interactive Web Repository for Physiological Computing</h3>
@@ -270,6 +284,7 @@ class App extends Component {
 
                 </div>
             );
+
             const loginPage = (
                 <div>
                     <Login setUserMode={this.setUserMode} />
@@ -277,6 +292,7 @@ class App extends Component {
             );
 
             let more = null;
+
             if (this.state.appMode === "normal") {
                 more = homePage;
 
