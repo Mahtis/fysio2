@@ -49,7 +49,7 @@ group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'launchy'
-
+  gem 'simplecov', :require => false
 end
 
 group :development, :test do
