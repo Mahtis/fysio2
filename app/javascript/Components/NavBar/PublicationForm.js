@@ -56,7 +56,7 @@ class PublicationForm extends Component {
     }
 
      handleSubmit(e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         let attributes = {
             name: this.state.name,

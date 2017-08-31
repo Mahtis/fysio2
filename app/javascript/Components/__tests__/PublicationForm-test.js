@@ -57,6 +57,21 @@ describe("PublicationForm", () => {
         TestHelper.sizeEqualWithFindAndLength(pubForm, "Modal", 1)
     });
 
+    it("renders author datalist options", () => {
+        let wrapper = pubFormShallow();
+        expect(wrapper.find("datalist").first().children().length).toBe(8);
+    });
+
+    it("renders layers", () => {
+        let wrapper = pubFormShallow();
+        expect(wrapper.find("FormGroup").at(8).children().length).toBe(11);
+    });
+
+    it("renders layer categories", () => {
+        let wrapper = pubFormShallow();
+        expect(wrapper.find("FormGroup").at(8).at(0).children().length).toBe(11);
+    });
+
     it("clearState", () => {
 
      let wrapper = pubForm();
@@ -215,32 +230,157 @@ describe("PublicationForm", () => {
 
     });
 
-    /*it("addLink", () => {
+    it("addLink", () => {
 
-        let wrapper = pubFormShallow();
+        let wrapper = pubForm();
 
         wrapper.setState({
             linkField: "www",
             linkSelect: "web"
         });
 
-        let state = wrapper.state();
-
-
-
-        //wrapper.addLink;
-
-        wrapper.addLink;
+        wrapper.instance().addLink();
 
         let link = {
             link_url: "www",
             link_type: "web"
         };
 
-        console.log(wrapper.instance().addLink);
+        expect(wrapper.state()["links"].toString).toBe([link].toString);
+    });
 
-        expect(wrapper.state()["links"]).toBe([link]);
-    });*/
+    it("removeLink", () => {
+
+        let wrapper = pubForm();
+
+        let link = {
+            link_url: "www",
+            link_type: "web"
+        };
+
+        wrapper.setState({
+            links: [link],
+            linkSelect: [link]
+        });
+
+        wrapper.instance().removeLink();
+
+
+
+        expect(wrapper.state()["links"].toString).toBe([].toString);
+    });
+
+    it("handleNameChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(0).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().name).toBe("Kekkonen");
+    });
+
+    it("handleAuthorChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(1).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().authorField).toBe("Kekkonen");
+    });
+
+    it("handleAbstractChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(2).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().abstract).toBe("Kekkonen");
+    });
+
+    it("handleYearChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(3).simulate("change", {target: {value: 1999}});
+
+        expect(wrapper.state().year).toBe(1999);
+    });
+
+    it("handleJournalChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(4).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().journal).toBe("Kekkonen");
+    });
+
+    it("handleUrlChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(5).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().linkField).toBe("Kekkonen");
+    });
+
+    it("handleLinkTypeChange", () => {
+
+        let wrapper = pubFormShallow();
+
+        wrapper.find("Input").at(6).simulate("change", {target: {value: "Kekkonen"}});
+
+        expect(wrapper.state().linkSelect).toBe("Kekkonen");
+    });
+
+    it("handleSubmit", () => {
+
+        let publication = {};
+
+        let createPublication = (pub) => {
+            publication = pub;
+        };
+
+        let wrapper = shallow(<PublicationForm
+            createPublication={createPublication}
+            createCategory={function(){}}
+            data={TestHelper.newData(new Data())} />);
+
+        let attributes = {
+            name: "Humor Detection",
+            abstract: "Abstract text here",
+            year: 2016,
+            journal: "Science",
+            categories: [
+                "C++",
+                "EDA",
+                "Custom",
+                "Supervised Machine Learning Features",
+                "ML Features => Affective States (Happy, Sad, Angry, Neutral)",
+                "Annotate Cont. Adapt Interface",
+                "Layperson",
+                "Coder",
+                "Researcher"
+            ],
+            authors: [
+                "Ilkka Kosunen"
+            ],
+            links_attributes: [
+                {
+                    link_url: "www",
+                    link_type: "web"
+                }
+            ]
+        };
+
+        wrapper.setState(attributes);
+
+        wrapper.find("Form").first().simulate("submit", {target: {value: "Kekkonen"}});
+
+        //console.log(publication);
+
+        expect(publication === attributes)
+    });
 
     /*it("states", () => {
         let states = {

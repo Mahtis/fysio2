@@ -37,6 +37,7 @@ describe("Fysio", () => {
             expect(fysio().find("tbody").first().children().length).toBe(8);
             expect(fysio().find("tbody").first().text()).toBe("<Publication /><Publication /><Publication /><Publication /><Publication /><Publication /><Publication /><Publication />");
         });
+
     });
 
     describe("Things are empty if data is empty", () => {

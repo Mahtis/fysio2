@@ -574,6 +574,29 @@ class TestHelper {
                 "moreTitles": "|",
                 "url": "http://localhost:3000/publications/8.json"
         }]);
+        workingdata.setAuthors([{
+            "id":1,"name":"Pasi Kosunen","url":"http://localhost:3000/authors/1.json"},
+            {"id":2,"name":"Ilkka Kosunen","url":"http://localhost:3000/authors/2.json"},
+            {"id":3,"name":"Seppo Ilmarinen","url":"http://localhost:3000/authors/3.json"},
+            {"id":4,"name":"Tetsuo Yamabe","url":"http://localhost:3000/authors/4.json"},
+            {"id":5,"name":"Inger Ekman","url":"http://localhost:3000/authors/5.json"},
+            {"id":6,"name":"Lassi A. Liikkanen","url":"http://localhost:3000/authors/6.json"},
+            {"id":7,"name":"Kai Kuikkaniemi","url":"http://localhost:3000/authors/7.json"},
+            {"id":8,"name":"Tatsuo Nakajima","url":"http://localhost:3000/authors/8.json"
+        }]);
+        workingdata.setAllLayers([{
+            "id":1,"name":"Application","created_at":"2017-07-06T14:06:49.124Z","updated_at":"2017-07-06T14:06:49.124Z","url":"http://localhost:3000/layers/1.json"},
+            {"id":2,"name":"Logic","created_at":"2017-07-06T14:06:49.139Z","updated_at":"2017-07-06T14:06:49.139Z","url":"http://localhost:3000/layers/2.json"},
+            {"id":3,"name":"Indicies","created_at":"2017-07-06T14:06:49.159Z","updated_at":"2017-07-06T14:06:49.159Z","url":"http://localhost:3000/layers/3.json"},
+            {"id":4,"name":"Metrics","created_at":"2017-07-06T14:06:49.175Z","updated_at":"2017-07-06T14:06:49.175Z","url":"http://localhost:3000/layers/4.json"},
+            {"id":5,"name":"Signal","created_at":"2017-07-06T14:06:49.192Z","updated_at":"2017-07-06T14:06:49.192Z","url":"http://localhost:3000/layers/5.json"},
+            {"id":6,"name":"Software","created_at":"2017-07-06T14:06:49.212Z","updated_at":"2017-07-06T14:06:49.212Z","url":"http://localhost:3000/layers/6.json"},
+            {"id":7,"name":"Hardware","created_at":"2017-07-06T14:06:49.234Z","updated_at":"2017-07-06T14:06:49.234Z","url":"http://localhost:3000/layers/7.json"},
+            {"id":8,"name":"Role","created_at":"2017-08-17T15:30:19.731Z","updated_at":"2017-08-17T15:30:19.731Z","url":"http://localhost:3000/layers/8.json"},
+            {"id":9,"name":"What","created_at":"2017-08-17T15:30:19.750Z","updated_at":"2017-08-17T15:30:19.750Z","url":"http://localhost:3000/layers/9.json"},
+            {"id":10,"name":"How","created_at":"2017-08-17T15:30:19.771Z","updated_at":"2017-08-17T15:30:19.771Z","url":"http://localhost:3000/layers/10.json"},
+            {"id":11,"name":"Who","created_at":"2017-08-17T15:30:19.795Z","updated_at":"2017-08-17T15:30:19.795Z","url":"http://localhost:3000/layers/11.json"
+        }]);
         return workingdata;
     }
 
