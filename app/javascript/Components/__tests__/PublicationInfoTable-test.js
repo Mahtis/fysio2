@@ -19,7 +19,7 @@ describe("PublicationInfoTable", () => {
     });
 
     it("always renders a Table", () => {
-        props = TestHelper.initializePublicatioInfoTableProps(props);
+        props = TestHelper.initializePublicationInfoTableProps(props);
         TestHelper.sizeEqualWithFindAndLength(publicationInfoTable, "Table", 1);
     });
 });
