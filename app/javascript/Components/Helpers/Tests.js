@@ -590,7 +590,7 @@ class TestHelper {
         return props;
     }
 
-    static initializePublicatioInfoTableProps(props){
+    static initializePublicationInfoTableProps(props){
         props.data = this.newData(new Data());
         return props;
     }
@@ -609,6 +609,11 @@ class TestHelper {
     }
 
     static initializeTableHeaderProps(props){
+        props.data = this.newData(new Data());
+        return props;
+    }
+
+    static initializeFysio(props){
         props.data = this.newData(new Data());
         return props;
     }

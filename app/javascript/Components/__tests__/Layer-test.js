@@ -23,8 +23,8 @@ describe("Layer", () => {
 
     it("always renders one th element", () => {
         props = TestHelper.initializeLayerProps(props);
-        const tr = layer().find("th");
-        expect(tr.length).toBe(1);
+        const th = layer().find("th");
+        expect(th.length).toBe(1);
     });
 
     describe("the rendered tr", () => {

@@ -3,7 +3,6 @@ import { shallow } from "enzyme";
 import PublicationTitle from '../Fysio/Publication/PublicationTitle/PublicationTitle';
 import TestHelper from '../Helpers/Tests.js';
 import Data from '../../Services/Data';
-import DatabaseConnector from '../../Services/__mocks__/DatabaseConnector';
 
 jest.mock("../../Services/DatabaseConnector");
 

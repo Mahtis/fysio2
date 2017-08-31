@@ -53,9 +53,7 @@ describe("Category", () => {
 
 
 function initializeProps(props) {
-    let workdata = new Data();
-    workdata = TestHelper.newData(workdata);
     props.id = 1;
-    props.data = workdata;
+    props.data = TestHelper.newData(new Data());
     props.updateTable = function mockUpdate(name) { return name;}
 }
