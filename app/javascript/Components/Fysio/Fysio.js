@@ -39,11 +39,10 @@ class Fysio extends Component{
     }
 
     changePub(change){
-        let want = this.state.pubIdLimit+change;
-        if(change>0){
-            if(this.state.pubIdLimit>this.state.pubsSeen){
-                return;
-            }
+        let want = this.state.pubIdLimit + change;
+        if(change > 0 && this.state.pubIdLimit > this.state.pubsSeen){
+            return;
+
         }
         if(want <= 0){
             want = 5;
@@ -56,12 +55,16 @@ class Fysio extends Component{
      * Lifecycle render method
      * @returns {XML} The view as jsx
      */
-    render(){
+    render() {
+        let publications = undefined;
+        let layers = undefined;
+        let categories = undefined;
 
-        let publications = this.props.data.getPublications();
-        let layers = this.props.data.getLayers();
-        let categories = this.props.data.getCategories();
-
+        if (this.props.data !== undefined) {
+            publications = this.props.data.getPublications();
+            layers = this.props.data.getLayers();
+            categories = this.props.data.getCategories();
+        }
 
         //console.log("Fysio!!!!!!!!!!!!!!!!!!!!!1!!!!");
         //this.props.categoryAvailable.map(c => console.log(c));
@@ -93,8 +96,11 @@ class Fysio extends Component{
                     <Button className={"moreLessButton"} onClick={()=>this.changePub(+20)} > ++ </Button>
                 </div>
         </div>);
-
-        this.state.pubsSeen = publications.length;
+        if(publications !== undefined){
+            this.state.pubsSeen = publications.length;
+        }else {
+            this.state.pubsSeen = 0;
+        }
         //console.log("this.state.pubsSeen");
         //console.log(this.state.pubsSeen);
 
@@ -105,12 +111,7 @@ class Fysio extends Component{
         let returnable = null;
 
         if(publications === undefined || publications === null || categories === undefined || categories === null){
-            returnable = (
-                    <tbody>
-
-                    </tbody>
-
-            );
+            returnable = <tbody />;
         } else {
             returnable = (
                     <tbody>

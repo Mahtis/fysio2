@@ -26,7 +26,7 @@ describe("Data.js", () => {
             expect(data.getLayerTypes()[1].layers.length).toBe(2);
         });
         it("publications contains 5 publications", () => {
-            expect(data.getPublications().length).toBe(6);
+            expect(data.getPublications().length).toBe(8);
         });
 
         describe("Getting data by id works", () => {
@@ -36,7 +36,7 @@ describe("Data.js", () => {
                     let pub = data.getPublicationById(1);
                     expect(pub.id).toBe(1);
                     expect(pub.name).toBe("Audio Biofeedback for Poker Players");
-                    expect(pub.abstract).toBe("Abstract text here");
+                    expect(pub.abstract).toBe("A game of poker is a typical example of a situation involving inperfect information: players have to make decisions under uncertainty. This uncertainty can evoke emotional arousal and lead the player to make irrational decisions. In this paper, we introduce the EmoPoker system, which aims at making the player aware of the arousal level by providing biofeedback. With the EmoPoker system, we expect that a poker player becomes able to control their own arousal, consequently improving their gaming performance. EmoPoker presents itself as an augmented reality application, and its design is based on the traditional game concept. In this paper we also introduce other possible use cases of biofeedback training.");
                     expect(pub.year).toBe(2001);
                     expect(pub.journal).toBe("Nature");
                     expect(pub.url).toBe("http://localhost:3000/publications/1.json");
@@ -109,7 +109,7 @@ describe("Data.js", () => {
     describe("Extra functionality works", () => {
         describe("Selecting category will reduce the amount of publications shown", () => {
             it("Without selecting correct amount will be shown", () => {
-                expect(data.getPublications().length).toBe(6);
+                expect(data.getPublications().length).toBe(8);
             });
 
             it("Selecting a category reduces shown publications", () => {
@@ -119,12 +119,12 @@ describe("Data.js", () => {
             it("Selecting category again increases count of shown publications", () => {
                 data.selectCategory(3);
                 data.selectCategory(3);
-                expect(data.getPublications().length).toBe(6);
+                expect(data.getPublications().length).toBe(8);
             });
             it("Also using clear method works", () => {
                 data.selectCategory(3);
                 data.clearCategorySelections();
-                expect(data.getPublications().length).toBe(6);
+                expect(data.getPublications().length).toBe(8);
             })
         });
     });
@@ -133,7 +133,7 @@ describe("Data.js", () => {
        it("TestifSelected works", () => {
            data.selectCategory(3);
            expect(data.testIfSelected(data.getPublicationById(3))).toBe(true);
-           expect(data.testIfSelected(data.getPublicationById(6))).toBe(false);
+           expect(data.testIfSelected(data.getPublicationById(8))).toBe(false);
        });
     });
 
@@ -161,7 +161,7 @@ describe("Data.js", () => {
 
         it("Without data", () => {
             data.setPublications(undefined);
-            expect(data.getPublications().length).toBe(6);
+            expect(data.getPublications().length).toBe(8);
         });
 
         it("Without data", () => {

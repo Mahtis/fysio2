@@ -49,20 +49,21 @@ class PublicationTitle extends Component {
 
     render() {
         let publication = this.props.data.getPublicationById(this.props.id);
-        var desc = publication.moreTitles;
-        var fulldesc = "";
-        if(desc != null && desc.length > 2){
-             fulldesc=desc;
-             var array = desc.split("|");
-             fulldesc = <div>
-             {array.map(function(object, i){
-             if (i % 2 == 0) {
-                 return null;
-             } else {
-                return <p><b>{array[i-1]}: </b>{array[i]}</p>
-             }
-             })}
-             </div>;
+        let desc = publication.moreTitles;
+        let fulldesc = "";
+        if (desc !== null && desc.length > 2) {
+             let array = desc.split("|");
+             fulldesc = (
+                 <div>
+                    {array.map(function(object, i){
+                        if (i % 2 === 0) {
+                            return null;
+                         } else {
+                            return (<p key={i + "-moretitles-" + publication.name}><b>{array[i-1]}: </b>{array[i]}</p>);
+                         }
+                    })}
+                 </div>
+             );
         }
 
         return (

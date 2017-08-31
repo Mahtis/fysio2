@@ -509,20 +509,21 @@ class TestHelper {
                 "ids": [6],
                 "url": "http://localhost:3000/categories/37.json"
             }]);
-        workingdata.setPublications([
-            {
+        workingdata.setPublications([{
                 "id": 1,
                 "name": "Audio Biofeedback for Poker Players",
-                "abstract": "Abstract text here",
+                "abstract": "A game of poker is a typical example of a situation involving inperfect information: players have to make decisions under uncertainty. This uncertainty can evoke emotional arousal and lead the player to make irrational decisions. In this paper, we introduce the EmoPoker system, which aims at making the player aware of the arousal level by providing biofeedback. With the EmoPoker system, we expect that a poker player becomes able to control their own arousal, consequently improving their gaming performance. EmoPoker presents itself as an augmented reality application, and its design is based on the traditional game concept. In this paper we also introduce other possible use cases of biofeedback training.",
                 "year": 2001,
                 "journal": "Nature",
+                "moreTitles": "|",
                 "url": "http://localhost:3000/publications/1.json"
             }, {
                 "id": 2,
                 "name": "Neurofeedback Meditation in Virtual Reality",
-                "abstract": "Abstract text here",
+                "abstract": "Meditation in general and mindfulness in particular have been shown to be useful techniques in the treatment of a plethora of ailments, yet they can be challenging for novices. We present RelaWorld: a neuroadaptive virtual reality meditation system that combines virtual reality with neurofeedback to provide a tool that is easy for novices to use yet provides added value even for experienced meditators. Using a head-mounted display, users can levitate in a virtual world by doing meditation exercises. The system measures users’ brain activity in real time via EEG and calculates estimates for the level of concentration and relaxation. These values are then mapped into the virtual reality. In a user study of 43 subjects, we were able to show that the RelaWorld system elicits deeper relaxation, feeling of presence and a deeper level of meditation when compared to a similar setup without head-mounted display or neurofeedback.",
                 "year": 2005,
                 "journal": "Science",
+                "moreTitles": "What|Despite how previous studies have shown that certain meditative relaxation techniques are efficient tools for stress management, these methods are not widely in use in work environments. Traditionally these methods require commitment and effort, and technological aids to support these activities are scarce. In this project we examined how the latest 3D virtual technologies can be utilized in enhancing meditation techniques.|How|The strong feel of being somewhere else typical to 3D virtual environments hastens the detachment from one's every day surroundings and boosts the effects of the relaxation techniques, and also enables the user to use the system during the work day in the work place.In this project we developed a neuroadaptive 3D virtual environment. In this first prototype phase we implemented two different meditation techniques – the body awareness and point focus exercises. In addition to the original project plan, an additional feature was developed for the environment: EEG based neuroadaptivity so that the environment is responsive to changes in the users brainwaves. Based on states of relaxation and focused attention measured from the brainwaves, the users avatar could levitate in the environment. The purpose of this neuroadaptivity is to boost the effects of the exercise and make the environment more responsive and immersive. It also provided feedback to the user and guided the meditation.",
                 "url": "http://localhost:3000/publications/2.json"
             }, {
                 "id": 3,
@@ -530,6 +531,7 @@ class TestHelper {
                 "abstract": "Abstract text here",
                 "year": 2007,
                 "journal": "Nature Neuroscience",
+                "moreTitles": "|",
                 "url": "http://localhost:3000/publications/3.json"
             }, {
                 "id": 4,
@@ -537,6 +539,7 @@ class TestHelper {
                 "abstract": "Abstract text here",
                 "year": 2016,
                 "journal": "Current Biology",
+                "moreTitles": "|",
                 "url": "http://localhost:3000/publications/4.json"
             }, {
                 "id": 5,
@@ -544,6 +547,7 @@ class TestHelper {
                 "abstract": "Abstract text here",
                 "year": 2016,
                 "journal": "Science",
+                "moreTitles": "|",
                 "url": "http://localhost:3000/publications/5.json"
             }, {
                 "id": 6,
@@ -551,9 +555,25 @@ class TestHelper {
                 "abstract": "Abstract text here",
                 "year": 2013,
                 "journal": "Nature",
+                "moreTitles": "|",
                 "url": "http://localhost:3000/publications/6.json"
-            }
-        ]);
+            }, {
+                "id": 7,
+                "name": "Informing the Design of Novel Input Methods with Muscle Coactivation Clustering",
+                "abstract": "This article presents a novel summarization of biomechanical and performance data for user interface designers. Previously, there was no simple way for designers to predict how the location, direction, velocity, precision, or amplitude of users' movement affects performance and fatigue. We cluster muscle coactivation data from a 3D pointing task covering the whole reachable space of the arm. We identify 11 clusters of pointing movements with distinct muscular, spatio-temporal, and performance properties. We discuss their use as heuristics when designing for 3D pointing.",
+                "year": 2015,
+                "journal": "Transactions on Computer-Human Interaction",
+                "moreTitles": "|",
+                "url": "http://localhost:3000/publications/7.json"
+            }, {
+                "id": 8,
+                "name": "Understanding Gesture Expressivity through Muscle Sensing",
+                "abstract": "Expressivity is a visceral capacity of the human body. To understand what makes a gesture expressive, we need to consider not only its spatial placement and orientation but also its dynamics and the mechanisms enacting them. We start by defining gesture and gesture expressivity, and then we present fundamental aspects of muscle activity and ways to capture information through electromyography and mechanomyography. We present pilot studies that inspect the ability of users to control spatial and temporal variations of 2D shapes and that use muscle sensing to assess expressive information in gesture execution beyond space and time. This leads us to the design of a study that explores the notion of gesture power in terms of control and sensing. Results give insights to interaction designers to go beyond simplistic gestural interaction, towards the design of interactions that draw on nuances of expressive gesture.",
+                "year": 2015,
+                "journal": "Transactions on Computer-Human Interaction",
+                "moreTitles": "|",
+                "url": "http://localhost:3000/publications/8.json"
+        }]);
         return workingdata;
     }
 
@@ -590,7 +610,7 @@ class TestHelper {
         return props;
     }
 
-    static initializePublicatioInfoTableProps(props){
+    static initializePublicationInfoTableProps(props){
         props.data = this.newData(new Data());
         return props;
     }
@@ -609,6 +629,11 @@ class TestHelper {
     }
 
     static initializeTableHeaderProps(props){
+        props.data = this.newData(new Data());
+        return props;
+    }
+
+    static initializeFysio(props){
         props.data = this.newData(new Data());
         return props;
     }
