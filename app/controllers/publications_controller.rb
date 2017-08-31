@@ -4,22 +4,22 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-if params[:names].nil?
-      @publications = Publication.all
-    elsif params[:names].empty?
-      @publications = Publication.all
-    else
-      parr = []
-      params[:names].each { |p| parr << p }
-      @publications = getselectedpublications(Publication.all
-                                                  .includes(:categories)
-                                                  .where('categories.name = ?',
-                                                         parr[0])
-                                                  .references(:categories),
-                                              parr,
-                                              Category.all,
-                                              [])
-    end
+    if params[:names].nil?
+        @publications = Publication.all
+      elsif params[:names].empty?
+        @publications = Publication.all
+      else
+        parr = []
+        params[:names].each { |p| parr << p }
+        @publications = getselectedpublications(Publication.all
+                                                    .includes(:categories)
+                                                    .where('categories.name = ?',
+                                                           parr[0])
+                                                    .references(:categories),
+                                                parr,
+                                                Category.all,
+                                                [])
+      end
 
   end
 
@@ -52,14 +52,12 @@ if params[:names].nil?
     @categories = Category.all
     @layers = Layer.all
     @layerCategories = Hash.new
+
     Layer.all.map{|l| @layerCategories[l] = Category.all
         .includes(:layer)
         .where('layer_id = ?', l.id)
         .references(:layers)}
-    #Layer.all.map{|l| layerCategories[l.id] = Array.new}
-    #@categories.each do |c|
-    #  @layerCategories[c.layer_id] = @layerCategories[c.layer_id].push(c)
-    #end
+
   end
 
   # GET /publications/1/edit
@@ -68,25 +66,36 @@ if params[:names].nil?
   # POST /publications
   # POST /publications.json
   def create
-    puts 'ENNEN'
-    puts publication_params['categories']
+    puts publication_params.inspect
     pb = publication_params
-    ar = []
+    cats = []
+    authors = []
     pb['categories'].each do |c|
-      if c.empty?
-        #pb['categories'] - [c]
-      else
-        ar.push(Category.find(c))
-      end
+
+      cats.push(Category.find(c))
+
     end
-    pb[:categories] = ar
-    puts 'JÄLKEEN'
-    puts pb.inspect
+    pb['authors'].each do |a|
+      author = Author.find_by name: a
+      if author.nil?
+        param = Hash["name" => a]
+        @author = Author.new(param)
+        @author.save
+        authors.push(@author)
+      else
+        authors.push(author)
+      end
+
+    end
+
+    pb[:categories] = cats
+    pb[:authors] = authors
+
     @publication = Publication.new(pb)
 
     respond_to do |format|
       if @publication.save
-        format.html { redirect_to @publication, notice: 'PublicationTitle was successfully created.' }
+        format.html { redirect_to '/', notice: 'PublicationTitle was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
         format.html { render :new }
@@ -128,6 +137,6 @@ if params[:names].nil?
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:name, :abstract, :year, :journal, :categories => [])
+    params.require(:publication).permit(:name, :abstract, :year, :journal, :moreTitles, :categories => [], :authors => [], :links_attributes => [:id, :link_url, :link_type])
   end
 end

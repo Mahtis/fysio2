@@ -59,6 +59,7 @@ class Login extends Component{
      * userMode.
      * @param event
      */
+
     handleSubmit(event) {
         event.preventDefault();
         DatabaseConnector.sendUserCredentials(this.state.usernameI, this.state.passwordI)

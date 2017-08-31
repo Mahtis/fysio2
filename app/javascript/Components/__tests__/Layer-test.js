@@ -89,18 +89,18 @@ describe("Layer", () => {
 
                 describe("the rendered DropdownMenu", () => {
 
-                    it("always renders `CategoryList`", () => {
+                    it("always renders CategoryList", () => {
                         const dropDownMenu = layer().find("DropdownMenu");
                         expect(dropDownMenu.find("CategoryList").length).toBe(1);
                     });
 
-                    // describe("the rendered CategoryList", () => {
-                    //
-                    //     it("receives categories as prop", () => {
-                    //         const categoryList = layer().find("CategoryList");
-                    //         expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
-                    //     });
-                    // });
+                     describe("the rendered CategoryList", () => {
+
+                         it("receives categories as prop", () => {
+                             const categoryList = layer().find("CategoryList");
+                             expect(categoryList.props().categories).toBe(props.layerCategoriesDropDown);
+                         });
+                     });
                 });
             });
         });

@@ -19,6 +19,21 @@ class DatabaseConnector {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Fetches the default layers to be shown.
+     * The default view is hardcoded to be layerType 1, the Science view.
+     */
+    static getLayers() {
+        return fetch('/layers.json')
+            .then(response => response.json())
+            .then(layers => {
+                return layers;
+            });
+    }
+
+    /**
+>>>>>>> formi_jatkuu
      * Fetches all views.
      */
 
@@ -40,6 +55,92 @@ class DatabaseConnector {
             .then(results => {
                 return results;
             })
+    }
+
+
+    static createPublication(data) {
+
+        let params = {publication: data};
+
+        return fetch('/publications',
+            {
+
+            method: 'POST',
+
+            headers: {
+
+                'Accept': 'application/json',
+
+                'Content-Type': 'application/json',
+
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+            },
+
+            credentials: 'same-origin',
+
+            body: JSON.stringify(params)
+
+        }).then(response => {
+                return data;
+            }
+        )
+    }
+
+    static createCategory(data) {
+        let params = {category: data};
+
+        return fetch('/categories',
+            {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Accept': 'application/json',
+
+                    'Content-Type': 'application/json',
+
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                },
+
+                credentials: 'same-origin',
+
+                body: JSON.stringify(params)
+
+            }).then(response => {
+                return data;
+            }
+        )
+    }
+
+    static createAuthor(data) {
+        let params = {author: data};
+
+        return fetch('/authors',
+            {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Accept': 'application/json',
+
+                    'Content-Type': 'application/json',
+
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
+                },
+
+                credentials: 'same-origin',
+
+                body: JSON.stringify(params)
+
+            }).then(response => {
+                return data;
+            }
+        )
     }
 
     /**
@@ -86,7 +187,6 @@ class DatabaseConnector {
             }
         });
     }
-
 }
 
 export default DatabaseConnector;

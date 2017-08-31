@@ -13,7 +13,9 @@ class Data {
         this.layertypes = [];
         this.categories = [];
         this.publications = [];
+        this.authors = [];
         this.selected_count = 0;
+        this.allLayers = [];
     }
 
     /**
@@ -22,7 +24,9 @@ class Data {
      */
 
     setLayers(layers){
-        this.layers = layers;
+        if(layers !== undefined){
+            this.layers = layers;
+        }
     }
 
     /**
@@ -31,7 +35,9 @@ class Data {
      */
 
     setLayerTypes(layertypes){
-        this.layertypes = layertypes;
+        if(layertypes !== undefined){
+            this.layertypes = layertypes;
+        }
     }
 
     /**
@@ -40,13 +46,15 @@ class Data {
      */
 
     setCategories(categories){
-        let newCategories = [];
-        for(let i = 0; i < categories.length; i++){
-            let entry = categories[i];
-            entry["selected"] = false;
-            newCategories.push(entry);
+        if(categories !== undefined){
+            let newCategories = [];
+            for(let i = 0; i < categories.length; i++){
+                let entry = categories[i];
+                entry["selected"] = false;
+                newCategories.push(entry);
+            }
+            this.categories = newCategories;
         }
-        this.categories = newCategories;
     }
 
     /**
@@ -55,7 +63,36 @@ class Data {
      */
 
     setPublications(publications){
-        this.publications = publications;
+        if(publications !== undefined){
+            this.publications = publications;
+        }
+    }
+
+    /**
+     * Setter for authors
+     * @param publications
+     */
+
+    setAuthors(authors){
+        this.authors = authors;
+    }
+
+    /**
+     * Setter for all layers
+     * @param layers
+     */
+
+    setAllLayers(layers){
+        this.allLayers = layers;
+    }
+
+    /**
+     * Getter for authors
+     * @returns {Array|*}
+     */
+
+    getAuthors(){
+        return this.authors;
     }
 
     /**
@@ -178,7 +215,7 @@ class Data {
 
     getPublicationLayerCategories(publication_id, layer_id) {
         let categories = [];
-        if (this.categories !== undefined) {
+        if (this.categories.length > 0 ) {
             for (let i = 0; i < this.categories.length; i++) {
                 let category = this.categories[i];
                 if (category.layer_id === layer_id) {
@@ -191,6 +228,41 @@ class Data {
             }
         }
         return categories;
+    }
+
+    getLayerCategories() {
+        let layerCategories = {};
+        let layerCategoriesId = {};
+        let layers = this.allLayers;
+        let categories = this.categories;
+
+        if (categories.length > 0 && layers.length > 0) {
+
+
+
+            for(let i = 0; i < layers.length; i++) {
+                layerCategoriesId[layers[i].id] = [];
+                layerCategories[JSON.stringify(layers[i])] = [];
+            }
+
+            for(let i = 0; i < categories.length; i++) {
+                if (layerCategoriesId[categories[i].layer_id] !== undefined) {
+                    layerCategoriesId[categories[i].layer_id].push(categories[i]);
+
+                }
+            }
+
+            for (let i = 0; i < Object.keys(layerCategoriesId).length; i++) {
+                for (let j = 0; j < layers.length; j++) {
+                    if (Object.keys(layerCategoriesId)[i] === layers[j].id.toString()) {
+                        layerCategories[JSON.stringify(layers[j])] = layerCategoriesId[Object.keys(layerCategoriesId)[i]];
+                        break
+                    }
+                }
+            }
+        }
+
+        return layerCategories;
     }
 }
 

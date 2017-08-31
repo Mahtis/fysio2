@@ -49,10 +49,25 @@ class PublicationTitle extends Component {
 
     render() {
         let publication = this.props.data.getPublicationById(this.props.id);
+        var desc = publication.moreTitles;
+        var fulldesc = "";
+        if(desc != null && desc.length > 2){
+             fulldesc=desc;
+             var array = desc.split("|");
+             fulldesc = <div>
+             {array.map(function(object, i){
+             if (i % 2 == 0) {
+                 return null;
+             } else {
+                return <p><b>{array[i-1]}: </b>{array[i]}</p>
+             }
+             })}
+             </div>;
+        }
 
         return (
             <td className="rowCell">
-                <span key={publication.name} onClick={this.toggle}>{publication.name} </span>
+                <span key={publication.name} onClick={this.toggle}>{publication.name}</span>
                 <Modal isOpen={this.state.modalOpen} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle}>{publication.name}</ModalHeader>
                     <ModalBody>
@@ -65,6 +80,7 @@ class PublicationTitle extends Component {
                             {this.state.authors.indexOf(author) !== this.state.authors.length-1 && ", "}</span>))}</p>
                         <p><b>Year: </b>{publication.year}</p>
                         <p><b>Journal: </b>{publication.journal}</p>
+                        {fulldesc}
                         <PublicationInfoTable
                             key={publication.id}
                             data={this.props.data}
