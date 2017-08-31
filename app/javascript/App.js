@@ -223,8 +223,7 @@ class App extends Component {
                 <div>
                     <NavBar layerTypes={[]}
                             changeLayerView={this.changeLayerView}
-                            layerCategories={this.state.data.getLayerCategories()}
-                            authors = {this.state.data.getAuthors()}
+                            data={this.state.data}
                     />
 
                     <div className="loader" />
@@ -246,8 +245,7 @@ class App extends Component {
                 doClear = {this.doClear}
                 createPublication = {this.createPublication}
                 createCategory = {this.createCategory}
-                layerCategories={this.state.data.getLayerCategories()}
-                authors = {this.state.data.getAuthors()}
+                data={this.state.data}
             />;
 
             const homePage = (

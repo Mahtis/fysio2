@@ -207,7 +207,7 @@ class PublicationForm extends Component {
         } else {
             links.push(link);
         }
-        console.log(links);
+        //console.log(links);
         this.setState({
             linkSelected: links
         })
@@ -275,7 +275,7 @@ class PublicationForm extends Component {
                     Author
                     <Input type="text" list="authors" value={this.state.authorField} onChange={this.handleAuthorChange}/>
                     <datalist id="authors" >
-                        {this.props.authors.map(author =>
+                        {this.props.data.getAuthors().map(author =>
                             <option key={author.id} value={author.name} ></option>
                         )}
                     </datalist>
@@ -368,13 +368,13 @@ class PublicationForm extends Component {
 
         let categories = (
             <FormGroup key="categories">
-                {Object.keys(this.props.layerCategories).map(layer =>
+                {Object.keys(this.props.data.getLayerCategories()).map(layer =>
                     <FormGroup key={JSON.parse(layer).id} >
                         <br/>
                         <Label>{JSON.parse(layer).name}</Label>
                         <br/>
                         <br/>
-                        {this.props.layerCategories[layer].map(category =>
+                        {this.props.data.getLayerCategories()[layer].map(category =>
                             <CategoryCheckbox
                                 key={category.id}
                                 category={category}
