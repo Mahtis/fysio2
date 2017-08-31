@@ -1,14 +1,15 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import App from '../../App';
 import DatabaseConnector from '../../Services/__mocks__/DatabaseConnector.js';
 import Tests from '../Helpers/Tests'
 import Data from '../../Services/Data';
+import cookie from 'react-cookies';
 
 jest.mock('../../Services/DatabaseConnector');
 
 describe('App component', () => {
-    const app = mount(
+    const app = shallow(
         <App />
     );
 
@@ -21,9 +22,11 @@ describe('App component', () => {
        elegantly.
     */
 
-    beforeEach( () => {
+    beforeEach(() => {
         let data = app.state().data;
-        Tests.newData(data);
+        data = Tests.newData(data);
+        app.setState({data: data});
+        app.setState({appMode: 'normal'});
     }
     );
 
@@ -51,15 +54,70 @@ describe('App component', () => {
         })
     });
 
-    it('Clicking About switches state to about', () => {
-        app.find('Button')
+
+    it('toAbout switches state to about and shows about view', () => {
+        app.instance().toAbout();
+        expect(app.state().appMode).toEqual('about');
+        expect(app.find('.aboutBody').node).toBeDefined();
     });
 
-    it('0 publications renders loading screen', () => {
+    it('toNormal switches state to normal', () => {
+        app.instance().toNormal();
+        expect(app.state().appMode).toEqual('normal');
+    });
+
+    it('toLogin switches state to login and shows login view', () => {
+        app.instance().toLogin();
+        expect(app.state().appMode).toEqual('login');
+        expect(app.find('Login').node).toBeDefined();
+    });
+
+    it('doLogout switches user state to guest', () => {
+        app.instance().doLogout();
+        expect(app.state().userMode).toEqual('guest');
+        expect(cookie.load('auth_token')).not.toBeDefined();
+    });
+
+    it('setting user mode to admin switches user state to admin', () => {
+        app.instance().setUserMode('admin');
+        expect(app.state().userMode).toEqual('admin');
+    });
+
+    it('setting user mode to user switches user state to user', () => {
+        app.instance().setUserMode('user');
+        expect(app.state().userMode).toEqual('user');
+    });
+
+    it('No publications renders loading screen', () => {
         let data = app.state().data;
         data.setPublications([]);
-        console.log(app.state().data.getPublications().length);
-        console.log(app.find('.loader'));
+        app.setState({data: data});
+        expect(app.state().data.getPublications().length).toEqual(0);
+        expect(app.find('.loader').node).toBeDefined();
+    });
+
+    it('No layers renders loading screen', () => {
+        let data = app.state().data;
+        data.setLayers([]);
+        app.setState({data: data});
+        expect(app.state().data.getLayers().length).toEqual(0);
+        expect(app.find('.loader').node).toBeDefined();
+    });
+
+    it('No layerTypes renders loading screen', () => {
+        let data = app.state().data;
+        data.setLayerTypes([]);
+        app.setState({data: data});
+        expect(app.state().data.getLayerTypes().length).toEqual(0);
+        expect(app.find('.loader').node).toBeDefined();
+    });
+
+    it('No categories renders loading screen', () => {
+        let data = app.state().data;
+        data.setCategories([]);
+        app.setState({data: data});
+        expect(app.state().data.getCategories().length).toEqual(0);
+        expect(app.find('.loader').node).toBeDefined();
     });
 /*
     it('Fetches new view categories correctly', () => {
@@ -69,18 +127,21 @@ describe('App component', () => {
         })
     });
 */
-    it('clicking a layerType results in a change in layers', () => {
-        let nav = app.find('NavBar');
-        let link = nav.find('ml-auto nav-left');
-        console.log(nav.props().layerTypes);
-        /*DatabaseConnector.getDataFromDatabase("/layer_types").then(resolve => {
-            const nav = app.find('NavBar');
-            const link = nav.find('ml-auto nav-left');
-            console.log(nav.props().layerTypes);
-        });*/
 
-        //link.simulate('click');
+    it('doClear after selecting a category empties the selection', () => {
+        let data = app.state().data;
+        data.selectCategory(1);
+        expect(data.getSelectedCategories().length).toBe(1);
+        app.instance().doClear();
+        expect(data.getSelectedCategories().length).toBe(0);
 
+    });
+
+    it('calling changeLayerView results in a change in layers', () => {
+        app.instance().changeLayerView(2);
+        DatabaseConnector.getLayersForType(2).then(resolve => {
+            expect(app.state().data.getLayers().length).toBe(3);
+        });
     });
 /*
     it('clicking the same layerType results in no change in layers', () => {
@@ -105,5 +166,8 @@ describe('App component', () => {
         expect(app.state().data.selected_count.toEqual(1));
     });
 */
+
+
+
 });
 
