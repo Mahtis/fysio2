@@ -4,7 +4,6 @@
 
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import cookie from 'react-cookies';
 import DatabaseConnector from '../../Services/DatabaseConnector';
 
 /**

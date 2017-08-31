@@ -30,7 +30,7 @@ class DatabaseConnector {
 
     static getDataFromDatabase(string) {
         switch(string) {
-            case "/layers":
+            case "/layer_types/1":
                 let layers = [{
                         "id": 1,
                         "name": "Application"
