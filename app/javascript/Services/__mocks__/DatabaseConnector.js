@@ -80,8 +80,8 @@ class DatabaseConnector {
 
     static getDataFromDatabase(string) {
         switch(string) {
-            case "/layers":
-                let layers = [{
+            case "/layer_types/1":
+                let layersForType1 = [{
                         "id": 1,
                         "name": "Application"
                     },
@@ -93,7 +93,7 @@ class DatabaseConnector {
                         "id": 3,
                         "name": "Indicies"
                     }];
-                return Promise.resolve(layers);
+                return Promise.resolve(layersForType1);
             case "/layer_types":
                 let layerTypes =
                     [
@@ -330,6 +330,55 @@ class DatabaseConnector {
                             ]
                         }];
                 return Promise.resolve(categories);
+            case '/authors':
+                let authors =
+                    [
+                        {
+                            "id":1,
+                            "name":"Ilkka Kosunen",
+                            "url":"http://localhost:3000/authors/1.json"
+                        },
+                        {
+                            "id":2,
+                            "name":"Tetsuo Yamabe",
+                            "url":"http://localhost:3000/authors/2.json"
+                        },
+                        {
+                            "id":3,
+                            "name":"Inger Ekman",
+                            "url":"http://localhost:3000/authors/3.json"
+                        },
+                        {
+                            "id":4,
+                            "name":"Lassi A. Liikkanen",
+                            "url":"http://localhost:3000/authors/4.json"
+                        },
+                        {
+                            "id":5,
+                            "name":"Kai Kuikkaniemi",
+                            "url":"http://localhost:3000/authors/5.json"
+                        },
+                        {
+                            "id":6,
+                            "name":"Tatsuo Nakajima",
+                            "url":"http://localhost:3000/authors/6.json"
+                        }
+                    ];
+                return Promise.resolve(authors);
+            case "/layers":
+                let layers = [{
+                    "id": 1,
+                    "name": "Application"
+                },
+                    {
+                        "id": 2,
+                        "name": "Logic"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Indicies"
+                    }];
+                return Promise.resolve(layers);
         }
         return null;
     }
