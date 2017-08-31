@@ -28,6 +28,56 @@ class DatabaseConnector {
         return Promise.resolve(layers);
     }
 
+    static fetchFromPath(string){
+        switch(string){
+            case "authors.json?pubId=1":
+                return Promise.resolve(
+                    [
+                        {
+                            "id":1,
+                            "name":"Ilkka Kosunen",
+                            "url":"http://localhost:3000/authors/1.json"
+                        },
+                        {
+                            "id":2,
+                            "name":"Tetsuo Yamabe",
+                            "url":"http://localhost:3000/authors/2.json"
+                        },
+                        {
+                            "id":3,
+                            "name":"Inger Ekman",
+                            "url":"http://localhost:3000/authors/3.json"
+                        },
+                        {
+                            "id":4,
+                            "name":"Lassi A. Liikkanen",
+                            "url":"http://localhost:3000/authors/4.json"
+                        },
+                        {
+                            "id":5,
+                            "name":"Kai Kuikkaniemi",
+                            "url":"http://localhost:3000/authors/5.json"
+                        },
+                        {
+                            "id":6,
+                            "name":"Tatsuo Nakajima",
+                            "url":"http://localhost:3000/authors/6.json"
+                        }
+                    ]);
+            case "links.json?pubId=1":
+                return Promise.resolve(
+                    [
+                        {
+                            "id":1,
+                            "link_url":"www.nature.com",
+                            "publication_id":1,
+                            "link_type":"web",
+                            "url":"http://localhost:3000/links/1.json"
+                        }
+                    ]);
+        }
+    }
+
     static getDataFromDatabase(string) {
         switch(string) {
             case "/layers":

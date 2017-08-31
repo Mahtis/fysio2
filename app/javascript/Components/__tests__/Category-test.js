@@ -1,6 +1,4 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import sinon from 'sinon';
 import Category from '../Fysio/TableHeader/Layer/CategoryList/Category/Category.js';
 import TestHelper from "../Helpers/Tests";
 import Data from '../../Services/Data';
@@ -18,7 +16,6 @@ describe("Category", () => {
             updateTable: undefined,
             id: undefined,
             data: undefined
-
         };
         mountedCategory: undefined
     });
@@ -42,27 +39,6 @@ describe("Category", () => {
             const wrappingDropDownItem = category().find("DropdownItem");
             expect(wrappingDropDownItem.find("span").length).toBe(1);
         });
-
-        it("has btn as className if status is false", () => {
-            // status is initialized to false
-            initializeProps(props);
-            const wrapper = category().find("DropdownItem");
-            expect(wrapper.hasClass("btn")).toEqual(true);
-        });
-
-        it("does not have selected as className if status is false", () => {
-            initializeProps(props);
-            const wrapper = category().find("DropdownItem");
-            expect(wrapper.hasClass("selected")).toEqual(false);
-        });
-
-        // it("has btn and selected as ClassName if status is true", () => {
-        //     initializeProps(props);
-        //     const wrapper = category();
-        //     wrapper.setProps({status: true});
-        //     expect(wrapper.find("DropdownItem").hasClass("selected")).toEqual(true);
-        //     expect(wrapper.find("DropdownItem").hasClass("btn")).toEqual(true);
-        // });
 
         describe("the rendered span", () => {
 
