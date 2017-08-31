@@ -59,7 +59,7 @@ class PublicationTitle extends Component {
                         if (i % 2 === 0) {
                             return null;
                          } else {
-                            return (<p key={i + "-moretitles"}><b>{array[i-1]}: </b>{array[i]}</p>);
+                            return (<p key={i + "-moretitles-" + publication.name}><b>{array[i-1]}: </b>{array[i]}</p>);
                          }
                     })}
                  </div>

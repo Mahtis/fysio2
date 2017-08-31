@@ -6,7 +6,7 @@ import Data from '../../Services/Data';
 
 jest.mock("../../Services/DatabaseConnector");
 
-describe("TableHeader", () => {
+describe("Publication Title", () => {
     let props;
     let mountedPublicationTitle;
     const publicationTitle = () => {

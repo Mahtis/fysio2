@@ -30,12 +30,12 @@ describe("Fysio", () => {
         });
 
         it("Current pubsSeen is correct", () => {
-            expect(fysio().instance().state.pubsSeen).toBe(6);
+            expect(fysio().instance().state.pubsSeen).toBe(8);
         });
 
         it("Returnable returns empty tbody tag", () => {
-            expect(fysio().find("tbody").first().children().length).toBe(6);
-            expect(fysio().find("tbody").first().text()).toBe("<Publication /><Publication /><Publication /><Publication /><Publication /><Publication />");
+            expect(fysio().find("tbody").first().children().length).toBe(8);
+            expect(fysio().find("tbody").first().text()).toBe("<Publication /><Publication /><Publication /><Publication /><Publication /><Publication /><Publication /><Publication />");
         });
     });
 
@@ -72,23 +72,23 @@ describe("Fysio", () => {
            let button = fysio().find("Button").at(1);
            button.simulate("click");
            expect(fysio().instance().state.pubIdLimit).toBe(10);
-           expect(fysio().instance().state.pubsSeen).toBe(6);
+           expect(fysio().instance().state.pubsSeen).toBe(8);
            button.simulate("click");
 
            button = fysio().find("Button").at(4);
            button.simulate("click");
            expect(fysio().instance().state.pubIdLimit).toBe(25);
-           expect(fysio().instance().state.pubsSeen).toBe(6);
+           expect(fysio().instance().state.pubsSeen).toBe(8);
 
            button = fysio().find("Button").at(0);
            button.simulate("click");
            expect(fysio().instance().state.pubIdLimit).toBe(5);
-           expect(fysio().instance().state.pubsSeen).toBe(6);
+           expect(fysio().instance().state.pubsSeen).toBe(8);
 
            button = fysio().find("Button").at(3);
            button.simulate("click");
            expect(fysio().instance().state.pubIdLimit).toBe(10);
-           expect(fysio().instance().state.pubsSeen).toBe(6);
+           expect(fysio().instance().state.pubsSeen).toBe(8);
        }) ;
     });
 
