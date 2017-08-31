@@ -147,7 +147,7 @@ class PublicationForm extends Component {
             link_url: this.state.linkField,
             link_type: this.state.linkSelect
         };
-        console.log(link);
+
         if (links.indexOf(link) === -1) {
             links.push(link);
             this.setState({
