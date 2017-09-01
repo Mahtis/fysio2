@@ -105,8 +105,7 @@ class PublicationForm extends Component {
         });
     }
 
-    addAuthor(e) {
-        e.preventDefault();
+    addAuthor() {
         let authors = this.state.authors;
         let author = this.state.authorField;
         if (authors.indexOf(author) === -1 && author !== "") {
@@ -252,7 +251,7 @@ class PublicationForm extends Component {
         } else {
             authors.push(author);
         }
-
+        console.log(authors);
         this.setState({
             authorSelected: authors
         })

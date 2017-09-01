@@ -97,9 +97,9 @@ describe("PublicationForm", () => {
          collapseAuthor: true
      });
 
-     wrapper.clearState;
+     wrapper.instance().clearState();
 
-     expect(wrapper.state().toString()).toBe(states.toString());
+     expect(wrapper.state()).toEqual(states);
 
      });
 
@@ -128,9 +128,9 @@ describe("PublicationForm", () => {
             collapseAuthor: true
         });
 
-        wrapper.toggle;
+        wrapper.instance().toggle();
 
-        expect(wrapper.state().toString()).toBe(states.toString());
+        expect(wrapper.state()).toEqual(states);
 
     });
 
@@ -139,13 +139,13 @@ describe("PublicationForm", () => {
      let wrapper = pubForm();
 
      let link = {
-     link_url: "www",
-     link_type: "web"
-     };
+         link_url: "www",
+         link_type: "web"
+         };
 
      wrapper.instance().handleLinkCheckbox(link);
 
-     expect(wrapper.state()["linkSelected"].toString).toBe([link].toString);
+     expect(wrapper.state()["linkSelected"]).toEqual([link]);
 
 
      });
@@ -163,7 +163,7 @@ describe("PublicationForm", () => {
 
         wrapper.instance().handleLinkCheckbox(link);
 
-        expect(wrapper.state()["linkSelected"].toString).toBe([].toString);
+        expect(wrapper.state()["linkSelected"]).toEqual([]);
 
 
     });
@@ -178,7 +178,7 @@ describe("PublicationForm", () => {
 
         wrapper.instance().handleCategoryCheckbox(category);
 
-        expect(wrapper.state()["categories"].toString).toBe([category].toString);
+        expect(wrapper.state()["categories"]).toEqual([1]);
 
 
     });
@@ -194,7 +194,7 @@ describe("PublicationForm", () => {
         wrapper.instance().handleCategoryCheckbox(category);
         wrapper.instance().handleCategoryCheckbox(category);
 
-        expect(wrapper.state()["categories"].toString).toBe([].toString);
+        expect(wrapper.state()["categories"]).toEqual([]);
 
 
     });
@@ -209,7 +209,7 @@ describe("PublicationForm", () => {
 
         wrapper.instance().handleAuthorCheckbox(author);
 
-        expect(wrapper.state()["authorSelected"].toString).toBe([author].toString);
+        expect(wrapper.state()["authorSelected"]).toEqual([author]);
 
 
     });
@@ -225,7 +225,7 @@ describe("PublicationForm", () => {
         wrapper.instance().handleAuthorCheckbox(author);
         wrapper.instance().handleAuthorCheckbox(author);
 
-        expect(wrapper.state()["authorSelected"].toString).toBe([author].toString);
+        expect(wrapper.state()["authorSelected"]).toEqual([]);
 
 
     });
@@ -246,10 +246,10 @@ describe("PublicationForm", () => {
             link_type: "web"
         };
 
-        expect(wrapper.state()["links"].toString).toBe([link].toString);
+        expect(wrapper.state()["links"]).toEqual([link]);
     });
 
-    it("removeLink", () => {
+    it("removeLink so that links is empty", () => {
 
         let wrapper = pubForm();
 
@@ -260,14 +260,104 @@ describe("PublicationForm", () => {
 
         wrapper.setState({
             links: [link],
-            linkSelect: [link]
+            linkSelected: [link]
         });
 
         wrapper.instance().removeLink();
 
+         expect(wrapper.state()["links"]).toEqual([]);
+    });
 
+    it("removeLink so that links is not empty", () => {
 
-        expect(wrapper.state()["links"].toString).toBe([].toString);
+        let wrapper = pubForm();
+
+        wrapper.setState({
+            linkField: "www.fi",
+            linkSelect: "web"
+        });
+
+        wrapper.instance().addLink();
+
+        wrapper.setState({
+            linkField: "www",
+            linkSelect: "web"
+        });
+
+        wrapper.instance().addLink();
+
+        let link1 = {
+            link_url: "www.fi",
+            link_type: "web"
+        };
+
+        let link2 = {
+            link_url: "www",
+            link_type: "web"
+        };
+
+        wrapper.setState({
+            links: [link1, link2],
+            linkSelected: [link1]
+        });
+
+        wrapper.instance().removeLink();
+
+        expect(wrapper.state()["collapseLink"]).toEqual(true);
+        expect(wrapper.state()["links"]).toEqual([link2]);
+    });
+
+    it("addAuthor", () => {
+
+        let wrapper = pubForm();
+
+        wrapper.setState({
+            authorField: "Authööör"
+        });
+
+        wrapper.instance().addAuthor();
+
+        expect(wrapper.state()["authors"]).toEqual(["Authööör"]);
+    });
+
+    it("removeAuthor so that authors list is empty", () => {
+
+        let wrapper = pubForm();
+
+        wrapper.setState({
+            authors: ["Väinö Linna"],
+            authorSelected: ["Väinö Linna"]
+        });
+
+        wrapper.instance().removeAuthor();
+
+        expect(wrapper.state()["authors"]).toEqual([]);
+    });
+
+    it("removeAuthor so that authors list is not empty", () => {
+
+        let wrapper = pubForm();
+
+        wrapper.setState({
+            authorField: "Väinö Linna"
+        });
+
+        wrapper.instance().addAuthor();
+
+        wrapper.setState({
+            authorField: "Carl Barks"
+        });
+
+        wrapper.instance().addAuthor();
+
+         wrapper.setState({
+            authorSelected: ["Väinö Linna"]
+        });
+
+        wrapper.instance().removeAuthor();
+
+        //expect(wrapper.state()["authors"]).toEqual(["Carl Barks"]);
+        expect(wrapper.state()["collapseAuthor"]).toEqual(true);
     });
 
     it("handleNameChange", () => {
@@ -276,7 +366,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(0).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().name).toBe("Kekkonen");
+        expect(wrapper.state().name).toEqual("Kekkonen");
     });
 
     it("handleAuthorChange", () => {
@@ -285,7 +375,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(1).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().authorField).toBe("Kekkonen");
+        expect(wrapper.state().authorField).toEqual("Kekkonen");
     });
 
     it("handleAbstractChange", () => {
@@ -294,7 +384,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(2).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().abstract).toBe("Kekkonen");
+        expect(wrapper.state().abstract).toEqual("Kekkonen");
     });
 
     it("handleYearChange", () => {
@@ -303,7 +393,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(3).simulate("change", {target: {value: 1999}});
 
-        expect(wrapper.state().year).toBe(1999);
+        expect(wrapper.state().year).toEqual(1999);
     });
 
     it("handleJournalChange", () => {
@@ -312,7 +402,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(4).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().journal).toBe("Kekkonen");
+        expect(wrapper.state().journal).toEqual("Kekkonen");
     });
 
     it("handleUrlChange", () => {
@@ -321,7 +411,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(5).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().linkField).toBe("Kekkonen");
+        expect(wrapper.state().linkField).toEqual("Kekkonen");
     });
 
     it("handleLinkTypeChange", () => {
@@ -330,7 +420,7 @@ describe("PublicationForm", () => {
 
         wrapper.find("Input").at(6).simulate("change", {target: {value: "Kekkonen"}});
 
-        expect(wrapper.state().linkSelect).toBe("Kekkonen");
+        expect(wrapper.state().linkSelect).toEqual("Kekkonen");
     });
 
     it("handleSubmit", () => {
@@ -345,6 +435,33 @@ describe("PublicationForm", () => {
             createPublication={createPublication}
             createCategory={function(){}}
             data={TestHelper.newData(new Data())} />);
+
+        let state = {
+            name: "Humor Detection",
+            abstract: "Abstract text here",
+            year: 2016,
+            journal: "Science",
+            categories: [
+                "C++",
+                "EDA",
+                "Custom",
+                "Supervised Machine Learning Features",
+                "ML Features => Affective States (Happy, Sad, Angry, Neutral)",
+                "Annotate Cont. Adapt Interface",
+                "Layperson",
+                "Coder",
+                "Researcher"
+            ],
+            authors: [
+                "Ilkka Kosunen"
+            ],
+            links: [
+                {
+                    link_url: "www",
+                    link_type: "web"
+                }
+            ]
+        };
 
         let attributes = {
             name: "Humor Detection",
@@ -373,12 +490,10 @@ describe("PublicationForm", () => {
             ]
         };
 
-        wrapper.setState(attributes);
+        wrapper.setState(state);
 
         wrapper.find("Form").first().simulate("submit", {target: {value: "Kekkonen"}});
 
-        //console.log(publication);
-
-        expect(publication === attributes)
+        expect(attributes).toEqual(publication)
     });
 });
