@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for javascript/Components/NavBar/PublicationForm.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">javascript/Components/NavBar</a> PublicationForm.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>94/94</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>14/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>26/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>94/94</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">544x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">748x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2516x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Created by perkoila on 27.7.2017.
+ */
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import CategoryCheckbox from "./CategoryCheckbox";
+import CategoryForm from "./CategoryForm";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Form, FormGroup, Col, Row, Collapse} from 'reactstrap';
+import AuthorCheckbox from "./AuthorCheckbox";
+import LinkCheckbox from "./LinkCheckbox";
+&nbsp;
+class PublicationForm extends Component {
+&nbsp;
+    constructor() {
+        super();
+&nbsp;
+        this.toggle = this.toggle.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleAbstractChange = this.handleAbstractChange.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
+        this.handleJournalChange = this.handleJournalChange.bind(this);
+        this.handleCategoryCheckbox = this.handleCategoryCheckbox.bind(this);
+        this.handleAuthorChange = this.handleAuthorChange.bind(this);
+        this.addAuthor = this.addAuthor.bind(this);
+        this.removeAuthor = this.removeAuthor.bind(this);
+        this.handleAuthorCheckbox = this.handleAuthorCheckbox.bind(this);
+        this.clearState = this.clearState.bind(this);
+        this.addLink = this.addLink.bind(this);
+        this.handleUrlChange = this.handleUrlChange.bind(this);
+        this.handleLinkTypeChange = this.handleLinkTypeChange.bind(this);
+        this.handleLinkCheckbox = this.handleLinkCheckbox.bind(this);
+        this.removeLink = this.removeLink.bind(this);
+&nbsp;
+        this.state = {
+            modalOpen: false,
+            name: "",
+            abstract: "",
+            year: "",
+            journal: "",
+            categories: [],
+            authors: [],
+            authorField: "",
+            authorSelected: [],
+            links: [],
+            linkField: "",
+            linkSelect: "",
+            linkSelected: [],
+            collapseAuthor: false,
+            collapseLink: false
+        };
+    }
+&nbsp;
+    toggle() {
+        this.clearState();
+    }
+&nbsp;
+     handleSubmit(e) {
+        //e.preventDefault();
+&nbsp;
+        let attributes = {
+            name: this.state.name,
+            abstract: this.state.abstract,
+            year: this.state.year,
+            journal: this.state.journal,
+            categories: this.state.categories,
+            authors: this.state.authors,
+            links_attributes: this.state.links
+        };
+&nbsp;
+        this.clearState();
+&nbsp;
+        this.props.createPublication(attributes);
+    }
+&nbsp;
+    clearState() {
+        this.setState({
+            name: "",
+            abstract: "",
+            year: "",
+            journal: "",
+            categories: [],
+            authors: [],
+            authorField: "",
+            authorSelected: [],
+            links: [],
+            linkField: "",
+            linkSelect: "",
+            linkSelected: [],
+            modalOpen: !this.state.modalOpen,
+            collapseLink: false,
+            collapseAuthor: false
+        });
+    }
+&nbsp;
+    handleNameChange(e) {
+        this.setState({
+            name: e.target.value
+        })
+    }
+&nbsp;
+    handleAuthorChange(e) {
+        this.setState({
+           authorField: e.target.value
+        });
+    }
+&nbsp;
+    addAuthor() {
+        let authors = this.state.authors;
+        let author = this.state.authorField;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (authors.indexOf(author) === -1 &amp;&amp; author !== "") {
+            authors.push(author);
+            this.setState({
+                authorField: "",
+                authors: authors,
+                collapseAuthor: true
+            })
+        }
+&nbsp;
+    }
+&nbsp;
+    removeAuthor() {
+        let authors = this.state.authors;
+        let selection = this.state.authorSelected;
+        selection.map(selected =&gt;
+            authors.splice(authors.indexOf(selected), 1)
+        );
+        if (authors.length === 0) {
+            this.setState({
+                authors: authors,
+                authorSelected: [],
+                collapseAuthor: false
+            })
+        } else {
+            this.setState({
+                authors: authors,
+                authorSelected: []
+            })
+        }
+&nbsp;
+    }
+&nbsp;
+    addLink() {
+        let links = this.state.links;
+        let link = {
+            link_url: this.state.linkField,
+            link_type: this.state.linkSelect
+        };
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (links.indexOf(link) === -1) {
+            links.push(link);
+            this.setState({
+                linkField: "",
+                linkSelect: "",
+                links: links,
+                collapseLink: true
+            })
+        }
+    }
+&nbsp;
+    removeLink() {
+        let links = this.state.links;
+        let selection = this.state.linkSelected;
+        selection.map(selected =&gt;
+            links.splice(links.indexOf(selected), 1)
+        );
+        if (links.length === 0) {
+            this.setState({
+                links: links,
+                linkSelected: [],
+                collapseLink: false
+            })
+        } else {
+            this.setState({
+                links: links,
+                linkSelected: []
+            })
+        }
+    }
+&nbsp;
+    handleUrlChange(e) {
+        this.setState({
+            linkField: e.target.value
+        });
+    }
+&nbsp;
+    handleLinkTypeChange(e) {
+        this.setState({
+            linkSelect: e.target.value
+        });
+    }
+&nbsp;
+    handleAbstractChange(e) {
+        this.setState({
+            abstract: e.target.value
+        })
+    }
+&nbsp;
+    handleLinkCheckbox(link) {
+        let links = this.state.linkSelected;
+&nbsp;
+        let index = links.indexOf(link);
+&nbsp;
+        if (index &gt; -1) {
+            links.splice(index, 1);
+        } else {
+            links.push(link);
+        }
+        //console.log(links);
+        this.setState({
+            linkSelected: links
+        })
+    }
+&nbsp;
+    handleYearChange(e) {
+        this.setState({
+            year: e.target.value
+        })
+    }
+&nbsp;
+    handleJournalChange(e) {
+        this.setState({
+            journal: e.target.value
+        })
+    }
+&nbsp;
+    handleCategoryCheckbox(category) {
+&nbsp;
+        let cats = this.state.categories;
+&nbsp;
+        let index = cats.indexOf(category.id);
+&nbsp;
+        if (index &gt; -1) {
+            cats.splice(index, 1);
+        } else {
+            cats.push(category.id);
+        }
+&nbsp;
+        this.setState({
+            categories: cats
+        })
+    }
+&nbsp;
+    handleAuthorCheckbox(author) {
+        let authors = this.state.authorSelected;
+&nbsp;
+        let index = authors.indexOf(author);
+&nbsp;
+        if (index &gt; -1) {
+            authors.splice(index, 1);
+        } else {
+            authors.push(author);
+        }
+        console.log(authors);
+        this.setState({
+            authorSelected: authors
+        })
+    }
+&nbsp;
+    render() {
+&nbsp;
+        let name = (
+            &lt;FormGroup key="name"&gt;
+                &lt;Label&gt;
+                    Name:
+                    &lt;Input type="text" value={this.state.name} onChange={this.handleNameChange} /&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let authorCombo = (
+            &lt;FormGroup key="authorCombo"&gt;
+                &lt;Label&gt;
+                    Author
+                    &lt;Input type="text" list="authors" value={this.state.authorField} onChange={this.handleAuthorChange}/&gt;
+                    &lt;datalist id="authors" &gt;
+                        {this.props.data.getAuthors().map(author =&gt;
+                            &lt;option key={author.id} value={author.name} &gt;&lt;/option&gt;
+                        )}
+                    &lt;/datalist&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let addAuthorButton = &lt;Button className="authorRow" onClick={this.addAuthor}&gt;Add&lt;/Button&gt;;
+&nbsp;
+        let authorSelected = (
+            &lt;FormGroup className="authorRow" key="authorSelected"&gt;
+                {this.state.authors.map(author =&gt;
+                    &lt;AuthorCheckbox
+                        key={author}
+                        author={author}
+                        handleCheckbox={this.handleAuthorCheckbox}
+                        check/&gt;
+                )}
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let removeAuthorButton = (
+            &lt;Collapse isOpen={this.state.collapseAuthor}&gt;
+                &lt;Button className="authorRow" onClick={this.removeAuthor}&gt;Remove&lt;/Button&gt;
+            &lt;/Collapse&gt;
+        );
+&nbsp;
+        let abstract = (
+            &lt;FormGroup key="abstract"&gt;
+                &lt;Label&gt;
+                    Abstract:
+                    &lt;Input type="text" value={this.state.abstract} onChange={this.handleAbstractChange} /&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let year = (
+            &lt;FormGroup key="year"&gt;
+                &lt;Label&gt;
+                    Year:
+                    &lt;Input type="number" value={this.state.year} onChange={this.handleYearChange} /&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let journal = (
+            &lt;FormGroup key="journal"&gt;
+                &lt;Label&gt;
+                    Journal:
+                    &lt;Input type="text" value={this.state.journal} onChange={this.handleJournalChange} /&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let links = (
+            &lt;FormGroup&gt;
+                &lt;Label&gt;
+                    Link
+                    &lt;Input type="text" value={this.state.linkField} onChange={this.handleUrlChange}/&gt;
+                    &lt;Input type="select" onChange={this.handleLinkTypeChange} value={this.state.linkSelect}&gt;
+                        &lt;option hidden&gt;Link type&lt;/option&gt;
+                        &lt;option value="web"&gt;web&lt;/option&gt;
+                        &lt;option value="github"&gt;github&lt;/option&gt;
+                    &lt;/Input&gt;
+                &lt;/Label&gt;
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let addLinkButton = &lt;Button className="linkRow" onClick={this.addLink}&gt;Add&lt;/Button&gt;;
+&nbsp;
+        let removeLinkButton = (
+            &lt;Collapse isOpen={this.state.collapseLink}&gt;
+                &lt;Button className="linkRow" onClick={this.removeLink}&gt;Remove&lt;/Button&gt;
+            &lt;/Collapse&gt;
+        );
+&nbsp;
+        //let removeLinkButton = &lt;Button onClick={this.removeLink}&gt;Remove&lt;/Button&gt;;
+&nbsp;
+        let linkSelected = (
+            &lt;FormGroup className="linkRow"&gt;
+                {this.state.links.map(link =&gt;
+                    &lt;LinkCheckbox
+                        key={link.link_url}
+                        link={link}
+                        handleCheckbox={this.handleLinkCheckbox}
+                        check/&gt;
+                )}
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let categories = (
+            &lt;FormGroup key="categories"&gt;
+                {Object.keys(this.props.data.getLayerCategories()).map(layer =&gt;
+                    &lt;FormGroup key={JSON.parse(layer).id} &gt;
+                        &lt;br/&gt;
+                        &lt;Label&gt;{JSON.parse(layer).name}&lt;/Label&gt;
+                        &lt;br/&gt;
+                        &lt;br/&gt;
+                        {this.props.data.getLayerCategories()[layer].map(category =&gt;
+                            &lt;CategoryCheckbox
+                                key={category.id}
+                                category={category}
+                                handleCheckbox={this.handleCategoryCheckbox}
+                            /&gt;
+                        )}
+                        &lt;CategoryForm layer={JSON.parse(layer)} createCategory={this.props.createCategory}/&gt;
+                    &lt;/FormGroup&gt;
+                )}
+            &lt;/FormGroup&gt;
+        );
+&nbsp;
+        let submit = &lt;Input type="submit" value="Submit" /&gt;;
+&nbsp;
+         return (
+            &lt;Button onClick={this.toggle} className="modeButtons"&gt;
+                Add publication
+                &lt;Modal isOpen={this.state.modalOpen} toggle={this.toggle}&gt;
+                    &lt;ModalHeader toggle={this.toggle}&gt;Add publication&lt;/ModalHeader&gt;
+                    &lt;ModalBody&gt;
+                        &lt;Form onSubmit={this.handleSubmit}&gt;
+                            &lt;Row&gt;
+                                &lt;Col sm="4"&gt;
+                                    {name}
+                                    {authorCombo}
+                                    {abstract}
+                                    {year}
+                                    {journal}
+                                &lt;/Col&gt;
+                                &lt;Col sm="2"&gt;
+                                    {addAuthorButton}
+                                &lt;/Col&gt;
+                                &lt;Col sm="2"&gt;
+                                    {removeAuthorButton}
+                                &lt;/Col&gt;
+                                &lt;Col sm="4"&gt;
+                                    {authorSelected}
+                                &lt;/Col&gt;
+                            &lt;/Row&gt;
+                            &lt;Row&gt;
+                                &lt;Col sm="4"&gt;
+                                    {links}
+                                &lt;/Col&gt;
+                                &lt;Col sm="2"&gt;
+                                    {addLinkButton}
+                                &lt;/Col&gt;
+                                &lt;Col sm="2"&gt;
+                                    {removeLinkButton}
+                                &lt;/Col&gt;
+                                &lt;Col sm="4"&gt;
+                                    {linkSelected}
+                                &lt;/Col&gt;
+                            &lt;/Row&gt;
+                            &lt;Row&gt;
+                                {categories}
+                                {submit}
+                            &lt;/Row&gt;
+                        &lt;/Form&gt;
+                    &lt;/ModalBody&gt;
+                &lt;/Modal&gt;
+            &lt;/Button&gt;
+&nbsp;
+        )
+    }
+}
+&nbsp;
+export default PublicationForm;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Sep 01 2017 18:05:14 GMT+0300 (EEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
