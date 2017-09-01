@@ -382,6 +382,14 @@ class DatabaseConnector {
         }
         return null;
     }
+
+    static sendUserCredentials(name, password) {
+        if (name === 'noAuth') {
+            return Promise.resolve({});
+        }
+        return Promise.resolve({auth_token: "token",
+                user: {role: 'user'}});
+    }
 }
 
 module.exports = DatabaseConnector;
