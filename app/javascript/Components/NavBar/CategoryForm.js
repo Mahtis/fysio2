@@ -22,12 +22,20 @@ class CategoryForm extends Component {
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleInfolinkChange = this.handleInfolinkChange.bind(this);
+        this.clearState = this.clearState.bind(this);
     }
 
     toggle() {
+        this.clearState();
+    }
+
+    clearState() {
         this.setState({
-            modalOpen: !this.state.modalOpen
-        });
+            modalOpen: !this.state.modalOpen,
+            name: "",
+            description: "",
+            infolink: ""
+        })
     }
 
     handleSubmit() {
@@ -38,14 +46,10 @@ class CategoryForm extends Component {
             description: this.state.description,
             infolink: this.state.infolink,
         };
-        //console.log(attributes);
+
+        this.clearState();
+
         this.props.createCategory(attributes);
-        this.setState({
-            modalOpen: !this.state.modalOpen,
-            name: "",
-            description: "",
-            infolink: ""
-        });
     }
 
     handleNameChange(e) {

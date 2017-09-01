@@ -56,7 +56,7 @@ class PublicationForm extends Component {
     }
 
      handleSubmit(e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         let attributes = {
             name: this.state.name,
@@ -105,8 +105,7 @@ class PublicationForm extends Component {
         });
     }
 
-    addAuthor(e) {
-        e.preventDefault();
+    addAuthor() {
         let authors = this.state.authors;
         let author = this.state.authorField;
         if (authors.indexOf(author) === -1 && author !== "") {
@@ -147,7 +146,7 @@ class PublicationForm extends Component {
             link_url: this.state.linkField,
             link_type: this.state.linkSelect
         };
-        console.log(link);
+
         if (links.indexOf(link) === -1) {
             links.push(link);
             this.setState({
@@ -207,7 +206,7 @@ class PublicationForm extends Component {
         } else {
             links.push(link);
         }
-        console.log(links);
+        //console.log(links);
         this.setState({
             linkSelected: links
         })
@@ -252,7 +251,7 @@ class PublicationForm extends Component {
         } else {
             authors.push(author);
         }
-
+        console.log(authors);
         this.setState({
             authorSelected: authors
         })
@@ -275,7 +274,7 @@ class PublicationForm extends Component {
                     Author
                     <Input type="text" list="authors" value={this.state.authorField} onChange={this.handleAuthorChange}/>
                     <datalist id="authors" >
-                        {this.props.authors.map(author =>
+                        {this.props.data.getAuthors().map(author =>
                             <option key={author.id} value={author.name} ></option>
                         )}
                     </datalist>
@@ -368,13 +367,13 @@ class PublicationForm extends Component {
 
         let categories = (
             <FormGroup key="categories">
-                {Object.keys(this.props.layerCategories).map(layer =>
+                {Object.keys(this.props.data.getLayerCategories()).map(layer =>
                     <FormGroup key={JSON.parse(layer).id} >
                         <br/>
                         <Label>{JSON.parse(layer).name}</Label>
                         <br/>
                         <br/>
-                        {this.props.layerCategories[layer].map(category =>
+                        {this.props.data.getLayerCategories()[layer].map(category =>
                             <CategoryCheckbox
                                 key={category.id}
                                 category={category}

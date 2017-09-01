@@ -262,6 +262,8 @@ class Data {
             }
         }
 
+        //console.log(JSON.stringify(layerCategories));
+
         return layerCategories;
     }
 }
