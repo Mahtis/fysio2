@@ -69,7 +69,7 @@ class Login extends Component{
                     this.setState({errorMessage: ''});
                     this.props.setUserMode(response.user.role);
                 } else {
-                    console.log(response.error.user_authentication);
+                    //console.log(response.error.user_authentication);
                     this.setState({usernameI: ''});
                     this.setState({passwordI: ''});
                     this.setState({errorMessage: "Wrong username/password or GitHub account"});

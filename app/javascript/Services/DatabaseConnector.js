@@ -2,7 +2,6 @@
 /**
  * Class handling fetching data from database.
  * Each function returns a Promise-object.
- * As is, the class could use some refactoring to reduce copy-paste code.
  */
 class DatabaseConnector {
 
@@ -19,8 +18,6 @@ class DatabaseConnector {
     }
 
     /**
-<<<<<<< HEAD
-=======
      * Fetches the default layers to be shown.
      * The default view is hardcoded to be layerType 1, the Science view.
      */
@@ -33,10 +30,8 @@ class DatabaseConnector {
     }
 
     /**
->>>>>>> formi_jatkuu
      * Fetches all views.
      */
-
     static getDataFromDatabase(database) {
         return fetch(database + '.json')
             .then(response => response.json())

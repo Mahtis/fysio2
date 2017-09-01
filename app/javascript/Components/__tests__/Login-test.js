@@ -1,6 +1,9 @@
 import React from "react";
 import { mount } from "enzyme";
 import Login from '../Tabs/Login';
+import DatabaseConnector from '../../Services/__mocks__/DatabaseConnector';
+
+jest.mock('../../Services/DatabaseConnector');
 
 describe("Login", () => {
     let props;
@@ -15,7 +18,7 @@ describe("Login", () => {
     };
 
     beforeEach(() => {
-        props = {};
+        props = {setUserMode: jest.fn()};
         mountedPublicationInfoTable = undefined;
     });
 
@@ -115,5 +118,50 @@ describe("Login", () => {
             });
         });
     });
+
+    it("correctly changes username", () => {
+        const wrapper = login();
+        let e = {target: {value: "Matti"}};
+        wrapper.instance().updateUsername(e);
+        expect(wrapper.state().usernameI).toBe('Matti');
+    });
+
+    it("correctly changes password", () => {
+        const wrapper = login();
+        let e = {target: {value: "Matti"}};
+        wrapper.instance().updatePassword(e);
+        expect(wrapper.state().passwordI).toBe('Matti');
+    });
+
+    it("sending correct user credentials results in call to setUserMode", () => {
+        const wrapper = login();
+        class Event {
+            preventDefault() {
+                return null;
+            }
+        }
+        let event = new Event();
+        wrapper.instance().handleSubmit(event);
+        DatabaseConnector.sendUserCredentials('name','').then(response => {
+            expect(wrapper.props().setUserMode.mock.calls.length).toBe(1);
+        });
+    });
+
+    it("sending incorrect user credentials results in error and no calls to setUserMode", () => {
+        const wrapper = login();
+        class Event {
+            preventDefault() {
+                return null;
+            }
+        }
+        let event = new Event();
+        wrapper.setState({usernameI: 'noAuth'});
+        wrapper.instance().handleSubmit(event);
+        DatabaseConnector.sendUserCredentials('noAuth','').then(response => {
+            expect(wrapper.props().setUserMode.mock.calls.length).toBe(0);
+            expect(wrapper.state().errorMessage).toBe('Wrong username/password or GitHub account');
+        });
+    });
+
 });
 
